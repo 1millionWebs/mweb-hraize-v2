@@ -16,7 +16,7 @@ export const GlassCard: React.FC<GlassCardProps> = ({
 }) => {
   return (
     <motion.div
-      className={`relative overflow-hidden rounded-2xl border border-white/20 bg-white/60 p-6 shadow-[0_8px_32px_0_rgba(30,58,138,0.06)] backdrop-blur-xl ${className}`}
+      className={`relative overflow-hidden rounded-2xl border border-white/20 bg-[#e2e8f0] p-6 shadow-[0_8px_32px_0_rgba(30,58,138,0.06)] ${className}`}
       whileHover={hoverEffect ? { y: -4, boxShadow: "0_12px_40px_0_rgba(30,58,138,0.12)" } : undefined}
       transition={{ duration: 0.3, ease: "easeOut" }}
     >

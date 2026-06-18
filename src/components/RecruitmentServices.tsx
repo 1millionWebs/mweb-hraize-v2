@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "motion/react";
-import { 
-  CheckCircle, XCircle, Users, Award, Briefcase, ChevronRight, 
+import {
+  CheckCircle, XCircle, Users, Award, Briefcase, ChevronRight,
   Settings, Building2, GraduationCap, Check, ArrowRight
 } from "lucide-react";
 import { GlassCard } from "./UIElements";
@@ -15,7 +15,7 @@ export const RecruitmentServices: React.FC<RecruitmentServicesProps> = ({
   onEmployerClick,
   onCandidateClick,
 }) => {
-  
+
   const corePillars = [
     {
       title: "Vetted Candidates, Not Bulk Lists",
@@ -66,7 +66,7 @@ export const RecruitmentServices: React.FC<RecruitmentServicesProps> = ({
   ];
 
   const industries = [
-    "Manufacturing", "Engineering", "Healthcare", "Hospitality", 
+    "Manufacturing", "Engineering", "Healthcare", "Hospitality",
     "Revenue Cycle Management", "Education", "Retail", "Financial Services"
   ];
 
@@ -106,7 +106,7 @@ export const RecruitmentServices: React.FC<RecruitmentServicesProps> = ({
   return (
     <div id="recruitment-services-view" className="bg-[#F8FAFF] py-16">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        
+
         {/* Main Title Headers */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <span className="text-xs font-extrabold uppercase tracking-widest text-[#0EA5E9]">TALENT REQUISITION</span>
@@ -123,7 +123,7 @@ export const RecruitmentServices: React.FC<RecruitmentServicesProps> = ({
 
         {/* The Hraize Difference (Quality Not Volume) - Split with Graph vector */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-24">
-          
+
           {/* Left illustration graphic */}
           <div className="lg:col-span-5 relative bg-[#07112E] p-8 rounded-3xl text-white shadow-xl flex flex-col justify-between h-[450px]">
             <div>
@@ -140,7 +140,7 @@ export const RecruitmentServices: React.FC<RecruitmentServicesProps> = ({
                 <path d="M 20,20 L 280,20 L 190,140 L 110,140 Z" fill="none" stroke="#64748B" strokeWidth="2" strokeDasharray="4 4" />
                 <path d="M 60,50 L 240,50 L 175,140 L 125,140 Z" fill="none" stroke="#1E3A8A" strokeWidth="2" />
                 <path d="M 125,140 L 175,140 L 160,190 L 140,190 Z" fill="none" stroke="#0EA5E9" strokeWidth="3" />
-                
+
                 {/* Dots representation */}
                 <circle cx="50" cy="35" r="5" fill="#64748B" />
                 <circle cx="100" cy="35" r="5" fill="#64748B" />
@@ -175,10 +175,10 @@ export const RecruitmentServices: React.FC<RecruitmentServicesProps> = ({
             <h3 className="text-2xl font-black text-[#1E3A8A] uppercase tracking-tight">
               THE HRAIZE DIFFERENCE
             </h3>
-            
+
             <div className="space-y-4">
               {corePillars.map((p, idx) => (
-                <div key={idx} className="flex gap-4 items-start p-4 bg-white rounded-xl border border-slate-100 hover:border-[#0EA5E9] transition-colors">
+                <div key={idx} className="flex gap-4 items-start p-4 bg-[#e2e8f0] rounded-xl border border-slate-100 hover:border-[#0EA5E9] transition-colors">
                   <div className="h-6 w-6 rounded-full bg-[#1E3A8A]/10 text-[#1E3A8A] flex items-center justify-center flex-shrink-0 mt-0.5">
                     <Check className="h-4 w-4 text-[#0EA5E9]" strokeWidth={3} />
                   </div>
@@ -218,7 +218,7 @@ export const RecruitmentServices: React.FC<RecruitmentServicesProps> = ({
                   <h4 className="text-base font-black text-[#1E293B] uppercase tracking-wide mb-3">{m.title}</h4>
                   <p className="text-xs text-gray-500 font-medium leading-relaxed">{m.desc}</p>
                 </div>
-                
+
                 <div className="mt-6 pt-4 border-t border-slate-100">
                   <span className="text-[10px] text-gray-400 font-bold uppercase">60-Day Replacement Covered</span>
                 </div>
@@ -228,62 +228,10 @@ export const RecruitmentServices: React.FC<RecruitmentServicesProps> = ({
         </div>
 
         {/* WHO WE SERVE SECTION */}
-        <div id="who-we-serve" className="bg-[#07112E] rounded-3xl p-8 sm:p-12 text-white mb-24 relative overflow-hidden">
-          <div className="absolute right-0 bottom-0 opacity-5 pointer-events-none">
-            <Building2 className="h-96 w-96 text-white" />
-          </div>
 
-          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            
-            {/* Left intro */}
-            <div className="lg:col-span-4">
-              <span className="text-xs font-extrabold uppercase tracking-widest text-[#0EA5E9]">WHO WE SERVE</span>
-              <h3 className="mt-2 text-2xl sm:text-3xl font-black uppercase tracking-tight text-white leading-tight">
-                Precision-Fit <br />For Multiple <br />
-                <span className="text-[#0EA5E9]">Industries</span>
-              </h3>
-              <p className="mt-4 text-xs text-slate-300 font-medium leading-relaxed">
-                You only see candidates who meet your strict operational threshold. We represent leading organizations seeking stable workforce growth.
-              </p>
-              
-              <div className="mt-6">
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1 text-xs font-black text-[#D4A017] uppercase">
-                  ✓ WHY HIRE THROUGH HRAIZE
-                </span>
-              </div>
-            </div>
-
-            {/* Middle Recruits list */}
-            <div className="lg:col-span-4 bg-white/5 p-6 rounded-2xl border border-white/10">
-              <h4 className="text-sm font-black tracking-widest text-[#0EA5E9] uppercase mb-4">Who buy-in we Recruit:</h4>
-              <ul className="space-y-3">
-                {recruits.map((r, i) => (
-                  <li key={i} className="flex items-center gap-2.5 text-xs font-bold text-slate-200">
-                    <CheckCircle className="h-4 w-4 text-[#0EA5E9] flex-shrink-0" />
-                    {r}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Right Industries list */}
-            <div className="lg:col-span-4 bg-white/5 p-6 rounded-2xl border border-white/10">
-              <h4 className="text-sm font-black tracking-widest text-[#D4A017] uppercase mb-4">Industries We Serve:</h4>
-              <ul className="space-y-3">
-                {industries.map((ind, i) => (
-                  <li key={i} className="flex items-center gap-2.5 text-xs font-bold text-slate-200">
-                    <Building2 className="h-4 w-4 text-[#D4A017] flex-shrink-0" />
-                    {ind}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-          </div>
-        </div>
 
         {/* Comparison Grid Table: Traditional Agency vs Hraize */}
-        <div className="mb-24 bg-white border border-slate-100 rounded-3xl p-6 sm:p-10 shadow-sm overflow-hidden">
+        <div className="mb-24 bg-[#e2e8f0] border border-slate-100 rounded-3xl p-6 sm:p-10 shadow-sm overflow-hidden">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <span className="text-xs font-extrabold uppercase tracking-widest text-[#0EA5E9]">AGENCY MATRIX</span>
             <h3 className="mt-1 text-2xl font-black text-[#1E3A8A] uppercase tracking-tight">
@@ -328,7 +276,7 @@ export const RecruitmentServices: React.FC<RecruitmentServicesProps> = ({
 
         {/* CTA Split Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-          
+
           {/* Card 1: For Employers */}
           <div className="bg-[#1E3A8A] rounded-3xl p-8 text-white shadow-xl flex flex-col justify-between items-start group relative overflow-hidden">
             <div className="absolute right-0 top-0 p-4 opacity-5 pointer-events-none">
@@ -353,7 +301,7 @@ export const RecruitmentServices: React.FC<RecruitmentServicesProps> = ({
           </div>
 
           {/* Card 2: For Candidates */}
-          <div className="bg-white border border-slate-150 rounded-3xl p-8 shadow-xl flex flex-col justify-between items-start group relative overflow-hidden">
+          <div className="bg-[#e2e8f0] border border-slate-150 rounded-3xl p-8 shadow-xl flex flex-col justify-between items-start group relative overflow-hidden">
             <div className="absolute right-0 top-0 p-4 opacity-5 pointer-events-none">
               <GraduationCap className="h-32 w-32 text-gray-300" />
             </div>

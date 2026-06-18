@@ -138,7 +138,7 @@ export const HomeContent: React.FC<HomeContentProps> = ({
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: idx * 0.1 }}
-                  className="bg-white border border-slate-100 rounded-2xl p-6 shadow-[0_4px_20px_0_rgba(7,17,46,0.02)] flex flex-col items-center text-center group hover:border-[#0EA5E9] transition-colors"
+                  className="bg-[#e2e8f0] border border-slate-100 rounded-2xl p-6 shadow-[0_4px_20px_0_rgba(7,17,46,0.02)] flex flex-col items-center text-center group hover:border-[#0EA5E9] transition-colors"
                 >
                   <div className="h-12 w-12 rounded-xl bg-[#1E3A8A]/5 flex items-center justify-center text-[#1E3A8A] group-hover:bg-[#0EA5E9]/10 group-hover:text-[#0EA5E9] transition-colors mb-4">
                     <Icon className="h-6 w-6" />
@@ -254,7 +254,7 @@ export const HomeContent: React.FC<HomeContentProps> = ({
                 Our Company
               </h3>
             </div>
-            <div className="lg:col-span-7 bg-white p-6 rounded-2xl border border-slate-100">
+            <div className="lg:col-span-7 bg-[#e2e8f0] p-6 rounded-2xl border border-slate-100">
               <p className="text-sm sm:text-base text-gray-600 font-semibold leading-relaxed">
                 Hraize is more than an HR service provider; <strong className="text-[#1E3A8A]">we are your people partner</strong>. We believe businesses deserve HR that actually works, and ambitious professionals deserve careers they are truly proud of. We built Hraize to make both happen safely, backed by deep data analytic matrices.
               </p>
@@ -270,7 +270,7 @@ export const HomeContent: React.FC<HomeContentProps> = ({
               {whatWeDo.map((w, idx) => (
                 <div
                   key={idx}
-                  className="bg-white border border-slate-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between group hover:border-[#0EA5E9] transition-all"
+                  className="bg-[#e2e8f0] border border-slate-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between group hover:border-[#0EA5E9] transition-all"
                 >
                   <div>
                     <span className="text-[9px] font-mono font-bold text-slate-400 border border-slate-200 px-2.5 py-1 rounded inline-block uppercase mb-4">
@@ -308,7 +308,7 @@ export const HomeContent: React.FC<HomeContentProps> = ({
             {whyChooseHraize.map((item, idx) => (
               <div
                 key={idx}
-                className="bg-white border border-slate-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between relative overflow-hidden group hover:shadow-md transition"
+                className="bg-[#e2e8f0] border border-slate-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between relative overflow-hidden group hover:shadow-md transition"
               >
                 <div>
                   <div className="flex items-center gap-2 mb-4">
@@ -352,7 +352,7 @@ export const HomeContent: React.FC<HomeContentProps> = ({
               return (
                 <div
                   key={idx}
-                  className="bg-slate-50 border border-slate-100 rounded-3xl p-6 shadow-sm hover:border-[#1E3A8A] transition-all flex flex-col justify-between"
+                  className="bg-[#e2e8f0] border border-slate-100 rounded-3xl p-6 shadow-sm hover:border-[#1E3A8A] transition-all flex flex-col justify-between"
                 >
                   <div>
                     <div

@@ -119,7 +119,7 @@ export const TrainingAndDevelopment: React.FC<TrainingAndDevelopmentProps> = ({
             {whatMakesUsDifferent.map((diff, idx) => (
               <div 
                 key={idx} 
-                className="bg-white border border-slate-100 rounded-2xl p-6 shadow-sm transition hover:border-[#0EA5E9] flex flex-col justify-between"
+                className="bg-[#e2e8f0] border border-slate-100 rounded-2xl p-6 shadow-sm transition hover:border-[#0EA5E9] flex flex-col justify-between"
               >
                 <div>
                   <div className="h-10 w-10 text-[#0EA5E9] bg-[#0EA5E9]/5 rounded-lg flex items-center justify-center mb-4">
