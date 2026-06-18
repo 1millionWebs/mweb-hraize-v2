@@ -16,7 +16,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="min-h-screen bg-[#F8FAFF] flex flex-col justify-between selection:bg-[#0EA5E9] selection:text-white font-sans antialiased">
+      <body suppressHydrationWarning className="min-h-screen bg-[#F8FAFF] flex flex-col justify-between selection:bg-[#0EA5E9] selection:text-white font-sans antialiased">
         <div>
           <Navbar />
           <main id="primary-layout">{children}</main>

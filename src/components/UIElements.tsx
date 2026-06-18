@@ -79,8 +79,8 @@ export const MiniDashboardWidget: React.FC = () => {
         </div>
         {/* Custom minimalist path element */}
         <div className="mt-2 h-1.5 w-full rounded-full bg-gray-200 overflow-hidden">
-          <motion.div 
-            className="h-full bg-gradient-to-r from-[#1E3A8A] to-[#0EA5E9]" 
+          <motion.div
+            className="h-full bg-gradient-to-r from-[#1E3A8A] to-[#0EA5E9]"
             initial={{ width: "0%" }}
             animate={{ width: "94.2%" }}
             transition={{ duration: 1.5, delay: 0.5 }}
@@ -96,8 +96,8 @@ export const MiniDashboardWidget: React.FC = () => {
         </div>
         {/* Attrition progress bar */}
         <div className="mt-2 h-1.5 w-full rounded-full bg-gray-200 overflow-hidden">
-          <motion.div 
-            className="h-full bg-[#0EA5E9]" 
+          <motion.div
+            className="h-full bg-[#0EA5E9]"
             initial={{ width: "0%" }}
             animate={{ width: "75%" }}
             transition={{ duration: 1.5, delay: 0.7 }}

@@ -27,34 +27,7 @@ export const Hero: React.FC<HeroProps> = ({ onStartTrial, onExploreFeatures }) =
         {/* Tech Grid Texture */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-30" />
 
-        {/* Connected Node SVG */}
-        <motion.svg
-          viewBox="0 0 800 600"
-          className="absolute bottom-0 left-0 w-2/3 h-5/6 opacity-45"
-          initial={{ opacity: 0, x: -60, y: 60 }}
-          animate={{ opacity: 0.45, x: 0, y: 0 }}
-          transition={{ duration: 1.8, ease: "easeOut" }}
-        >
-          {/* Node Connections */}
-          <line x1="50" y1="550" x2="160" y2="440" stroke="#64748B" strokeWidth="1.5" strokeDasharray="3 3" />
-          <line x1="160" y1="440" x2="120" y2="300" stroke="#64748B" strokeWidth="1.5" />
-          <line x1="120" y1="300" x2="280" y2="240" stroke="#64748B" strokeWidth="1" strokeDasharray="4 4" />
-          <line x1="160" y1="440" x2="280" y2="460" stroke="#64748B" strokeWidth="1.5" />
-          <line x1="280" y1="460" x2="380" y2="320" stroke="#64748B" strokeWidth="1.5" />
-          <line x1="280" y1="240" x2="380" y2="320" stroke="#64748B" strokeWidth="1" />
-          <line x1="380" y1="320" x2="520" y2="480" stroke="#64748B" strokeWidth="1.5" strokeDasharray="2 2" />
-          <line x1="120" y1="300" x2="60" y2="180" stroke="#64748B" strokeWidth="1" />
 
-          {/* Glowing Nodes */}
-          <circle cx="50" cy="550" r="5" fill="#1E3A8A" />
-          <circle cx="160" cy="440" r="6" fill="#0EA5E9" />
-          <circle cx="120" cy="300" r="5" fill="#1E3A8A" />
-          <circle cx="280" cy="240" r="7" fill="#D4A017" />
-          <circle cx="280" cy="460" r="5" fill="#64748B" />
-          <circle cx="380" cy="320" r="8" fill="#0EA5E9" />
-          <circle cx="520" cy="480" r="4" fill="#1E3A8A" />
-          <circle cx="60" cy="180" r="6" fill="#64748B" />
-        </motion.svg>
       </div>
 
       {/* Main Content Grid */}
@@ -331,53 +304,6 @@ export const Hero: React.FC<HeroProps> = ({ onStartTrial, onExploreFeatures }) =
               <img src={avatars[2].url} alt="" className="h-full w-full object-cover" />
             </motion.div>
           </motion.div>
-
-        </div>
-      </div>
-
-      {/* Bottom Row Area: holding Badges on Left and Real-time gauges on Right */}
-      <div className="relative z-10 w-full mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mt-12">
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 border-t border-slate-200/60 pt-6">
-
-          {/* Bottom Left: Trust Badges banner */}
-          <div id="trust-badges-container" className="flex-1 max-w-lg">
-            <TrustBadges />
-          </div>
-
-          {/* Bottom Right: Clean icons with text in Sky Cyan & Deep Navy */}
-          <div id="feature-gauges-container" className="flex flex-wrap items-center gap-6">
-
-            {/* Real-time Dashboards (circular gauge icon) */}
-            <div className="flex items-center gap-3 bg-white/75 p-3.5 rounded-xl border border-slate-200/50 shadow-sm backdrop-blur-md">
-              <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-[#0EA5E9]/10 text-[#0EA5E9]">
-                {/* Circular Gauge Icon */}
-                <svg viewBox="0 0 24 24" className="h-6 w-6" stroke="currentColor" fill="none" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M12 2a10 10 0 0 1 10 10c0 1.25-.23 2.45-.65 3.56" />
-                  <path d="M22 12A10 10 0 0 1 2 12" />
-                  <path d="M4.65 15.56A10 10 0 0 1 12 2" />
-                  <circle cx="12" cy="12" r="1" fill="currentColor" />
-                  <path d="M12 12l5-5" stroke="#1E3A8A" strokeWidth="3" />
-                </svg>
-              </div>
-              <div>
-                <p className="text-xs font-bold text-[#1E3A8A] uppercase tracking-wide">Real-time Dashboards</p>
-                <p className="text-[10px] font-medium text-gray-500">Live operational workforce view</p>
-              </div>
-            </div>
-
-            {/* Predictive Analytics (rising graph/trendline icon) */}
-            <div className="flex items-center gap-3 bg-white/75 p-3.5 rounded-xl border border-slate-200/50 shadow-sm backdrop-blur-md">
-              <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-[#1E3A8A]/10 text-[#1E3A8A]">
-                {/* Rising graph icon */}
-                <LineChart className="h-6 w-6 text-[#1E3A8A]" />
-              </div>
-              <div>
-                <p className="text-xs font-bold text-[#1E3A8A] uppercase tracking-wide">Predictive Analytics</p>
-                <p className="text-[10px] font-medium text-[#0EA5E9]">Identify turnover before it occurs</p>
-              </div>
-            </div>
-
-          </div>
 
         </div>
       </div>
