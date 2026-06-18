@@ -1,20 +1,10 @@
-import React from "react";
+"use client";
+import Link from "next/link";
 import { Instagram, Linkedin, Mail, ShieldCheck, ArrowUp } from "lucide-react";
 
-interface FooterProps {
-  setCurrentPage: (page: string) => void;
-  setContactTab: (tab: "hr" | "recruitment" | "training" | "general") => void;
-}
+export const Footer: React.FC = () => {
 
-export const Footer: React.FC<FooterProps> = ({ setCurrentPage, setContactTab }) => {
-  
-  const handleNavClick = (pageId: string) => {
-    setCurrentPage(pageId);
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
-  const handleServicesNav = (serviceId: string) => {
-    setCurrentPage(serviceId);
+  const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
@@ -26,7 +16,7 @@ export const Footer: React.FC<FooterProps> = ({ setCurrentPage, setContactTab })
           
           {/* Slogan and Brand Column */}
           <div className="md:col-span-4 space-y-4">
-            <div className="flex items-center gap-2 group">
+            <Link href="/" className="flex items-center gap-2 group">
               <img src="/logo.png" alt="Hraize" className="h-8 w-auto" />
               <div className="flex flex-col min-w-0">
                 <div className="flex items-baseline space-x-1.5">
@@ -35,14 +25,13 @@ export const Footer: React.FC<FooterProps> = ({ setCurrentPage, setContactTab })
                   </span>
                 </div>
               </div>
-            </div>
+            </Link>
             
             <p className="text-xs text-slate-350 leading-relaxed font-bold">
               Real HR expertise. Real analytics. Real outcomes. Focus on real business value: talent retention, performance, and recruitment growth.
             </p>
 
             <div className="flex gap-3">
-              {/* Instagram link icon */}
               <a 
                 href="https://instagram.com/hraize.official" 
                 target="_blank" 
@@ -52,7 +41,6 @@ export const Footer: React.FC<FooterProps> = ({ setCurrentPage, setContactTab })
                 <Instagram className="h-4.5 w-4.5" />
               </a>
 
-              {/* LinkedIn icon */}
               <a 
                 href="https://linkedin.com" 
                 target="_blank" 
@@ -77,28 +65,19 @@ export const Footer: React.FC<FooterProps> = ({ setCurrentPage, setContactTab })
               <p className="text-xs font-black text-[#0EA5E9] tracking-widest uppercase mb-4">Quick Portals</p>
               <ul className="space-y-2.5 text-xs font-bold text-slate-300">
                 <li>
-                  <button 
-                    onClick={() => handleNavClick("home")}
-                    className="hover:text-white hover:underline transition cursor-pointer"
-                  >
+                  <Link href="/" className="hover:text-white hover:underline transition">
                     Home
-                  </button>
+                  </Link>
                 </li>
                 <li>
-                  <button 
-                    onClick={() => handleNavClick("about")}
-                    className="hover:text-white hover:underline transition cursor-pointer"
-                  >
+                  <Link href="/about" className="hover:text-white hover:underline transition">
                     About us
-                  </button>
+                  </Link>
                 </li>
                 <li>
-                  <button 
-                    onClick={() => handleNavClick("careers")}
-                    className="hover:text-white hover:underline transition cursor-pointer"
-                  >
+                  <Link href="/careers" className="hover:text-white hover:underline transition">
                     Careers
-                  </button>
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -108,28 +87,19 @@ export const Footer: React.FC<FooterProps> = ({ setCurrentPage, setContactTab })
               <p className="text-xs font-black text-[#D4A017] tracking-widest uppercase mb-4">Our Services</p>
               <ul className="space-y-2.5 text-xs font-bold text-slate-300">
                 <li>
-                  <button 
-                    onClick={() => handleServicesNav("hr-services")}
-                    className="hover:text-white hover:underline transition cursor-pointer text-left"
-                  >
-                    HR Consulting &amp; Systems
-                  </button>
+                  <Link href="/hr-services" className="hover:text-white hover:underline transition">
+                    HR Consulting & Systems
+                  </Link>
                 </li>
                 <li>
-                  <button 
-                    onClick={() => handleServicesNav("recruitment")}
-                    className="hover:text-white hover:underline transition cursor-pointer text-left"
-                  >
+                  <Link href="/recruitment" className="hover:text-white hover:underline transition">
                     Recruitment Services
-                  </button>
+                  </Link>
                 </li>
                 <li>
-                  <button 
-                    onClick={() => handleServicesNav("training")}
-                    className="hover:text-white hover:underline transition cursor-pointer text-left"
-                  >
-                    Training &amp; Development
-                  </button>
+                  <Link href="/training" className="hover:text-white hover:underline transition">
+                    Training & Development
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -165,7 +135,7 @@ export const Footer: React.FC<FooterProps> = ({ setCurrentPage, setContactTab })
           <div className="flex gap-6">
             <span className="uppercase tracking-widest text-[#0EA5E9] font-black">Digital Workforce System</span>
             <button 
-              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              onClick={scrollToTop}
               className="flex items-center gap-1.5 hover:text-white transition cursor-pointer"
             >
               Top
