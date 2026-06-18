@@ -23,7 +23,7 @@ export const AboutUs: React.FC = () => {
         "Employee Experience & Lifecycle Management"
       ],
       valueStatement: "Building scalable people systems that support business growth",
-      image: "https://images.unsplash.com/photo-1668903678359-e810dd966016?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+      image: "/founder1.svg"
     },
     {
       role: "Co-Founder - Analytics & Data-Driven Decision Support",
@@ -36,7 +36,7 @@ export const AboutUs: React.FC = () => {
         "Metrics and Insights"
       ],
       valueStatement: "Turning workforce data into decisions leaders can act on.",
-      image: "https://images.unsplash.com/photo-1668903678359-e810dd966016?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+      image: "/founder2.svg"
     }
   ];
 
@@ -140,8 +140,8 @@ export const AboutUs: React.FC = () => {
             {founders.map((founder, idx) => (
               <GlassCard key={idx} className="flex flex-col md:flex-row gap-6 p-6 items-start">
                 <div className="w-full md:w-1/3 flex flex-col items-center">
-                  <div className="relative rounded-2xl overflow-hidden aspect-square w-32 md:w-full border-2 border-white shadow-md">
-                    <img src={founder.image} alt={founder.role} className="h-full w-full object-cover" />
+                  <div className="w-32 md:w-full">
+                    <img src={founder.image} alt={founder.role} className="w-full h-auto" />
                   </div>
                   {/* Subtle Accent Badges */}
                   <div className="mt-4 inline-flex items-center gap-1.5 self-center rounded-full bg-[#1E3A8A]/10 px-3 py-1 text-[10px] font-black text-[#1E3A8A] uppercase">
