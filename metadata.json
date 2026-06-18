@@ -1,0 +1,6 @@
+{
+  "name": "Hraize HR Analytics",
+  "description": "High-end HR workforce analytics, recruitment consulting, and training platform.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
