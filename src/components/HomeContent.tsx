@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "motion/react";
-import { 
-  ArrowRight, Shield, Heart, BarChart3, Group, CheckSquare, 
+import {
+  ArrowRight, Shield, Heart, BarChart3, Group, CheckSquare,
   Settings, Users, GraduationCap, ChevronRight, Check, Target,
   Calendar, ShieldCheck, Award
 } from "lucide-react";
@@ -16,7 +16,7 @@ export const HomeContent: React.FC<HomeContentProps> = ({
   onGetStarted,
   onNavigateToService,
 }) => {
-  
+
   const whatWeDo = [
     {
       title: "For Growing Businesses",
@@ -88,12 +88,12 @@ export const HomeContent: React.FC<HomeContentProps> = ({
 
   return (
     <div id="home-additional-content" className="bg-[#F8FAFF]">
-      
+
       {/* 1. Slogan Banner Section "Structure Your People. Scale Your Business" */}
       <section className="py-20 bg-[#07112E] text-white overflow-hidden relative border-y border-slate-800">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            
+
             <div className="lg:col-span-8 space-y-6">
               <span className="text-xs font-mono font-bold tracking-widest text-[#0EA5E9] uppercase">
                 // Building HR That Actually Works
@@ -127,7 +127,7 @@ export const HomeContent: React.FC<HomeContentProps> = ({
       </section>
 
       {/* Global Statistics Grid */}
-      <section className="py-20 border-b border-slate-100">
+      <section className="py-10 border-b border-slate-100">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {stats.map((stat, idx) => {
@@ -153,143 +153,10 @@ export const HomeContent: React.FC<HomeContentProps> = ({
         </div>
       </section>
 
-      {/* 2. Our Company & What we do Section */}
-      <section className="py-20 border-b border-slate-100">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start mb-20">
-            <div className="lg:col-span-5">
-              <span className="text-xs font-extrabold uppercase tracking-widest text-[#0EA5E9]">WHO WE ARE</span>
-              <h3 className="mt-2 text-2xl sm:text-3xl font-black text-[#1E3A8A] uppercase tracking-tight">
-                Our Company
-              </h3>
-            </div>
-            <div className="lg:col-span-7 bg-white p-6 rounded-2xl border border-slate-100">
-              <p className="text-sm sm:text-base text-gray-600 font-semibold leading-relaxed">
-                Hraize is more than an HR service provider; <strong className="text-[#1E3A8A]">we are your people partner</strong>. We believe businesses deserve HR that actually works, and ambitious professionals deserve careers they are truly proud of. We built Hraize to make both happen safely, backed by deep data analytic matrices.
-              </p>
-            </div>
-          </div>
-
-          <div>
-            <div className="text-center mb-12">
-              <span className="text-xs font-black text-gray-400 uppercase tracking-widest">[ WHAT WE DO ]</span>
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {whatWeDo.map((w, idx) => (
-                <div 
-                  key={idx} 
-                  className="bg-white border border-slate-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between group hover:border-[#0EA5E9] transition-all"
-                >
-                  <div>
-                    <span className="text-[9px] font-mono font-bold text-slate-400 border border-slate-200 px-2.5 py-1 rounded inline-block uppercase mb-4">
-                      {w.badge}
-                    </span>
-                    <h4 className="text-base font-black text-[#1E3A8A] uppercase tracking-wide mb-3">{w.title}</h4>
-                    <p className="text-xs text-gray-500 font-medium leading-relaxed">{w.desc}</p>
-                  </div>
-                  <div className="mt-6 pt-4 border-t border-slate-100 flex items-center text-xs font-bold text-[#0EA5E9] group-hover:text-[#1E3A8A]">
-                    <span>Professional Target</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-        </div>
-      </section>
-
-      {/* 3. Why Choose Hraize (Checklist items) */}
-      <section className="py-20 bg-slate-50/60 border-b border-slate-100">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          
-          <div className="text-center max-w-2xl mx-auto mb-16">
-            <span className="text-xs font-extrabold uppercase tracking-widest text-[#0EA5E9]">OUR CREDENTIALS</span>
-            <h3 className="mt-1 text-2xl sm:text-3xl font-black text-[#1E3A8A] uppercase tracking-tight">
-              Why Choose Hraize
-            </h3>
-            <p className="mt-2 text-xs text-gray-500 font-bold uppercase tracking-wide">
-              Complete support frameworks bypassing the limits of traditional networks.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {whyChooseHraize.map((item, idx) => (
-              <div 
-                key={idx} 
-                className="bg-white border border-slate-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between relative overflow-hidden group hover:shadow-md transition"
-              >
-                <div>
-                  <div className="flex items-center gap-2 mb-4">
-                    <div className="h-6 w-6 rounded-full bg-[#14B8A6]/10 text-[#14B8A6] flex items-center justify-center flex-shrink-0">
-                      <Check className="h-3.5 w-3.5" strokeWidth={3} />
-                    </div>
-                    <h4 className="text-xs sm:text-sm font-black text-[#1E3A8A] uppercase tracking-tight">
-                      {item.title}
-                    </h4>
-                  </div>
-                  <p className="text-xs text-gray-500 font-medium leading-relaxed">{item.desc}</p>
-                </div>
-
-                <div className="mt-4 pt-3 border-t border-slate-100/60 text-right">
-                  <span className="text-[9px] font-mono font-black text-[#0EA5E9]">VERIFIED STANDARD</span>
-                </div>
-              </div>
-            ))}
-          </div>
-
-        </div>
-      </section>
-
-      {/* 4. Our Core Values Section */}
-      <section className="py-20 border-b border-slate-100 bg-white">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          
-          <div className="text-center max-w-2xl mx-auto mb-16">
-            <span className="text-xs font-extrabold uppercase tracking-widest text-[#1E3A8A]">OUR ETHICAL STANDARD</span>
-            <h3 className="mt-1 text-2xl sm:text-3xl font-black text-[#1E3A8A] uppercase tracking-tight">
-              Our Core Values
-            </h3>
-            <p className="mt-2 text-xs text-gray-500 font-bold uppercase">
-              The foundational principles steering every client engagement, and metric we log.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {coreValues.map((value, idx) => {
-              const IconComponent = value.icon;
-              return (
-                <div 
-                  key={idx}
-                  className="bg-slate-50 border border-slate-100 rounded-3xl p-6 shadow-sm hover:border-[#1E3A8A] transition-all flex flex-col justify-between"
-                >
-                  <div>
-                    <div 
-                      className="h-12 w-12 rounded-xl flex items-center justify-center text-white mb-5 shadow-sm"
-                      style={{ backgroundColor: value.color }}
-                    >
-                      <IconComponent className="h-5 w-5" />
-                    </div>
-                    <h4 className="text-base font-black text-[#1E3A8A] uppercase tracking-wide mb-3">{value.title}</h4>
-                    <p className="text-xs text-gray-500 font-medium leading-relaxed">{value.desc}</p>
-                  </div>
-
-                  <div className="mt-6 pt-4 border-t border-slate-200/55">
-                    <span className="text-[10px] font-mono tracking-wider font-extrabold block text-slate-400">HRAIZE CERTIFIED VALUE</span>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-
-        </div>
-      </section>
-
       {/* 5. Our Services List (3 cards redirecting to specific subservices) */}
       <section className="py-20 bg-slate-50/50">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          
+
           <div className="text-center max-w-3xl mx-auto mb-16">
             <span className="text-xs font-extrabold uppercase tracking-widest text-[#0EA5E9]">PRACTICAL OFFERINGS</span>
             <h3 className="mt-1 text-2xl sm:text-3xl font-black text-[#1E3A8A] uppercase tracking-tight">
@@ -301,7 +168,7 @@ export const HomeContent: React.FC<HomeContentProps> = ({
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            
+
             {/* 1. HR Services */}
             <GlassCard className="p-6 flex flex-col justify-between h-96 relative overflow-hidden">
               <div>
@@ -371,6 +238,139 @@ export const HomeContent: React.FC<HomeContentProps> = ({
               </div>
             </GlassCard>
 
+          </div>
+
+        </div>
+      </section>
+
+      {/* 2. Our Company & What we do Section */}
+      <section className="py-20 border-b border-slate-100">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start mb-20">
+            <div className="lg:col-span-5">
+              <span className="text-xs font-extrabold uppercase tracking-widest text-[#0EA5E9]">WHO WE ARE</span>
+              <h3 className="mt-2 text-2xl sm:text-3xl font-black text-[#1E3A8A] uppercase tracking-tight">
+                Our Company
+              </h3>
+            </div>
+            <div className="lg:col-span-7 bg-white p-6 rounded-2xl border border-slate-100">
+              <p className="text-sm sm:text-base text-gray-600 font-semibold leading-relaxed">
+                Hraize is more than an HR service provider; <strong className="text-[#1E3A8A]">we are your people partner</strong>. We believe businesses deserve HR that actually works, and ambitious professionals deserve careers they are truly proud of. We built Hraize to make both happen safely, backed by deep data analytic matrices.
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <div className="text-center mb-12">
+              <span className="text-xs font-black text-gray-400 uppercase tracking-widest">[ WHAT WE DO ]</span>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {whatWeDo.map((w, idx) => (
+                <div
+                  key={idx}
+                  className="bg-white border border-slate-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between group hover:border-[#0EA5E9] transition-all"
+                >
+                  <div>
+                    <span className="text-[9px] font-mono font-bold text-slate-400 border border-slate-200 px-2.5 py-1 rounded inline-block uppercase mb-4">
+                      {w.badge}
+                    </span>
+                    <h4 className="text-base font-black text-[#1E3A8A] uppercase tracking-wide mb-3">{w.title}</h4>
+                    <p className="text-xs text-gray-500 font-medium leading-relaxed">{w.desc}</p>
+                  </div>
+                  <div className="mt-6 pt-4 border-t border-slate-100 flex items-center text-xs font-bold text-[#0EA5E9] group-hover:text-[#1E3A8A]">
+                    <span>Professional Target</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* 3. Why Choose Hraize (Checklist items) */}
+      <section className="py-20 bg-slate-50/60 border-b border-slate-100">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
+          <div className="text-center max-w-2xl mx-auto mb-16">
+            <span className="text-xs font-extrabold uppercase tracking-widest text-[#0EA5E9]">OUR CREDENTIALS</span>
+            <h3 className="mt-1 text-2xl sm:text-3xl font-black text-[#1E3A8A] uppercase tracking-tight">
+              Why Choose Hraize
+            </h3>
+            <p className="mt-2 text-xs text-gray-500 font-bold uppercase tracking-wide">
+              Complete support frameworks bypassing the limits of traditional networks.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {whyChooseHraize.map((item, idx) => (
+              <div
+                key={idx}
+                className="bg-white border border-slate-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between relative overflow-hidden group hover:shadow-md transition"
+              >
+                <div>
+                  <div className="flex items-center gap-2 mb-4">
+                    <div className="h-6 w-6 rounded-full bg-[#14B8A6]/10 text-[#14B8A6] flex items-center justify-center flex-shrink-0">
+                      <Check className="h-3.5 w-3.5" strokeWidth={3} />
+                    </div>
+                    <h4 className="text-xs sm:text-sm font-black text-[#1E3A8A] uppercase tracking-tight">
+                      {item.title}
+                    </h4>
+                  </div>
+                  <p className="text-xs text-gray-500 font-medium leading-relaxed">{item.desc}</p>
+                </div>
+
+                <div className="mt-4 pt-3 border-t border-slate-100/60 text-right">
+                  <span className="text-[9px] font-mono font-black text-[#0EA5E9]">VERIFIED STANDARD</span>
+                </div>
+              </div>
+            ))}
+          </div>
+
+        </div>
+      </section>
+
+      {/* 4. Our Core Values Section */}
+      <section className="py-20 border-b border-slate-100 bg-white">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
+          <div className="text-center max-w-2xl mx-auto mb-16">
+            <span className="text-xs font-extrabold uppercase tracking-widest text-[#1E3A8A]">OUR ETHICAL STANDARD</span>
+            <h3 className="mt-1 text-2xl sm:text-3xl font-black text-[#1E3A8A] uppercase tracking-tight">
+              Our Core Values
+            </h3>
+            <p className="mt-2 text-xs text-gray-500 font-bold uppercase">
+              The foundational principles steering every client engagement, and metric we log.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {coreValues.map((value, idx) => {
+              const IconComponent = value.icon;
+              return (
+                <div
+                  key={idx}
+                  className="bg-slate-50 border border-slate-100 rounded-3xl p-6 shadow-sm hover:border-[#1E3A8A] transition-all flex flex-col justify-between"
+                >
+                  <div>
+                    <div
+                      className="h-12 w-12 rounded-xl flex items-center justify-center text-white mb-5 shadow-sm"
+                      style={{ backgroundColor: value.color }}
+                    >
+                      <IconComponent className="h-5 w-5" />
+                    </div>
+                    <h4 className="text-base font-black text-[#1E3A8A] uppercase tracking-wide mb-3">{value.title}</h4>
+                    <p className="text-xs text-gray-500 font-medium leading-relaxed">{value.desc}</p>
+                  </div>
+
+                  <div className="mt-6 pt-4 border-t border-slate-200/55">
+                    <span className="text-[10px] font-mono tracking-wider font-extrabold block text-slate-400">HRAIZE CERTIFIED VALUE</span>
+                  </div>
+                </div>
+              );
+            })}
           </div>
 
         </div>
