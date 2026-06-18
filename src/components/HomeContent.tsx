@@ -2,7 +2,8 @@ import React from "react";
 import { motion } from "motion/react";
 import { 
   ArrowRight, Shield, Heart, BarChart3, Group, CheckSquare, 
-  Settings, Users, GraduationCap, ChevronRight, Check, Target 
+  Settings, Users, GraduationCap, ChevronRight, Check, Target,
+  Calendar, ShieldCheck, Award
 } from "lucide-react";
 import { GlassCard } from "./UIElements";
 
@@ -78,6 +79,13 @@ export const HomeContent: React.FC<HomeContentProps> = ({
     }
   ];
 
+  const stats = [
+    { value: "20+", label: "Global Experience", desc: "Combined years across global markets", icon: Calendar },
+    { value: "6+", label: "Industries Served", desc: "Tech, Finance, Healthcare, Retail & more", icon: Users },
+    { value: "60-Day", label: "Replacement Guarantee", desc: "Committed to quality hiring success", icon: ShieldCheck },
+    { value: "100%", label: "Quality Focused", desc: "Deep structured HR, zero shortcut policies", icon: Award },
+  ];
+
   return (
     <div id="home-additional-content" className="bg-[#F8FAFF]">
       
@@ -114,6 +122,33 @@ export const HomeContent: React.FC<HomeContentProps> = ({
               </span>
             </div>
 
+          </div>
+        </div>
+      </section>
+
+      {/* Global Statistics Grid */}
+      <section className="py-20 border-b border-slate-100">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {stats.map((stat, idx) => {
+              const Icon = stat.icon;
+              return (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: idx * 0.1 }}
+                  className="bg-white border border-slate-100 rounded-2xl p-6 shadow-[0_4px_20px_0_rgba(7,17,46,0.02)] flex flex-col items-center text-center group hover:border-[#0EA5E9] transition-colors"
+                >
+                  <div className="h-12 w-12 rounded-xl bg-[#1E3A8A]/5 flex items-center justify-center text-[#1E3A8A] group-hover:bg-[#0EA5E9]/10 group-hover:text-[#0EA5E9] transition-colors mb-4">
+                    <Icon className="h-6 w-6" />
+                  </div>
+                  <span className="text-3xl font-black text-[#1E3A8A] tracking-tight">{stat.value}</span>
+                  <span className="text-sm font-bold text-[#1E3A8A] uppercase tracking-wide mt-1">{stat.label}</span>
+                  <p className="text-xs text-gray-500 mt-2 leading-relaxed">{stat.desc}</p>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>
