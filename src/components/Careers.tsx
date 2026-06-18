@@ -591,7 +591,7 @@ export const Careers: React.FC = () => {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
-              className="bg-[#e2e8f0] rounded-3xl border border-slate-200 w-full max-w-2xl p-6 sm:p-8 relative shadow-2xl overflow-hidden"
+              className="bg-[#F1F5FF] rounded-3xl border border-slate-200 w-full max-w-2xl p-6 sm:p-8 relative shadow-2xl overflow-hidden"
             >
               {/* Top decorator */}
               <div className="absolute top-0 left-0 w-full h-[6px] bg-[#1E3A8A]" />
@@ -626,7 +626,7 @@ export const Careers: React.FC = () => {
                   </ul>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4 bg-[#e2e8f0] p-4 rounded-xl">
+                <div className="grid grid-cols-2 gap-4 bg-[#F1F5FF] p-4 rounded-xl">
                   <div>
                     <span className="text-[9px] text-gray-400 font-bold uppercase block">Location context</span>
                     <span className="font-black text-[#1E3A8A]">{selectedJob.location}</span>

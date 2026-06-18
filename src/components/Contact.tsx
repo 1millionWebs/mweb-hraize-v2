@@ -186,7 +186,7 @@ export const Contact: React.FC<ContactProps> = ({ initialTab = "hr" }) => {
           </div>
 
           {/* Right Column: Send us a message form withTabs */}
-          <div className="lg:col-span-8 bg-[#e2e8f0] border border-slate-100 rounded-3xl p-6 sm:p-10 shadow-md">
+          <div className="lg:col-span-8 bg-[#F1F5FF] border border-slate-100 rounded-3xl p-6 sm:p-10 shadow-md">
             <div className="mb-6">
               <h3 className="text-lg font-black text-[#1E3A8A] uppercase tracking-tight">Send us a message</h3>
               <p className="text-xs text-gray-500 font-bold mt-1">Select the division block below to route your inquiry accurately:</p>

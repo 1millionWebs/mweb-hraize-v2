@@ -65,7 +65,7 @@ export const AboutUs: React.FC = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="bg-[#e2e8f0] border border-slate-100 rounded-2xl p-6 shadow-[0_4px_20px_0_rgba(7,17,46,0.02)] flex flex-col items-center text-center group hover:border-[#0EA5E9] transition-colors"
+                className="bg-[#F1F5FF] border border-slate-100 rounded-2xl p-6 shadow-[0_4px_20px_0_rgba(7,17,46,0.02)] flex flex-col items-center text-center group hover:border-[#0EA5E9] transition-colors"
               >
                 <div className="h-12 w-12 rounded-xl bg-[#1E3A8A]/5 flex items-center justify-center text-[#1E3A8A] group-hover:bg-[#0EA5E9]/10 group-hover:text-[#0EA5E9] transition-colors mb-4">
                   <Icon className="h-6 w-6" />
@@ -184,7 +184,7 @@ export const AboutUs: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 
           {/* Vision */}
-          <div className="relative bg-[#e2e8f0] border border-slate-100 rounded-2xl p-6 shadow-sm overflow-hidden flex flex-col justify-between group hover:border-[#1E3A8A] transition-all">
+          <div className="relative bg-[#F1F5FF] border border-slate-100 rounded-2xl p-6 shadow-sm overflow-hidden flex flex-col justify-between group hover:border-[#1E3A8A] transition-all">
             <div className="absolute top-0 right-0 p-4 opacity-5 pointer-events-none">
               <Eye className="h-24 w-24 text-[#1E3A8A]" />
             </div>
@@ -203,7 +203,7 @@ export const AboutUs: React.FC = () => {
           </div>
 
           {/* Mission */}
-          <div className="relative bg-[#e2e8f0] border border-slate-100 rounded-2xl p-6 shadow-sm overflow-hidden flex flex-col justify-between group hover:border-[#0EA5E9] transition-all">
+          <div className="relative bg-[#F1F5FF] border border-slate-100 rounded-2xl p-6 shadow-sm overflow-hidden flex flex-col justify-between group hover:border-[#0EA5E9] transition-all">
             <div className="absolute top-0 right-0 p-4 opacity-5 pointer-events-none">
               <Rocket className="h-24 w-24 text-[#0EA5E9]" />
             </div>
@@ -222,7 +222,7 @@ export const AboutUs: React.FC = () => {
           </div>
 
           {/* Values Statement */}
-          <div className="relative bg-[#e2e8f0] border border-slate-100 rounded-2xl p-6 shadow-sm overflow-hidden flex flex-col justify-between group hover:border-[#D4A017] transition-all">
+          <div className="relative bg-[#F1F5FF] border border-slate-100 rounded-2xl p-6 shadow-sm overflow-hidden flex flex-col justify-between group hover:border-[#D4A017] transition-all">
             <div className="absolute top-0 right-0 p-4 opacity-5 pointer-events-none">
               <Heart className="h-24 w-24 text-[#D4A017]" />
             </div>

@@ -178,7 +178,7 @@ export const RecruitmentServices: React.FC<RecruitmentServicesProps> = ({
 
             <div className="space-y-4">
               {corePillars.map((p, idx) => (
-                <div key={idx} className="flex gap-4 items-start p-4 bg-[#e2e8f0] rounded-xl border border-slate-100 hover:border-[#0EA5E9] transition-colors">
+                <div key={idx} className="flex gap-4 items-start p-4 bg-[#F1F5FF] rounded-xl border border-slate-100 hover:border-[#0EA5E9] transition-colors">
                   <div className="h-6 w-6 rounded-full bg-[#1E3A8A]/10 text-[#1E3A8A] flex items-center justify-center flex-shrink-0 mt-0.5">
                     <Check className="h-4 w-4 text-[#0EA5E9]" strokeWidth={3} />
                   </div>
@@ -231,7 +231,7 @@ export const RecruitmentServices: React.FC<RecruitmentServicesProps> = ({
 
 
         {/* Comparison Grid Table: Traditional Agency vs Hraize */}
-        <div className="mb-24 bg-[#e2e8f0] border border-slate-100 rounded-3xl p-6 sm:p-10 shadow-sm overflow-hidden">
+        <div className="mb-24 bg-[#F1F5FF] border border-slate-100 rounded-3xl p-6 sm:p-10 shadow-sm overflow-hidden">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <span className="text-xs font-extrabold uppercase tracking-widest text-[#0EA5E9]">AGENCY MATRIX</span>
             <h3 className="mt-1 text-2xl font-black text-[#1E3A8A] uppercase tracking-tight">
@@ -301,7 +301,7 @@ export const RecruitmentServices: React.FC<RecruitmentServicesProps> = ({
           </div>
 
           {/* Card 2: For Candidates */}
-          <div className="bg-[#e2e8f0] border border-slate-150 rounded-3xl p-8 shadow-xl flex flex-col justify-between items-start group relative overflow-hidden">
+          <div className="bg-[#F1F5FF] border border-slate-150 rounded-3xl p-8 shadow-xl flex flex-col justify-between items-start group relative overflow-hidden">
             <div className="absolute right-0 top-0 p-4 opacity-5 pointer-events-none">
               <GraduationCap className="h-32 w-32 text-gray-300" />
             </div>

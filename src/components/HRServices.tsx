@@ -150,7 +150,7 @@ export const HRServices: React.FC<HRServicesProps> = ({ onBookCall }) => {
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 relative z-10">
             {methodology.map((m, idx) => (
-              <div key={idx} className="relative flex flex-col justify-between bg-[#e2e8f0] border border-slate-100 rounded-2xl p-6 shadow-sm group hover:border-[#0EA5E9] transition">
+              <div key={idx} className="relative flex flex-col justify-between bg-[#F1F5FF] border border-slate-100 rounded-2xl p-6 shadow-sm group hover:border-[#0EA5E9] transition">
                 <div>
                   <div className="flex items-center justify-between mb-4">
                     <span className="text-3xl font-serif font-black text-[#0EA5E9]">{m.step}</span>
@@ -175,7 +175,7 @@ export const HRServices: React.FC<HRServicesProps> = ({ onBookCall }) => {
 
 
         {/* Closing CTA */}
-        <div className="text-center bg-[#e2e8f0] border border-slate-100 rounded-3xl p-8 sm:p-12 shadow-[0_12px_40px_rgba(7,17,46,0.03)] max-w-4xl mx-auto">
+        <div className="text-center bg-[#F1F5FF] border border-slate-100 rounded-3xl p-8 sm:p-12 shadow-[0_12px_40px_rgba(7,17,46,0.03)] max-w-4xl mx-auto">
           <span className="text-xs font-extrabold uppercase tracking-widest text-[#0EA5E9]">WORKFORCE ARCHITECTURE</span>
           <h3 className="mt-2 text-2xl sm:text-3xl font-black text-[#1E3A8A] uppercase tracking-tight">
             Ready to have your People Partner today
