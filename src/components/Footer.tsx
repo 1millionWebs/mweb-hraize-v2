@@ -57,53 +57,29 @@ export const Footer: React.FC = () => {
             </div>
           </div>
 
-          {/* Quick Portals Navigation Columns */}
-          <div className="md:col-span-4 md:col-start-6 grid grid-cols-2 gap-4">
-            
-            {/* Quick Portals: Home, About us, Careers */}
-            <div>
-              <p className="text-xs font-black text-[#0EA5E9] tracking-widest uppercase mb-4">Quick Portals</p>
-              <ul className="space-y-2.5 text-xs font-bold text-slate-300">
-                <li>
-                  <Link href="/" className="hover:text-white hover:underline transition">
-                    Home
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/about" className="hover:text-white hover:underline transition">
-                    About us
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/careers" className="hover:text-white hover:underline transition">
-                    Careers
-                  </Link>
-                </li>
-              </ul>
-            </div>
-
-            {/* Services Portal Column */}
-            <div>
-              <p className="text-xs font-black text-[#D4A017] tracking-widest uppercase mb-4">Our Services</p>
-              <ul className="space-y-2.5 text-xs font-bold text-slate-300">
-                <li>
-                  <Link href="/hr-services" className="hover:text-white hover:underline transition">
-                    HR Consulting & Systems
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/recruitment" className="hover:text-white hover:underline transition">
-                    Recruitment Services
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/training" className="hover:text-white hover:underline transition">
-                    Training & Development
-                  </Link>
-                </li>
-              </ul>
-            </div>
-
+          {/* Quick Portals Navigation */}
+          <div className="md:col-span-4 md:col-start-6">
+            <p className="text-xs font-black text-[#0EA5E9] tracking-widest uppercase mb-4">Quick Portals</p>
+            <ul className="space-y-2.5 text-xs font-bold text-slate-300">
+              <li>
+                <Link href="/" className="hover:text-white hover:underline transition">Home</Link>
+              </li>
+              <li>
+                <Link href="/about" className="hover:text-white hover:underline transition">About us</Link>
+              </li>
+              <li>
+                <Link href="/hr-services" className="hover:text-white hover:underline transition">HR Services</Link>
+              </li>
+              <li>
+                <Link href="/recruitment" className="hover:text-white hover:underline transition">Recruitment Services</Link>
+              </li>
+              <li>
+                <Link href="/training" className="hover:text-white hover:underline transition">Training and Development</Link>
+              </li>
+              <li>
+                <Link href="/careers" className="hover:text-white hover:underline transition">Careers</Link>
+              </li>
+            </ul>
           </div>
 
           {/* Contact Support Column: info@hraize.com only! */}
@@ -116,7 +92,7 @@ export const Footer: React.FC = () => {
                 <span className="font-extrabold text-white text-xs">info@hraize.com</span>
               </div>
               <p className="text-[10px] text-slate-400 leading-relaxed font-bold">
-                Reach out with strategic requests. Our business transformation desk typical responds within 2 working hours.
+                Reach out with your HR and recruitment needs. Our team responds during working hours.
               </p>
             </div>
 

@@ -14,8 +14,7 @@ export default function HomePage() {
       transition={{ duration: 0.5, ease: "easeOut" }}
     >
       <Hero
-        onStartTrial={() => router.push("/contact?tab=general")}
-        onExploreFeatures={() => router.push("/hr-services")}
+        onGetStarted={() => router.push("/contact?tab=general")}
       />
       <HomeContent
         onGetStarted={() => router.push("/contact?tab=general")}

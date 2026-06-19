@@ -115,7 +115,7 @@ export const Contact: React.FC<ContactProps> = ({ initialTab = "hr" }) => {
         
         {/* Contact Heading */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-xs font-extrabold uppercase tracking-widest text-[#0EA5E9]">CONTACT US</span>
+          <span className="text-xs font-extrabold uppercase tracking-widest text-[#0EA5E9]">CONTACT</span>
           <h2 className="mt-2 text-3xl sm:text-4xl lg:text-5xl font-black text-[#1E3A8A] uppercase tracking-tight">
             Get in Touch
           </h2>

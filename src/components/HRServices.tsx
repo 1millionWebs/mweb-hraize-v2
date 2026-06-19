@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import {
   Users, Layers, ShieldCheck, PieChart, Play, CheckCircle2,
-  Settings, Columns, Plus, Trash2, Calendar, FileText, BarChart3, LineChart, Sparkles
+  Settings, Columns, Plus, Trash2, Calendar, FileText, BarChart3, LineChart, Sparkles, Check
 } from "lucide-react";
 import { GlassCard } from "./UIElements";
 
@@ -194,7 +194,96 @@ export const HRServices: React.FC<HRServicesProps> = ({ onBookCall }) => {
         </div>
 
         {/* Interactive DARK HR Dashboard Builder */}
-
+        <div className="mb-24 bg-[#07112E] rounded-3xl overflow-hidden shadow-2xl border border-slate-800">
+          <div className="grid grid-cols-1 lg:grid-cols-2">
+            <div className="p-8 sm:p-12 flex flex-col justify-center">
+              <span className="text-xs font-extrabold uppercase tracking-widest text-[#0EA5E9]">HR DASHBOARD BUILDER</span>
+              <h3 className="mt-2 text-2xl sm:text-3xl font-black text-white uppercase tracking-tight">
+                People Analytics That Works
+              </h3>
+              <p className="mt-4 text-sm text-slate-300 font-medium leading-relaxed">
+                Turn employee data into real-time dashboards for headcount, attrition, diversity, and hiring costs. Know what's working and what's not.
+              </p>
+              <div className="mt-6 space-y-3">
+                {[
+                  "Headcount trends & forecasting",
+                  "Attrition analysis with predictive alerts",
+                  "Diversity & inclusion metrics",
+                  "Time-to-hire & cost-per-hire tracking",
+                  "Custom report builder"
+                ].map((item, idx) => (
+                  <div key={idx} className="flex items-center gap-3">
+                    <div className="h-5 w-5 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center flex-shrink-0">
+                      <Check className="h-3 w-3" />
+                    </div>
+                    <span className="text-xs text-slate-300 font-medium">{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="bg-gradient-to-br from-[#0A1628] to-[#0F1F3A] p-8 sm:p-12 flex items-center justify-center min-h-[300px] relative overflow-hidden">
+              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(14,165,233,0.1)_0%,_transparent_70%)]" />
+              <div className="relative w-full max-w-sm space-y-4">
+                <div className="grid grid-cols-3 gap-3">
+                  {[
+                    { label: "Total Headcount", value: "342", color: "from-[#0EA5E9] to-[#1E3A8A]" },
+                    { label: "Attrition Rate", value: "6.8%", color: "from-[#D4A017] to-[#B8860B]" },
+                    { label: "Avg Tenure", value: "3.2yr", color: "from-[#14B8A6] to-[#0D9488]" },
+                  ].map((kpi, idx) => (
+                    <div key={idx} className="bg-white/5 border border-white/10 rounded-xl p-4 text-center backdrop-blur-sm">
+                      <p className="text-[9px] text-slate-400 font-bold uppercase tracking-wider">{kpi.label}</p>
+                      <p className={`text-xl font-black mt-1 bg-gradient-to-r ${kpi.color} bg-clip-text text-transparent`}>{kpi.value}</p>
+                    </div>
+                  ))}
+                </div>
+                <div className="bg-white/5 border border-white/10 rounded-xl p-4 backdrop-blur-sm">
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Monthly Headcount Trend</span>
+                    <span className="text-[10px] text-emerald-400 font-bold">+14.2% YoY</span>
+                  </div>
+                  <div className="h-8 flex items-end gap-1.5">
+                    {[35, 42, 38, 55, 50, 62, 78].map((h, i) => (
+                      <div key={i} className="flex-1 bg-slate-700/50 rounded-sm h-full flex flex-col justify-end overflow-hidden">
+                        <motion.div
+                          className="bg-gradient-to-t from-[#0EA5E9] to-[#38BDF8] w-full"
+                          initial={{ height: 0 }}
+                          animate={{ height: `${h}%` }}
+                          transition={{ delay: i * 0.1, duration: 0.8 }}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="bg-white/5 border border-white/10 rounded-xl p-4 backdrop-blur-sm">
+                  <p className="text-[10px] text-slate-400 font-bold uppercase tracking-wider mb-2">Department Distribution</p>
+                  <div className="space-y-2">
+                    {[
+                      { dept: "Engineering", pct: 42 },
+                      { dept: "Operations", pct: 28 },
+                      { dept: "Sales & Marketing", pct: 18 },
+                      { dept: "Support", pct: 12 },
+                    ].map((d, idx) => (
+                      <div key={idx}>
+                        <div className="flex justify-between text-[10px] mb-0.5">
+                          <span className="text-slate-300 font-semibold">{d.dept}</span>
+                          <span className="text-slate-400">{d.pct}%</span>
+                        </div>
+                        <div className="h-1.5 bg-slate-700 rounded-full overflow-hidden">
+                          <motion.div
+                            className="h-full bg-[#0EA5E9] rounded-full"
+                            initial={{ width: 0 }}
+                            animate={{ width: `${d.pct}%` }}
+                            transition={{ delay: 0.5 + idx * 0.1, duration: 0.8 }}
+                          />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
         {/* Closing CTA */}
         <div className="text-center bg-[#F1F5FF] border border-slate-100 rounded-3xl p-8 sm:p-12 shadow-[0_12px_40px_rgba(7,17,46,0.03)] max-w-4xl mx-auto">

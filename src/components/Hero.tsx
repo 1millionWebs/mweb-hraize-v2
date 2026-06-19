@@ -1,15 +1,12 @@
 import React from "react";
 import { motion } from "motion/react";
-import { ArrowRight, Play, LineChart, TrendingUp, Users, Activity, Sliders } from "lucide-react";
-import { TrustBadges } from "./UIElements";
+import { ArrowRight, Calendar, Users, ShieldCheck, Award, Activity, TrendingUp, Check } from "lucide-react";
 
 interface HeroProps {
-  onStartTrial: () => void;
-  onExploreFeatures: () => void;
+  onGetStarted: () => void;
 }
 
-export const Hero: React.FC<HeroProps> = ({ onStartTrial, onExploreFeatures }) => {
-  // Avatars for floating stream animation
+export const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
   const avatars = [
     { id: 1, name: "Sarah K.", url: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&auto=format&fit=crop&q=80" },
     { id: 2, name: "David M.", url: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80" },
@@ -17,37 +14,35 @@ export const Hero: React.FC<HeroProps> = ({ onStartTrial, onExploreFeatures }) =
     { id: 4, name: "Marcus T.", url: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=80" }
   ];
 
+  const stats = [
+    { value: "20+", label: "Years of Global Experience", icon: Calendar },
+    { value: "6+", label: "Industries Served", icon: Users },
+    { value: "60-Day", label: "Replacement Guarantee", icon: ShieldCheck },
+    { value: "100%", label: "Quality Focused", icon: Award },
+  ];
+
   return (
     <section
       id="hero-section"
       className="relative min-h-[calc(100vh-4rem)] bg-[#F8FAFC] pb-12 pt-16 overflow-hidden flex flex-col justify-between"
     >
-      {/* 1. Subtle light gray connected node patterns fading in from left and bottom */}
       <div className="absolute inset-0 z-0 pointer-events-none">
-        {/* Tech Grid Texture */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-30" />
-
-
       </div>
 
-      {/* Main Content Grid */}
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full flex-grow flex items-center">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center w-full">
-
-          {/* Left Block: Text, Headline starting 60px below header */}
           <motion.div
             className="lg:col-span-7 flex flex-col pt-[60px]"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            {/* Tagline Badge */}
             <div className="mb-4 inline-flex items-center gap-1.5 self-start rounded-full bg-[#1E3A8A]/10 px-3 py-1 text-xs font-bold tracking-widest text-[#1E3A8A] uppercase">
               <span className="h-1.5 w-1.5 rounded-full bg-[#0EA5E9]" />
               Raise Your People, Raise Your Potential
             </div>
 
-            {/* Headline */}
             <h1
               id="hero-headline"
               className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-[#1E293B] uppercase leading-[1.05]"
@@ -56,47 +51,52 @@ export const Hero: React.FC<HeroProps> = ({ onStartTrial, onExploreFeatures }) =
               <span className="text-[#0EA5E9]">Scale Your Business</span>
             </h1>
 
-            {/* Supporting body text */}
             <p className="mt-6 text-lg sm:text-xl text-[#1E293B] font-medium max-w-2xl leading-relaxed">
-              Leverage AI-driven HR analytics to drive talent retention, performance, and growth. Remove guesswork from your organizational strategy.
+              Hraize is your dedicated HR, People Operations, and Recruitment partner, structured, practical, and built for businesses that are serious about growing the right way.
             </p>
 
-            {/* CTA Buttons */}
             <div className="mt-8 flex flex-wrap items-center gap-4">
               <motion.button
-                onClick={onStartTrial}
-                className="rounded-xl bg-[#0EA5E9] border border-[#0EA5E9] px-7 py-4 text-sm font-black tracking-wider text-white shadow-lg hover:shadow-xl hover:bg-[#0EA5E9]/90 transition-all duration-200 cursor-pointer"
+                onClick={onGetStarted}
+                className="rounded-xl bg-[#D4A017] border border-[#D4A017] px-8 py-4 text-sm font-black tracking-wider text-white shadow-lg hover:shadow-xl hover:bg-[#D4A017]/90 transition-all duration-200 cursor-pointer"
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.98 }}
               >
-                START YOUR FREE TRIAL
+                Get Started
               </motion.button>
+            </div>
 
-              <button
-                onClick={onExploreFeatures}
-                className="group flex items-center gap-1.5 py-3 px-5 text-sm font-bold text-[#1E3A8A] hover:text-[#0EA5E9] transition-all cursor-pointer"
-              >
-                Explore Features
-                <motion.span
-                  animate={{ x: [0, 4, 0] }}
-                  transition={{ repeat: Infinity, duration: 1.2, ease: "easeInOut" }}
-                >
-                  <ArrowRight className="h-4 w-4" />
-                </motion.span>
-              </button>
+            <div className="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-4">
+              {stats.map((stat, idx) => {
+                const Icon = stat.icon;
+                return (
+                  <motion.div
+                    key={idx}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.3 + idx * 0.1 }}
+                    className="flex items-center gap-3 p-3 rounded-xl bg-white/80 border border-slate-100 shadow-sm"
+                  >
+                    <div className="h-10 w-10 rounded-lg bg-[#1E3A8A]/5 flex items-center justify-center text-[#1E3A8A] flex-shrink-0">
+                      <Icon className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <span className="text-lg font-black text-[#1E3A8A] block leading-none">{stat.value}</span>
+                      <span className="text-[10px] font-bold text-gray-500 uppercase leading-tight block mt-0.5">{stat.label}</span>
+                    </div>
+                  </motion.div>
+                );
+              })}
             </div>
           </motion.div>
 
-          {/* Right Block: Flowing 3D digital visualization of HR Analytics */}
           <motion.div
             className="lg:col-span-5 relative w-full h-[480px] lg:h-[500px] flex items-center justify-center p-4 bg-slate-900/5 rounded-3xl border border-white/40 shadow-inner"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.2 }}
           >
-            {/* Animated SVG Backdrop holding flowing "cascading intertwined path streams" */}
             <svg viewBox="0 0 400 500" className="absolute inset-0 w-full h-full pointer-events-none z-0">
-              {/* Primary Navy Stream */}
               <motion.path
                 d="M 50,450 C 150,420 80,180 200,160 C 320,140 280,50 350,50"
                 stroke="#1E3A8A"
@@ -116,8 +116,6 @@ export const Hero: React.FC<HeroProps> = ({ onStartTrial, onExploreFeatures }) =
                 animate={{ strokeDashoffset: [-100, 0] }}
                 transition={{ repeat: Infinity, ease: "linear", duration: 8 }}
               />
-
-              {/* Accent Sky Cyan Stream */}
               <motion.path
                 d="M 350,450 C 250,380 320,250 200,180 C 80,110 120,50 50,50"
                 stroke="#0EA5E9"
@@ -137,15 +135,10 @@ export const Hero: React.FC<HeroProps> = ({ onStartTrial, onExploreFeatures }) =
                 animate={{ strokeDashoffset: [0, 100] }}
                 transition={{ repeat: Infinity, ease: "linear", duration: 6 }}
               />
-
-              {/* Connected core cross-streams */}
               <line x1="200" y1="180" x2="200" y2="160" stroke="#D4A017" strokeWidth="2" strokeDasharray="3 3" />
             </svg>
 
-            {/* Modular Floating Glass Panels */}
             <div className="relative w-full h-full z-10 grid grid-rows-3 gap-4">
-
-              {/* Panel 1: Headcount & Attrition Curve (Top Left) */}
               <motion.div
                 className="justify-self-start self-center w-[230px] rounded-xl border border-white/30 bg-white/70 p-4 shadow-[0_8px_30px_rgb(0,0,0,0.06)] backdrop-blur-md"
                 animate={{ y: [-5, 5, -5] }}
@@ -159,7 +152,6 @@ export const Hero: React.FC<HeroProps> = ({ onStartTrial, onExploreFeatures }) =
                   <span className="text-[10px] font-bold text-[#0EA5E9] bg-[#0EA5E9]/10 px-2 py-0.5 rounded-full">Active</span>
                 </div>
 
-                {/* Micro head count wave graph */}
                 <div className="h-10 w-full flex items-end gap-1.5">
                   {[24, 40, 32, 50, 48, 65, 80].map((h, i) => (
                     <div key={i} className="flex-1 bg-gray-100 rounded-sm h-full flex flex-col justify-end overflow-hidden">
@@ -178,7 +170,6 @@ export const Hero: React.FC<HeroProps> = ({ onStartTrial, onExploreFeatures }) =
                 </div>
               </motion.div>
 
-              {/* Panel 2: Performance Metrics & Real-time Flow (Center Right) */}
               <motion.div
                 className="justify-self-end self-center w-[240px] rounded-xl border border-white/40 bg-white/80 p-4 shadow-[0_10px_35px_rgb(0,0,0,0.08)] backdrop-blur-lg"
                 animate={{ y: [5, -5, 5] }}
@@ -213,7 +204,6 @@ export const Hero: React.FC<HeroProps> = ({ onStartTrial, onExploreFeatures }) =
                 </div>
               </motion.div>
 
-              {/* Panel 3: Active Profile List (Bottom Left) */}
               <motion.div
                 className="justify-self-start self-center w-[220px] rounded-xl border border-[#0EA5E9]/20 bg-white/95 p-3 shadow-[0_12px_40px_rgb(30,58,138,0.08)] backdrop-blur-xl"
                 animate={{ y: [-4, 4, -4] }}
@@ -247,11 +237,8 @@ export const Hero: React.FC<HeroProps> = ({ onStartTrial, onExploreFeatures }) =
                   </div>
                 </div>
               </motion.div>
-
             </div>
 
-            {/* Small Floating Employee Avatar Circles along pathways */}
-            {/* Avatar 1 */}
             <motion.div
               className="absolute h-9 w-9 rounded-full border-2 border-white bg-[#0EA5E9]/20 shadow-md overflow-hidden z-20 pointer-events-none"
               style={{ left: "10%", bottom: "20%" }}
@@ -269,7 +256,6 @@ export const Hero: React.FC<HeroProps> = ({ onStartTrial, onExploreFeatures }) =
               <img src={avatars[0].url} alt="" className="h-full w-full object-cover" />
             </motion.div>
 
-            {/* Avatar 2 */}
             <motion.div
               className="absolute h-8 w-8 rounded-full border-2 border-white bg-[#1E3A8A]/20 shadow-md overflow-hidden z-20 pointer-events-none"
               style={{ right: "12%", bottom: "15%" }}
@@ -287,7 +273,6 @@ export const Hero: React.FC<HeroProps> = ({ onStartTrial, onExploreFeatures }) =
               <img src={avatars[1].url} alt="" className="h-full w-full object-cover" />
             </motion.div>
 
-            {/* Avatar 3 */}
             <motion.div
               className="absolute h-9 w-9 rounded-full border-2 border-white bg-white/30 shadow-md overflow-hidden z-20 pointer-events-none"
               style={{ left: "45%", top: "45%" }}
@@ -304,7 +289,6 @@ export const Hero: React.FC<HeroProps> = ({ onStartTrial, onExploreFeatures }) =
               <img src={avatars[2].url} alt="" className="h-full w-full object-cover" />
             </motion.div>
           </motion.div>
-
         </div>
       </div>
     </section>

@@ -252,7 +252,53 @@ export const RecruitmentServices: React.FC<RecruitmentServicesProps> = ({
         </div>
 
         {/* WHO WE SERVE SECTION */}
+        <div className="mb-24 bg-[#07112E] rounded-3xl p-8 sm:p-12 text-white">
+          <div className="text-center max-w-2xl mx-auto mb-12">
+            <span className="text-xs font-extrabold uppercase tracking-widest text-[#0EA5E9]">WHO WE SERVE</span>
+            <h3 className="mt-1 text-2xl sm:text-3xl font-black text-white uppercase tracking-tight">
+              Who We Recruit
+            </h3>
+          </div>
 
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+            <div>
+              <p className="text-xs font-black text-[#0EA5E9] uppercase tracking-wider mb-4">Roles We Fill</p>
+              <ul className="space-y-3">
+                {[
+                  "HR and Administrative roles",
+                  "Engineers and Project Managers",
+                  "Operations and Management positions",
+                  "Sales and Customer Success roles",
+                  "Entry to mid-level professional positions"
+                ].map((role, idx) => (
+                  <li key={idx} className="flex items-center gap-3">
+                    <div className="h-5 w-5 rounded-full bg-[#0EA5E9]/10 text-[#0EA5E9] flex items-center justify-center flex-shrink-0">
+                      <Check className="h-3 w-3" />
+                    </div>
+                    <span className="text-sm text-slate-200 font-medium">{role}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <p className="text-xs font-black text-[#D4A017] uppercase tracking-wider mb-4">Industries We Serve</p>
+              <div className="flex flex-wrap gap-2">
+                {[
+                  "Manufacturing", "Engineering", "Healthcare", "Hospitality",
+                  "Revenue Cycle Management", "Education", "Retail", "Financial Services"
+                ].map((industry, idx) => (
+                  <span key={idx} className="px-3 py-1.5 bg-white/5 border border-white/10 rounded-lg text-xs font-semibold text-slate-200">
+                    {industry}
+                  </span>
+                ))}
+              </div>
+              <p className="mt-6 text-xs text-slate-400 font-medium italic">
+                You only see candidates who meet your threshold.
+              </p>
+            </div>
+          </div>
+        </div>
 
         {/* Comparison Grid Table: Traditional Agency vs Hraize */}
         <div className="mb-24 bg-[#F1F5FF] border border-slate-100 rounded-3xl p-6 sm:p-10 shadow-sm overflow-hidden">
