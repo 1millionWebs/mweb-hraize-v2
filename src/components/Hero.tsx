@@ -47,7 +47,7 @@ export const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
               id="hero-headline"
               className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-[#1E293B] uppercase leading-[1.05]"
             >
-              Structure Your People<br />
+              Structure Your People.<br />
               <span className="text-[#0EA5E9]">Scale Your Business</span>
             </h1>
 

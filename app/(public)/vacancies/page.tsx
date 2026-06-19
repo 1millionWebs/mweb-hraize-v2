@@ -1,78 +1,25 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Search, MapPin, Briefcase, X, ChevronRight } from "lucide-react";
 import { GlassCard } from "@/src/components/UIElements";
 import type { JobVacancy } from "@/src/types";
 import Link from "next/link";
 
-const vacancies: JobVacancy[] = [
-  {
-    id: "j1",
-    title: "Senior Workforce Analytics Specialist",
-    department: "Analytics & Business Intelligence",
-    location: "Bangalore, India (Hybrid)",
-    type: "Full-Time",
-    experience: "5+ Years",
-    salary: "₹18,00,000 - ₹24,00,000",
-    description: "Own the creation of executive headcount, cost-prediction, and sentiment dashboards for global logistics clients.",
-    requirements: [
-      "Expertise in Power BI, Looker Studio, and SQL database querying",
-      "Strong experience compiling and translating predictive attrition formulas",
-      "Excellent communication skills with C-suite and regional HR directors",
-    ],
-  },
-  {
-    id: "j2",
-    title: "HR Operations Lead (Consulting Frameworks)",
-    department: "HR Systems & Consulting",
-    location: "Chennai, India (On-site)",
-    type: "Full-Time",
-    experience: "7+ Years",
-    salary: "₹15,00,000 - ₹20,00,000",
-    description: "Spearhead policy audits, handbook creation, and statutory compliance framework setups for early-stage engineering and manufacturing SMEs.",
-    requirements: [
-      "Proven background writing employee handbooks and establishing SOP models",
-      "Deep knowledge of regional labor laws and statutory compliance standards",
-      "Prior experience in client-facing advisory or consulting environments",
-    ],
-  },
-  {
-    id: "j3",
-    title: "Senior Technical Recruiter (Contract & Temp)",
-    department: "Recruitment Services",
-    location: "Remote (India)",
-    type: "Contract",
-    experience: "4+ years",
-    salary: "Market Competitive hourly",
-    description: "Manage end-to-end recruitment pipelines for our top-tier software and project management contractors.",
-    requirements: [
-      "In-depth tech screening capability for React, Node, and DevOps profiles",
-      "Strong portfolio of vetted contract candidate channels",
-      "Excellent negotiation and contract lifecycle onboarding experience",
-    ],
-  },
-  {
-    id: "j4",
-    title: "Graduate HR Associate (Talent Acquisition Pipeline)",
-    department: "Graduate Programs",
-    location: "Mumbai, India (On-site)",
-    type: "Internship",
-    experience: "Fresher / Entry-level",
-    salary: "₹4,00,000 - ₹6,00,000",
-    description: "Help build and filter our Emerging Talent pipeline, managing candidate screening logs and coordination.",
-    requirements: [
-      "Recent UG / PG / MBA in Human Resources or related fields",
-      "High energy level with exceptional verbal coordination skills",
-      "Command of Microsoft Excel or Google Sheets for tracker logs",
-    ],
-  },
-];
-
 export default function VacanciesPage() {
+  const [vacancies, setVacancies] = useState<JobVacancy[]>([]);
+  const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedType, setSelectedType] = useState("All");
   const [selectedJob, setSelectedJob] = useState<JobVacancy | null>(null);
+
+  useEffect(() => {
+    fetch("/api/vacancies")
+      .then((res) => res.json())
+      .then((data) => setVacancies(data.vacancies))
+      .catch(() => {})
+      .finally(() => setLoading(false));
+  }, []);
 
   const filteredJobs = vacancies.filter((job) => {
     const matchesSearch =
@@ -132,6 +79,12 @@ export default function VacanciesPage() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {loading ? (
+            <div className="col-span-2 text-center py-12">
+              <div className="animate-spin h-6 w-6 border-2 border-[#0EA5E9] border-t-transparent rounded-full mx-auto mb-3" />
+              <p className="text-sm font-bold text-gray-500">Loading vacancies...</p>
+            </div>
+          ) : (
           <AnimatePresence>
             {filteredJobs.length > 0 ? (
               filteredJobs.map((job) => (
@@ -170,6 +123,7 @@ export default function VacanciesPage() {
               </div>
             )}
           </AnimatePresence>
+          )}
         </div>
 
         <div className="mt-12 text-center">
