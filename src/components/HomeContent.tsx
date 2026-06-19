@@ -332,9 +332,9 @@ export const HomeContent: React.FC<HomeContentProps> = ({
                     <p className="text-xs text-gray-500 font-medium leading-relaxed">{value.desc}</p>
                   </div>
 
-                  <div className="mt-6 pt-4 border-t border-slate-200/55">
+                  {/* <div className="mt-6 pt-4 border-t border-slate-200/55">
                     <span className="text-[10px] font-mono tracking-wider font-extrabold block text-slate-400">HRAIZE CERTIFIED VALUE</span>
-                  </div>
+                  </div> */}
                 </div>
               );
             })}
