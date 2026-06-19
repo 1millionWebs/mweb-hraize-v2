@@ -40,6 +40,7 @@ export const Navbar: React.FC = () => {
   const pathname = usePathname();
   const router = useRouter();
   const [servicesOpen, setServicesOpen] = useState(false);
+  const [careersOpen, setCareersOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [atTop, setAtTop] = useState(true);
 
@@ -53,10 +54,12 @@ export const Navbar: React.FC = () => {
   const closeMenus = () => {
     setMobileMenuOpen(false);
     setServicesOpen(false);
+    setCareersOpen(false);
   };
 
   const isActive = (path: string) => pathname === path;
   const isServiceActive = pathname === "/hr-services" || pathname === "/recruitment" || pathname === "/training";
+  const isCareerActive = pathname === "/careers" || pathname === "/submit-resume" || pathname === "/vacancies";
 
   return (
     <header id="main-header" className={`sticky top-0 z-50 w-full border-b transition-all duration-500 ${
@@ -153,7 +156,7 @@ export const Navbar: React.FC = () => {
                                   onClick={closeMenus}
                                   className="flex items-center text-xs font-semibold text-slate-300 hover:text-white transition-all duration-200 hover:translate-x-1 transform"
                                 >
-                                  <span className="h-2.5 w-2.5 rounded-full border-2 border-[#F59E0B] flex-shrink-0 mr-2.5" />
+                          <span className="h-2 w-2 bg-[#F59E0B] rotate-45 flex-shrink-0 mr-2.5" />
                                   <span>{item.name}</span>
                                 </Link>
                               </li>
@@ -168,16 +171,59 @@ export const Navbar: React.FC = () => {
             </AnimatePresence>
           </div>
 
-          {/* Careers */}
-          <Link
-            href="/careers"
-            onClick={closeMenus}
-            className={`text-sm font-semibold transition-colors duration-200 ${
-              isActive("/careers") ? "text-[#0EA5E9]" : atTop ? "text-[#1E293B] hover:text-[#0EA5E9]" : "text-white hover:text-[#0EA5E9]"
-            }`}
+          {/* Careers Dropdown */}
+          <div
+            className="relative"
+            onMouseLeave={() => setCareersOpen(false)}
           >
-            Careers
-          </Link>
+            <button
+              onClick={() => setCareersOpen(!careersOpen)}
+              onMouseEnter={() => setCareersOpen(true)}
+              className={`flex items-center gap-1 text-sm font-semibold transition-colors duration-200 cursor-pointer ${
+                isCareerActive ? "text-[#0EA5E9]" : atTop ? "text-[#1E293B] hover:text-[#0EA5E9]" : "text-white hover:text-[#0EA5E9]"
+              }`}
+            >
+              Careers
+              <ChevronDown className={`h-4 w-4 transition-transform ${careersOpen ? "rotate-180" : ""}`} />
+            </button>
+
+            {/* Dropdown Menu */}
+            <AnimatePresence>
+              {careersOpen && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 10 }}
+                  className="absolute left-1/2 z-50 top-full pt-3 -translate-x-1/2"
+                >
+                  <div className="w-[260px] rounded-2xl border border-slate-700 bg-[#1E293B] p-6 shadow-2xl ring-1 ring-black/5">
+                    <ul className="space-y-3">
+                      <li>
+                        <Link
+                          href="/submit-resume"
+                          onClick={closeMenus}
+                          className="flex items-center text-xs font-semibold text-slate-300 hover:text-white transition-all duration-200 hover:translate-x-1 transform"
+                        >
+                          <span className="h-2 w-2 bg-[#F59E0B] rotate-45 flex-shrink-0 mr-2.5" />
+                          <span>Submit your resume</span>
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          href="/vacancies"
+                          onClick={closeMenus}
+                          className="flex items-center text-xs font-semibold text-slate-300 hover:text-white transition-all duration-200 hover:translate-x-1 transform"
+                        >
+                          <span className="h-2 w-2 bg-[#F59E0B] rotate-45 flex-shrink-0 mr-2.5" />
+                          <span>Current Vacancies</span>
+                        </Link>
+                      </li>
+                    </ul>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
         </nav>
 
         {/* Right CTA Button ("Get in Touch") */}
@@ -269,15 +315,30 @@ export const Navbar: React.FC = () => {
               ))}
             </div>
 
-            <Link
-              href="/careers"
-              onClick={closeMenus}
-              className={`block w-full px-3 py-2 text-base font-semibold rounded-lg transition-colors duration-300 ${
-                atTop ? "text-[#1E293B] hover:bg-gray-100" : "text-white hover:bg-slate-800"
-              }`}
-            >
-              Careers
-            </Link>
+            {/* Careers under Mobile */}
+            <div className="border-l-2 border-[#0EA5E9] ml-2 pl-3 space-y-3">
+              <p className={`text-xs font-extrabold tracking-widest uppercase py-1 transition-colors duration-300 ${
+                atTop ? "text-gray-500" : "text-gray-400"
+              }`}>Careers</p>
+              <div className="space-y-1.5">
+                <Link
+                  href="/submit-resume"
+                  onClick={closeMenus}
+                  className="flex items-center w-full px-3 py-1.5 text-xs font-semibold rounded-lg transition-colors duration-300 text-[#0EA5E9] hover:text-[#38BDF8]"
+                >
+                  <span className="h-2 w-2 bg-[#F59E0B] rotate-45 flex-shrink-0 mr-2" />
+                  Submit your resume
+                </Link>
+                <Link
+                  href="/vacancies"
+                  onClick={closeMenus}
+                  className="flex items-center w-full px-3 py-1.5 text-xs font-semibold rounded-lg transition-colors duration-300 text-[#0EA5E9] hover:text-[#38BDF8]"
+                >
+                  <span className="h-2 w-2 bg-[#F59E0B] rotate-45 flex-shrink-0 mr-2" />
+                  Current Vacancies
+                </Link>
+              </div>
+            </div>
             <Link
               href="/contact?tab=general"
               onClick={closeMenus}
