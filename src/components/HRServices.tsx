@@ -226,7 +226,7 @@ export const HRServices: React.FC<HRServicesProps> = ({ onBookCall }) => {
           </div>
         </div>
 
-        <div className="mb-24 overflow-hidden rounded-3xl bg-navy-800 shadow-xl">
+        <div className="mb-24 overflow-hidden rounded-3xl bg-navy-card-subtle shadow-xl">
           <div className="grid grid-cols-1 lg:grid-cols-2">
             <div className="p-8 sm:p-12 flex flex-col justify-center">
               <SectionLabel className="text-sky-400">HR Dashboard Builder</SectionLabel>

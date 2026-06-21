@@ -126,7 +126,7 @@ export const RecruitmentServices: React.FC<RecruitmentServicesProps> = ({
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-24">
-          <div className="lg:col-span-5 relative bg-navy-900 p-8 rounded-3xl flex flex-col justify-between min-h-[400px]">
+          <div className="lg:col-span-5 relative bg-navy-card p-8 rounded-3xl flex flex-col justify-between min-h-[400px]">
             <div>
               <SectionLabel className="text-sky-400">Pipeline Architecture</SectionLabel>
               <h3 className="mt-2 text-2xl font-black uppercase tracking-tight text-white leading-tight">
@@ -200,7 +200,7 @@ export const RecruitmentServices: React.FC<RecruitmentServicesProps> = ({
           </div>
         </div>
 
-        <div className="mb-24 rounded-3xl bg-navy-900 p-8 sm:p-12">
+        <div className="mb-24 rounded-3xl bg-navy-card p-8 sm:p-12">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <SectionLabel className="text-sky-400">Who We Serve</SectionLabel>
             <h3 className="mt-3 text-2xl sm:text-3xl font-black text-white uppercase tracking-tight">
@@ -289,7 +289,7 @@ export const RecruitmentServices: React.FC<RecruitmentServicesProps> = ({
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-          <div className="rounded-3xl bg-navy-900 p-8 text-white flex flex-col justify-between items-start relative overflow-hidden">
+          <div className="rounded-3xl bg-navy-card p-8 text-white flex flex-col justify-between items-start relative overflow-hidden">
             <span className="text-[10px] font-mono tracking-widest bg-white/10 px-2.5 py-1 rounded inline-block uppercase font-bold mb-4">
               For Employers
             </span>

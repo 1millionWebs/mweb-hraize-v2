@@ -8,7 +8,7 @@ export const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="bg-navy-900 text-white border-t border-navy-800">
+    <footer className="bg-navy-card text-white border-t border-navy-700/50">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 pb-10 border-b border-navy-800">
           <div className="md:col-span-4 space-y-4">

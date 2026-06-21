@@ -115,7 +115,7 @@ export const Contact: React.FC<ContactProps> = ({ initialTab = "hr" }) => {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-stretch mb-12">
-          <div className="lg:col-span-4 bg-navy-900 rounded-3xl p-8 text-white flex flex-col justify-between relative overflow-hidden">
+          <div className="lg:col-span-4 bg-navy-card-hero rounded-3xl p-8 text-white flex flex-col justify-between relative overflow-hidden">
             <div className="space-y-8">
               <div>
                 <SectionLabel className="text-sky-400">Hraize Directory</SectionLabel>
@@ -178,7 +178,7 @@ export const Contact: React.FC<ContactProps> = ({ initialTab = "hr" }) => {
                     }}
                     className={`flex items-center justify-center gap-1.5 py-3.5 px-2 rounded-lg text-[10px] font-black uppercase tracking-wider transition-all cursor-pointer ${
                       active
-                        ? "bg-navy-900 text-white shadow-sm"
+                        ? "bg-navy-card text-white shadow-sm"
                         : "text-navy-900/50 hover:text-navy-900 hover:bg-cream-50"
                     }`}
                   >
@@ -221,7 +221,7 @@ export const Contact: React.FC<ContactProps> = ({ initialTab = "hr" }) => {
                     setValidationSuccess(false);
                     setFormData({ fullName: "", companyName: "", email: "", phone: "", serviceInterested: "", message: "" });
                   }}
-                  className="px-5 py-2 bg-navy-900 hover:bg-navy-800 text-white rounded-lg text-xs font-bold uppercase tracking-wider shadow cursor-pointer"
+                   className="px-5 py-2 bg-navy-card hover:bg-navy-700 text-white rounded-lg text-xs font-bold uppercase tracking-wider shadow cursor-pointer"
                 >
                   Send another inquiry
                 </button>

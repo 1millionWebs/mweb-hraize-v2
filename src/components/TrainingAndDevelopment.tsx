@@ -145,7 +145,7 @@ export const TrainingAndDevelopment: React.FC<TrainingAndDevelopmentProps> = ({
           </div>
         </div>
 
-        <div className="rounded-3xl bg-navy-900 p-8 sm:p-12 text-center max-w-4xl mx-auto relative overflow-hidden">
+        <div className="rounded-3xl bg-navy-card p-8 sm:p-12 text-center max-w-4xl mx-auto relative overflow-hidden">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,color-mix(in_srgb,var(--color-sky-600)_10%,transparent)_0%,transparent_70%)]" />
           <div className="relative">
             <SectionLabel className="text-sky-400">Take Command</SectionLabel>

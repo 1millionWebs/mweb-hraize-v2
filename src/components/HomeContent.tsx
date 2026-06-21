@@ -75,7 +75,7 @@ export const HomeContent: React.FC<HomeContentProps> = ({
 
   return (
     <div>
-      <section className="relative overflow-hidden bg-navy-900 py-24">
+      <section className="relative overflow-hidden bg-navy-card py-24">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,color-mix(in_srgb,var(--color-sky-600)_15%,transparent)_0%,transparent_60%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,color-mix(in_srgb,var(--color-copper-400)_8%,transparent)_0%,transparent_50%)]" />
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -179,7 +179,7 @@ export const HomeContent: React.FC<HomeContentProps> = ({
         </div>
       </section>
 
-      <section className="py-24 bg-copper-50">
+      <section className="py-24 bg-teal-100">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start mb-20">
             <div className="lg:col-span-5">

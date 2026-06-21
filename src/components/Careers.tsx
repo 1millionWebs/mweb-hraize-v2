@@ -226,7 +226,7 @@ export const Careers: React.FC = () => {
         </div>
 
         <div ref={formRef} className="max-w-4xl mx-auto">
-          <div className="rounded-3xl bg-navy-900 p-8 sm:p-12 border border-navy-800">
+          <div className="rounded-3xl bg-navy-card p-8 sm:p-12 border border-navy-700/50">
             <div className="max-w-2xl mx-auto mb-10 text-center">
               <SectionLabel className="text-sky-400">Secure Submission</SectionLabel>
               <h3 className="mt-3 text-2xl sm:text-3xl font-black uppercase tracking-tight text-white">Submit Your Resume</h3>

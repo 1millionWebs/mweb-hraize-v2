@@ -80,7 +80,7 @@ export const AboutUs: React.FC = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-24 rounded-3xl bg-navy-800 p-8 sm:p-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-24 rounded-3xl bg-navy-card-subtle p-8 sm:p-12">
           <div className="lg:col-span-7 space-y-6">
             <SectionLabel className="text-sky-400">Why We Exist</SectionLabel>
             <h3 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-white leading-tight">
