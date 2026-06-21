@@ -63,10 +63,10 @@ export const Navbar: React.FC = () => {
   const isCareerActive = pathname === "/careers" || pathname === "/submit-resume" || pathname === "/vacancies";
 
   return (
-    <header className={`sticky top-0 z-50 w-full border-b transition-all duration-500 ${
+    <header className={`sticky top-0 z-50 w-full border-b transition-all duration-500 shadow-lg ${
       atTop
         ? "bg-cream-100/80 backdrop-blur-md border-transparent"
-        : "bg-navy-900 border-navy-800 shadow-lg"
+        : "bg-navy-900 border-navy-800"
     }`}>
       <div className="mx-auto flex max-w-7xl h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
         
