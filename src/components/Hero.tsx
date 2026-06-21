@@ -42,7 +42,7 @@ export const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
               </span>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-black tracking-tight text-navy-900 uppercase leading-[1.02]">
+            <h1 className="text-4xl sm:text-5xl lg:text-5xl font-black tracking-tight text-navy-900 uppercase leading-[1.02]">
               Structure Your
               <br />
               <span className="text-sky-600">People.</span>
@@ -52,7 +52,7 @@ export const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
               <span className="text-sky-600">Business.</span>
             </h1>
 
-            <p className="mt-6 text-base sm:text-lg text-navy-900/60 font-semibold max-w-2xl leading-relaxed">
+            <p className="mt-6 text-base sm:text-md text-navy-900/60 font-semibold max-w-2xl leading-relaxed">
               Hraize is your dedicated HR, People Operations, and Recruitment partner,
               structured, practical, and built for businesses that are serious about
               growing the right way.
@@ -100,7 +100,7 @@ export const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
-            <div className="relative h-[520px] w-full overflow-hidden rounded-3xl shadow-xl">
+            <div className="relative h-[320px] w-full overflow-hidden rounded-3xl shadow-xl">
               <img
                 src="/white-bg.png"
                 alt="Hraize HR Analytics"
