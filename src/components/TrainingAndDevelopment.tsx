@@ -1,9 +1,7 @@
 import React, { useEffect } from "react";
 import { motion } from "motion/react";
-import { 
-  TrendingUp, Check
-} from "lucide-react";
-import { GlassCard } from "./UIElements";
+import { TrendingUp, Check, ArrowRight } from "lucide-react";
+import { SectionLabel, FeatureCheck } from "./UIElements";
 
 interface TrainingAndDevelopmentProps {
   onLetsFindPath: () => void;
@@ -12,21 +10,16 @@ interface TrainingAndDevelopmentProps {
 export const TrainingAndDevelopment: React.FC<TrainingAndDevelopmentProps> = ({
   onLetsFindPath,
 }) => {
-
   useEffect(() => {
     const scrollToHash = () => {
       const hash = window.location.hash;
       if (hash) {
         const id = hash.replace("#", "");
         const element = document.getElementById(id);
-        if (element) {
-          element.scrollIntoView({ behavior: "smooth", block: "center" });
-        }
+        if (element) element.scrollIntoView({ behavior: "smooth", block: "center" });
       }
     };
-
     const timer = setTimeout(scrollToHash, 250);
-
     window.addEventListener("hashchange", scrollToHash);
     return () => {
       clearTimeout(timer);
@@ -37,140 +30,142 @@ export const TrainingAndDevelopment: React.FC<TrainingAndDevelopmentProps> = ({
   const pathways = [
     {
       id: "fresher",
-      title: "Fresher to professional",
+      title: "Fresher to Professional",
       subtitle: "Fresh graduates entering corporate for the first time. You have a degree. You need the positioning to land the job.",
-      timeline: "Timeline: 4 Weeks",
+      timeline: "4 Weeks",
       features: [
-        "Professional resume (rewritten from scratch)",
-        "Optimised LinkedIn, Naukri profile (recruiter-ready)",
+        "Professional resume rewritten from scratch",
+        "Optimised LinkedIn, Naukri profile",
         "Interview coaching & mock interviews",
-        "Career clarity session (role types)",
-        "Job search strategy (which companies, which roles)",
+        "Career clarity session",
+        "Job search strategy",
         "1 month of ongoing support"
       ],
-      tag: "GRADUATE"
+      tag: "Graduate",
+      number: "01"
     },
     {
       id: "mid-career",
-      title: "MID-CAREER ACCELERATION",
-      subtitle: "Professionals with 3-6 years of experience. You're good at your job, but invisible to promotions. You're ready for the next level.",
-      timeline: "Timeline: 6 Weeks",
+      title: "Mid-Career Acceleration",
+      subtitle: "Professionals with 3-6 years of experience. You're good at your job, but invisible to promotions.",
+      timeline: "6 Weeks",
       features: [
-        "Resume repositioning (from tasks to impact)",
-        "LinkedIn visibility boost (get noticed by recruiters)",
-        "Advanced interview coaching (behavioural, leadership, salary negotiation)",
-        "Career strategy session (next role, market value, growth paths)",
-        "Application strategy (which companies, which roles, when to apply)",
+        "Resume repositioning",
+        "LinkedIn visibility boost",
+        "Advanced interview coaching",
+        "Career strategy session",
+        "Application strategy",
         "6 weeks of ongoing support"
       ],
-      tag: "ACCELERATOR"
+      tag: "Accelerator",
+      number: "02"
     },
     {
       id: "manager",
-      title: "First-time managers",
-      subtitle: "Professionals with 6+ years of experience ready for executive or Manager roles. You need to be positioned as a strategic leader.",
-      timeline: "Timeline: 8 Weeks",
+      title: "First-Time Managers",
+      subtitle: "Professionals with 6+ years of experience ready for executive or Manager roles.",
+      timeline: "8 Weeks",
       features: [
-        "Executive resume (board-ready format)",
-        "Executive LinkedIn branding (thought leadership, visibility)",
-        "Executive interview coaching (vision, strategy, panel interviews)",
+        "Executive resume",
+        "Executive LinkedIn branding",
+        "Executive interview coaching",
         "Essential soft skills training",
         "8 weeks of ongoing support"
       ],
-      tag: "LEADER"
+      tag: "Leader",
+      number: "03"
     }
   ];
 
   return (
-    <div id="training-view" className="bg-[#F8FAFF] py-16">
+    <div className="bg-cream-100 py-16">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        
-        {/* Page Heading */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-xs font-extrabold uppercase tracking-widest text-[#0EA5E9]">ACADEMY &amp; COACHING</span>
-          <h2 className="mt-2 text-3xl sm:text-4xl lg:text-5xl font-black text-[#1E3A8A] uppercase tracking-tight">
+          <SectionLabel>Academy &amp; Coaching</SectionLabel>
+          <h2 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-black text-navy-900 uppercase tracking-tight">
             Career coaching designed for your stage of growth.
           </h2>
-          <p className="mt-4 text-base sm:text-lg text-gray-600 font-medium leading-relaxed">
-            Career growth shouldn't be left to chance. Whether you're stepping into your first corporate role, advancing to leadership, or moving into the executive suite, you need real, practical coaching at the right moment. We provide career strategy, interview preparation, personal branding, and ongoing support tailored to exactly where you are in your career.
+          <p className="mt-4 text-base sm:text-lg text-navy-900/60 font-semibold leading-relaxed">
+            Career growth shouldn&apos;t be left to chance. Whether you&apos;re stepping into your first
+            corporate role or advancing to leadership, we provide real, practical coaching.
           </p>
         </div>
 
-        {/* The Three Pathways */}
         <div className="mb-20">
           <div className="text-center max-w-2xl mx-auto mb-16">
-            <span className="text-xs font-extrabold uppercase tracking-widest text-[#0EA5E9]">THE THREE PATHWAYS</span>
-            <h3 className="mt-1 text-2xl sm:text-3xl font-black text-[#1E3A8A] uppercase tracking-tight">
+            <SectionLabel>The Three Pathways</SectionLabel>
+            <h3 className="mt-3 text-2xl sm:text-3xl font-black text-navy-900 uppercase tracking-tight">
               A Career Partner for Every Stage
             </h3>
-            <p className="mt-3 text-xs sm:text-sm text-gray-500 font-medium">
-              Most professionals navigate career transitions alone. At Hraize, we guide you through every critical career moment with strategy, positioning, and support.
+            <p className="mt-3 text-sm text-navy-900/60 font-semibold">
+              We guide you through every critical career moment with strategy, positioning, and support.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {pathways.map((path) => (
-              <GlassCard key={path.id} id={path.id} className="relative p-6 flex flex-col justify-between h-full hover:border-[#1E3A8A] transition-all">
-                <div>
-                  <div className="flex justify-between items-center mb-4">
-                    <span className="text-[10px] font-mono font-extrabold bg-[#0EA5E9]/10 text-[#0EA5E9] px-2.5 py-1 rounded">
-                      {path.tag}
-                    </span>
-                    <span className="text-xs font-black text-[#D4A017]">{path.timeline}</span>
+          <div className="max-w-5xl mx-auto space-y-6">
+            {pathways.map((path, idx) => (
+              <motion.div
+                key={path.id}
+                id={path.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1 }}
+                className="rounded-3xl bg-cream-50 border border-sky-600/10 p-8"
+              >
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                  <div className="lg:col-span-5">
+                    <div className="flex items-center gap-3 mb-4">
+                      <span className="text-lg font-black text-sky-600/40">{path.number}</span>
+                      <span className="h-px flex-1 bg-sky-600/10" />
+                    </div>
+                    <div className="flex items-center gap-3 mb-2">
+                      <span className="text-[10px] font-bold text-copper-400 bg-copper-50 px-2.5 py-1 rounded-full">{path.tag}</span>
+                      <span className="text-[10px] font-bold text-sky-600">{path.timeline}</span>
+                    </div>
+                    <h4 className="text-xl font-black text-navy-900 uppercase tracking-tight mb-3">{path.title}</h4>
+                    <p className="text-sm text-navy-900/60 font-medium leading-relaxed">{path.subtitle}</p>
                   </div>
-
-                  <h4 className="text-base font-black text-[#1E3A8A] uppercase tracking-tight mb-2">
-                    {path.title}
-                  </h4>
-
-                  <p className="text-xs text-gray-600 leading-relaxed font-semibold mb-6">
-                    {path.subtitle}
-                  </p>
-
-                  <div className="space-y-2 border-t border-gray-100 pt-4">
-                    <p className="text-[9px] font-mono tracking-widest text-[#1E3A8A] uppercase font-black mb-1">What You Get</p>
-                    {path.features.map((feat, fIdx) => (
-                      <div key={fIdx} className="flex gap-2 items-start">
-                        <Check className="h-3.5 w-3.5 text-[#0EA5E9] flex-shrink-0 mt-0.5" />
-                        <span className="text-xs font-bold text-gray-750 leading-tight">{feat}</span>
-                      </div>
-                    ))}
+                  <div className="lg:col-span-7">
+                    <p className="text-[10px] font-black tracking-wider text-sky-600 uppercase mb-3">What You Get</p>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                      {path.features.map((feat, fIdx) => (
+                        <FeatureCheck key={fIdx}>{feat}</FeatureCheck>
+                      ))}
+                    </div>
+                    <div className="mt-6 pt-4 border-t border-sky-600/10">
+                      <span className="text-[10px] font-bold text-navy-900/40 uppercase tracking-wide">
+                        Customised services available
+                      </span>
+                    </div>
                   </div>
                 </div>
-
-                <div className="mt-8 pt-4 border-t border-gray-100 flex items-center justify-between">
-                  <span className="text-[10px] font-mono font-bold tracking-wider text-gray-400 uppercase">Customised services available</span>
-                  <div className="h-2 w-2 rounded-full bg-[#D4A017]" />
-                </div>
-              </GlassCard>
+              </motion.div>
             ))}
           </div>
         </div>
 
-        {/* Closing Career Coaching CTA */}
-        <div className="bg-[#07112E] rounded-3xl p-8 sm:p-12 text-center text-white max-w-4xl mx-auto shadow-xl relative overflow-hidden">
-          <div className="absolute top-0 left-0 p-4 opacity-5 pointer-events-none">
-            <TrendingUp className="h-32 w-32" />
-          </div>
-          
-          <span className="text-xs font-extrabold uppercase tracking-widest text-[#0EA5E9]">TAKE COMMAND</span>
-          <h3 className="mt-2 text-2xl sm:text-3xl font-black uppercase tracking-tight text-white">
-            Ready to Own Your Career
-          </h3>
-          <p className="mt-4 text-xs sm:text-sm text-slate-300 font-medium max-w-xl mx-auto leading-relaxed">
-            Stop leaving transitions to chance. Partner with premium advisors who understand precisely what global internal talent acquisition leaders look for.
-          </p>
-
-          <div className="mt-6">
-            <button
-              onClick={onLetsFindPath}
-              className="rounded-full bg-[#0EA5E9] text-white font-black hover:bg-[#0EA5E9]/90 px-8 py-3.5 text-xs uppercase tracking-wider shadow-md focus:outline-none transition cursor-pointer"
-            >
-              Let's find your path
-            </button>
+        <div className="rounded-3xl bg-navy-900 p-8 sm:p-12 text-center max-w-4xl mx-auto relative overflow-hidden">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,color-mix(in_srgb,var(--color-sky-600)_10%,transparent)_0%,transparent_70%)]" />
+          <div className="relative">
+            <SectionLabel className="text-sky-400">Take Command</SectionLabel>
+            <h3 className="mt-3 text-2xl sm:text-3xl font-black uppercase tracking-tight text-white">
+              Ready to Own Your Career
+            </h3>
+            <p className="mt-4 text-sm text-sage-100/70 font-medium max-w-xl mx-auto leading-relaxed">
+              Stop leaving transitions to chance. Partner with advisors who understand what global talent leaders look for.
+            </p>
+            <div className="mt-8">
+              <button
+                onClick={onLetsFindPath}
+                className="inline-flex items-center gap-2 rounded-full bg-sky-600 text-white font-black hover:bg-sky-700 px-8 py-3.5 text-xs uppercase tracking-wider shadow-lg shadow-sky-600/20 transition-all cursor-pointer"
+              >
+                Let&apos;s Find Your Path
+                <ArrowRight className="h-4 w-4" />
+              </button>
+            </div>
           </div>
         </div>
-
       </div>
     </div>
   );

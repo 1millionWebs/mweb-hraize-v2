@@ -1,112 +1,106 @@
 import React from "react";
 import { motion } from "motion/react";
-import { Shield, Award, CheckCircle } from "lucide-react";
 
-// Liquid Glass Morphic Card with high-contrast subtle frosted border and backdrop blur
-interface GlassCardProps {
+interface GlassPanelProps {
   children: React.ReactNode;
   className?: string;
-  hoverEffect?: boolean;
-  id?: string;
+  dark?: boolean;
 }
 
-export const GlassCard: React.FC<GlassCardProps> = ({
+export const GlassPanel: React.FC<GlassPanelProps> = ({
   children,
   className = "",
-  hoverEffect = true,
-  id,
+  dark = false,
 }) => {
   return (
-    <motion.div
-      id={id}
-      className={`relative overflow-hidden rounded-2xl border border-white/20 bg-[#F1F5FF] p-6 shadow-[0_8px_32px_0_rgba(30,58,138,0.06)] ${className}`}
-      whileHover={hoverEffect ? { y: -4, boxShadow: "0_12px_40px_0_rgba(30,58,138,0.12)" } : undefined}
-      transition={{ duration: 0.3, ease: "easeOut" }}
-    >
-      {/* Liquid glass reflection line */}
-      <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/25 to-transparent opacity-40 hover:animate-[shimmer_1.5s_infinite]" />
+    <div className={`${dark ? "glass-dark" : "glass"} rounded-2xl ${className}`}>
       {children}
-    </motion.div>
+    </div>
   );
 };
 
-// Trust Badges for the Hero Section
-export const TrustBadges: React.FC = () => {
+interface StepLineProps {
+  number: string;
+  title: string;
+  description: string;
+  duration?: string;
+  isLast?: boolean;
+}
+
+export const StepLine: React.FC<StepLineProps> = ({
+  number,
+  title,
+  description,
+  duration,
+  isLast = false,
+}) => {
   return (
-    <div className="flex flex-wrap items-center gap-4 rounded-xl border border-white/80 bg-white/70 p-4 shadow-sm backdrop-blur-md">
-      {/* 1. Circular Navy & Gold Certification Seal */}
-      <div className="flex items-center gap-2 border-r border-gray-200 pr-4">
-        <div className="relative flex h-10 w-10 items-center justify-center rounded-full border-2 border-[#D4A017] bg-[#1E3A8A]">
-          <Award className="h-5 w-5 text-[#D4A017]" />
+    <div className="relative flex gap-6">
+      <div className="flex flex-col items-center">
+        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-sky-600 text-xs font-black text-white shadow-sm">
+          {number}
         </div>
-        <div>
-          <p className="text-[10px] font-bold tracking-wider text-[#1E3A8A]">HR AUDIT</p>
-          <p className="text-[9px] font-medium text-[#D4A017]">CERTIFIED 2026</p>
-        </div>
+        {!isLast && (
+          <div className="mt-2 w-px flex-1 bg-gradient-to-b from-sky-600/30 to-transparent" />
+        )}
       </div>
-
-      {/* 2. Blue 'CG-20' Badge */}
-      <div className="flex items-center gap-2 border-r border-gray-200 pr-4">
-        <div className="flex h-10 px-3 items-center justify-center rounded-lg bg-[#0EA5E9] font-mono text-xs font-black text-white shadow-inner">
-          CG-20
+      <div className="pb-12 flex-1">
+        <div className="flex items-center gap-3 mb-1.5">
+          <h4 className="text-sm font-black text-navy-900 uppercase tracking-tight">{title}</h4>
+          {duration && (
+            <span className="text-[10px] font-bold text-copper-400 bg-copper-50 px-2 py-0.5 rounded-full">
+              {duration}
+            </span>
+          )}
         </div>
-        <div>
-          <p className="text-[10px] font-bold tracking-wider text-[#1E3A8A]">GLOBAL COMPLIANCE</p>
-          <p className="text-[9px] font-medium text-gray-500">SECURE STANDARD</p>
-        </div>
-      </div>
-
-      {/* 3. Detailed Professional Shield with Text */}
-      <div className="flex items-center gap-2">
-        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gray-100 text-[#1E3A8A]">
-          <Shield className="h-6 w-6" />
-        </div>
-        <div>
-          <p className="text-[10px] font-bold leading-tight text-[#1E3A8A]">HRAIZE VERIFIED</p>
-          <p className="text-[8px] text-gray-500 leading-none">100% Quality &amp; Guarantee</p>
-        </div>
+        <p className="text-xs text-navy-900/60 font-medium leading-relaxed">{description}</p>
       </div>
     </div>
   );
 };
 
-// Clean Premium Mini Dashboard Widgets for Interactive Simulation
-export const MiniDashboardWidget: React.FC = () => {
-  return (
-    <div className="grid grid-cols-2 gap-4">
-      <div className="rounded-xl border border-white/40 bg-white/40 p-3 shadow-sm backdrop-blur-md">
-        <p className="text-[11px] font-bold text-gray-400 uppercase tracking-widest">Retention Rate</p>
-        <div className="mt-1 flex items-baseline gap-2">
-          <span className="text-xl font-extrabold text-[#1E3A8A]">94.2%</span>
-          <span className="text-[10px] font-semibold text-emerald-500">+2.4%</span>
-        </div>
-        {/* Custom minimalist path element */}
-        <div className="mt-2 h-1.5 w-full rounded-full bg-gray-200 overflow-hidden">
-          <motion.div
-            className="h-full bg-gradient-to-r from-[#1E3A8A] to-[#0EA5E9]"
-            initial={{ width: "0%" }}
-            animate={{ width: "94.2%" }}
-            transition={{ duration: 1.5, delay: 0.5 }}
-          />
-        </div>
-      </div>
+interface MetricPillProps {
+  value: string;
+  label: string;
+}
 
-      <div className="rounded-xl border border-white/40 bg-white/40 p-3 shadow-sm backdrop-blur-md">
-        <p className="text-[11px] font-bold text-gray-400 uppercase tracking-widest">Hiring Speed</p>
-        <div className="mt-1 flex items-baseline gap-2">
-          <span className="text-xl font-extrabold text-[#1E3A8A]">18 Days</span>
-          <span className="text-[10px] font-semibold text-[#0EA5E9]">-4 Days</span>
-        </div>
-        {/* Attrition progress bar */}
-        <div className="mt-2 h-1.5 w-full rounded-full bg-gray-200 overflow-hidden">
-          <motion.div
-            className="h-full bg-[#0EA5E9]"
-            initial={{ width: "0%" }}
-            animate={{ width: "75%" }}
-            transition={{ duration: 1.5, delay: 0.7 }}
-          />
-        </div>
-      </div>
+export const MetricPill: React.FC<MetricPillProps> = ({ value, label }) => {
+  return (
+    <div className="flex items-center gap-3">
+      <span className="text-2xl font-black text-sky-600 leading-none tracking-tight">{value}</span>
+      <span className="text-[10px] font-bold text-navy-900/50 uppercase leading-tight max-w-[80px]">{label}</span>
     </div>
+  );
+};
+
+interface FeatureCheckProps {
+  children: React.ReactNode;
+  className?: string;
+}
+
+export const FeatureCheck: React.FC<FeatureCheckProps> = ({ children, className = "" }) => {
+  return (
+    <div className="flex items-start gap-3">
+      <div className="mt-0.5 h-5 w-5 shrink-0 rounded-full bg-sky-600/10 flex items-center justify-center">
+        <svg className="h-3 w-3 text-sky-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+        </svg>
+      </div>
+      <span className={`text-xs font-semibold text-navy-900/70 ${className}`}>{children}</span>
+    </div>
+  );
+};
+
+interface SectionLabelProps {
+  children: React.ReactNode;
+  className?: string;
+}
+
+export const SectionLabel: React.FC<SectionLabelProps> = ({ children, className = "" }) => {
+  return (
+    <span className={`inline-flex items-center gap-2 text-[11px] font-black tracking-[0.2em] text-sky-600 uppercase ${className}`}>
+      <span className="h-px w-6 bg-sky-600/30" />
+      {children}
+    </span>
   );
 };
