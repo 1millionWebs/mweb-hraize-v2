@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "motion/react";
 import {
-  Building2, Mail, Clock, Globe, CheckCircle2,
+  Building2, Mail, Clock, CheckCircle2,
   Send, HelpCircle, Layers, Shield, GraduationCap
 } from "lucide-react";
 import { SectionLabel } from "./UIElements";
@@ -116,10 +116,7 @@ export const Contact: React.FC<ContactProps> = ({ initialTab = "hr" }) => {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-stretch mb-12">
           <div className="lg:col-span-4 bg-navy-900 rounded-3xl p-8 text-white flex flex-col justify-between relative overflow-hidden">
-            <div className="absolute right-0 top-0 opacity-[0.03] pointer-events-none">
-              <Globe className="h-64 w-64 text-white" />
-            </div>
-            <div className="space-y-8 relative z-10">
+            <div className="space-y-8">
               <div>
                 <SectionLabel className="text-sky-400">Hraize Directory</SectionLabel>
                 <h3 className="text-xl font-black uppercase text-white mt-2">Contact Information</h3>
