@@ -1,12 +1,59 @@
-import React from "react";
+import React, { useMemo, useState, useEffect } from "react";
 import { motion } from "motion/react";
 import { ArrowRight, Calendar, Users, ShieldCheck, Award } from "lucide-react";
+
+const rand = (min: number, max: number) => Math.random() * (max - min) + min;
+
+const generateBubbles = (count: number, maxAttempts = 200) => {
+  const bubbles: { top: number; left: number; size: number; driftX: number; driftY: number; duration: number; delay: number }[] = [];
+  const gap = 30;
+  for (let i = 0; i < count; i++) {
+    let attempts = 0;
+    let placed = false;
+    while (attempts < maxAttempts && !placed) {
+      const size = rand(28, 150);
+      const top = rand(1, 80);
+      const left = rand(1, 85);
+      const topPx = top * 7.2;
+      const leftPx = left * 7.2;
+      const half = size / 2 + gap;
+      let overlap = false;
+      for (const b of bubbles) {
+        const bTop = b.top * 7.2;
+        const bLeft = b.left * 7.2;
+        const bHalf = b.size / 2 + gap;
+        if (Math.abs(topPx - bTop) < half + bHalf && Math.abs(leftPx - bLeft) < half + bHalf) {
+          overlap = true;
+          break;
+        }
+      }
+      if (!overlap) {
+        bubbles.push({
+          top, left, size,
+          driftX: rand(30, 80) * (Math.random() > 0.5 ? 1 : -1),
+          driftY: rand(30, 80) * (Math.random() > 0.5 ? 1 : -1),
+          duration: rand(6, 14),
+          delay: rand(0, 5),
+        });
+        placed = true;
+      }
+      attempts++;
+    }
+  }
+  return bubbles;
+};
 
 interface HeroProps {
   onGetStarted: () => void;
 }
 
 export const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
+  const [bubbles, setBubbles] = useState<{ top: number; left: number; size: number; driftX: number; driftY: number; duration: number; delay: number }[]>([]);
+
+  useEffect(() => {
+    setBubbles(generateBubbles(15));
+  }, []);
+
   const stats = [
     { value: "20+", label: "Years Global Experience", icon: Calendar },
     { value: "6+", label: "Industries Served", icon: Users },
@@ -19,6 +66,30 @@ export const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-[-20%] right-[-10%] h-[500px] w-[500px] rounded-full bg-sky-600/5 blur-3xl" />
         <div className="absolute bottom-[-10%] left-[-5%] h-[400px] w-[400px] rounded-full bg-copper-400/5 blur-3xl" />
+        {bubbles.map((b, i) => (
+          <motion.div
+            key={i}
+            className="absolute rounded-full"
+            style={{
+              width: b.size,
+              height: b.size,
+              top: `${b.top}%`,
+              left: `${b.left}%`,
+              backgroundColor: "#EAF0F6",
+            }}
+            animate={{
+              x: [0, b.driftX * 0.3, b.driftX * 0.6, b.driftX * 0.3, 0],
+              y: [0, b.driftY * 0.3, b.driftY * 0.6, b.driftY * 0.3, 0],
+              scale: [1, 1.04, 0.97, 1.02, 1],
+            }}
+            transition={{
+              duration: b.duration,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: b.delay,
+            }}
+          />
+        ))}
         <svg className="absolute inset-0 h-full w-full opacity-[0.03]">
           <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
             <path d="M 48 0 L 0 0 0 48" fill="none" stroke="var(--color-teal)" strokeWidth="0.5" />
