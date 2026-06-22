@@ -62,7 +62,7 @@ export const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
   ];
 
   return (
-    <section className="relative min-h-[calc(100vh-4rem)] overflow-hidden bg-gradient-to-b from-cream-100 to-cream-50">
+    <section className="relative lg:min-h-[calc(100vh-4rem)] overflow-hidden bg-gradient-to-b from-cream-100 to-cream-50">
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-[-20%] right-[-10%] h-[500px] w-[500px] rounded-full bg-sky-600/5 blur-3xl" />
         <div className="absolute bottom-[-10%] left-[-5%] h-[400px] w-[400px] rounded-full bg-copper-400/5 blur-3xl" />
@@ -99,7 +99,7 @@ export const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
       </div>
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid min-h-[calc(100vh-4rem)] grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div className="grid lg:min-h-[calc(100vh-4rem)] grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           <motion.div
             className="lg:col-span-7 pt-20 lg:pt-0"
             initial={{ opacity: 0, y: 30 }}
@@ -141,7 +141,7 @@ export const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
               </motion.button>
             </div>
 
-            <div className="mt-12 flex gap-x-8 gap-y-4">
+            <div className="mt-12 grid grid-cols-2 gap-x-6 gap-y-4 lg:flex lg:gap-x-8 lg:gap-y-4">
               {stats.map((stat, idx) => {
                 const Icon = stat.icon;
                 return (
@@ -166,7 +166,7 @@ export const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
           </motion.div>
 
           <motion.div
-            className="lg:col-span-5 relative"
+            className="hidden lg:block lg:col-span-5 relative"
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.3 }}

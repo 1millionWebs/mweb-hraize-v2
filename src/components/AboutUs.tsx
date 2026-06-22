@@ -55,7 +55,7 @@ export const AboutUs: React.FC = () => {
         </div>
 
         <div className="mb-20 rounded-3xl bg-cream-50 border border-sky-600/50 p-8 sm:p-10">
-          <div className="flex flex-wrap justify-center gap-x-12 gap-y-6">
+          <div className="grid grid-cols-2 gap-x-6 gap-y-6 sm:flex sm:flex-wrap sm:justify-center sm:gap-x-12 sm:gap-y-6">
             {stats.map((stat, idx) => {
               const Icon = stat.icon;
               return (
