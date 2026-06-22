@@ -56,7 +56,7 @@ export const Navbar: React.FC = () => {
 
   return (
     <header className="sticky top-0 z-50 w-full shadow-lg bg-cream-100/80 backdrop-blur-md">
-      <div className="flex flex-col items-center gap-1 md:flex-row md:items-center md:justify-between px-4 sm:px-6 lg:px-8 py-1.5 border-b border-navy-800 bg-navy-card">
+      <div className="flex flex-col items-center gap-1 md:flex-row md:items-center md:justify-between px-4 sm:px-6 lg:px-8 py-1.5 border-b border-sky-600/50 bg-navy-card">
         <div className="flex items-center gap-4 mx-auto max-w-7xl w-full">
           <div className="flex items-center gap-3">
             <a href="mailto:info@hraize.com" className="flex items-center gap-1.5 text-[10px] font-bold text-sage-100/60 hover:text-sky-400 transition-colors">
@@ -138,7 +138,7 @@ export const Navbar: React.FC = () => {
                   exit={{ opacity: 0, y: 10 }}
                   className="absolute left-1/2 z-50 top-full pt-3 -translate-x-1/2"
                 >
-                  <div className="w-[640px] md:w-[760px] lg:w-[840px] rounded-2xl border border-navy-700 bg-navy-card p-6 shadow-2xl">
+                  <div className="w-[640px] md:w-[760px] lg:w-[840px] rounded-2xl border border-sky-600/50 bg-navy-card p-6 shadow-2xl">
                     <div className="grid grid-cols-3 gap-8">
                       {serviceCategories.map((cat, idx) => (
                         <div key={idx} className="space-y-4 text-left">
@@ -195,7 +195,7 @@ export const Navbar: React.FC = () => {
                   exit={{ opacity: 0, y: 10 }}
                   className="absolute left-1/2 z-50 top-full pt-3 -translate-x-1/2"
                 >
-                  <div className="w-[260px] rounded-2xl border border-navy-700 bg-navy-card p-6 shadow-2xl">
+                  <div className="w-[260px] rounded-2xl border border-sky-600/50 bg-navy-card p-6 shadow-2xl">
                     <ul className="space-y-3">
                       <li>
                         <Link
@@ -252,7 +252,7 @@ export const Navbar: React.FC = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden border-t border-sky-600/10 bg-cream-100 px-4 py-4 space-y-2"
+            className="md:hidden border-t border-sky-600/50 bg-cream-100 px-4 py-4 space-y-2"
           >
             <Link
               href="/"
@@ -269,7 +269,7 @@ export const Navbar: React.FC = () => {
               About us
             </Link>
             
-            <div className="border-l-2 border-sky-600 ml-2 pl-3 space-y-3">
+            <div className="border-l-2 border-sky-600/50 ml-2 pl-3 space-y-3">
               <p className="text-xs font-extrabold tracking-widest uppercase py-1 text-navy-900/50 transition-colors duration-300">Services</p>
               
               {serviceCategories.map((cat, idx) => (
@@ -289,7 +289,7 @@ export const Navbar: React.FC = () => {
                         onClick={closeMenus}
                         className="flex items-center w-full px-3 py-0.5 text-xs font-medium text-navy-900/60 hover:text-navy-900 transition-colors duration-300"
                       >
-                        <span className="h-2 w-2 rounded-full border border-copper-400 shrink-0 mr-2" />
+                        <span className="h-2 w-2 rounded-full border border-sky-600/50 shrink-0 mr-2" />
                         <span>{item.name}</span>
                       </Link>
                     ))}
@@ -298,7 +298,7 @@ export const Navbar: React.FC = () => {
               ))}
             </div>
 
-            <div className="border-l-2 border-sky-600 ml-2 pl-3 space-y-3">
+            <div className="border-l-2 border-sky-600/50 ml-2 pl-3 space-y-3">
               <p className="text-xs font-extrabold tracking-widest uppercase py-1 text-navy-900/50 transition-colors duration-300">Careers</p>
               <div className="space-y-1.5">
                 <Link

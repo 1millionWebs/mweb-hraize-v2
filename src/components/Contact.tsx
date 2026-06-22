@@ -151,20 +151,20 @@ export const Contact: React.FC<ContactProps> = ({ initialTab = "hr" }) => {
                 </div>
               </div>
             </div>
-            <div className="mt-8 border-t border-white/5 pt-4 relative z-10">
+            <div className="mt-8 border-t border-sky-600/50 pt-4 relative z-10">
               <p className="text-[10px] text-sage-100/40 leading-relaxed uppercase font-mono tracking-widest">
                 Trusted HR Partner &bull; 100% Quality Focus
               </p>
             </div>
           </div>
 
-          <div className="lg:col-span-8 bg-cream-50 border border-sky-600/10 rounded-3xl p-6 sm:p-10">
+          <div className="lg:col-span-8 bg-cream-50 border border-sky-600/50 rounded-3xl p-6 sm:p-10">
             <div className="mb-6">
               <h3 className="text-lg font-black text-navy-900 uppercase tracking-tight">Send us a message</h3>
               <p className="text-xs text-navy-900/50 font-bold mt-1">Select the division below to route your inquiry:</p>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mb-8 bg-cream-100 p-1.5 rounded-xl border border-sky-600/5">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mb-8 bg-cream-100 p-1.5 rounded-xl border border-sky-600/50">
               {tabs.map((tab) => {
                 const TabIcon = tab.icon;
                 const active = activeTab === tab.id;
@@ -190,7 +190,7 @@ export const Contact: React.FC<ContactProps> = ({ initialTab = "hr" }) => {
             </div>
 
             {errors.length > 0 && (
-              <div className="mb-6 p-4 rounded-xl bg-red-muted/5 border border-red-muted/10 text-red-muted text-xs font-bold">
+              <div className="mb-6 p-4 rounded-xl bg-red-muted/5 border border-sky-600/50 text-red-muted text-xs font-bold">
                 <ul className="list-disc list-inside space-y-1">
                   {errors.map((err, i) => (
                     <li key={i}>{err}</li>
@@ -203,7 +203,7 @@ export const Contact: React.FC<ContactProps> = ({ initialTab = "hr" }) => {
               <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="p-8 text-center bg-forest-500/5 border border-forest-500/10 rounded-2xl flex flex-col items-center gap-4"
+                className="p-8 text-center bg-forest-500/5 border border-sky-600/50 rounded-2xl flex flex-col items-center gap-4"
               >
                 <div className="h-12 w-12 rounded-full bg-forest-500/10 text-forest-500 flex items-center justify-center">
                   <CheckCircle2 className="h-6 w-6" />
@@ -234,7 +234,7 @@ export const Contact: React.FC<ContactProps> = ({ initialTab = "hr" }) => {
                     <input
                       type="text" name="fullName" value={formData.fullName} onChange={handleInputChange}
                       placeholder="Jane Doe"
-                      className="w-full px-3 py-2.5 text-xs font-bold rounded-lg border border-sky-600/20 focus:outline-none focus:border-sky-600 bg-white text-navy-900"
+                      className="w-full px-3 py-2.5 text-xs font-bold rounded-lg border border-sky-600/50 focus:outline-none focus:border-sky-600 bg-white text-navy-900"
                     />
                   </div>
                   <div>
@@ -242,7 +242,7 @@ export const Contact: React.FC<ContactProps> = ({ initialTab = "hr" }) => {
                     <input
                       type="text" name="companyName" value={formData.companyName} onChange={handleInputChange}
                       placeholder="Enterprise Corp"
-                      className="w-full px-3 py-2.5 text-xs font-bold rounded-lg border border-sky-600/20 focus:outline-none focus:border-sky-600 bg-white text-navy-900"
+                      className="w-full px-3 py-2.5 text-xs font-bold rounded-lg border border-sky-600/50 focus:outline-none focus:border-sky-600 bg-white text-navy-900"
                     />
                   </div>
                   <div>
@@ -250,7 +250,7 @@ export const Contact: React.FC<ContactProps> = ({ initialTab = "hr" }) => {
                     <input
                       type="email" name="email" value={formData.email} onChange={handleInputChange}
                       placeholder="jane@enterprise.com"
-                      className="w-full px-3 py-2.5 text-xs font-bold rounded-lg border border-sky-600/20 focus:outline-none focus:border-sky-600 bg-white text-navy-900"
+                      className="w-full px-3 py-2.5 text-xs font-bold rounded-lg border border-sky-600/50 focus:outline-none focus:border-sky-600 bg-white text-navy-900"
                     />
                   </div>
                   <div>
@@ -258,7 +258,7 @@ export const Contact: React.FC<ContactProps> = ({ initialTab = "hr" }) => {
                     <input
                       type="tel" name="phone" value={formData.phone} onChange={handleInputChange}
                       placeholder="+91 90000 00000"
-                      className="w-full px-3 py-2.5 text-xs font-bold rounded-lg border border-sky-600/20 focus:outline-none focus:border-sky-600 bg-white text-navy-900"
+                      className="w-full px-3 py-2.5 text-xs font-bold rounded-lg border border-sky-600/50 focus:outline-none focus:border-sky-600 bg-white text-navy-900"
                     />
                   </div>
                 </div>
@@ -266,7 +266,7 @@ export const Contact: React.FC<ContactProps> = ({ initialTab = "hr" }) => {
                 <div>
                   <label className="block text-[10px] font-black tracking-widest text-navy-900 uppercase mb-1">Service Interested In</label>
                   <select name="serviceInterested" value={formData.serviceInterested} onChange={handleInputChange}
-                    className="w-full px-3 py-2.5 text-xs font-bold rounded-lg border border-sky-600/20 bg-white text-navy-900 focus:outline-none focus:border-sky-600">
+                    className="w-full px-3 py-2.5 text-xs font-bold rounded-lg border border-sky-600/50 bg-white text-navy-900 focus:outline-none focus:border-sky-600">
                     {getServiceOptions().map((opt) => (
                       <option key={opt.value} value={opt.value}>{opt.label}</option>
                     ))}
@@ -277,7 +277,7 @@ export const Contact: React.FC<ContactProps> = ({ initialTab = "hr" }) => {
                   <label className="block text-[10px] font-black tracking-widest text-navy-900 uppercase mb-1">How can we help you? *</label>
                   <textarea name="message" rows={4} value={formData.message} onChange={handleInputChange}
                     placeholder="Describe your goals, organisational bottlenecks, workforce size or coaching timelines..."
-                    className="w-full px-3 py-2.5 text-xs font-medium rounded-lg border border-sky-600/20 focus:outline-none focus:border-sky-600 bg-white text-navy-900 resize-none"
+                    className="w-full px-3 py-2.5 text-xs font-medium rounded-lg border border-sky-600/50 focus:outline-none focus:border-sky-600 bg-white text-navy-900 resize-none"
                   />
                 </div>
 

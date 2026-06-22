@@ -58,9 +58,9 @@ export default function SubmitResumePage() {
     }
   };
 
-  const inputClass = "w-full px-4 py-3 rounded-xl border border-sky-600/20 bg-white text-navy-900 focus:outline-none focus:border-sky-600 focus:ring-2 focus:ring-sky-600/10 text-sm font-medium placeholder:text-navy-900/30 transition-all duration-200";
+  const inputClass = "w-full px-4 py-3 rounded-xl border border-sky-600/50 bg-white text-navy-900 focus:outline-none focus:border-sky-600 focus:ring-2 focus:ring-sky-600/10 text-sm font-medium placeholder:text-navy-900/30 transition-all duration-200";
   const labelClass = "block text-xs font-bold text-navy-900 mb-1.5";
-  const selectClass = "w-full px-4 py-3 rounded-xl border border-sky-600/20 bg-white text-navy-900 focus:outline-none focus:border-sky-600 focus:ring-2 focus:ring-sky-600/10 text-sm font-medium transition-all duration-200";
+  const selectClass = "w-full px-4 py-3 rounded-xl border border-sky-600/50 bg-white text-navy-900 focus:outline-none focus:border-sky-600 focus:ring-2 focus:ring-sky-600/10 text-sm font-medium transition-all duration-200";
 
   return (
     <motion.div
@@ -88,7 +88,7 @@ export default function SubmitResumePage() {
           <div className="p-8 sm:p-10">
             {formErrors.length > 0 && (
               <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }}
-                className="mb-8 p-4 rounded-xl border border-red-muted/20 bg-red-muted/5">
+                className="mb-8 p-4 rounded-xl border border-sky-600/50 bg-red-muted/5">
                 <p className="flex items-center gap-2 text-red-muted font-bold text-xs">
                   <AlertCircle className="h-4 w-4" />
                   Please resolve the following:
@@ -128,7 +128,7 @@ export default function SubmitResumePage() {
             ) : (
               <form onSubmit={handleSubmit} className="space-y-8">
                 <div>
-                  <div className="flex items-center gap-2.5 mb-6 pb-3 border-b border-sky-600/10">
+                  <div className="flex items-center gap-2.5 mb-6 pb-3 border-b border-sky-600/50">
                     <div className="h-7 w-7 rounded-lg bg-sky-600/5 flex items-center justify-center">
                       <User className="h-3.5 w-3.5 text-sky-600" />
                     </div>
@@ -168,7 +168,7 @@ export default function SubmitResumePage() {
                 </div>
 
                 <div>
-                  <div className="flex items-center gap-2.5 mb-6 pb-3 border-b border-sky-600/10">
+                  <div className="flex items-center gap-2.5 mb-6 pb-3 border-b border-sky-600/50">
                     <div className="h-7 w-7 rounded-lg bg-sky-600/5 flex items-center justify-center">
                       <Users className="h-3.5 w-3.5 text-sky-600" />
                     </div>
@@ -229,7 +229,7 @@ export default function SubmitResumePage() {
                 </div>
 
                 <div>
-                  <div className="flex items-center gap-2.5 mb-6 pb-3 border-b border-sky-600/10">
+                  <div className="flex items-center gap-2.5 mb-6 pb-3 border-b border-sky-600/50">
                     <div className="h-7 w-7 rounded-lg bg-sky-600/5 flex items-center justify-center">
                       <Briefcase className="h-3.5 w-3.5 text-sky-600" />
                     </div>
@@ -251,7 +251,7 @@ export default function SubmitResumePage() {
                 </div>
 
                 <div>
-                  <div className="flex items-center gap-2.5 mb-6 pb-3 border-b border-sky-600/10">
+                  <div className="flex items-center gap-2.5 mb-6 pb-3 border-b border-sky-600/50">
                     <div className="h-7 w-7 rounded-lg bg-sky-600/5 flex items-center justify-center">
                       <MessageSquare className="h-3.5 w-3.5 text-sky-600" />
                     </div>
@@ -266,16 +266,16 @@ export default function SubmitResumePage() {
                 </div>
 
                 <div>
-                  <div className="flex items-center gap-2.5 mb-6 pb-3 border-b border-sky-600/10">
+                  <div className="flex items-center gap-2.5 mb-6 pb-3 border-b border-sky-600/50">
                     <div className="h-7 w-7 rounded-lg bg-copper-400/10 flex items-center justify-center">
                       <Upload className="h-3.5 w-3.5 text-copper-400" />
                     </div>
                     <span className="text-xs font-black text-navy-900 uppercase tracking-wider">Resume Upload <span className="text-red-muted">*</span></span>
                   </div>
                   <div onDragOver={handleDragOver} onDragLeave={handleDragLeave} onDrop={handleDrop} onClick={() => fileInputRef.current?.click()}
-                    className={`border-2 border-dashed rounded-2xl p-8 text-center cursor-pointer transition-all flex flex-col items-center justify-center min-h-[160px] ${isDragging ? "border-sky-600 bg-sky-600/5" :
-                      uploadedFile ? "border-forest-500 bg-forest-500/5" :
-                        "border-sky-600/20 hover:border-copper-400 bg-cream-50 hover:bg-copper-50/50"
+                    className={`border-2 border-dashed rounded-2xl p-8 text-center cursor-pointer transition-all flex flex-col items-center justify-center min-h-[160px] ${isDragging ? "border-sky-600/50 bg-sky-600/5" :
+                      uploadedFile ? "border-sky-600/50 bg-forest-500/5" :
+                        "border-sky-600/50 hover:border-sky-600/50 bg-cream-50 hover:bg-copper-50/50"
                       }`}>
                     <input type="file" ref={fileInputRef} onChange={handleFileChange} accept=".pdf,.doc,.docx" className="hidden" />
                     {uploadedFile ? (

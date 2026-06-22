@@ -189,7 +189,7 @@ export const HomeContent: React.FC<HomeContentProps> = ({
               </h3>
             </div>
             <div className="lg:col-span-7">
-              <div className="border-l-4 border-sky-600 pl-6">
+              <div className="border-l-4 border-sky-600/50 pl-6">
                 <p className="text-base sm:text-lg text-navy-900/70 font-semibold leading-relaxed">
                   Hraize is more than an HR service provider; we are your people partner.
                   We believe businesses deserve HR that actually works, and ambitious
@@ -254,7 +254,7 @@ export const HomeContent: React.FC<HomeContentProps> = ({
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.5, delay: idx * 0.1, ease: "easeOut" }}
-                className="group flex gap-8 py-8 border-t border-navy-900/5 first:border-t-0 hover:bg-cream-50/50 px-4 -mx-4 rounded-2xl transition-colors"
+                className="group flex gap-8 py-8 border-t border-sky-600/50 first:border-t-0 hover:bg-cream-50/50 px-4 -mx-4 rounded-2xl transition-colors"
               >
                 <div className="hidden sm:flex w-12 shrink-0 items-start pt-1">
                   <span className="text-3xl font-black text-sky-600/20 group-hover:text-sky-600/40 transition-colors">

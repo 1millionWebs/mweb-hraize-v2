@@ -104,7 +104,7 @@ export const AboutUs: React.FC = () => {
             </div>
           </div>
           <div className="lg:col-span-5 flex flex-col justify-center h-full">
-            <div className="relative border-l-4 border-sky-600 bg-white/5 p-6 rounded-r-2xl">
+            <div className="relative border-l-4 border-sky-600/50 bg-white/5 p-6 rounded-r-2xl">
               <p className="text-xl sm:text-2xl font-bold tracking-tight text-white uppercase italic leading-snug">
                 &ldquo;It is not a lack of effort. It is a lack of structure.&rdquo;
               </p>
@@ -146,7 +146,7 @@ export const AboutUs: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.7, delay: idx * 0.15, ease: "easeOut" }}
-                className="flex-1 flex flex-col items-center bg-cream-50 rounded-3xl border border-sky-600/10 p-8 text-center"
+                className="flex-1 flex flex-col items-center bg-cream-50 rounded-3xl border border-sky-600/50 p-8 text-center"
               >
                 <div className="w-40 mb-4">
                   <img src={founder.image} alt={founder.role} className="w-full h-auto" />
@@ -159,7 +159,7 @@ export const AboutUs: React.FC = () => {
                     <h4 className="text-lg font-black text-navy-900 uppercase leading-snug text-center">{founder.role}</h4>
                   </div>
                   <p className="text-sm text-navy-900/70 font-medium leading-relaxed">{founder.experience}</p>
-                  <div className="pt-4 border-t border-sky-600/10">
+                  <div className="pt-4 border-t border-sky-600/50">
                     <p className="text-[10px] font-black tracking-wider text-sky-600 uppercase mb-2">Areas of Expertise</p>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
                       {founder.expertise.map((exp, skillIdx) => (
@@ -167,7 +167,7 @@ export const AboutUs: React.FC = () => {
                       ))}
                     </div>
                   </div>
-                  <div className="pt-4 border-t border-sky-600/10 italic">
+                  <div className="pt-4 border-t border-sky-600/50 italic">
                     <p className="text-sm font-bold text-copper-400">&ldquo;{founder.valueStatement}&rdquo;</p>
                   </div>
                 </div>
@@ -202,7 +202,7 @@ export const AboutUs: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.6, delay: idx * 0.12, ease: "easeOut" }}
-                className="text-center p-8 rounded-3xl bg-cream-50 border border-sky-600/10"
+                className="text-center p-8 rounded-3xl bg-cream-50 border border-sky-600/50"
               >
                 <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-sky-600/5 text-sky-600 mb-5">
                   <Icon className="h-6 w-6" />

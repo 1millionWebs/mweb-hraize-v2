@@ -8,9 +8,9 @@ export const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="bg-navy-card text-white border-t border-navy-700/50">
+    <footer className="bg-navy-card text-white border-t border-sky-600/50">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 pb-10 border-b border-navy-800">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 pb-10 border-b border-sky-600/50">
           <div className="md:col-span-4 space-y-4">
             <Link href="/" className="flex items-center gap-2 group">
               <img src="/logo.png" alt="Hraize" className="h-8 w-auto" />

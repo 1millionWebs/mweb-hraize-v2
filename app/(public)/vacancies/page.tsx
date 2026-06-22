@@ -47,7 +47,7 @@ export default function VacanciesPage() {
           </p>
         </div>
 
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between pb-6 border-b border-sky-600/10 mb-8 gap-4">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between pb-6 border-b border-sky-600/50 mb-8 gap-4">
           <p className="text-sm font-bold text-navy-900">
             {filteredJobs.length} {filteredJobs.length === 1 ? "position" : "positions"} found
           </p>
@@ -57,10 +57,10 @@ export default function VacanciesPage() {
               <input
                 type="text" placeholder="Search jobs..." value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-9 pr-4 py-2 text-xs font-medium rounded-lg border border-sky-600/20 focus:outline-none focus:border-sky-600 bg-white text-navy-900"
+                className="pl-9 pr-4 py-2 text-xs font-medium rounded-lg border border-sky-600/50 focus:outline-none focus:border-sky-600 bg-white text-navy-900"
               />
             </div>
-            <div className="flex bg-cream-50 rounded-lg p-1 text-xs font-bold text-navy-900/50 border border-sky-600/10">
+            <div className="flex bg-cream-50 rounded-lg p-1 text-xs font-bold text-navy-900/50 border border-sky-600/50">
               {["All", "Full-Time", "Contract", "Internship"].map((t) => (
                 <button key={t} onClick={() => setSelectedType(t)}
                   className={`px-3 py-1.5 rounded-md transition-colors cursor-pointer ${
@@ -76,7 +76,7 @@ export default function VacanciesPage() {
         <div className="space-y-4">
           {loading ? (
             <div className="text-center py-12">
-              <div className="animate-spin h-6 w-6 border-2 border-sky-600 border-t-transparent rounded-full mx-auto mb-3" />
+              <div className="animate-spin h-6 w-6 border-2 border-sky-600/50 border-t-transparent rounded-full mx-auto mb-3" />
               <p className="text-sm font-bold text-navy-900/50">Loading vacancies...</p>
             </div>
           ) : (
@@ -88,7 +88,7 @@ export default function VacanciesPage() {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
-                    className="flex flex-col sm:flex-row items-start gap-5 p-6 bg-cream-50 rounded-2xl border border-sky-600/10 hover:border-sky-600/30 transition-colors"
+                    className="flex flex-col sm:flex-row items-start gap-5 p-6 bg-cream-50 rounded-2xl border border-sky-600/50 hover:border-sky-600/50 transition-colors"
                   >
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-3 mb-2">
@@ -139,14 +139,14 @@ export default function VacanciesPage() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
-              className="bg-cream-50 rounded-3xl border border-sky-600/10 w-full max-w-2xl p-6 sm:p-8 relative shadow-2xl overflow-hidden"
+              className="bg-cream-50 rounded-3xl border border-sky-600/50 w-full max-w-2xl p-6 sm:p-8 relative shadow-2xl overflow-hidden"
             >
               <div className="absolute top-0 left-0 w-full h-[6px] bg-sky-600" />
               <button onClick={() => setSelectedJob(null)}
                 className="absolute top-4 right-4 h-8 w-8 rounded-full hover:bg-sky-600/5 flex items-center justify-center text-navy-900 cursor-pointer">
                 <X className="h-5 w-5" />
               </button>
-              <div className="border-b border-sky-600/10 pb-4 mb-6">
+              <div className="border-b border-sky-600/50 pb-4 mb-6">
                 <span className="text-[9px] font-mono tracking-widest text-sky-600 font-extrabold uppercase bg-sky-600/10 px-2.5 py-1 rounded">
                   {selectedJob.type}
                 </span>
@@ -175,9 +175,9 @@ export default function VacanciesPage() {
                   </div>
                 </div>
               </div>
-              <div className="mt-8 pt-4 border-t border-sky-600/10 flex items-center justify-end gap-3">
+              <div className="mt-8 pt-4 border-t border-sky-600/50 flex items-center justify-end gap-3">
                 <button onClick={() => setSelectedJob(null)}
-                  className="px-4 py-2 border border-sky-600/20 rounded-lg text-xs font-black text-navy-900/50 hover:bg-cream-100 uppercase cursor-pointer">
+                  className="px-4 py-2 border border-sky-600/50 rounded-lg text-xs font-black text-navy-900/50 hover:bg-cream-100 uppercase cursor-pointer">
                   Close
                 </button>
                 <Link href="/submit-resume"

@@ -157,7 +157,7 @@ export const Careers: React.FC = () => {
         </div>
 
         <div className="mb-24">
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between pb-6 border-b border-sky-600/10 mb-8 gap-4">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between pb-6 border-b border-sky-600/50 mb-8 gap-4">
             <div>
               <h3 className="text-xl font-black text-navy-900 uppercase tracking-tight">Current Vacancies</h3>
               <p className="text-xs text-navy-900/50 font-bold mt-1">Discover placements aligned with your growth stage</p>
@@ -167,9 +167,9 @@ export const Careers: React.FC = () => {
                 <Search className="absolute left-3 top-2.5 h-4 w-4 text-navy-900/30" />
                 <input type="text" placeholder="Search jobs..." value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-9 pr-4 py-2 text-xs font-medium rounded-lg border border-sky-600/20 focus:outline-none focus:border-sky-600 bg-white text-navy-900" />
+                  className="pl-9 pr-4 py-2 text-xs font-medium rounded-lg border border-sky-600/50 focus:outline-none focus:border-sky-600 bg-white text-navy-900" />
               </div>
-              <div className="flex bg-cream-50 rounded-lg p-1 text-xs font-bold text-navy-900/50 border border-sky-600/10">
+              <div className="flex bg-cream-50 rounded-lg p-1 text-xs font-bold text-navy-900/50 border border-sky-600/50">
                 {["All", "Full-Time", "Contract", "Internship"].map((t) => (
                   <button key={t} onClick={() => setSelectedType(t)}
                     className={`px-3 py-1.5 rounded-md transition-colors cursor-pointer ${
@@ -191,7 +191,7 @@ export const Careers: React.FC = () => {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
-                    className="flex flex-col sm:flex-row items-start gap-5 p-6 bg-cream-50 rounded-2xl border border-sky-600/10 hover:border-sky-600/30 transition-colors"
+                    className="flex flex-col sm:flex-row items-start gap-5 p-6 bg-cream-50 rounded-2xl border border-sky-600/50 hover:border-sky-600/50 transition-colors"
                   >
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-3 mb-2">
@@ -226,7 +226,7 @@ export const Careers: React.FC = () => {
         </div>
 
         <div ref={formRef} className="max-w-4xl mx-auto">
-          <div className="rounded-3xl bg-navy-card p-8 sm:p-12 border border-navy-700/50">
+          <div className="rounded-3xl bg-navy-card p-8 sm:p-12 border border-sky-600/50">
             <div className="max-w-2xl mx-auto mb-10 text-center">
               <SectionLabel className="text-sky-400">Secure Submission</SectionLabel>
               <h3 className="mt-3 text-2xl sm:text-3xl font-black uppercase tracking-tight text-white">Submit Your Resume</h3>
@@ -236,7 +236,7 @@ export const Careers: React.FC = () => {
             </div>
 
             {formErrors.length > 0 && (
-              <div className="mb-8 p-4 rounded-xl border border-red-muted/20 bg-red-muted/5 text-red-muted text-xs font-bold space-y-1.5">
+              <div className="mb-8 p-4 rounded-xl border border-sky-600/50 bg-red-muted/5 text-red-muted text-xs font-bold space-y-1.5">
                 <p className="flex items-center gap-2 font-extrabold">
                   <AlertCircle className="h-4 w-4" />
                   Please resolve the following:
@@ -251,7 +251,7 @@ export const Careers: React.FC = () => {
               <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="p-8 text-center bg-white/5 border border-forest-500/20 rounded-2xl flex flex-col items-center gap-4"
+                className="p-8 text-center bg-white/5 border border-sky-600/50 rounded-2xl flex flex-col items-center gap-4"
               >
                 <div className="h-12 w-12 rounded-full bg-forest-500/10 text-forest-500 flex items-center justify-center">
                   <CheckCircle className="h-6 w-6" />
@@ -267,7 +267,7 @@ export const Careers: React.FC = () => {
                   setFormData({ firstName: "", lastName: "", email: "", phone: "", location: "", gender: "", ageRange: "", maritalStatus: "", qualification: "", experience: "", comments: "" });
                   setUploadedFile(null);
                 }}
-                  className="mt-4 px-5 py-2 hover:bg-white/10 rounded-lg text-xs font-bold tracking-wide transition border border-white/20 cursor-pointer">
+                  className="mt-4 px-5 py-2 hover:bg-white/10 rounded-lg text-xs font-bold tracking-wide transition border border-sky-600/50 cursor-pointer">
                   Submit another application
                 </button>
               </motion.div>
@@ -277,32 +277,32 @@ export const Careers: React.FC = () => {
                   <div>
                     <label className="block text-[11px] font-bold tracking-widest text-sky-400 uppercase mb-1.5">First Name *</label>
                     <input type="text" name="firstName" value={formData.firstName} onChange={handleInputChange} placeholder="Jane"
-                      className="w-full px-4 py-2.5 rounded-lg border border-navy-700 bg-white/5 text-white focus:outline-none focus:border-sky-600 text-xs font-medium placeholder:text-navy-600" />
+                      className="w-full px-4 py-2.5 rounded-lg border border-sky-600/50 bg-white/5 text-white focus:outline-none focus:border-sky-600 text-xs font-medium placeholder:text-navy-600" />
                   </div>
                   <div>
                     <label className="block text-[11px] font-bold tracking-widest text-sky-400 uppercase mb-1.5">Last Name *</label>
                     <input type="text" name="lastName" value={formData.lastName} onChange={handleInputChange} placeholder="Doe"
-                      className="w-full px-4 py-2.5 rounded-lg border border-navy-700 bg-white/5 text-white focus:outline-none focus:border-sky-600 text-xs font-medium placeholder:text-navy-600" />
+                      className="w-full px-4 py-2.5 rounded-lg border border-sky-600/50 bg-white/5 text-white focus:outline-none focus:border-sky-600 text-xs font-medium placeholder:text-navy-600" />
                   </div>
                   <div>
                     <label className="block text-[11px] font-bold tracking-widest text-sky-400 uppercase mb-1.5">Email *</label>
                     <input type="email" name="email" value={formData.email} onChange={handleInputChange} placeholder="jane.doe@example.com"
-                      className="w-full px-4 py-2.5 rounded-lg border border-navy-700 bg-white/5 text-white focus:outline-none focus:border-sky-600 text-xs font-medium placeholder:text-navy-600" />
+                      className="w-full px-4 py-2.5 rounded-lg border border-sky-600/50 bg-white/5 text-white focus:outline-none focus:border-sky-600 text-xs font-medium placeholder:text-navy-600" />
                   </div>
                   <div>
                     <label className="block text-[11px] font-bold tracking-widest text-sky-400 uppercase mb-1.5">Phone *</label>
                     <input type="tel" name="phone" value={formData.phone} onChange={handleInputChange} placeholder="+91 98765 43210"
-                      className="w-full px-4 py-2.5 rounded-lg border border-navy-700 bg-white/5 text-white focus:outline-none focus:border-sky-600 text-xs font-medium placeholder:text-navy-600" />
+                      className="w-full px-4 py-2.5 rounded-lg border border-sky-600/50 bg-white/5 text-white focus:outline-none focus:border-sky-600 text-xs font-medium placeholder:text-navy-600" />
                   </div>
                   <div>
                     <label className="block text-[11px] font-bold tracking-widest text-sky-400 uppercase mb-1.5">Location *</label>
                     <input type="text" name="location" value={formData.location} onChange={handleInputChange} placeholder="Chennai"
-                      className="w-full px-4 py-2.5 rounded-lg border border-navy-700 bg-white/5 text-white focus:outline-none focus:border-sky-600 text-xs font-medium placeholder:text-navy-600" />
+                      className="w-full px-4 py-2.5 rounded-lg border border-sky-600/50 bg-white/5 text-white focus:outline-none focus:border-sky-600 text-xs font-medium placeholder:text-navy-600" />
                   </div>
                   <div>
                     <label className="block text-[11px] font-bold tracking-widest text-sky-400 uppercase mb-1.5">Gender *</label>
                     <select name="gender" value={formData.gender} onChange={handleInputChange}
-                      className="w-full px-4 py-2.5 rounded-lg border border-navy-700 bg-navy-900 text-white focus:outline-none focus:border-sky-600 text-xs font-bold">
+                      className="w-full px-4 py-2.5 rounded-lg border border-sky-600/50 bg-navy-900 text-white focus:outline-none focus:border-sky-600 text-xs font-bold">
                       <option value="">Select Gender</option>
                       <option value="Female">Female</option>
                       <option value="Male">Male</option>
@@ -313,7 +313,7 @@ export const Careers: React.FC = () => {
                   <div>
                     <label className="block text-[11px] font-bold tracking-widest text-sky-400 uppercase mb-1.5">Age Range *</label>
                     <select name="ageRange" value={formData.ageRange} onChange={handleInputChange}
-                      className="w-full px-4 py-2.5 rounded-lg border border-navy-700 bg-navy-900 text-white focus:outline-none focus:border-sky-600 text-xs font-bold">
+                      className="w-full px-4 py-2.5 rounded-lg border border-sky-600/50 bg-navy-900 text-white focus:outline-none focus:border-sky-600 text-xs font-bold">
                       <option value="">Select Age Range</option>
                       <option value="18 - 22">18 - 22</option>
                       <option value="23 - 28">23 - 28</option>
@@ -325,7 +325,7 @@ export const Careers: React.FC = () => {
                   <div>
                     <label className="block text-[11px] font-bold tracking-widest text-sky-400 uppercase mb-1.5">Marital Status *</label>
                     <select name="maritalStatus" value={formData.maritalStatus} onChange={handleInputChange}
-                      className="w-full px-4 py-2.5 rounded-lg border border-navy-700 bg-navy-900 text-white focus:outline-none focus:border-sky-600 text-xs font-bold">
+                      className="w-full px-4 py-2.5 rounded-lg border border-sky-600/50 bg-navy-900 text-white focus:outline-none focus:border-sky-600 text-xs font-bold">
                       <option value="">Select Status</option>
                       <option value="Single">Single</option>
                       <option value="Married">Married</option>
@@ -336,7 +336,7 @@ export const Careers: React.FC = () => {
                   <div>
                     <label className="block text-[11px] font-bold tracking-widest text-sky-400 uppercase mb-1.5">Qualification *</label>
                     <select name="qualification" value={formData.qualification} onChange={handleInputChange}
-                      className="w-full px-4 py-2.5 rounded-lg border border-navy-700 bg-navy-900 text-white focus:outline-none focus:border-sky-600 text-xs font-bold">
+                      className="w-full px-4 py-2.5 rounded-lg border border-sky-600/50 bg-navy-900 text-white focus:outline-none focus:border-sky-600 text-xs font-bold">
                       <option value="">Select Qualification</option>
                       {qualificationsList.map((qual) => <option key={qual} value={qual}>{qual}</option>)}
                     </select>
@@ -344,7 +344,7 @@ export const Careers: React.FC = () => {
                   <div>
                     <label className="block text-[11px] font-bold tracking-widest text-sky-400 uppercase mb-1.5">Experience *</label>
                     <select name="experience" value={formData.experience} onChange={handleInputChange}
-                      className="w-full px-4 py-2.5 rounded-lg border border-navy-700 bg-navy-900 text-white focus:outline-none focus:border-sky-600 text-xs font-bold">
+                      className="w-full px-4 py-2.5 rounded-lg border border-sky-600/50 bg-navy-900 text-white focus:outline-none focus:border-sky-600 text-xs font-bold">
                       <option value="">Select Experience</option>
                       <option value="Fresher">Fresher (Zero experience)</option>
                       <option value="Experienced">Experienced (Professional)</option>
@@ -356,16 +356,16 @@ export const Careers: React.FC = () => {
                   <label className="block text-[11px] font-bold tracking-widest text-sky-400 uppercase mb-1.5">Comments &amp; Career Objective *</label>
                   <textarea name="comments" rows={4} value={formData.comments} onChange={handleInputChange}
                     placeholder="Describe your background, what roles interest you, and why you are seeking a transition..."
-                    className="w-full px-4 py-3 rounded-lg border border-navy-700 bg-white/5 text-white focus:outline-none focus:border-sky-600 text-xs font-medium placeholder:text-navy-600 resize-none" />
+                    className="w-full px-4 py-3 rounded-lg border border-sky-600/50 bg-white/5 text-white focus:outline-none focus:border-sky-600 text-xs font-medium placeholder:text-navy-600 resize-none" />
                 </div>
 
                 <div>
                   <label className="block text-[11px] font-bold tracking-widest text-copper-400 uppercase mb-2">Upload Resume (PDF/Word) *</label>
                   <div onDragOver={handleDragOver} onDragLeave={handleDragLeave} onDrop={handleDrop} onClick={triggerFileInput}
                     className={`border-2 border-dashed rounded-2xl p-6 text-center cursor-pointer transition-all flex flex-col items-center justify-center min-h-[140px] ${
-                      isDragging ? "border-sky-600 bg-sky-600/5" :
-                      uploadedFile ? "border-forest-500 bg-forest-500/5" :
-                      "border-navy-700 hover:border-copper-400 bg-white/5"
+                      isDragging ? "border-sky-600/50 bg-sky-600/5" :
+                      uploadedFile ? "border-sky-600/50 bg-forest-500/5" :
+                      "border-sky-600/50 hover:border-sky-600/50 bg-white/5"
                     }`}>
                     <input type="file" ref={fileInputRef} onChange={handleFileChange} accept=".pdf,.doc,.docx" className="hidden" />
                     {uploadedFile ? (
@@ -405,14 +405,14 @@ export const Careers: React.FC = () => {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
-              className="bg-cream-50 rounded-3xl border border-sky-600/10 w-full max-w-2xl p-6 sm:p-8 relative shadow-2xl overflow-hidden"
+              className="bg-cream-50 rounded-3xl border border-sky-600/50 w-full max-w-2xl p-6 sm:p-8 relative shadow-2xl overflow-hidden"
             >
               <div className="absolute top-0 left-0 w-full h-[6px] bg-sky-600" />
               <button onClick={() => setSelectedJob(null)}
                 className="absolute top-4 right-4 h-8 w-8 rounded-full hover:bg-sky-600/5 flex items-center justify-center text-navy-900 cursor-pointer">
                 <X className="h-5 w-5" />
               </button>
-              <div className="border-b border-sky-600/10 pb-4 mb-6">
+              <div className="border-b border-sky-600/50 pb-4 mb-6">
                 <span className="text-[9px] font-mono tracking-widest text-sky-600 font-extrabold uppercase bg-sky-600/10 px-2.5 py-1 rounded">
                   {selectedJob.type}
                 </span>
@@ -441,9 +441,9 @@ export const Careers: React.FC = () => {
                   </div>
                 </div>
               </div>
-              <div className="mt-8 pt-4 border-t border-sky-600/10 flex items-center justify-end gap-3">
+              <div className="mt-8 pt-4 border-t border-sky-600/50 flex items-center justify-end gap-3">
                 <button onClick={() => setSelectedJob(null)}
-                  className="px-4 py-2 border border-sky-600/20 rounded-lg text-xs font-black text-navy-900/50 hover:bg-cream-100 uppercase cursor-pointer">
+                  className="px-4 py-2 border border-sky-600/50 rounded-lg text-xs font-black text-navy-900/50 hover:bg-cream-100 uppercase cursor-pointer">
                   Close
                 </button>
                 <button onClick={() => applyForJob(selectedJob)}

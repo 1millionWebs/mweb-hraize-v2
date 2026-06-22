@@ -155,7 +155,7 @@ export const HRServices: React.FC<HRServicesProps> = ({ onBookCall }) => {
                 <div
                   key={srv.id}
                   id={srv.id}
-                  className="rounded-2xl border border-sky-600/10 overflow-hidden transition-all"
+                  className="rounded-2xl border border-sky-600/50 overflow-hidden transition-all"
                 >
                   <button
                     onClick={() => setOpenService(isOpen ? -1 : idx)}
@@ -185,7 +185,7 @@ export const HRServices: React.FC<HRServicesProps> = ({ onBookCall }) => {
                         transition={{ duration: 0.3 }}
                         className="overflow-hidden"
                       >
-                        <div className="px-5 pb-5 pt-0 border-t border-sky-600/5">
+                        <div className="px-5 pb-5 pt-0 border-t border-sky-600/50">
                           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-4">
                             {srv.details.map((detail, di) => (
                               <FeatureCheck key={di}>{detail}</FeatureCheck>
@@ -315,7 +315,7 @@ export const HRServices: React.FC<HRServicesProps> = ({ onBookCall }) => {
           </div>
         </div>
 
-        <div className="text-center max-w-3xl mx-auto bg-cream-50 border border-sky-600/10 rounded-3xl p-8 sm:p-12">
+        <div className="text-center max-w-3xl mx-auto bg-cream-50 border border-sky-600/50 rounded-3xl p-8 sm:p-12">
           <SectionLabel>Workforce Architecture</SectionLabel>
           <h3 className="mt-3 text-2xl sm:text-3xl font-black text-navy-900 uppercase tracking-tight">
             Ready to Have Your People Partner Today

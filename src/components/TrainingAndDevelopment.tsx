@@ -111,7 +111,7 @@ export const TrainingAndDevelopment: React.FC<TrainingAndDevelopmentProps> = ({
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.15 }}
                 transition={{ duration: 0.6, delay: idx * 0.12, ease: "easeOut" }}
-                className="rounded-3xl bg-cream-50 border border-sky-600/10 p-8"
+                className="rounded-3xl bg-cream-50 border border-sky-600/50 p-8"
               >
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
                   <div className="lg:col-span-5">
@@ -133,7 +133,7 @@ export const TrainingAndDevelopment: React.FC<TrainingAndDevelopmentProps> = ({
                         <FeatureCheck key={fIdx}>{feat}</FeatureCheck>
                       ))}
                     </div>
-                    <div className="mt-6 pt-4 border-t border-sky-600/10">
+                    <div className="mt-6 pt-4 border-t border-sky-600/50">
                       <span className="text-[10px] font-bold text-navy-900/40 uppercase tracking-wide">
                         Customised services available
                       </span>
