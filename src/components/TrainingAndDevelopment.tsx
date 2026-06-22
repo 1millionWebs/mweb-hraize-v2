@@ -109,8 +109,8 @@ export const TrainingAndDevelopment: React.FC<TrainingAndDevelopmentProps> = ({
                 id={path.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
+                viewport={{ once: true, amount: 0.15 }}
+                transition={{ duration: 0.6, delay: idx * 0.12, ease: "easeOut" }}
                 className="rounded-3xl bg-cream-50 border border-sky-600/10 p-8"
               >
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">

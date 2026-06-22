@@ -1,5 +1,5 @@
-import React, { useMemo, useState, useEffect } from "react";
-import { motion } from "motion/react";
+import React, { useMemo, useState, useEffect, useRef } from "react";
+import { motion, useScroll, useTransform } from "motion/react";
 import { ArrowRight, Calendar, Users, ShieldCheck, Award } from "lucide-react";
 
 const rand = (min: number, max: number) => Math.random() * (max - min) + min;
@@ -48,7 +48,17 @@ interface HeroProps {
 }
 
 export const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
+  const sectionRef = useRef<HTMLDivElement>(null);
   const [bubbles, setBubbles] = useState<{ top: number; left: number; size: number; driftX: number; driftY: number; duration: number; delay: number }[]>([]);
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
+
+  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+  const bubbleY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
+  const contentY = useTransform(scrollYProgress, [0, 1], ["0%", "10%"]);
 
   useEffect(() => {
     setBubbles(generateBubbles(15));
@@ -62,8 +72,8 @@ export const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
   ];
 
   return (
-    <section className="relative lg:min-h-[calc(100vh-4rem)] overflow-hidden bg-gradient-to-b from-cream-100 to-cream-50">
-      <div className="absolute inset-0 pointer-events-none">
+    <section ref={sectionRef} className="relative lg:min-h-[calc(100vh-4rem)] overflow-hidden bg-gradient-to-b from-cream-100 to-cream-50">
+      <motion.div className="absolute inset-0 pointer-events-none" style={{ y: bgY }}>
         <div className="absolute top-[-20%] right-[-10%] h-[500px] w-[500px] rounded-full bg-sky-600/5 blur-3xl" />
         <div className="absolute bottom-[-10%] left-[-5%] h-[400px] w-[400px] rounded-full bg-copper-400/5 blur-3xl" />
         {bubbles.map((b, i) => (
@@ -96,15 +106,15 @@ export const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
           </pattern>
           <rect width="100%" height="100%" fill="url(#grid)" />
         </svg>
-      </div>
+      </motion.div>
 
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <motion.div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" style={{ y: contentY }}>
         <div className="grid lg:min-h-[calc(100vh-4rem)] grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           <motion.div
             className="lg:col-span-7 pt-20 lg:pt-0"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            transition={{ duration: 0.9, ease: [0.25, 0.1, 0.25, 1] }}
           >
             <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-sky-600/10 px-4 py-1.5">
               <span className="h-2 w-2 rounded-full bg-sky-600" />
@@ -149,7 +159,7 @@ export const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
                     key={idx}
                     initial={{ opacity: 0, y: 15 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.4 + idx * 0.1 }}
+                    transition={{ duration: 0.6, delay: 0.4 + idx * 0.12, ease: "easeOut" }}
                     className="flex items-center gap-3"
                   >
                     <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-sky-600/5 text-sky-600">
@@ -169,7 +179,7 @@ export const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
             className="hidden lg:block lg:col-span-5 relative"
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
+            transition={{ duration: 0.9, delay: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
           >
             <div className="relative h-[320px] w-full overflow-hidden rounded-3xl shadow-xl">
               <img
@@ -180,7 +190,7 @@ export const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
             </div>
           </motion.div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };

@@ -150,8 +150,8 @@ export const HomeContent: React.FC<HomeContentProps> = ({
                   key={idx}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: idx * 0.1 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{ duration: 0.6, delay: idx * 0.12, ease: "easeOut" }}
                   className="group relative flex items-start gap-6 p-6 rounded-2xl hover:bg-cream-50 transition-colors"
                 >
                   <div className="hidden sm:flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-sky-600/5 text-sky-600 group-hover:bg-sky-600 group-hover:text-white transition-all">
@@ -213,8 +213,8 @@ export const HomeContent: React.FC<HomeContentProps> = ({
                 key={idx}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.6, delay: idx * 0.12, ease: "easeOut" }}
                 className="relative"
               >
                 <div className="mb-4 flex items-center gap-3">
@@ -252,8 +252,8 @@ export const HomeContent: React.FC<HomeContentProps> = ({
                 key={idx}
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.08 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.5, delay: idx * 0.1, ease: "easeOut" }}
                 className="group flex gap-8 py-8 border-t border-navy-900/5 first:border-t-0 hover:bg-cream-50/50 px-4 -mx-4 rounded-2xl transition-colors"
               >
                 <div className="hidden sm:flex w-12 shrink-0 items-start pt-1">
@@ -294,8 +294,8 @@ export const HomeContent: React.FC<HomeContentProps> = ({
                   key={idx}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: idx * 0.15 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{ duration: 0.6, delay: idx * 0.15, ease: "easeOut" }}
                   className="text-center"
                 >
                   <div className="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-sky-600/5 text-sky-600 mb-6 mx-auto">

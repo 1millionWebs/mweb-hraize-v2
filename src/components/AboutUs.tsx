@@ -63,8 +63,8 @@ export const AboutUs: React.FC = () => {
                   key={idx}
                   initial={{ opacity: 0, y: 15 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: idx * 0.1 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{ duration: 0.6, delay: idx * 0.12, ease: "easeOut" }}
                   className="flex items-center gap-3"
                 >
                   <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-sky-600/5 text-sky-600">
@@ -144,7 +144,8 @@ export const AboutUs: React.FC = () => {
                 key={idx}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.7, delay: idx * 0.15, ease: "easeOut" }}
                 className="flex-1 flex flex-col items-center bg-cream-50 rounded-3xl border border-sky-600/10 p-8 text-center"
               >
                 <div className="w-40 mb-4">
@@ -199,8 +200,8 @@ export const AboutUs: React.FC = () => {
                 key={idx}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.6, delay: idx * 0.12, ease: "easeOut" }}
                 className="text-center p-8 rounded-3xl bg-cream-50 border border-sky-600/10"
               >
                 <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-sky-600/5 text-sky-600 mb-5">
