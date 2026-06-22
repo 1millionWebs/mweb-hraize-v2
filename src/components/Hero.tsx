@@ -141,7 +141,7 @@ export const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
               </motion.button>
             </div>
 
-            <div className="mt-12 grid grid-cols-2 gap-x-6 gap-y-4 lg:flex lg:gap-x-8 lg:gap-y-4">
+            <div className="mt-12 py-4 grid grid-cols-2 gap-x-6 gap-y-4 lg:flex lg:gap-x-8 lg:gap-y-4">
               {stats.map((stat, idx) => {
                 const Icon = stat.icon;
                 return (
