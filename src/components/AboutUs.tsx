@@ -138,27 +138,24 @@ export const AboutUs: React.FC = () => {
             </p>
           </div>
 
-          <div className="space-y-8">
+          <div className="flex flex-col lg:flex-row gap-8">
             {founders.map((founder, idx) => (
               <motion.div
                 key={idx}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start bg-cream-50 rounded-3xl border border-sky-600/10 p-8"
+                className="flex-1 flex flex-col items-center bg-cream-50 rounded-3xl border border-sky-600/10 p-8 text-center"
               >
-                <div className="md:col-span-4 flex flex-col items-center">
-                  <div className="w-48">
-                    <img src={founder.image} alt={founder.role} className="w-full h-auto" />
-                  </div>
-                  <div className="mt-4 inline-flex items-center gap-1.5 rounded-full bg-sky-600/10 px-3 py-1 text-[10px] font-black text-sky-700 uppercase">
-                    Hraize Partner
-                  </div>
+                <div className="w-40 mb-4">
+                  <img src={founder.image} alt={founder.role} className="w-full h-auto" />
                 </div>
-                <div className="md:col-span-8 space-y-4">
+                {/* <div className="inline-flex items-center gap-1.5 rounded-full bg-sky-600/10 px-3 py-1 text-[10px] font-black text-sky-700 uppercase mb-4">
+                  Hraize Partner
+                </div> */}
+                <div className="space-y-4 w-full text-left">
                   <div>
-                    <h4 className="text-lg font-black text-navy-900 uppercase leading-snug">{founder.role}</h4>
-                    <p className="text-xs text-navy-900/50 font-bold tracking-wide mt-1">Hraize Co-Founder</p>
+                    <h4 className="text-lg font-black text-navy-900 uppercase leading-snug text-center">{founder.role}</h4>
                   </div>
                   <p className="text-sm text-navy-900/70 font-medium leading-relaxed">{founder.experience}</p>
                   <div className="pt-4 border-t border-sky-600/10">
