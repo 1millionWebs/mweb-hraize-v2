@@ -84,7 +84,7 @@ export const Navbar: React.FC = () => {
           className="flex items-center gap-2.5 group"
           onClick={closeMenus}
         >
-          <img src="/logo1.png" alt="Hraize" className="h-8 rounded-md w-auto" />
+          <img src="/logo.svg" alt="Hraize" className="h-6 rounded-md w-auto" />
           <div className="flex flex-col min-w-0">
             <div className="flex items-baseline space-x-1.5">
               <span className="text-2xl font-black tracking-widest truncate text-navy-900 group-hover:text-navy-900/70 transition-all duration-300">

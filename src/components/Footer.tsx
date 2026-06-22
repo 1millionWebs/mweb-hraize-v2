@@ -13,7 +13,8 @@ export const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 pb-10 border-b border-sky-600/50">
           <div className="md:col-span-4 space-y-4">
             <Link href="/" className="flex items-center gap-2 group">
-              <img src="/logo1.png" alt="Hraize" className="h-8 rounded-md w-auto" />
+              <span className="bg-white p-1.5 rounded-md">
+                <img src="/logo.svg" alt="Hraize" className="h-5 rounded-md w-auto" /></span>
               <div className="flex flex-col min-w-0">
                 <div className="flex items-baseline space-x-1.5">
                   <span className="text-xl font-black tracking-widest text-white group-hover:text-sage-100 transition">

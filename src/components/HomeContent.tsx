@@ -113,7 +113,8 @@ export const HomeContent: React.FC<HomeContentProps> = ({
         </div>
       </section>
 
-      <section className="py-24">
+      <section className="relative py-24 bg-white">
+        <span className="absolute top-0 left-1/2 -translate-x-1/2 w-16 h-0.5 bg-sky-600/30 rounded-full" />
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <SectionLabel>Practical Offerings</SectionLabel>
@@ -185,7 +186,8 @@ export const HomeContent: React.FC<HomeContentProps> = ({
         </div>
       </section>
 
-      <section className="py-24">
+      <section className="relative py-24 bg-sky-50">
+        <span className="absolute top-0 left-1/2 -translate-x-1/2 w-16 h-0.5 bg-copper-400/20 rounded-full" />
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start mb-20">
             <div className="lg:col-span-5">
@@ -208,7 +210,7 @@ export const HomeContent: React.FC<HomeContentProps> = ({
           <div className="mb-12">
             <div className="flex items-center gap-3 mb-10">
               <span className="h-px flex-1 bg-navy-900/10" />
-              <span className="text-[10px] font-black text-navy-900/30 uppercase tracking-[0.2em]">What We Do</span>
+              <span className="text-[10px] font-black text-sand-400 uppercase tracking-[0.2em]">What We Do</span>
               <span className="h-px flex-1 bg-navy-900/10" />
             </div>
           </div>
@@ -224,7 +226,7 @@ export const HomeContent: React.FC<HomeContentProps> = ({
                 className="relative"
               >
                 <div className="mb-4 flex items-center gap-3">
-                  <span className="text-[40px] font-black text-sky-600/10 leading-none">
+                  <span className="text-[40px] font-black text-sand-200 leading-none">
                     {String(idx + 1).padStart(2, '0')}
                   </span>
                   <span className="h-px flex-1 bg-sky-600/10" />
@@ -240,7 +242,8 @@ export const HomeContent: React.FC<HomeContentProps> = ({
         </div>
       </section>
 
-      <section className="py-24">
+      <section className="relative py-24 bg-sand-100/70">
+        <span className="absolute top-0 left-1/2 -translate-x-1/2 w-16 h-0.5 bg-sky-600/30 rounded-full" />
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <SectionLabel>Our Credentials</SectionLabel>
