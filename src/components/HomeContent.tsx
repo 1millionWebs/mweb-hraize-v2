@@ -1,7 +1,8 @@
 import React from "react";
 import { motion } from "motion/react";
 import {
-  Heart, BarChart3, Settings, Users, GraduationCap, Target, ArrowRight
+  Heart, BarChart3, Settings, Users, GraduationCap, Target, ArrowRight,
+  Building2, FileText, BadgeCheck, Clock
 } from "lucide-react";
 import { SectionLabel, FeatureCheck } from "./UIElements";
 
@@ -35,23 +36,28 @@ export const HomeContent: React.FC<HomeContentProps> = ({
   const whyChooseHraize = [
     {
       title: "Complete HR Partner Under One Roof",
-      desc: "HR systems, live employee analytics, high-caliber recruitment, and ongoing strategic retention support in a single trusted partnership."
+      desc: "HR systems, live employee analytics, high-caliber recruitment, and ongoing strategic retention support in a single trusted partnership.",
+      icon: Building2
     },
     {
       title: "Build Professional HR Systems",
-      desc: "Stop managing people in fragile spreadsheets. Obtain fully documented structured policies, compliant onboarding workflows, and live KPI dashboards."
+      desc: "Stop managing people in fragile spreadsheets. Obtain fully documented structured policies, compliant onboarding workflows, and live KPI dashboards.",
+      icon: FileText
     },
     {
       title: "Data-Driven People Decisions",
-      desc: "Beautiful analytics dashboards highlight headcount shifts, regional attrition vectors, retention rates, and hiring costs."
+      desc: "Beautiful analytics dashboards highlight headcount shifts, regional attrition vectors, retention rates, and hiring costs.",
+      icon: BarChart3
     },
     {
       title: "Quality Recruitment With Guarantee",
-      desc: "We send only rigorously vetted candidates, not bulk CVs. Our 60-day replacement guarantee ensures we remain active partners in your success."
+      desc: "We send only rigorously vetted candidates, not bulk CVs. Our 60-day replacement guarantee ensures we remain active partners in your success.",
+      icon: BadgeCheck
     },
     {
       title: "Stays With You Long-Term",
-      desc: "Continuous monthly HR subscription support, ongoing contract hiring, and quarterly compliance tracking, not an isolated project."
+      desc: "Continuous monthly HR subscription support, ongoing contract hiring, and quarterly compliance tracking, not an isolated project.",
+      icon: Clock
     }
   ];
 
@@ -257,9 +263,7 @@ export const HomeContent: React.FC<HomeContentProps> = ({
                 className="group flex gap-8 py-8 border-t border-sky-600/50 first:border-t-0 hover:bg-cream-50/50 px-4 -mx-4 rounded-2xl transition-colors"
               >
                 <div className="hidden sm:flex w-12 shrink-0 items-start pt-1">
-                  <span className="text-3xl font-black text-sky-600/20 group-hover:text-sky-600/40 transition-colors">
-                    {String(idx + 1).padStart(2, '0')}
-                  </span>
+                  <item.icon className="h-6 w-6 text-sky-600 group-hover:text-sky-500 transition-colors" />
                 </div>
                 <div className="flex-1">
                   <h4 className="text-base font-black text-navy-900 uppercase tracking-tight mb-2">{item.title}</h4>

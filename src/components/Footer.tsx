@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { Instagram, Linkedin, Mail, ArrowUp } from "lucide-react";
+import { Instagram, Linkedin, Mail, ArrowUp, Facebook } from "lucide-react";
 
 export const Footer: React.FC = () => {
   const scrollToTop = () => {
@@ -28,6 +28,21 @@ export const Footer: React.FC = () => {
             </p>
             <div className="flex gap-3">
               <a
+                href="https://linkedin.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="h-8 w-8 rounded-lg bg-navy-800 hover:bg-sky-600 text-sky-400 hover:text-white transition-colors duration-200 flex items-center justify-center cursor-pointer"
+              >
+                <Linkedin className="h-4 w-4" />
+              </a><a
+                href="https://facebook.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="h-8 w-8 rounded-lg bg-navy-800 hover:bg-sky-600 text-sky-400 hover:text-white transition-colors duration-200 flex items-center justify-center cursor-pointer"
+              >
+                <Facebook className="h-4 w-4" />
+              </a>
+              <a
                 href="https://instagram.com/hraize.official"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -35,14 +50,7 @@ export const Footer: React.FC = () => {
               >
                 <Instagram className="h-4 w-4" />
               </a>
-              <a
-                href="https://linkedin.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="h-8 w-8 rounded-lg bg-navy-800 hover:bg-navy-700 text-sage-100/60 hover:text-white transition-colors duration-200 flex items-center justify-center cursor-pointer"
-              >
-                <Linkedin className="h-4 w-4" />
-              </a>
+
             </div>
           </div>
 
