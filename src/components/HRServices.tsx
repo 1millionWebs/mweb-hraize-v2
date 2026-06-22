@@ -155,7 +155,7 @@ export const HRServices: React.FC<HRServicesProps> = ({ onBookCall }) => {
                 <div
                   key={srv.id}
                   id={srv.id}
-                  className="rounded-2xl border border-sky-600/50 overflow-hidden transition-all"
+                  className="shadow-lg hover:shadow-xl rounded-2xl border border-sky-600/10 overflow-hidden transition-all"
                 >
                   <button
                     onClick={() => setOpenService(isOpen ? -1 : idx)}

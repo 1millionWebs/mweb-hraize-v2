@@ -13,7 +13,8 @@ export const AboutUs: React.FC = () => {
 
   const founders = [
     {
-      role: "Founder - HR Strategy & People Operations",
+      role: "Founder",
+      roleDesc: "HR Strategy & People Operations",
       experience: "14+ years across HR transformation, talent acquisition, employee lifecycle management, and organisation development.",
       expertise: [
         "Talent Acquisition & Workforce Planning",
@@ -23,10 +24,11 @@ export const AboutUs: React.FC = () => {
         "Employee Experience & Lifecycle Management"
       ],
       valueStatement: "Building scalable people systems that support business growth",
-      image: "/founder1.svg"
+      image: "/founder-svg.svg"
     },
     {
-      role: "Co-Founder - Analytics & Data-Driven Decision Support",
+      role: "Co-Founder",
+      roleDesc: "Analytics & Data-Driven Decision Support",
       experience: "Specialised expertise in workforce analytics, reporting automation, dashboards, and business intelligence solutions.",
       expertise: [
         "Workforce Analytics & Reporting",
@@ -36,7 +38,7 @@ export const AboutUs: React.FC = () => {
         "Metrics and Insights"
       ],
       valueStatement: "Turning workforce data into decisions leaders can act on.",
-      image: "/founder2.svg"
+      image: "/founder-svg.svg"
     }
   ];
 
@@ -78,6 +80,44 @@ export const AboutUs: React.FC = () => {
               );
             })}
           </div>
+        </div>
+
+        <div className="mb-20 grid grid-cols-1 md:grid-cols-3 gap-8">
+          {[
+            {
+              icon: Eye,
+              title: "Vision",
+              desc: "To become the trusted people partner for growing businesses, helping them build workplaces where people thrive, processes scale, and success is sustainable."
+            },
+            {
+              icon: Rocket,
+              title: "Mission",
+              desc: "We exist to make great HR accessible to every growing business by delivering people-first recruitment, robust HR frameworks, and trusted workforce solutions."
+            },
+            {
+              icon: Heart,
+              title: "Values Statement",
+              desc: "We believe great businesses are built by great people. We help organisations create clear frameworks, fair policies, and strong cultures."
+            }
+          ].map((item, idx) => {
+            const Icon = item.icon;
+            return (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.6, delay: idx * 0.12, ease: "easeOut" }}
+                className="shadow-lg text-center p-8 rounded-3xl bg-cream-50 border border-sky-600/10"
+              >
+                <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-sky-600/5 text-sky-600 mb-5">
+                  <Icon className="h-6 w-6" />
+                </div>
+                <h4 className="text-lg font-black text-navy-900 uppercase tracking-tight mb-3">{item.title}</h4>
+                <p className="text-sm text-navy-900/60 font-medium leading-relaxed">{item.desc}</p>
+              </motion.div>
+            );
+          })}
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-24 rounded-3xl bg-navy-card-subtle p-8 sm:p-12">
@@ -134,7 +174,7 @@ export const AboutUs: React.FC = () => {
             </h3>
             <p className="mt-3 text-sm text-navy-900/60 font-bold leading-relaxed">
               Built by professionals with combined experience across HR operations, talent strategy,
-              workforce analytics, and business transformation.
+              workforce analytics, and business transformation in India and international markets.
             </p>
           </div>
 
@@ -146,7 +186,7 @@ export const AboutUs: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.7, delay: idx * 0.15, ease: "easeOut" }}
-                className="flex-1 flex flex-col items-center bg-cream-50 rounded-3xl border border-sky-600/50 p-8 text-center"
+                className="shadow-lg flex-1 flex flex-col items-center bg-cream-50 rounded-3xl border border-sky-600/10 p-8 text-center"
               >
                 <div className="w-40 mb-4">
                   <img src={founder.image} alt={founder.role} className="w-full h-auto" />
@@ -157,6 +197,9 @@ export const AboutUs: React.FC = () => {
                 <div className="space-y-4 w-full text-left">
                   <div>
                     <h4 className="text-lg font-black text-navy-900 uppercase leading-snug text-center">{founder.role}</h4>
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-black text-navy-900 uppercase leading-snug text-center">{founder.roleDesc}</h4>
                   </div>
                   <p className="text-sm text-navy-900/70 font-medium leading-relaxed">{founder.experience}</p>
                   <div className="pt-4 border-t border-sky-600/50">
@@ -176,43 +219,7 @@ export const AboutUs: React.FC = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {[
-            {
-              icon: Eye,
-              title: "Vision",
-              desc: "To become the trusted people partner for growing businesses, helping them build workplaces where people thrive, processes scale, and success is sustainable."
-            },
-            {
-              icon: Rocket,
-              title: "Mission",
-              desc: "We exist to make great HR accessible to every growing business by delivering people-first recruitment, robust HR frameworks, and trusted workforce solutions."
-            },
-            {
-              icon: Heart,
-              title: "Values Statement",
-              desc: "We believe great businesses are built by great people. We help organisations create clear frameworks, fair policies, and strong cultures."
-            }
-          ].map((item, idx) => {
-            const Icon = item.icon;
-            return (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.6, delay: idx * 0.12, ease: "easeOut" }}
-                className="text-center p-8 rounded-3xl bg-cream-50 border border-sky-600/50"
-              >
-                <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-sky-600/5 text-sky-600 mb-5">
-                  <Icon className="h-6 w-6" />
-                </div>
-                <h4 className="text-lg font-black text-navy-900 uppercase tracking-tight mb-3">{item.title}</h4>
-                <p className="text-sm text-navy-900/60 font-medium leading-relaxed">{item.desc}</p>
-              </motion.div>
-            );
-          })}
-        </div>
+
       </div>
     </div>
   );

@@ -85,7 +85,7 @@ export const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
               height: b.size,
               top: `${b.top}%`,
               left: `${b.left}%`,
-              backgroundColor: "#EAF0F6",
+              backgroundColor: "#F2F5F8",
             }}
             animate={{
               x: [0, b.driftX * 0.3, b.driftX * 0.6, b.driftX * 0.3, 0],

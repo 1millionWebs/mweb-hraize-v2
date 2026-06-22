@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" width="100%" height="100%">
+    <defs>
+        <style>
+            .bg-circle { fill: #b9c3c4; }
+            .user-part { fill: #ffffff; }
+        </style>
+    </defs>
+    
+    <circle cx="500" cy="500" r="415" class="bg-circle" />
+    
+    <circle cx="500" cy="425" r="115" class="user-part" />
+    
+    <path d="M 325,690 
+             C 325,600 370,555 500,555 
+             C 630,555 675,600 675,690 
+             C 675,750 630,765 500,765 
+             C 370,765 325,750 325,690 Z" 
+          class="user-part" />
+</svg>
