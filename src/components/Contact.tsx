@@ -20,11 +20,13 @@ export const Contact: React.FC<ContactProps> = ({ initialTab = "hr" }) => {
     email: "",
     phone: "",
     serviceInterested: "",
-    message: ""
+    message: "",
+    website: "" // Honeypot field
   });
 
   const [validationSuccess, setValidationSuccess] = useState(false);
   const [errors, setErrors] = useState<string[]>([]);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     setActiveTab(initialTab);
@@ -85,19 +87,48 @@ export const Contact: React.FC<ContactProps> = ({ initialTab = "hr" }) => {
     });
   };
 
-  const handleFormSubmit = (e: React.FormEvent) => {
+  const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (isSubmitting) return;
+
     const listErrors: string[] = [];
-    if (!formData.fullName) listErrors.push("Please provide your full name.");
-    if (!formData.email) listErrors.push("Please provide your business email.");
-    if (!formData.phone) listErrors.push("Please provide a contact number.");
-    if (!formData.message) listErrors.push("Please describe how we can help.");
+    if (!formData.fullName.trim()) listErrors.push("Please provide your full name.");
+    if (!formData.email.trim()) listErrors.push("Please provide your business email.");
+    if (!formData.phone.trim()) listErrors.push("Please provide a contact number.");
+    if (!formData.message.trim()) listErrors.push("Please describe how we can help.");
+
     if (listErrors.length > 0) {
       setErrors(listErrors);
       setValidationSuccess(false);
-    } else {
-      setErrors([]);
-      setValidationSuccess(true);
+      return;
+    }
+
+    setErrors([]);
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        setErrors([result.error || "An error occurred while sending your message. Please try again."]);
+        setValidationSuccess(false);
+      } else {
+        setValidationSuccess(true);
+        setErrors([]);
+      }
+    } catch (err: any) {
+      setErrors(["Network error: Failed to connect to the server. Please try again."]);
+      setValidationSuccess(false);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -218,7 +249,7 @@ export const Contact: React.FC<ContactProps> = ({ initialTab = "hr" }) => {
                   type="button"
                   onClick={() => {
                     setValidationSuccess(false);
-                    setFormData({ fullName: "", companyName: "", email: "", phone: "", serviceInterested: "", message: "" });
+                    setFormData({ fullName: "", companyName: "", email: "", phone: "", serviceInterested: "", message: "", website: "" });
                   }}
                   className="px-5 py-2 bg-navy-card hover:bg-navy-700 text-white rounded-lg text-xs font-bold uppercase tracking-wider shadow cursor-pointer"
                 >
@@ -227,6 +258,18 @@ export const Contact: React.FC<ContactProps> = ({ initialTab = "hr" }) => {
               </motion.div>
             ) : (
               <form onSubmit={handleFormSubmit} className="space-y-4">
+                {/* Honeypot field for spam prevention */}
+                <div className="hidden" aria-hidden="true">
+                  <input
+                    type="text"
+                    name="website"
+                    value={formData.website}
+                    onChange={handleInputChange}
+                    tabIndex={-1}
+                    autoComplete="off"
+                  />
+                </div>
+
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-[10px] font-black tracking-widest text-navy-900 uppercase mb-1">Full Name *</label>
@@ -234,6 +277,7 @@ export const Contact: React.FC<ContactProps> = ({ initialTab = "hr" }) => {
                       type="text" name="fullName" value={formData.fullName} onChange={handleInputChange}
                       placeholder="Jane Doe"
                       className="w-full px-3 py-2.5 text-xs font-bold rounded-lg border border-sky-600/50 focus:outline-none focus:border-sky-600 bg-white text-navy-900"
+                      disabled={isSubmitting}
                     />
                   </div>
                   <div>
@@ -242,6 +286,7 @@ export const Contact: React.FC<ContactProps> = ({ initialTab = "hr" }) => {
                       type="text" name="companyName" value={formData.companyName} onChange={handleInputChange}
                       placeholder="Enterprise Corp"
                       className="w-full px-3 py-2.5 text-xs font-bold rounded-lg border border-sky-600/50 focus:outline-none focus:border-sky-600 bg-white text-navy-900"
+                      disabled={isSubmitting}
                     />
                   </div>
                   <div>
@@ -250,6 +295,7 @@ export const Contact: React.FC<ContactProps> = ({ initialTab = "hr" }) => {
                       type="email" name="email" value={formData.email} onChange={handleInputChange}
                       placeholder="jane@enterprise.com"
                       className="w-full px-3 py-2.5 text-xs font-bold rounded-lg border border-sky-600/50 focus:outline-none focus:border-sky-600 bg-white text-navy-900"
+                      disabled={isSubmitting}
                     />
                   </div>
                   <div>
@@ -258,6 +304,7 @@ export const Contact: React.FC<ContactProps> = ({ initialTab = "hr" }) => {
                       type="tel" name="phone" value={formData.phone} onChange={handleInputChange}
                       placeholder="+91 90000 00000"
                       className="w-full px-3 py-2.5 text-xs font-bold rounded-lg border border-sky-600/50 focus:outline-none focus:border-sky-600 bg-white text-navy-900"
+                      disabled={isSubmitting}
                     />
                   </div>
                 </div>
@@ -265,7 +312,8 @@ export const Contact: React.FC<ContactProps> = ({ initialTab = "hr" }) => {
                 <div>
                   <label className="block text-[10px] font-black tracking-widest text-navy-900 uppercase mb-1">Service Interested In</label>
                   <select name="serviceInterested" value={formData.serviceInterested} onChange={handleInputChange}
-                    className="w-full px-3 py-2.5 text-xs font-bold rounded-lg border border-sky-600/50 bg-white text-navy-900 focus:outline-none focus:border-sky-600">
+                    className="w-full px-3 py-2.5 text-xs font-bold rounded-lg border border-sky-600/50 bg-white text-navy-900 focus:outline-none focus:border-sky-600"
+                    disabled={isSubmitting}>
                     {getServiceOptions().map((opt) => (
                       <option key={opt.value} value={opt.value}>{opt.label}</option>
                     ))}
@@ -277,13 +325,22 @@ export const Contact: React.FC<ContactProps> = ({ initialTab = "hr" }) => {
                   <textarea name="message" rows={4} value={formData.message} onChange={handleInputChange}
                     placeholder="Describe your goals, organisational bottlenecks, workforce size or coaching timelines..."
                     className="w-full px-3 py-2.5 text-xs font-medium rounded-lg border border-sky-600/50 focus:outline-none focus:border-sky-600 bg-white text-navy-900 resize-none"
+                    disabled={isSubmitting}
                   />
                 </div>
 
                 <div className="pt-2">
-                  <button type="submit"
-                    className="w-full py-3.5 bg-sky-600 hover:bg-sky-700 text-white font-black uppercase text-xs tracking-wider rounded-xl shadow-md transition-all cursor-pointer">
-                    Send Message
+                  <button type="submit" disabled={isSubmitting}
+                    className={`w-full py-3.5 text-white font-black uppercase text-xs tracking-wider rounded-xl shadow-md transition-all ${isSubmitting ? "bg-sky-600/50 cursor-not-allowed" : "bg-sky-600 hover:bg-sky-700 cursor-pointer"}`}>
+                    {isSubmitting ? (
+                      <span className="flex items-center justify-center gap-2">
+                        <svg className="animate-spin h-3.5 w-3.5 text-white" fill="none" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                        </svg>
+                        Sending Message...
+                      </span>
+                    ) : "Send Message"}
                   </button>
                 </div>
               </form>

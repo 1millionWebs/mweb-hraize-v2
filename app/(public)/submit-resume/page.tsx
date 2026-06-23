@@ -11,11 +11,13 @@ export default function SubmitResumePage() {
   const [formData, setFormData] = useState({
     firstName: "", lastName: "", email: "", phone: "", location: "",
     gender: "", ageRange: "", maritalStatus: "", qualification: "", experience: "", comments: "",
+    website: "", // Honeypot field
   });
 
   const [uploadedFile, setUploadedFile] = useState<File | null>(null);
   const [formErrors, setFormErrors] = useState<string[]>([]);
   const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -23,9 +25,14 @@ export default function SubmitResumePage() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleDragOver = (e: React.DragEvent) => { e.preventDefault(); setIsDragging(true); };
+  const handleDragOver = (e: React.DragEvent) => {
+    if (isSubmitting) return;
+    e.preventDefault();
+    setIsDragging(true);
+  };
   const handleDragLeave = () => setIsDragging(false);
   const handleDrop = (e: React.DragEvent) => {
+    if (isSubmitting) return;
     e.preventDefault();
     setIsDragging(false);
     if (e.dataTransfer.files?.[0]) setUploadedFile(e.dataTransfer.files[0]);
@@ -34,27 +41,61 @@ export default function SubmitResumePage() {
     if (e.target.files?.[0]) setUploadedFile(e.target.files[0]);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (isSubmitting) return;
+
     const errors: string[] = [];
-    if (!formData.firstName) errors.push("First name is required.");
-    if (!formData.lastName) errors.push("Last name is required.");
-    if (!formData.email) errors.push("Email is required.");
-    if (!formData.phone) errors.push("Phone number is required.");
-    if (!formData.location) errors.push("Location is required.");
+    if (!formData.firstName.trim()) errors.push("First name is required.");
+    if (!formData.lastName.trim()) errors.push("Last name is required.");
+    if (!formData.email.trim()) errors.push("Email is required.");
+    if (!formData.phone.trim()) errors.push("Phone number is required.");
+    if (!formData.location.trim()) errors.push("Location is required.");
     if (!formData.gender) errors.push("Please select your gender.");
     if (!formData.ageRange) errors.push("Please select your age range.");
     if (!formData.maritalStatus) errors.push("Please select your marital status.");
     if (!formData.qualification) errors.push("Please select your qualification.");
     if (!formData.experience) errors.push("Please select your experience level.");
-    if (!formData.comments) errors.push("Comments are mandatory.");
+    if (!formData.comments.trim()) errors.push("Comments are mandatory.");
     if (!uploadedFile) errors.push("Please upload your resume file.");
+
     if (errors.length > 0) {
       setFormErrors(errors);
       setSubmitSuccess(false);
-    } else {
-      setFormErrors([]);
-      setSubmitSuccess(true);
+      return;
+    }
+
+    setFormErrors([]);
+    setIsSubmitting(true);
+
+    try {
+      const data = new FormData();
+      Object.entries(formData).forEach(([key, val]) => {
+        data.append(key, val);
+      });
+      if (uploadedFile) {
+        data.append("resume", uploadedFile);
+      }
+
+      const response = await fetch("/api/submit-resume", {
+        method: "POST",
+        body: data,
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        setFormErrors([result.error || "An error occurred while submitting your application. Please try again."]);
+        setSubmitSuccess(false);
+      } else {
+        setSubmitSuccess(true);
+        setFormErrors([]);
+      }
+    } catch (err: any) {
+      setFormErrors(["Network error: Failed to connect to the server. Please try again."]);
+      setSubmitSuccess(false);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -118,7 +159,7 @@ export default function SubmitResumePage() {
                 </div>
                 <button onClick={() => {
                   setSubmitSuccess(false);
-                  setFormData({ firstName: "", lastName: "", email: "", phone: "", location: "", gender: "", ageRange: "", maritalStatus: "", qualification: "", experience: "", comments: "" });
+                  setFormData({ firstName: "", lastName: "", email: "", phone: "", location: "", gender: "", ageRange: "", maritalStatus: "", qualification: "", experience: "", comments: "", website: "" });
                   setUploadedFile(null);
                 }}
                   className="mt-2 px-8 py-3 bg-sky-600 text-white rounded-xl text-xs font-bold tracking-wide hover:bg-sky-700 transition-all cursor-pointer">
@@ -127,6 +168,18 @@ export default function SubmitResumePage() {
               </motion.div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-8">
+                {/* Honeypot field for spam prevention */}
+                <div className="hidden" aria-hidden="true">
+                  <input
+                    type="text"
+                    name="website"
+                    value={formData.website}
+                    onChange={handleInputChange}
+                    tabIndex={-1}
+                    autoComplete="off"
+                  />
+                </div>
+
                 <div>
                   <div className="flex items-center gap-2.5 mb-6 pb-3 border-b border-sky-600/50">
                     <div className="h-7 w-7 rounded-lg bg-sky-600/5 flex items-center justify-center">
@@ -137,31 +190,31 @@ export default function SubmitResumePage() {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     <div>
                       <label className={labelClass}>First Name <span className="text-red-muted">*</span></label>
-                      <input type="text" name="firstName" value={formData.firstName} onChange={handleInputChange} placeholder="Jane" className={inputClass} />
+                      <input type="text" name="firstName" value={formData.firstName} onChange={handleInputChange} placeholder="Jane" className={inputClass} disabled={isSubmitting} />
                     </div>
                     <div>
                       <label className={labelClass}>Last Name <span className="text-red-muted">*</span></label>
-                      <input type="text" name="lastName" value={formData.lastName} onChange={handleInputChange} placeholder="Doe" className={inputClass} />
+                      <input type="text" name="lastName" value={formData.lastName} onChange={handleInputChange} placeholder="Doe" className={inputClass} disabled={isSubmitting} />
                     </div>
                     <div>
                       <label className={labelClass}>Email <span className="text-red-muted">*</span></label>
                       <div className="relative">
                         <Mail className="absolute left-3.5 top-3.5 h-4 w-4 text-navy-900/30 pointer-events-none" />
-                        <input type="email" name="email" value={formData.email} onChange={handleInputChange} placeholder="jane.doe@example.com" className={`${inputClass} pl-11`} />
+                        <input type="email" name="email" value={formData.email} onChange={handleInputChange} placeholder="jane.doe@example.com" className={`${inputClass} pl-11`} disabled={isSubmitting} />
                       </div>
                     </div>
                     <div>
                       <label className={labelClass}>Phone <span className="text-red-muted">*</span></label>
                       <div className="relative">
                         <Phone className="absolute left-3.5 top-3.5 h-4 w-4 text-navy-900/30 pointer-events-none" />
-                        <input type="tel" name="phone" value={formData.phone} onChange={handleInputChange} placeholder="+91 98765 43210" className={`${inputClass} pl-11`} />
+                        <input type="tel" name="phone" value={formData.phone} onChange={handleInputChange} placeholder="+91 98765 43210" className={`${inputClass} pl-11`} disabled={isSubmitting} />
                       </div>
                     </div>
                     <div className="sm:col-span-2">
                       <label className={labelClass}>Location <span className="text-red-muted">*</span></label>
                       <div className="relative">
                         <MapPin className="absolute left-3.5 top-3.5 h-4 w-4 text-navy-900/30 pointer-events-none" />
-                        <input type="text" name="location" value={formData.location} onChange={handleInputChange} placeholder="Chennai, Tamil Nadu" className={`${inputClass} pl-11`} />
+                        <input type="text" name="location" value={formData.location} onChange={handleInputChange} placeholder="Chennai, Tamil Nadu" className={`${inputClass} pl-11`} disabled={isSubmitting} />
                       </div>
                     </div>
                   </div>
@@ -179,7 +232,7 @@ export default function SubmitResumePage() {
                       <label className={labelClass}>Gender <span className="text-red-muted">*</span></label>
                       <div className="relative">
                         <Users className="absolute left-3.5 top-3.5 h-4 w-4 text-navy-900/30 pointer-events-none" />
-                        <select name="gender" value={formData.gender} onChange={handleInputChange} className={`${selectClass} pl-11`}>
+                        <select name="gender" value={formData.gender} onChange={handleInputChange} className={`${selectClass} pl-11`} disabled={isSubmitting}>
                           <option value="">Select Gender</option>
                           <option value="Female">Female</option>
                           <option value="Male">Male</option>
@@ -192,7 +245,7 @@ export default function SubmitResumePage() {
                       <label className={labelClass}>Age Range <span className="text-red-muted">*</span></label>
                       <div className="relative">
                         <Calendar className="absolute left-3.5 top-3.5 h-4 w-4 text-navy-900/30 pointer-events-none" />
-                        <select name="ageRange" value={formData.ageRange} onChange={handleInputChange} className={`${selectClass} pl-11`}>
+                        <select name="ageRange" value={formData.ageRange} onChange={handleInputChange} className={`${selectClass} pl-11`} disabled={isSubmitting}>
                           <option value="">Select Age Range</option>
                           <option value="18 - 22">18 - 22</option>
                           <option value="23 - 28">23 - 28</option>
@@ -206,7 +259,7 @@ export default function SubmitResumePage() {
                       <label className={labelClass}>Marital Status <span className="text-red-muted">*</span></label>
                       <div className="relative">
                         <Heart className="absolute left-3.5 top-3.5 h-4 w-4 text-navy-900/30 pointer-events-none" />
-                        <select name="maritalStatus" value={formData.maritalStatus} onChange={handleInputChange} className={`${selectClass} pl-11`}>
+                        <select name="maritalStatus" value={formData.maritalStatus} onChange={handleInputChange} className={`${selectClass} pl-11`} disabled={isSubmitting}>
                           <option value="">Select Status</option>
                           <option value="Single">Single</option>
                           <option value="Married">Married</option>
@@ -219,7 +272,7 @@ export default function SubmitResumePage() {
                       <label className={labelClass}>Qualification <span className="text-red-muted">*</span></label>
                       <div className="relative">
                         <GraduationCap className="absolute left-3.5 top-3.5 h-4 w-4 text-navy-900/30 pointer-events-none" />
-                        <select name="qualification" value={formData.qualification} onChange={handleInputChange} className={`${selectClass} pl-11`}>
+                        <select name="qualification" value={formData.qualification} onChange={handleInputChange} className={`${selectClass} pl-11`} disabled={isSubmitting}>
                           <option value="">Select Qualification</option>
                           {qualifications.map((q) => <option key={q} value={q}>{q}</option>)}
                         </select>
@@ -240,7 +293,7 @@ export default function SubmitResumePage() {
                       <label className={labelClass}>Experience <span className="text-red-muted">*</span></label>
                       <div className="relative">
                         <Briefcase className="absolute left-3.5 top-3.5 h-4 w-4 text-navy-900/30 pointer-events-none" />
-                        <select name="experience" value={formData.experience} onChange={handleInputChange} className={`${selectClass} pl-11`}>
+                        <select name="experience" value={formData.experience} onChange={handleInputChange} className={`${selectClass} pl-11`} disabled={isSubmitting}>
                           <option value="">Select Experience</option>
                           <option value="Fresher">Fresher</option>
                           <option value="Experienced">Experienced</option>
@@ -261,7 +314,7 @@ export default function SubmitResumePage() {
                     <label className={labelClass}>Comments &amp; Career Objective <span className="text-red-muted">*</span></label>
                     <textarea name="comments" rows={4} value={formData.comments} onChange={handleInputChange}
                       placeholder="Describe your background, what roles interest you, and why you are seeking a transition..."
-                      className={`${inputClass} resize-none`} />
+                      className={`${inputClass} resize-none`} disabled={isSubmitting} />
                   </div>
                 </div>
 
@@ -272,12 +325,12 @@ export default function SubmitResumePage() {
                     </div>
                     <span className="text-xs font-black text-navy-900 uppercase tracking-wider">Resume Upload <span className="text-red-muted">*</span></span>
                   </div>
-                  <div onDragOver={handleDragOver} onDragLeave={handleDragLeave} onDrop={handleDrop} onClick={() => fileInputRef.current?.click()}
+                  <div onDragOver={handleDragOver} onDragLeave={handleDragLeave} onDrop={handleDrop} onClick={() => !isSubmitting && fileInputRef.current?.click()}
                     className={`border-2 border-dashed rounded-2xl p-8 text-center cursor-pointer transition-all flex flex-col items-center justify-center min-h-[160px] ${isDragging ? "border-sky-600/50 bg-sky-600/5" :
                       uploadedFile ? "border-sky-600/50 bg-forest-500/5" :
                         "border-sky-600/50 hover:border-sky-600/50 bg-cream-50 hover:bg-copper-50/50"
-                      }`}>
-                    <input type="file" ref={fileInputRef} onChange={handleFileChange} accept=".pdf,.doc,.docx" className="hidden" />
+                      } ${isSubmitting ? "opacity-50 cursor-not-allowed pointer-events-none" : ""}`}>
+                    <input type="file" ref={fileInputRef} onChange={handleFileChange} accept=".pdf,.docx" className="hidden" disabled={isSubmitting} />
                     {uploadedFile ? (
                       <div className="space-y-2">
                         <div className="h-12 w-12 bg-forest-500/10 text-forest-500 flex items-center justify-center rounded-full mx-auto">
@@ -298,9 +351,17 @@ export default function SubmitResumePage() {
                   </div>
                 </div>
 
-                <button type="submit"
-                  className="w-full py-4 bg-sky-600 hover:bg-sky-700 text-white rounded-xl font-black uppercase tracking-wider text-sm shadow-lg shadow-sky-600/20 transition-all cursor-pointer">
-                  Submit Resume
+                <button type="submit" disabled={isSubmitting}
+                  className={`w-full py-4 text-white rounded-xl font-black uppercase tracking-wider text-sm shadow-lg transition-all ${isSubmitting ? "bg-sky-600/50 cursor-not-allowed" : "bg-sky-600 hover:bg-sky-700 shadow-sky-600/20 cursor-pointer"}`}>
+                  {isSubmitting ? (
+                    <span className="flex items-center justify-center gap-2">
+                      <svg className="animate-spin h-4 w-4 text-white" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                      </svg>
+                      Submitting Application...
+                    </span>
+                  ) : "Submit Resume"}
                 </button>
               </form>
             )}
