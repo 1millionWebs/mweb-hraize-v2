@@ -111,7 +111,7 @@ export const TrainingAndDevelopment: React.FC<TrainingAndDevelopmentProps> = ({
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.15 }}
                 transition={{ duration: 0.6, delay: idx * 0.12, ease: "easeOut" }}
-                className="rounded-3xl bg-cream-50 border border-sky-600/50 p-8"
+                className="rounded-3xl shadow-lg bg-cream-50 border border-sky-600/20 p-8"
               >
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
                   <div className="lg:col-span-5">
@@ -130,7 +130,7 @@ export const TrainingAndDevelopment: React.FC<TrainingAndDevelopmentProps> = ({
                     <p className="text-[10px] font-black tracking-wider text-sky-600 uppercase mb-3">What You Get</p>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                       {path.features.map((feat, fIdx) => (
-                        <FeatureCheck key={fIdx}>{feat}</FeatureCheck>
+                        <FeatureCheck key={fIdx} className="text-navy-900/70">{feat}</FeatureCheck>
                       ))}
                     </div>
                     <div className="mt-6 pt-4 border-t border-sky-600/50">

@@ -160,8 +160,9 @@ export const RecruitmentServices: React.FC<RecruitmentServicesProps> = ({
             </h3>
             <div className="space-y-4">
               {corePillars.map((p, idx) => (
-                <div key={idx} className="shadow-md flex gap-4 items-start p-4 rounded-xl bg-cream-50 border border-sky-600/10 hover:border-sky-600/50 transition-colors">
+                <div key={idx} className="shadow-md flex flex-col gap-1 p-4 rounded-xl bg-cream-50 border border-sky-600/10 hover:border-sky-600/50 transition-colors">
                   <FeatureCheck>{p.title}</FeatureCheck>
+                  <p className="text-xs text-navy-900/60 font-medium ml-7">{p.desc}</p>
                 </div>
               ))}
             </div>
@@ -191,7 +192,7 @@ export const RecruitmentServices: React.FC<RecruitmentServicesProps> = ({
                     <span className="text-[10px] font-bold text-copper-400 bg-copper-50 px-2 py-0.5 rounded-full">{m.tag}</span>
                   </div>
                   <p className="text-xs text-navy-900/60 font-medium mt-2">{m.desc}</p>
-                  <div className="mt-3 pt-3 border-t border-sky-600/50">
+                  <div className="mt-3 pt-3 border-sky-600/50">
                     <span className="text-[10px] font-bold text-sky-600/60 uppercase tracking-wide">60-Day Replacement Covered</span>
                   </div>
                 </div>
@@ -246,7 +247,7 @@ export const RecruitmentServices: React.FC<RecruitmentServicesProps> = ({
           </div>
         </div>
 
-        <div className="mb-24 bg-cream-50 border border-sky-600/50 rounded-3xl p-6 sm:p-10 overflow-hidden">
+        <div className="mb-24 bg-cream-50 border shadow-lg border-sky-600/30 rounded-3xl p-6 sm:p-10 overflow-hidden">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <SectionLabel>Agency Matrix</SectionLabel>
             <h3 className="mt-3 text-2xl font-black text-navy-900 uppercase tracking-tight">
@@ -289,7 +290,7 @@ export const RecruitmentServices: React.FC<RecruitmentServicesProps> = ({
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-          <div className="rounded-3xl bg-navy-card p-8 text-white flex flex-col justify-between items-start relative overflow-hidden">
+          <div className="rounded-3xl shadow-lg bg-navy-card p-8 text-white flex flex-col justify-between items-start relative overflow-hidden">
             <span className="text-[10px] font-mono tracking-widest bg-white/10 px-2.5 py-1 rounded inline-block uppercase font-bold mb-4">
               For Employers
             </span>
@@ -306,7 +307,7 @@ export const RecruitmentServices: React.FC<RecruitmentServicesProps> = ({
             </button>
           </div>
 
-          <div className="rounded-3xl bg-cream-50 border border-sky-600/50 p-8 flex flex-col justify-between items-start relative overflow-hidden">
+          <div className="rounded-3xl bg-cream-50 border shadow-lg border-sky-600/30 p-8 flex flex-col justify-between items-start relative overflow-hidden">
             <span className="text-[10px] font-mono tracking-widest bg-sky-600/10 px-2.5 py-1 rounded inline-block uppercase font-bold text-sky-700 mb-4">
               For Candidates
             </span>

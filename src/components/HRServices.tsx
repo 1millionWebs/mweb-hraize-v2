@@ -188,7 +188,7 @@ export const HRServices: React.FC<HRServicesProps> = ({ onBookCall }) => {
                         <div className="px-5 pb-5 pt-0 border-t border-sky-600/50">
                           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-4">
                             {srv.details.map((detail, di) => (
-                              <FeatureCheck key={di}>{detail}</FeatureCheck>
+                              <FeatureCheck key={di} className="text-navy-900/70">{detail}</FeatureCheck>
                             ))}
                           </div>
                         </div>

@@ -86,7 +86,7 @@ export const FeatureCheck: React.FC<FeatureCheckProps> = ({ children, className 
           <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
         </svg>
       </div>
-      <span className={`text-xs font-semibold text-navy-900/70 ${className}`}>{children}</span>
+      <span className={`text-xs font-semibold ${className}`}>{children}</span>
     </div>
   );
 };

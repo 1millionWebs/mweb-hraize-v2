@@ -91,7 +91,7 @@ export const Careers: React.FC = () => {
 
   const filteredJobs = initialVacancies.filter(job => {
     const matchesSearch = job.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                          job.department.toLowerCase().includes(searchTerm.toLowerCase());
+      job.department.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesType = selectedType === "All" || job.type === selectedType;
     return matchesSearch && matchesType;
   });
@@ -172,9 +172,8 @@ export const Careers: React.FC = () => {
               <div className="flex bg-cream-50 rounded-lg p-1 text-xs font-bold text-navy-900/50 border border-sky-600/50">
                 {["All", "Full-Time", "Contract", "Internship"].map((t) => (
                   <button key={t} onClick={() => setSelectedType(t)}
-                    className={`px-3 py-1.5 rounded-md transition-colors cursor-pointer ${
-                      selectedType === t ? "bg-white text-navy-900 shadow-sm" : "hover:text-navy-900"
-                    }`}>
+                    className={`px-3 py-1.5 rounded-md transition-colors cursor-pointer ${selectedType === t ? "bg-white text-navy-900 shadow-sm" : "hover:text-navy-900"
+                      }`}>
                     {t}
                   </button>
                 ))}
@@ -362,11 +361,10 @@ export const Careers: React.FC = () => {
                 <div>
                   <label className="block text-[11px] font-bold tracking-widest text-copper-400 uppercase mb-2">Upload Resume (PDF/Word) *</label>
                   <div onDragOver={handleDragOver} onDragLeave={handleDragLeave} onDrop={handleDrop} onClick={triggerFileInput}
-                    className={`border-2 border-dashed rounded-2xl p-6 text-center cursor-pointer transition-all flex flex-col items-center justify-center min-h-[140px] ${
-                      isDragging ? "border-sky-600/50 bg-sky-600/5" :
+                    className={`border-2 border-dashed rounded-2xl p-6 text-center cursor-pointer transition-all flex flex-col items-center justify-center min-h-[140px] ${isDragging ? "border-sky-600/50 bg-sky-600/5" :
                       uploadedFile ? "border-sky-600/50 bg-forest-500/5" :
-                      "border-sky-600/50 hover:border-sky-600/50 bg-white/5"
-                    }`}>
+                        "border-sky-600/50 hover:border-sky-600/50 bg-white/5"
+                      }`}>
                     <input type="file" ref={fileInputRef} onChange={handleFileChange} accept=".pdf,.doc,.docx" className="hidden" />
                     {uploadedFile ? (
                       <div className="space-y-2">

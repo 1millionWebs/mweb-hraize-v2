@@ -17,7 +17,7 @@ export default function VacanciesPage() {
     fetch("/api/vacancies")
       .then((res) => res.json())
       .then((data) => setVacancies(data.vacancies))
-      .catch(() => {})
+      .catch(() => { })
       .finally(() => setLoading(false));
   }, []);
 
@@ -63,9 +63,8 @@ export default function VacanciesPage() {
             <div className="flex bg-cream-50 rounded-lg p-1 text-xs font-bold text-navy-900/50 border border-sky-600/50">
               {["All", "Full-Time", "Contract", "Internship"].map((t) => (
                 <button key={t} onClick={() => setSelectedType(t)}
-                  className={`px-3 py-1.5 rounded-md transition-colors cursor-pointer ${
-                    selectedType === t ? "bg-white text-navy-900 shadow-sm" : "hover:text-navy-900"
-                  }`}>
+                  className={`px-3 py-1.5 rounded-md transition-colors cursor-pointer ${selectedType === t ? "bg-white text-navy-900 shadow-sm" : "hover:text-navy-900"
+                    }`}>
                   {t}
                 </button>
               ))}
@@ -88,7 +87,7 @@ export default function VacanciesPage() {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
-                    className="flex flex-col sm:flex-row items-start gap-5 p-6 bg-cream-50 rounded-2xl border border-sky-600/50 hover:border-sky-600/50 transition-colors"
+                    className="flex flex-col sm:flex-row items-start gap-5 p-6 bg-cream-50 rounded-2xl border border-sky-600/20 shadow-lg hover:border-sky-600/50 transition-colors"
                   >
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-3 mb-2">

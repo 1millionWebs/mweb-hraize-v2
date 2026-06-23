@@ -206,7 +206,7 @@ export const AboutUs: React.FC = () => {
                     <p className="text-[10px] font-black tracking-wider text-sky-600 uppercase mb-2">Areas of Expertise</p>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
                       {founder.expertise.map((exp, skillIdx) => (
-                        <FeatureCheck key={skillIdx}>{exp}</FeatureCheck>
+                        <FeatureCheck key={skillIdx} className="text-navy-900/70">{exp}</FeatureCheck>
                       ))}
                     </div>
                   </div>
