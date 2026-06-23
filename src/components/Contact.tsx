@@ -128,7 +128,7 @@ export const Contact: React.FC<ContactProps> = ({ initialTab = "hr" }) => {
                 <div>
                   <p className="text-[11px] font-bold text-sage-100/50 tracking-wider uppercase">Location</p>
                   <p className="text-xs text-sage-100/80 mt-1 leading-relaxed font-bold">
-                    Headquartered strategically with active consultants across key metropolitan tech hubs.
+                    Thanjavur, TamilNadu.
                   </p>
                 </div>
               </div>
@@ -158,7 +158,7 @@ export const Contact: React.FC<ContactProps> = ({ initialTab = "hr" }) => {
             </div>
           </div>
 
-          <div className="lg:col-span-8 bg-cream-50 border border-sky-600/50 rounded-3xl p-6 sm:p-10">
+          <div className="lg:col-span-8 bg-navy-600/10 border shadow-lg border-sky-600/20 rounded-3xl p-6 sm:p-10">
             <div className="mb-6">
               <h3 className="text-lg font-black text-navy-900 uppercase tracking-tight">Send us a message</h3>
               <p className="text-xs text-navy-900/50 font-bold mt-1">Select the division below to route your inquiry:</p>
@@ -176,11 +176,10 @@ export const Contact: React.FC<ContactProps> = ({ initialTab = "hr" }) => {
                       setActiveTab(tab.id as EnquiryType);
                       setValidationSuccess(false);
                     }}
-                    className={`flex items-center justify-center gap-1.5 py-3.5 px-2 rounded-lg text-[10px] font-black uppercase tracking-wider transition-all cursor-pointer ${
-                      active
-                        ? "bg-navy-card text-white shadow-sm"
-                        : "text-navy-900/50 hover:text-navy-900 hover:bg-cream-50"
-                    }`}
+                    className={`flex items-center justify-center gap-1.5 py-3.5 px-2 rounded-lg text-[10px] font-black uppercase tracking-wider transition-all cursor-pointer ${active
+                      ? "bg-navy-card text-white shadow-sm"
+                      : "text-navy-900/50 hover:text-navy-900 hover:bg-cream-50"
+                      }`}
                   >
                     <TabIcon className="h-3.5 w-3.5 shrink-0" />
                     {tab.label.split(". ")[1]}
@@ -221,7 +220,7 @@ export const Contact: React.FC<ContactProps> = ({ initialTab = "hr" }) => {
                     setValidationSuccess(false);
                     setFormData({ fullName: "", companyName: "", email: "", phone: "", serviceInterested: "", message: "" });
                   }}
-                   className="px-5 py-2 bg-navy-card hover:bg-navy-700 text-white rounded-lg text-xs font-bold uppercase tracking-wider shadow cursor-pointer"
+                  className="px-5 py-2 bg-navy-card hover:bg-navy-700 text-white rounded-lg text-xs font-bold uppercase tracking-wider shadow cursor-pointer"
                 >
                   Send another inquiry
                 </button>

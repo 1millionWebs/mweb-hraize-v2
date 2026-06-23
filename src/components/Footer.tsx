@@ -29,14 +29,14 @@ export const Footer: React.FC = () => {
             </p>
             <div className="flex gap-3">
               <a
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/company/hraize/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="h-8 w-8 rounded-lg bg-navy-800 hover:bg-sky-600 text-sky-400 hover:text-white transition-colors duration-200 flex items-center justify-center cursor-pointer"
               >
                 <Linkedin className="h-4 w-4" />
               </a><a
-                href="https://facebook.com"
+                href="https://www.facebook.com/hraize.official/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="h-8 w-8 rounded-lg bg-navy-800 hover:bg-sky-600 text-sky-400 hover:text-white transition-colors duration-200 flex items-center justify-center cursor-pointer"
@@ -44,7 +44,7 @@ export const Footer: React.FC = () => {
                 <Facebook className="h-4 w-4" />
               </a>
               <a
-                href="https://instagram.com/hraize.official"
+                href="https://www.instagram.com/hraize.official?igsh=bWF5bXR0c25kY2hy"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="h-8 w-8 rounded-lg bg-navy-800 hover:bg-sky-600 text-sky-400 hover:text-white transition-colors duration-200 flex items-center justify-center cursor-pointer"
