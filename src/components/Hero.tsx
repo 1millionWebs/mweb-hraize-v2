@@ -1,6 +1,6 @@
 import React, { useMemo, useState, useEffect, useRef } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
-import { ArrowRight, Calendar, Users, ShieldCheck, Award } from "lucide-react";
+import { ArrowRight, Calendar, Users, ShieldCheck, Award, TrendingUp } from "lucide-react";
 
 const rand = (min: number, max: number) => Math.random() * (max - min) + min;
 
@@ -64,6 +64,13 @@ export const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
     setBubbles(generateBubbles(15));
   }, []);
 
+  const avatars = [
+    { id: 1, name: "Sarah K.", url: "/contact-1.png" },
+    { id: 2, name: "David M.", url: "/contact-2.png" },
+    { id: 3, name: "Elena R.", url: "/contact-3.png" },
+    { id: 4, name: "Marcus T.", url: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=80" }
+  ];
+
   const stats = [
     { value: "20+", label: "Years Global Experience", icon: Calendar },
     { value: "6+", label: "Industries Served", icon: Users },
@@ -72,7 +79,7 @@ export const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
   ];
 
   return (
-    <section ref={sectionRef} className="relative lg:min-h-[calc(100vh-4rem)] overflow-hidden bg-gradient-to-b from-cream-100 to-cream-50">
+    <section ref={sectionRef} className="relative pb-30 lg:min-h-[calc(100vh-4rem)] overflow-hidden bg-gradient-to-b from-cream-100 to-cream-50">
       <motion.div className="absolute inset-0 pointer-events-none" style={{ y: bgY }}>
         <div className="absolute top-[-20%] right-[-10%] h-[500px] w-[500px] rounded-full bg-sky-600/5 blur-3xl" />
         <div className="absolute bottom-[-10%] left-[-5%] h-[400px] w-[400px] rounded-full bg-copper-400/5 blur-3xl" />
@@ -176,18 +183,197 @@ export const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
           </motion.div>
 
           <motion.div
-            className="hidden lg:block lg:col-span-5 relative"
-            initial={{ opacity: 0, scale: 0.95 }}
+            className="lg:col-span-5 relative w-full h-[480px] lg:h-[500px] flex items-center justify-center p-4 bg-slate-900/5 rounded-3xl border border-white/40 shadow-inner"
+            initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.9, delay: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
+            transition={{ duration: 1, delay: 0.2 }}
           >
-            <div className="relative h-[320px] w-full overflow-hidden rounded-3xl shadow-xl">
-              <img
-                src="/white-bg.png"
-                alt="Hraize HR Analytics"
-                className="h-full w-full object-cover"
+            <svg viewBox="0 0 400 500" className="absolute inset-0 w-full h-full pointer-events-none z-0">
+              <motion.path
+                d="M 50,450 C 150,420 80,180 200,160 C 320,140 280,50 350,50"
+                stroke="#1E3A8A"
+                strokeWidth="4"
+                fill="none"
+                strokeLinecap="round"
+                initial={{ pathLength: 0 }}
+                animate={{ pathLength: 1 }}
+                transition={{ duration: 2, ease: "easeInOut" }}
               />
+              <motion.path
+                d="M 50,450 C 150,420 80,180 200,160 C 320,140 280,50 350,50"
+                stroke="#0EA5E9"
+                strokeWidth="1.5"
+                fill="none"
+                strokeDasharray="10 15"
+                animate={{ strokeDashoffset: [-100, 0] }}
+                transition={{ repeat: Infinity, ease: "linear", duration: 8 }}
+              />
+              <motion.path
+                d="M 350,450 C 250,380 320,250 200,180 C 80,110 120,50 50,50"
+                stroke="#0EA5E9"
+                strokeWidth="3.5"
+                fill="none"
+                strokeLinecap="round"
+                initial={{ pathLength: 0 }}
+                animate={{ pathLength: 1 }}
+                transition={{ duration: 2.2, ease: "easeInOut" }}
+              />
+              <motion.path
+                d="M 350,450 C 250,380 320,250 200,180 C 80,110 120,50 50,50"
+                stroke="#1E3A8A"
+                strokeWidth="1.5"
+                fill="none"
+                strokeDasharray="12 18"
+                animate={{ strokeDashoffset: [0, 100] }}
+                transition={{ repeat: Infinity, ease: "linear", duration: 6 }}
+              />
+              <line x1="200" y1="180" x2="200" y2="160" stroke="#D4A017" strokeWidth="2" strokeDasharray="3 3" />
+            </svg>
+
+            <div className="relative w-full h-full z-10 grid grid-rows-3 gap-4">
+              <motion.div
+                className="justify-self-start self-center w-[230px] rounded-xl border border-white/30 bg-white/70 p-4 shadow-[0_8px_30px_rgb(0,0,0,0.06)] backdrop-blur-md"
+                animate={{ y: [-5, 5, -5] }}
+                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+              >
+                <div className="flex items-center gap-2 mb-3">
+                  <div className="flex h-7 w-7 items-center justify-center rounded-md bg-[#1E3A8A]/10 text-[#1E3A8A]">
+                    <Users className="h-3.5 w-3.5" />
+                  </div>
+                  <span className="text-xs font-black text-[#1E3A8A]">Workforce Overview</span>
+                </div>
+                <div className="space-y-2.5">
+                  <div className="flex items-center justify-between text-[10px]">
+                    <span className="font-semibold text-gray-500">Permanent</span>
+                    <span className="font-black text-[#1E3A8A]">Full-Time</span>
+                  </div>
+                  <div className="flex items-center justify-between text-[10px]">
+                    <span className="font-semibold text-gray-500">Contract</span>
+                    <span className="font-black text-[#0EA5E9]">Temporary</span>
+                  </div>
+                  <div className="flex items-center justify-between text-[10px]">
+                    <span className="font-semibold text-gray-500">Pipeline</span>
+                    <span className="font-black text-emerald-500">Active</span>
+                  </div>
+                </div>
+              </motion.div>
+
+              <motion.div
+                className="justify-self-end self-center w-[240px] rounded-xl border border-white/40 bg-white/80 p-4 shadow-[0_10px_35px_rgb(0,0,0,0.08)] backdrop-blur-lg"
+                animate={{ y: [5, -5, 5] }}
+                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+              >
+                <div className="flex items-center gap-2 mb-2">
+                  <div className="flex h-6 w-6 items-center justify-center rounded-md bg-[#0EA5E9] text-white">
+                    <TrendingUp className="h-3.5 w-3.5" />
+                  </div>
+                  <div>
+                    <h4 className="text-xs font-black text-[#1E3A8A]">Performance Peak</h4>
+                    <p className="text-[9px] text-[#0EA5E9] leading-none">Top Performers Highlight</p>
+                  </div>
+                </div>
+                <div className="space-y-2 mt-2">
+                  <div className="flex justify-between items-center text-[11px]">
+                    <span className="font-bold text-gray-600">Core Engineering</span>
+                    <span className="font-black text-[#1E3A8A]">96% Match</span>
+                  </div>
+                  <div className="h-1.5 w-full bg-gray-200 rounded-full overflow-hidden">
+                    <div className="h-full bg-[#0EA5E9]" style={{ width: "96%" }} />
+                  </div>
+                  <div className="flex justify-between items-center text-[11px]">
+                    <span className="font-bold text-gray-600">Product Strategy</span>
+                    <span className="font-black text-[#1E3A8A]">88% Performance</span>
+                  </div>
+                  <div className="h-1.5 w-full bg-gray-200 rounded-full overflow-hidden">
+                    <div className="h-full bg-[#D4A017]" style={{ width: "88%" }} />
+                  </div>
+                </div>
+              </motion.div>
+
+              <motion.div
+                className="justify-self-start self-center w-[220px] rounded-xl border border-[#0EA5E9]/20 bg-white/95 p-3 shadow-[0_12px_40px_rgb(30,58,138,0.08)] backdrop-blur-xl"
+                animate={{ y: [-4, 4, -4] }}
+                transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+              >
+                <p className="text-[10px] font-black tracking-widest text-[#1E3A8A] uppercase mb-2">Talent Sourcing Pool</p>
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2">
+                    <img
+                      src="/contact-1.png"
+                      alt="Avatar"
+                      className="h-7 w-7 rounded-full object-cover border border-[#0EA5E9]"
+                    />
+                    <div className="flex-1 min-w-0">
+                      <p className="text-xs font-black text-gray-800 truncate">Sarah K. (Senior Lead)</p>
+                      <p className="text-[9px] text-[#0EA5E9]">Recruited: Product Growth</p>
+                    </div>
+                    <span className="text-[9px] font-extrabold text-[#D4A017]">★ 4.9</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <img
+                      src="/contact-2.png"
+                      alt="Avatar"
+                      className="h-7 w-7 rounded-full object-cover border border-gray-200"
+                    />
+                    <div className="flex-1 min-w-0">
+                      <p className="text-xs font-black text-gray-800 truncate">David M. (Systems Dev)</p>
+                      <p className="text-[9px] text-[#1E3A8A]">Matched: Cloud Solutions</p>
+                    </div>
+                    <span className="text-[9px] font-extrabold text-emerald-500">HIRED</span>
+                  </div>
+                </div>
+              </motion.div>
             </div>
+
+            <motion.div
+              className="absolute h-9 w-9 rounded-full border-2 border-white bg-[#0EA5E9]/20 shadow-md overflow-hidden z-20 pointer-events-none"
+              style={{ left: "10%", bottom: "20%" }}
+              animate={{
+                x: [0, 80, 180, 230],
+                y: [0, -40, -110, -180],
+                scale: [1, 1.1, 0.9, 1]
+              }}
+              transition={{
+                repeat: Infinity,
+                duration: 12,
+                ease: "linear"
+              }}
+            >
+              <img src={avatars[0].url} alt="" className="h-full w-full object-cover" />
+            </motion.div>
+
+            <motion.div
+              className="absolute h-8 w-8 rounded-full border-2 border-white bg-[#1E3A8A]/20 shadow-md overflow-hidden z-20 pointer-events-none"
+              style={{ right: "12%", bottom: "15%" }}
+              animate={{
+                x: [0, -100, -180, -220],
+                y: [0, -60, -140, -230],
+                scale: [0.9, 1, 1.1, 0.9]
+              }}
+              transition={{
+                repeat: Infinity,
+                duration: 10,
+                ease: "linear"
+              }}
+            >
+              <img src={avatars[1].url} alt="" className="h-full w-full object-cover" />
+            </motion.div>
+
+            <motion.div
+              className="absolute h-9 w-9 rounded-full border-2 border-white bg-white/30 shadow-md overflow-hidden z-20 pointer-events-none"
+              style={{ left: "45%", top: "45%" }}
+              animate={{
+                y: [-12, 12, -12],
+                x: [-10, 10, -10]
+              }}
+              transition={{
+                repeat: Infinity,
+                duration: 4,
+                ease: "easeInOut"
+              }}
+            >
+              <img src={avatars[2].url} alt="" className="h-full w-full object-cover" />
+            </motion.div>
           </motion.div>
         </div>
       </motion.div>
