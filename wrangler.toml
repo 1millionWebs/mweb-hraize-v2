@@ -7,6 +7,6 @@ assets = { directory = ".open-next/assets", binding = "ASSETS" }
 
 [vars]
 ENVIRONMENT = "production"
-MAILTRAP_SENDER_EMAIL=info@notify.hraize.com
-MAILTRAP_SENDER_NAME="Hraize"
-HR_RECIPIENT_EMAIL=info@hraize.com
+MAILTRAP_SENDER_EMAIL = "info@notify.hraize.com"
+MAILTRAP_SENDER_NAME = "Hraize"
+HR_RECIPIENT_EMAIL = "info@hraize.com"

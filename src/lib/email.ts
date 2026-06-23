@@ -188,7 +188,7 @@ ${params.message}
     </div>
     <div class="content">
       <p>Dear <strong>${params.fullName}</strong>,</p>
-      <p>Thank you for reaching out to Hraize HR Analytics! We have successfully received your inquiry regarding <strong>${serviceLabel}</strong>.</p>
+      <p>Thank you for reaching out to Hraize HR, We have successfully received your inquiry regarding <strong>${serviceLabel}</strong>.</p>
       <p>Our advisory team is currently reviewing your details and will get back to you within 24-48 business hours.</p>
       <p>If you have any urgent matters, feel free to reply directly to this email or call us during business hours (Monday to Saturday, 9:00 AM to 6:00 PM).</p>
       <br/>
@@ -196,7 +196,7 @@ ${params.message}
       <p><strong>The Hraize Team</strong><br/>HR Analytics & Advisory Services</p>
     </div>
     <div class="footer">
-      <p>Hraize HR Analytics, Thanjavur, Tamil Nadu.</p>
+      <p>Hraize, Thanjavur, Tamil Nadu.</p>
       <p>&copy; ${currentYear} Hraize. All rights reserved.</p>
     </div>
   </div>
@@ -386,8 +386,8 @@ ${params.comments}
     </div>
     <div class="content">
       <p>Dear <strong>${params.firstName}</strong>,</p>
-      <p>Thank you for submitting your resume to Hraize HR Analytics!</p>
-      <p>We have successfully received your details and added your profile to our talent database. Our recruiting team will evaluate your background against our open vacancies and client requirements.</p>
+      <p>Thank you for submitting your resume to Hraize!</p>
+      <p>We have successfully received your details and added your profile to our talent database. Our recruiting team will evaluate your background against our open vacancies / Applied job(s) and client requirements.</p>
       <p>If your profile matches any of our current or future needs, we will reach out to schedule an introductory call.</p>
       <p>You can also check our current vacancies at any time on our careers page.</p>
       <br/>
@@ -395,7 +395,7 @@ ${params.comments}
       <p><strong>The Hraize Recruitment Team</strong><br/>Hraize HR Analytics</p>
     </div>
     <div class="footer">
-      <p>Hraize HR Analytics, Thanjavur, Tamil Nadu.</p>
+      <p>Hraize, Thanjavur, Tamil Nadu.</p>
       <p>&copy; ${currentYear} Hraize. All rights reserved.</p>
     </div>
   </div>
