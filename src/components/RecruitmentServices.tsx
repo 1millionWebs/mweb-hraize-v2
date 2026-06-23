@@ -262,9 +262,9 @@ export const RecruitmentServices: React.FC<RecruitmentServicesProps> = ({
               <thead>
                 <tr className="border-b-2 border-sky-600/50">
                   <th className="py-4 px-4 text-xs font-black uppercase text-navy-900 tracking-wider w-[20%]">Dimension</th>
-                  <th className="py-4 px-4 text-xs font-black uppercase text-navy-900/30 tracking-wider w-[40%]">Traditional Agency</th>
-                  <th className="py-4 px-4 text-xs font-black uppercase text-sky-600 bg-sky-600/5 rounded-t-xl tracking-wider w-[40%]">
-                    Hraize Advantage
+                  <th className="py-4 px-4 text-xs font-black uppercase text-navy-900/30 tracking-wider bg-sky-600/5 w-[40%]">Hraize Advantage</th>
+                  <th className="py-4 px-4 text-xs font-black uppercase text-sky-600 rounded-t-xl tracking-wider w-[40%]">
+                    Traditional Agency
                   </th>
                 </tr>
               </thead>
@@ -272,15 +272,16 @@ export const RecruitmentServices: React.FC<RecruitmentServicesProps> = ({
                 {comparisonRows.map((row, idx) => (
                   <tr key={idx} className="hover:bg-cream-50 transition-colors">
                     <td className="py-4 px-4 text-xs font-black text-navy-900 uppercase">{row.feature}</td>
-                    <td className="py-4 px-4 text-xs text-navy-900/50 flex items-center gap-2">
-                      <XCircle className="h-4 w-4 text-red-muted shrink-0" />
-                      {row.agency}
-                    </td>
+
                     <td className="py-4 px-4 text-xs text-navy-900 bg-sky-600/5 border-x border-sky-600/50 font-bold">
                       <div className="flex items-center gap-2">
                         <CheckCircle className="h-4 w-4 text-forest-500 shrink-0" />
                         {row.hraize}
                       </div>
+                    </td>
+                    <td className="py-4 px-4 text-xs text-navy-900/50 flex items-center gap-2">
+                      <XCircle className="h-4 w-4 text-red-muted shrink-0" />
+                      {row.agency}
                     </td>
                   </tr>
                 ))}
