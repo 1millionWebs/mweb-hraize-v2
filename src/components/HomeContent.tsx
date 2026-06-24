@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
+import Image from "next/image";
 import { motion } from "motion/react";
 import {
-  Heart, BarChart3, Settings, Users, GraduationCap, Target, ArrowRight,
+  Heart, BarChart3, Target, ArrowRight,
   Building2, FileText, BadgeCheck, Clock
 } from "lucide-react";
 import { SectionLabel, FeatureCheck } from "./UIElements";
@@ -15,6 +16,7 @@ export const HomeContent: React.FC<HomeContentProps> = ({
   onGetStarted,
   onNavigateToService,
 }) => {
+  const [activeService, setActiveService] = useState(0);
   const whatWeDo = [
     {
       title: "For Growing Businesses",
@@ -127,59 +129,129 @@ export const HomeContent: React.FC<HomeContentProps> = ({
             </p>
           </div>
 
-          <div className="space-y-6 max-w-5xl mx-auto">
+          {/* Services accordion — matches reference design */}
+          <div className="flex flex-col md:flex-row gap-3 h-[580px] md:h-[440px]">
             {[
               {
-                icon: Settings,
                 title: "HR Services",
+                number: "01",
                 desc: "Setup compliant systems, handbook policies, and advanced interactive dashboards. Audit legal compliance gaps and manage attrition scientifically.",
                 href: "hr-services",
-                number: "01"
+                image: "/services-hr.png",
               },
               {
-                icon: Users,
                 title: "Recruitment Services",
+                number: "02",
                 desc: "Identify high-caliber permanent, temporary, and contract team members. Bulletproof candidate preparation with a 60-day replacement guarantee.",
                 href: "recruitment",
-                number: "02"
+                image: "/services-recruitment.png",
               },
               {
-                icon: GraduationCap,
-                title: "Training and Development",
+                title: "Training & Development",
+                number: "03",
                 desc: "Empower graduates, mid-career professionals, and first-time executives with resume rewriting and recruitment coaching channels.",
                 href: "training",
-                number: "03"
+                image: "/services-training.png",
               }
             ].map((svc, idx) => {
-              const Icon = svc.icon;
+              const isActive = idx === activeService;
+              
+              const handleMouseEnter = () => {
+                if (typeof window !== "undefined" && window.matchMedia("(hover: hover)").matches) {
+                  setActiveService(idx);
+                }
+              };
+
+              const handleCardClick = () => {
+                if (isActive) {
+                  onNavigateToService(svc.href);
+                } else {
+                  setActiveService(idx);
+                }
+              };
+
               return (
-                <motion.div
+                <div
                   key={idx}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.2 }}
-                  transition={{ duration: 0.6, delay: idx * 0.12, ease: "easeOut" }}
-                  className="group relative flex items-start gap-6 p-6 rounded-2xl hover:bg-cream-50 transition-colors"
+                  className={`relative rounded-3xl overflow-hidden cursor-pointer transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] ${
+                    isActive
+                      ? "flex-[4] md:flex-[3.5] bg-white shadow-xl border border-gray-100"
+                      : "flex-[0.6] md:flex-[0.55] min-h-[60px] md:min-h-0 md:min-w-[64px]"
+                  }`}
+                  onMouseEnter={handleMouseEnter}
+                  onClick={handleCardClick}
                 >
-                  <div className="flex h-10 w-10 sm:h-14 sm:w-14 shrink-0 items-center justify-center rounded-xl bg-sky-600/5 text-sky-600 group-hover:bg-sky-600 group-hover:text-white transition-all">
-                    <Icon className="h-5 w-5 sm:h-6 sm:w-6" />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-3 mb-2">
-                      <span className="text-xs font-black text-sky-600/40">{svc.number}</span>
-                      <span className="h-px flex-1 bg-sky-600/10" />
+                  {isActive ? (
+                    /* ── EXPANDED: white card with image on top, text below ── */
+                    <div className="flex flex-col h-full w-full">
+                      {/* Image panel — takes ~70% of height */}
+                      <div className="relative flex-1 m-3 rounded-2xl overflow-hidden">
+                        <Image
+                          src={svc.image}
+                          alt={svc.title}
+                          fill
+                          className="object-cover"
+                          sizes="(max-width: 768px) 100vw, 40vw"
+                        />
+                      </div>
+
+                      {/* Text + CTA below the image */}
+                      <div className="px-5 pb-5 pt-2 flex items-end justify-between gap-3">
+                        <div className="min-w-0">
+                          <h4 className="text-lg font-black text-sky-600 uppercase tracking-tight leading-tight">
+                            {svc.title}
+                          </h4>
+                          <p className="text-xs text-navy-900/55 font-medium leading-relaxed mt-1 line-clamp-2">
+                            {svc.desc}
+                          </p>
+                        </div>
+                        <button
+                          onClick={(e) => { e.stopPropagation(); onNavigateToService(svc.href); }}
+                          className="shrink-0 h-9 w-9 rounded-full bg-sky-600 hover:bg-sky-500 text-white flex items-center justify-center transition-colors shadow-md shadow-sky-600/30"
+                        >
+                          <ArrowRight className="h-4 w-4" />
+                        </button>
+                      </div>
                     </div>
-                    <h4 className="text-lg font-black text-navy-900 uppercase tracking-tight mb-2">{svc.title}</h4>
-                    <p className="text-sm text-navy-900/60 font-medium leading-relaxed max-w-2xl">{svc.desc}</p>
-                    <button
-                      onClick={() => onNavigateToService(svc.href)}
-                      className="mt-4 inline-flex items-center gap-1.5 text-xs font-black text-sky-600 hover:text-sky-700 transition-colors cursor-pointer"
-                    >
-                      Learn more
-                      <ArrowRight className="h-3.5 w-3.5" />
-                    </button>
-                  </div>
-                </motion.div>
+                  ) : (
+                    /* ── COLLAPSED: narrow strip — image bg + rotated title ── */
+                    <div className="relative h-full w-full rounded-3xl overflow-hidden">
+                      <Image
+                        src={svc.image}
+                        alt={svc.title}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, 80px"
+                      />
+                      {/* Dark overlay */}
+                      <div className="absolute inset-0 bg-navy-900/55" />
+
+                      {/* Rotated title (Desktop: bottom-up) */}
+                      <div className="absolute inset-0 hidden md:flex items-center justify-center">
+                        <span
+                          className="text-sm font-black text-white uppercase tracking-widest whitespace-nowrap select-none"
+                          style={{
+                            writingMode: "vertical-rl",
+                            textOrientation: "mixed",
+                            transform: "rotate(180deg)",
+                          }}
+                        >
+                          {svc.title}
+                        </span>
+                      </div>
+
+                      {/* Horizontal title (Mobile: horizontal centered) */}
+                      <div className="absolute inset-0 flex md:hidden items-center justify-between px-6">
+                        <span className="text-sm font-black text-white uppercase tracking-widest">
+                          {svc.title}
+                        </span>
+                        <span className="text-xs font-bold text-sky-400">
+                          {svc.number}
+                        </span>
+                      </div>
+                    </div>
+                  )}
+                </div>
               );
             })}
           </div>
