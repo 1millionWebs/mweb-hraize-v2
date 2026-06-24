@@ -161,8 +161,8 @@ export const HomeContent: React.FC<HomeContentProps> = ({
                   transition={{ duration: 0.6, delay: idx * 0.12, ease: "easeOut" }}
                   className="group relative flex items-start gap-6 p-6 rounded-2xl hover:bg-cream-50 transition-colors"
                 >
-                  <div className="hidden sm:flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-sky-600/5 text-sky-600 group-hover:bg-sky-600 group-hover:text-white transition-all">
-                    <Icon className="h-6 w-6" />
+                  <div className="flex h-10 w-10 sm:h-14 sm:w-14 shrink-0 items-center justify-center rounded-xl bg-sky-600/5 text-sky-600 group-hover:bg-sky-600 group-hover:text-white transition-all">
+                    <Icon className="h-5 w-5 sm:h-6 sm:w-6" />
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-3 mb-2">
@@ -263,10 +263,10 @@ export const HomeContent: React.FC<HomeContentProps> = ({
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.5, delay: idx * 0.1, ease: "easeOut" }}
-                className="group flex gap-8 py-8 border-t border-sky-600/50 first:border-t-0 hover:bg-cream-50/50 px-4 -mx-4 rounded-2xl transition-colors"
+                className="group flex gap-4 sm:gap-8 py-8 border-t border-sky-600/50 first:border-t-0 hover:bg-cream-50/50 px-4 -mx-4 rounded-2xl transition-colors"
               >
-                <div className="hidden sm:flex w-12 shrink-0 items-start pt-1">
-                  <item.icon className="h-6 w-6 text-sky-600 group-hover:text-sky-500 transition-colors" />
+                <div className="flex w-10 sm:w-12 shrink-0 items-start pt-1">
+                  <item.icon className="h-5 w-5 sm:h-6 sm:w-6 text-sky-600 group-hover:text-sky-500 transition-colors" />
                 </div>
                 <div className="flex-1">
                   <h4 className="text-base font-black text-navy-900 uppercase tracking-tight mb-2">{item.title}</h4>
