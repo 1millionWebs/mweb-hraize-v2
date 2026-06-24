@@ -179,7 +179,7 @@ export default function VacanciesPage() {
                   className="px-4 py-2 border border-sky-600/50 rounded-lg text-xs font-black text-navy-900/50 hover:bg-cream-100 uppercase cursor-pointer">
                   Close
                 </button>
-                <Link href="/submit-resume"
+                <Link href={`/submit-resume?jobTitle=${encodeURIComponent(selectedJob.title)}&jobId=${selectedJob.id}&department=${encodeURIComponent(selectedJob.department)}`}
                   className="px-6 py-2.5 bg-sky-600 hover:bg-sky-700 text-white rounded-lg text-xs font-black uppercase tracking-wider shadow-md inline-flex items-center gap-1.5">
                   Apply Now <ChevronRight className="h-3.5 w-3.5" />
                 </Link>

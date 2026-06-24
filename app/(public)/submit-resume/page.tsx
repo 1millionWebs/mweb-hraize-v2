@@ -1,5 +1,5 @@
 "use client";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion } from "motion/react";
 import { Upload, CheckCircle, AlertCircle, ArrowUpRight, User, Mail, Phone, MapPin, Users, Calendar, Heart, GraduationCap, Briefcase, MessageSquare, FileText } from "lucide-react";
 import { SectionLabel } from "@/src/components/UIElements";
@@ -8,6 +8,7 @@ import Link from "next/link";
 const qualifications = ["10th", "12th", "UG", "PG", "ITI", "Diploma", "Engineering", "MBA"];
 
 export default function SubmitResumePage() {
+  const [appliedJob, setAppliedJob] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     firstName: "", lastName: "", email: "", phone: "", location: "",
     gender: "", ageRange: "", maritalStatus: "", qualification: "", experience: "", comments: "",
@@ -20,6 +21,20 @@ export default function SubmitResumePage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const jobTitle = params.get("jobTitle");
+    const jobId = params.get("jobId");
+    const department = params.get("department");
+    if (jobTitle && jobId && !appliedJob) {
+      setAppliedJob(jobTitle);
+      setFormData((prev) => ({
+        ...prev,
+        comments: `Applying for: ${jobTitle} (${jobId}) under ${department}. `,
+      }));
+    }
+  }, [appliedJob]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
