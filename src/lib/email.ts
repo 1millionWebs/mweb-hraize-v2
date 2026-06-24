@@ -1,8 +1,41 @@
+import fs from "fs";
+import path from "path";
+
+let cachedLogoBase64: string | null = null;
+
+function getLogoBase64(): string {
+  if (cachedLogoBase64) return cachedLogoBase64;
+  try {
+    const logoPath = path.join(process.cwd(), "public", "logo1.png");
+    const logoBuffer = fs.readFileSync(logoPath);
+    cachedLogoBase64 = logoBuffer.toString("base64");
+    return cachedLogoBase64;
+  } catch {
+    return "";
+  }
+}
+
+function getLogoHtml(): string {
+  if (!getLogoBase64()) return "";
+  return `<img src="cid:company-logo" alt="Hraize" style="width:28px;height:auto;vertical-align:middle;margin-right:8px;display:inline-block" />`;
+}
+
+function getLogoAttachment(): MailtrapAttachment {
+  return {
+    content: getLogoBase64(),
+    filename: "logo1.png",
+    type: "image/png",
+    disposition: "inline",
+    content_id: "company-logo",
+  };
+}
+
 interface MailtrapAttachment {
   content: string; // base64 string
   filename: string;
   type: string;
   disposition?: "attachment" | "inline";
+  content_id?: string;
 }
 
 interface MailtrapAddress {
@@ -118,7 +151,7 @@ export async function sendContactEmails(params: ContactEmailParams): Promise<{ s
 </head>
 <body>
   <div class="container">
-    <h2>New Contact Inquiry</h2>
+    <h2>${getLogoHtml()}New Contact Inquiry</h2>
     <p>A new enquiry has been submitted through the Hraize Contact Form. Below are the details:</p>
     <table>
       <tr>
@@ -184,7 +217,7 @@ ${params.message}
 <body>
   <div class="container">
     <div class="header">
-      <h2>We've Received Your Inquiry</h2>
+      <h2>${getLogoHtml()}We've Received Your Inquiry</h2>
     </div>
     <div class="content">
       <p>Dear <strong>${params.fullName}</strong>,</p>
@@ -224,6 +257,7 @@ HR Analytics & Advisory Services
       subject: `New Inquiry: ${params.fullName} - ${serviceLabel}`,
       html: hrEmailHtml,
       text: hrText,
+      attachments: [getLogoAttachment()],
     }),
     sendEmail({
       from: { email: senderEmail, name: senderName },
@@ -231,6 +265,7 @@ HR Analytics & Advisory Services
       subject: `Acknowledgment: We received your inquiry`,
       html: userEmailHtml,
       text: userText,
+      attachments: [getLogoAttachment()],
     }),
   ]);
 
@@ -291,7 +326,7 @@ export async function sendResumeEmails(params: ResumeEmailParams): Promise<{ suc
 </head>
 <body>
   <div class="container">
-    <h2>New Candidate Application</h2>
+    <h2>${getLogoHtml()}New Candidate Application</h2>
     <p>A new resume has been submitted to the Hraize Talent Pool. The candidate's resume file is attached.</p>
     <table>
       <tr>
@@ -382,7 +417,7 @@ ${params.comments}
 <body>
   <div class="container">
     <div class="header">
-      <h2>Resume Received Successfully</h2>
+      <h2>${getLogoHtml()}Resume Received Successfully</h2>
     </div>
     <div class="content">
       <p>Dear <strong>${params.firstName}</strong>,</p>
@@ -433,6 +468,7 @@ Hraize HR Analytics
           type: params.fileMimeType,
           disposition: "attachment",
         },
+        getLogoAttachment(),
       ],
     }),
     sendEmail({
@@ -441,6 +477,7 @@ Hraize HR Analytics
       subject: `Confirmation: We have received your resume`,
       html: userEmailHtml,
       text: userText,
+      attachments: [getLogoAttachment()],
     }),
   ]);
 
