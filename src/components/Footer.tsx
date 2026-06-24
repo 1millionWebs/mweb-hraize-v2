@@ -84,7 +84,7 @@ export const Footer: React.FC = () => {
             <div className="space-y-3 font-medium text-xs text-sage-100/60">
               <div className="flex gap-2.5 items-center">
                 <Mail className="h-4 w-4 text-sky-400" />
-                <span className="font-extrabold text-white text-xs">info@hraize.com</span>
+                <a href="mailto:info@hraize.com" className="font-extrabold text-white text-xs">info@hraize.com</a>
               </div>
               <p className="text-[10px] text-sage-100/40 leading-relaxed font-bold">
                 Reach out with your HR and recruitment needs. Our team responds during working hours.

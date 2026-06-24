@@ -169,7 +169,7 @@ export const Contact: React.FC<ContactProps> = ({ initialTab = "hr" }) => {
                 </div>
                 <div>
                   <p className="text-[11px] font-bold text-sage-100/50 tracking-wider uppercase">Email Us</p>
-                  <p className="text-sm text-white mt-1 font-black underline tracking-wide">info@hraize.com</p>
+                  <a href="mailto:info@hraize.com" className="text-sm text-white mt-1 font-black underline tracking-wide">info@hraize.com</a>
                 </div>
               </div>
               <div className="flex gap-4 items-start">
