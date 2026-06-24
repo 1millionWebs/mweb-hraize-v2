@@ -1,9 +1,5 @@
-export function getDB(): D1Database {
+export function getDB(): D1Database | null {
   const db = process.env.DB;
-  if (!db) {
-    throw new Error(
-      "D1 database binding 'DB' is not available. Run 'npm run preview' or 'npm run deploy' instead of 'next dev'."
-    );
-  }
+  if (!db) return null;
   return db as unknown as D1Database;
 }
