@@ -124,7 +124,7 @@ export default function VacanciesPage() {
         <div className="mt-12 text-center">
           <p className="text-sm text-navy-900/50 font-medium">
             Don&apos;t see the right fit?{" "}
-            <Link href="/submit-resume" className="text-sky-600 font-bold hover:text-sky-700 inline-flex items-center gap-1">
+            <Link href="/submit-resume" prefetch={false} className="text-sky-600 font-bold hover:text-sky-700 inline-flex items-center gap-1">
               Submit your resume <ChevronRight className="h-3.5 w-3.5" />
             </Link>
           </p>
@@ -180,6 +180,7 @@ export default function VacanciesPage() {
                   Close
                 </button>
                 <Link href={`/submit-resume?jobTitle=${encodeURIComponent(selectedJob.title)}&jobId=${selectedJob.id}&department=${encodeURIComponent(selectedJob.department)}`}
+                  prefetch={false}
                   className="px-6 py-2.5 bg-sky-600 hover:bg-sky-700 text-white rounded-lg text-xs font-black uppercase tracking-wider shadow-md inline-flex items-center gap-1.5">
                   Apply Now <ChevronRight className="h-3.5 w-3.5" />
                 </Link>

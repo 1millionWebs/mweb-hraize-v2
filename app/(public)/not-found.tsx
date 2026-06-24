@@ -13,6 +13,7 @@ export default function NotFound() {
       </p>
       <Link
         href="/"
+        prefetch={false}
         className="mt-8 inline-flex items-center gap-2 rounded-full bg-sky-600 px-6 py-3 text-xs font-black tracking-wider text-white shadow-lg shadow-sky-600/20 hover:bg-sky-700 transition-all"
       >
         <ArrowLeft className="h-4 w-4" />

@@ -12,7 +12,7 @@ export const Footer: React.FC = () => {
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 pb-10 border-b border-sky-600/50">
           <div className="md:col-span-4 space-y-4">
-            <Link href="/" className="flex items-center gap-2 group">
+            <Link href="/" prefetch={false} className="flex items-center gap-2 group">
               <span className="bg-white p-1.5 rounded-md">
                 <img src="/logo.svg" alt="Hraize" className="h-5 rounded-md w-auto" /></span>
               <div className="flex flex-col min-w-0">
@@ -59,22 +59,22 @@ export const Footer: React.FC = () => {
             <p className="text-xs font-black text-sky-400 tracking-widest uppercase mb-4">Quick Portals</p>
             <ul className="space-y-2.5 text-xs font-bold text-sage-100/60">
               <li>
-                <Link href="/" className="hover:text-white hover:underline transition">Home</Link>
+                <Link href="/" prefetch={false} className="hover:text-white hover:underline transition">Home</Link>
               </li>
               <li>
-                <Link href="/about" className="hover:text-white hover:underline transition">About us</Link>
+                <Link href="/about" prefetch={false} className="hover:text-white hover:underline transition">About us</Link>
               </li>
               <li>
-                <Link href="/hr-services" className="hover:text-white hover:underline transition">HR Services</Link>
+                <Link href="/hr-services" prefetch={false} className="hover:text-white hover:underline transition">HR Services</Link>
               </li>
               <li>
-                <Link href="/recruitment" className="hover:text-white hover:underline transition">Recruitment Services</Link>
+                <Link href="/recruitment" prefetch={false} className="hover:text-white hover:underline transition">Recruitment Services</Link>
               </li>
               <li>
-                <Link href="/training" className="hover:text-white hover:underline transition">Training and Development</Link>
+                <Link href="/training" prefetch={false} className="hover:text-white hover:underline transition">Training and Development</Link>
               </li>
               <li>
-                <Link href="/careers" className="hover:text-white hover:underline transition">Careers</Link>
+                <Link href="/careers" prefetch={false} className="hover:text-white hover:underline transition">Careers</Link>
               </li>
             </ul>
           </div>

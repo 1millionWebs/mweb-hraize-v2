@@ -386,7 +386,7 @@ export default function SubmitResumePage() {
         <div className="mt-8 text-center">
           <p className="text-sm text-navy-900/40 font-medium">
             Already a candidate?{" "}
-            <Link href="/vacancies" className="text-sky-600 font-bold hover:text-sky-700 transition-colors inline-flex items-center gap-1">
+            <Link href="/vacancies" prefetch={false} className="text-sky-600 font-bold hover:text-sky-700 transition-colors inline-flex items-center gap-1">
               View current vacancies <ArrowUpRight className="h-3.5 w-3.5" />
             </Link>
           </p>

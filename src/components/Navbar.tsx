@@ -81,6 +81,7 @@ export const Navbar: React.FC = () => {
 
         <Link
           href="/"
+          prefetch={false}
           className="flex items-center gap-2.5 group"
           onClick={closeMenus}
         >
@@ -97,6 +98,7 @@ export const Navbar: React.FC = () => {
         <nav className="hidden md:ml-10 md:flex md:items-center md:gap-x-8">
           <Link
             href="/"
+            prefetch={false}
             onClick={closeMenus}
             className={`text-sm font-semibold transition-colors duration-200 ${isActive("/") ? "text-sky-600" : "text-navy-900/80 hover:text-sky-600"
               }`}
@@ -106,6 +108,7 @@ export const Navbar: React.FC = () => {
 
           <Link
             href="/about"
+            prefetch={false}
             onClick={closeMenus}
             className={`text-sm font-semibold transition-colors duration-200 ${isActive("/about") ? "text-sky-600" : "text-navy-900/80 hover:text-sky-600"
               }`}
@@ -141,6 +144,7 @@ export const Navbar: React.FC = () => {
                         <div key={idx} className="space-y-4 text-left">
                           <Link
                             href={cat.href}
+                            prefetch={false}
                             onClick={closeMenus}
                             className="block text-sm font-extrabold uppercase tracking-wider text-sky-600 hover:text-sky-700 transition-colors"
                           >
@@ -151,6 +155,7 @@ export const Navbar: React.FC = () => {
                               <li key={itemIdx}>
                                 <Link
                                   href={item.href}
+                                  prefetch={false}
                                   onClick={closeMenus}
                                   className="flex items-center text-xs font-semibold text-navy-900/60 hover:text-navy-900 transition-all duration-200 hover:translate-x-1"
                                 >
@@ -196,6 +201,7 @@ export const Navbar: React.FC = () => {
                       <li>
                         <Link
                           href="/submit-resume"
+                          prefetch={false}
                           onClick={closeMenus}
                           className="flex items-center text-xs font-semibold text-navy-900/60 hover:text-navy-900 transition-all duration-200 hover:translate-x-1"
                         >
@@ -206,6 +212,7 @@ export const Navbar: React.FC = () => {
                       <li>
                         <Link
                           href="/vacancies"
+                          prefetch={false}
                           onClick={closeMenus}
                           className="flex items-center text-xs font-semibold text-navy-900/60 hover:text-navy-900 transition-all duration-200 hover:translate-x-1"
                         >
@@ -224,6 +231,7 @@ export const Navbar: React.FC = () => {
         <div className="hidden md:flex items-center">
           <Link
             href="/contact?tab=general"
+            prefetch={false}
             onClick={closeMenus}
             className="inline-flex items-center gap-1.5 rounded-full bg-sky-600 px-5 py-2 text-sm font-bold text-white shadow-md hover:bg-sky-700 transition-all duration-200"
           >
@@ -252,6 +260,7 @@ export const Navbar: React.FC = () => {
           >
             <Link
               href="/"
+              prefetch={false}
               onClick={closeMenus}
               className="block w-full px-3 py-2 text-base font-semibold rounded-lg text-navy-900 hover:bg-cream-50 transition-colors duration-300"
             >
@@ -259,6 +268,7 @@ export const Navbar: React.FC = () => {
             </Link>
             <Link
               href="/about"
+              prefetch={false}
               onClick={closeMenus}
               className="block w-full px-3 py-2 text-base font-semibold rounded-lg text-navy-900 hover:bg-cream-50 transition-colors duration-300"
             >
@@ -272,6 +282,7 @@ export const Navbar: React.FC = () => {
                 <div key={idx} className="space-y-1.5">
                   <Link
                     href={cat.href}
+                    prefetch={false}
                     onClick={closeMenus}
                     className="block w-full px-3 py-0.5 text-sm font-bold text-sky-600 hover:text-sky-500"
                   >
@@ -282,6 +293,7 @@ export const Navbar: React.FC = () => {
                       <Link
                         key={itemIdx}
                         href={item.href}
+                        prefetch={false}
                         onClick={closeMenus}
                         className="flex items-center w-full px-3 py-0.5 text-xs font-medium text-navy-900/60 hover:text-navy-900 transition-colors duration-300"
                       >
@@ -299,6 +311,7 @@ export const Navbar: React.FC = () => {
               <div className="space-y-1.5">
                 <Link
                   href="/submit-resume"
+                  prefetch={false}
                   onClick={closeMenus}
                   className="flex items-center w-full px-3 py-1.5 text-xs font-semibold rounded-lg text-sky-600 hover:text-sky-500"
                 >
@@ -307,6 +320,7 @@ export const Navbar: React.FC = () => {
                 </Link>
                 <Link
                   href="/vacancies"
+                  prefetch={false}
                   onClick={closeMenus}
                   className="flex items-center w-full px-3 py-1.5 text-xs font-semibold rounded-lg text-sky-600 hover:text-sky-500"
                 >
@@ -317,6 +331,7 @@ export const Navbar: React.FC = () => {
             </div>
             <Link
               href="/contact?tab=general"
+              prefetch={false}
               onClick={closeMenus}
               className="block w-full text-center mt-4 bg-sky-600 py-2.5 text-base font-bold text-white rounded-lg shadow-md hover:bg-sky-700"
             >
