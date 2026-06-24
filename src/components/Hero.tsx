@@ -183,7 +183,8 @@ export const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
           </motion.div>
 
           <motion.div
-            className="lg:col-span-5 relative w-full h-[480px] lg:h-[500px] flex items-center justify-center p-4 bg-slate-900/5 rounded-3xl border border-white/40 shadow-inner"
+            className="lg:col-span-5 relative w-full h-[480px] lg:h-[500px] flex items-center justify-center p-4 rounded-3xl border border-white/40 shadow-inner"
+            style={{ background: "linear-gradient(rgba(255,255,255,0.50), rgba(255,255,255,0.50)), url('/Map1.png') center/cover no-repeat" }}
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.2 }}
