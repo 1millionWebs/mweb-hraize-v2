@@ -41,3 +41,25 @@ export function verifyToken(token: string): boolean {
     return false;
   }
 }
+
+export function generateResetToken(username: string): string {
+  const payload = { username, purpose: "reset-password", exp: Date.now() + 15 * 60 * 1000 }; // 15 mins
+  const data = Buffer.from(JSON.stringify(payload)).toString("base64");
+  const sig = crypto.createHmac("sha256", SECRET).update(data).digest("hex");
+  return `${data}.${sig}`;
+}
+
+export function verifyResetToken(token: string): string | null {
+  try {
+    const [data, sig] = token.split(".");
+    if (!data || !sig) return null;
+    const expectedSig = crypto.createHmac("sha256", SECRET).update(data).digest("hex");
+    if (sig !== expectedSig) return null;
+    const payload = JSON.parse(Buffer.from(data, "base64").toString("utf8"));
+    if (payload.exp < Date.now()) return null;
+    if (payload.purpose !== "reset-password") return null;
+    return payload.username;
+  } catch {
+    return null;
+  }
+}

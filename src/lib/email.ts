@@ -496,3 +496,72 @@ Hraize HR Analytics
     errors: errors.length > 0 ? errors : undefined,
   };
 }
+
+export async function sendResetPasswordEmail(email: string, resetLink: string): Promise<{ success: boolean; error?: string }> {
+  const senderEmail = process.env.MAILTRAP_SENDER_EMAIL || "lorrybusvanjeep@gmail.com";
+  const senderName = process.env.MAILTRAP_SENDER_NAME || "Hraize HR Analytics";
+  const currentYear = new Date().getFullYear();
+
+  const emailHtml = `
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body { font-family: Arial, sans-serif; color: #1e293b; line-height: 1.6; margin: 0; padding: 0; }
+    .container { max-width: 600px; margin: 20px auto; padding: 20px; border: 1px solid #e2e8f0; border-radius: 8px; background-color: #ffffff; }
+    .header { text-align: center; margin-bottom: 25px; }
+    h2 { color: #0284c7; margin-top: 0; font-size: 20px; }
+    .content { padding: 10px 0; font-size: 14px; }
+    .btn-container { text-align: center; margin: 25px 0; }
+    .btn { background-color: #0284c7; color: #ffffff !important; padding: 12px 24px; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 14px; display: inline-block; }
+    .footer { font-size: 12px; color: #94a3b8; text-align: center; margin-top: 30px; border-top: 1px solid #e2e8f0; padding-top: 15px; }
+    .warning { font-size: 11px; color: #ef4444; margin-top: 15px; font-style: italic; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      ${getLogoHtml()}
+      <h2>Reset Your Hraize Admin Password</h2>
+    </div>
+    <div class="content">
+      <p>Hello Admin,</p>
+      <p>We received a request to reset your Hraize Admin account password. Click the button below to set a new password:</p>
+      <div class="btn-container">
+        <a href="${resetLink}" target="_blank" class="btn">Reset Password</a>
+      </div>
+      <p>Or copy and paste this URL into your browser:</p>
+      <p style="word-break: break-all; font-family: monospace; font-size: 12px; color: #475569;">${resetLink}</p>
+      <p class="warning">Note: This link is valid for 15 minutes. If you did not make this request, you can safely ignore this email.</p>
+    </div>
+    <div class="footer">
+      <p>Hraize Advisory Services Private Limited.</p>
+      <p>&copy; ${currentYear} Hraize. All rights reserved.</p>
+    </div>
+  </div>
+</body>
+</html>
+`;
+
+  const emailText = `
+Hello Admin,
+
+We received a request to reset your Hraize Admin account password. Copy and paste the link below into your browser to reset your password:
+
+${resetLink}
+
+Note: This link is valid for 15 minutes. If you did not make this request, you can safely ignore this email.
+
+Best regards,
+Hraize Admin Services
+  `.trim();
+
+  return sendEmail({
+    from: { email: senderEmail, name: senderName },
+    to: [{ email, name: "Hraize Admin" }],
+    subject: "Reset Your Hraize Admin Password",
+    html: emailHtml,
+    text: emailText,
+    attachments: [getLogoAttachment()],
+  });
+}

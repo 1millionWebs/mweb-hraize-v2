@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "motion/react";
 import {
   Lock, Settings, Briefcase, Plus, X, Pencil, Trash2, LogOut,
-  Eye, EyeOff, CheckCircle, AlertCircle, ChevronRight
+  Eye, EyeOff, CheckCircle, AlertCircle, ChevronRight, Mail
 } from "lucide-react";
 import type { JobVacancy } from "@/src/types";
 
@@ -18,12 +18,21 @@ const emptyForm = {
 export default function AdminPage() {
   const router = useRouter();
   const [token, setToken] = useState<string | null>(null);
+  const [resetToken, setResetToken] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [tab, setTab] = useState<"settings" | "careers">("careers");
 
   useEffect(() => {
     const t = localStorage.getItem("admin_token");
     if (t) setToken(t);
+
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      const rt = params.get("reset_token");
+      if (rt) {
+        setResetToken(rt);
+      }
+    }
     setLoading(false);
   }, []);
 
@@ -46,12 +55,30 @@ export default function AdminPage() {
     );
   }
 
-  if (!token) return <LoginForm onLogin={handleLogin} />;
+  if (!token) {
+    if (resetToken) {
+      return (
+        <ResetPasswordForm
+          token={resetToken}
+          onComplete={() => {
+            setResetToken(null);
+            if (typeof window !== "undefined") {
+              const url = new URL(window.location.href);
+              url.searchParams.delete("reset_token");
+              window.history.replaceState({}, "", url.pathname);
+            }
+          }}
+        />
+      );
+    }
+    return <LoginForm onLogin={handleLogin} />;
+  }
 
   return <AdminDashboard token={token} onLogout={handleLogout} tab={tab} onTabChange={setTab} />;
 }
 
 function LoginForm({ onLogin }: { onLogin: (token: string) => void }) {
+  const [view, setView] = useState<"login" | "forgot">("login");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showPw, setShowPw] = useState(false);
@@ -74,6 +101,16 @@ function LoginForm({ onLogin }: { onLogin: (token: string) => void }) {
     } catch { setError("Connection error"); }
     finally { setSubmitting(false); }
   };
+
+  if (view === "forgot") {
+    return (
+      <div className="min-h-screen bg-cream-100 flex items-center justify-center p-4">
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="w-full max-w-sm">
+          <ForgotPasswordForm onBack={() => setView("login")} />
+        </motion.div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-cream-100 flex items-center justify-center p-4">
@@ -123,7 +160,205 @@ function LoginForm({ onLogin }: { onLogin: (token: string) => void }) {
             >
               {submitting ? "Signing in..." : "Sign In"}
             </button>
+            <div className="text-center mt-4">
+              <button
+                type="button"
+                onClick={() => setView("forgot")}
+                className="text-xs text-sky-600 hover:text-sky-700 font-bold hover:underline cursor-pointer"
+              >
+                Forgot password?
+              </button>
+            </div>
           </form>
+        </div>
+      </motion.div>
+    </div>
+  );
+}
+
+function ForgotPasswordForm({ onBack }: { onBack: () => void }) {
+  const [email, setEmail] = useState("");
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError("");
+    setSuccess("");
+    if (!email) { setError("Email is required"); return; }
+    setSubmitting(true);
+    try {
+      const res = await fetch(`${API_BASE}/auth/forgot-password`, {
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+      const data = await res.json();
+      if (!res.ok) { setError(data.error || "Request failed"); return; }
+      setSuccess(`Reset link sent successfully to ${email}. Please check your inbox.`);
+    } catch { setError("Connection error"); }
+    finally { setSubmitting(false); }
+  };
+
+  return (
+    <div className="bg-cream-50 rounded-2xl border border-navy-900/10 p-8 shadow-xl">
+      <div className="flex items-center gap-3 mb-6">
+        <div className="h-10 w-10 rounded-xl bg-sky-600/10 flex items-center justify-center">
+          <Mail className="h-5 w-5 text-sky-600" />
+        </div>
+        <div>
+          <h1 className="text-lg font-black text-navy-900 uppercase tracking-tight">Reset Password</h1>
+          <p className="text-[10px] font-bold text-navy-900/50 uppercase tracking-wider">Forgot your password?</p>
+        </div>
+      </div>
+      
+      {success ? (
+        <div className="space-y-4">
+          <div className="flex items-start gap-2.5 text-xs font-bold text-sky-600 bg-sky-600/10 rounded-lg p-4">
+            <CheckCircle className="h-5 w-5 flex-shrink-0 mt-0.5" />
+            <div className="leading-relaxed">{success}</div>
+          </div>
+          <button
+            type="button" onClick={onBack}
+            className="w-full py-2.5 bg-navy-900/10 hover:bg-navy-900/20 text-navy-900 text-sm font-black uppercase tracking-wider rounded-lg transition-colors cursor-pointer"
+          >
+            Back to Login
+          </button>
+        </div>
+      ) : (
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <p className="text-xs font-medium text-navy-900/60 leading-relaxed mb-2">
+            Enter your admin email to receive a password reset link.
+          </p>
+          <div>
+            <label className="text-[10px] font-bold uppercase tracking-wider text-navy-900/50 block mb-1">Admin Email</label>
+            <input
+              type="email" value={email} onChange={(e) => setEmail(e.target.value)}
+              className="w-full px-3 py-2.5 bg-white border border-navy-900/15 rounded-lg text-sm text-navy-900 font-medium focus:outline-none focus:border-sky-600 transition-colors"
+              placeholder="info@hraize.com"
+            />
+          </div>
+          {error && (
+            <div className="flex items-center gap-2 text-xs font-bold text-red-muted bg-red-muted/10 rounded-lg px-3 py-2">
+              <AlertCircle className="h-4 w-4 flex-shrink-0" />
+              {error}
+            </div>
+          )}
+          <div className="flex gap-3 pt-2">
+            <button
+              type="button" onClick={onBack} disabled={submitting}
+              className="flex-1 py-2.5 bg-navy-900/10 hover:bg-navy-900/20 disabled:opacity-50 text-navy-900 text-sm font-black uppercase tracking-wider rounded-lg transition-colors cursor-pointer text-center"
+            >
+              Cancel
+            </button>
+            <button
+              type="submit" disabled={submitting}
+              className="flex-[2] py-2.5 bg-sky-600 hover:bg-sky-700 disabled:opacity-50 text-white text-sm font-black uppercase tracking-wider rounded-lg transition-colors cursor-pointer"
+            >
+              {submitting ? "Sending..." : "Send Link"}
+            </button>
+          </div>
+        </form>
+      )}
+    </div>
+  );
+}
+
+function ResetPasswordForm({ token, onComplete }: { token: string; onComplete: () => void }) {
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [showPw, setShowPw] = useState(false);
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError("");
+    setSuccess("");
+    if (!newPassword || !confirmPassword) { setError("All fields are required"); return; }
+    if (newPassword !== confirmPassword) { setError("Passwords do not match"); return; }
+    if (newPassword.length < 6) { setError("Password must be at least 6 characters"); return; }
+    
+    setSubmitting(true);
+    try {
+      const res = await fetch(`${API_BASE}/auth/reset-password`, {
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ token, newPassword }),
+      });
+      const data = await res.json();
+      if (!res.ok) { setError(data.error || "Reset failed"); return; }
+      setSuccess("Your password has been successfully reset. You can now log in with your new password.");
+    } catch { setError("Connection error"); }
+    finally { setSubmitting(false); }
+  };
+
+  return (
+    <div className="min-h-screen bg-cream-100 flex items-center justify-center p-4">
+      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="w-full max-w-sm">
+        <div className="bg-cream-50 rounded-2xl border border-navy-900/10 p-8 shadow-xl">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="h-10 w-10 rounded-xl bg-sky-600/10 flex items-center justify-center">
+              <Lock className="h-5 w-5 text-sky-600" />
+            </div>
+            <div>
+              <h1 className="text-lg font-black text-navy-900 uppercase tracking-tight">New Password</h1>
+              <p className="text-[10px] font-bold text-navy-900/50 uppercase tracking-wider">Set your new credential</p>
+            </div>
+          </div>
+          
+          {success ? (
+            <div className="space-y-4">
+              <div className="flex items-start gap-2.5 text-xs font-bold text-forest-700 bg-forest-500/10 rounded-lg p-4">
+                <CheckCircle className="h-5 w-5 flex-shrink-0 mt-0.5" />
+                <div className="leading-relaxed">{success}</div>
+              </div>
+              <button
+                type="button" onClick={onComplete}
+                className="w-full py-2.5 bg-sky-600 hover:bg-sky-700 text-white text-sm font-black uppercase tracking-wider rounded-lg transition-colors cursor-pointer"
+              >
+                Go to Login
+              </button>
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div>
+                <label className="text-[10px] font-bold uppercase tracking-wider text-navy-900/50 block mb-1">New Password</label>
+                <div className="relative">
+                  <input
+                    type={showPw ? "text" : "password"} value={newPassword}
+                    onChange={(e) => setNewPassword(e.target.value)}
+                    className="w-full px-3 py-2.5 pr-10 bg-white border border-navy-900/15 rounded-lg text-sm text-navy-900 font-medium focus:outline-none focus:border-sky-600 transition-colors"
+                    placeholder="Enter new password"
+                  />
+                  <button type="button" onClick={() => setShowPw(!showPw)} className="absolute right-3 top-2.5 text-navy-900/40 hover:text-navy-900/70 cursor-pointer">
+                    {showPw ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                  </button>
+                </div>
+              </div>
+              <div>
+                <label className="text-[10px] font-bold uppercase tracking-wider text-navy-900/50 block mb-1">Confirm Password</label>
+                <input
+                  type="password" value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  className="w-full px-3 py-2.5 bg-white border border-navy-900/15 rounded-lg text-sm text-navy-900 font-medium focus:outline-none focus:border-sky-600 transition-colors"
+                  placeholder="Re-enter password"
+                />
+              </div>
+              {error && (
+                <div className="flex items-center gap-2 text-xs font-bold text-red-muted bg-red-muted/10 rounded-lg px-3 py-2">
+                  <AlertCircle className="h-4 w-4 flex-shrink-0" />
+                  {error}
+                </div>
+              )}
+              <button
+                type="submit" disabled={submitting}
+                className="w-full py-2.5 bg-sky-600 hover:bg-sky-700 disabled:opacity-50 text-white text-sm font-black uppercase tracking-wider rounded-lg transition-colors cursor-pointer"
+              >
+                {submitting ? "Resetting Password..." : "Reset Password"}
+              </button>
+            </form>
+          )}
         </div>
       </motion.div>
     </div>
