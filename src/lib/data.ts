@@ -1,8 +1,8 @@
 import type { JobVacancy } from "@/src/types";
+import { getDB } from "@/src/lib/db";
 
-let vacancies: JobVacancy[] = [
+const DEFAULT_VACANCIES: Omit<JobVacancy, "id">[] = [
   {
-    id: "j1",
     title: "Senior Workforce Analytics Specialist",
     department: "Analytics & Business Intelligence",
     location: "Bangalore, India (Hybrid)",
@@ -17,7 +17,6 @@ let vacancies: JobVacancy[] = [
     ],
   },
   {
-    id: "j2",
     title: "HR Operations Lead (Consulting Frameworks)",
     department: "HR Systems & Consulting",
     location: "Chennai, India (On-site)",
@@ -32,7 +31,6 @@ let vacancies: JobVacancy[] = [
     ],
   },
   {
-    id: "j3",
     title: "Senior Technical Recruiter (Contract & Temp)",
     department: "Recruitment Services",
     location: "Remote (India)",
@@ -47,7 +45,6 @@ let vacancies: JobVacancy[] = [
     ],
   },
   {
-    id: "j4",
     title: "Graduate HR Associate (Talent Acquisition Pipeline)",
     department: "Graduate Programs",
     location: "Mumbai, India (On-site)",
@@ -63,52 +60,167 @@ let vacancies: JobVacancy[] = [
   },
 ];
 
-let nextId = 5;
+let initialized = false;
 
-let adminHash = "";
-let adminSalt = "";
+async function ensureTables(): Promise<void> {
+  if (initialized) return;
+  const db = getDB();
 
-export function getVacancies(): JobVacancy[] {
-  return [...vacancies];
+  await db.prepare(
+    `CREATE TABLE IF NOT EXISTS admin_credentials (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      username TEXT NOT NULL,
+      password TEXT NOT NULL,
+      updated_at TEXT NOT NULL DEFAULT (datetime('now'))
+    )`
+  ).run();
+
+  await db.prepare(
+    `CREATE TABLE IF NOT EXISTS vacancies (
+      id TEXT PRIMARY KEY,
+      title TEXT NOT NULL,
+      department TEXT NOT NULL,
+      location TEXT NOT NULL,
+      type TEXT NOT NULL,
+      experience TEXT NOT NULL,
+      salary TEXT NOT NULL DEFAULT '',
+      description TEXT NOT NULL,
+      requirements TEXT NOT NULL DEFAULT '[]',
+      created_at TEXT NOT NULL DEFAULT (datetime('now')),
+      updated_at TEXT NOT NULL DEFAULT (datetime('now'))
+    )`
+  ).run();
+
+  const { results } = await db.prepare("SELECT COUNT(*) AS count FROM vacancies").all<{ count: number }>();
+  if (results.length === 0 || results[0].count === 0) {
+    const stmt = db.prepare(
+      "INSERT OR IGNORE INTO vacancies (id, title, department, location, type, experience, salary, description, requirements) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"
+    );
+    for (let i = 0; i < DEFAULT_VACANCIES.length; i++) {
+      const v = DEFAULT_VACANCIES[i];
+      await stmt.bind(
+        `j${i + 1}`,
+        v.title,
+        v.department,
+        v.location,
+        v.type,
+        v.experience,
+        v.salary || "",
+        v.description,
+        JSON.stringify(v.requirements || []),
+      ).run();
+    }
+  }
+
+  initialized = true;
 }
 
-export function getVacancyById(id: string): JobVacancy | undefined {
-  return vacancies.find((v) => v.id === id);
+export async function getVacancies(): Promise<JobVacancy[]> {
+  await ensureTables();
+  const db = getDB();
+  const { results } = await db.prepare(
+    "SELECT id, title, department, location, type, experience, salary, description, requirements FROM vacancies ORDER BY id ASC"
+  ).all<Omit<JobVacancy, "requirements"> & { requirements: string }>();
+  return results.map((row) => ({
+    ...row,
+    requirements: JSON.parse(row.requirements || "[]"),
+  }));
 }
 
-export function createVacancy(data: Omit<JobVacancy, "id">): JobVacancy {
-  const vacancy: JobVacancy = {
-    ...data,
-    id: `j${nextId++}`,
-    requirements: data.requirements || [],
+export async function getVacancyById(id: string): Promise<JobVacancy | undefined> {
+  await ensureTables();
+  const db = getDB();
+  const row = await db.prepare(
+    "SELECT id, title, department, location, type, experience, salary, description, requirements FROM vacancies WHERE id = ?"
+  ).bind(id).first<Omit<JobVacancy, "requirements"> & { requirements: string }>();
+  if (!row) return undefined;
+  return {
+    ...row,
+    requirements: JSON.parse(row.requirements || "[]"),
   };
-  vacancies.push(vacancy);
-  return vacancy;
 }
 
-export function updateVacancy(id: string, data: Partial<JobVacancy>): JobVacancy | null {
-  const idx = vacancies.findIndex((v) => v.id === id);
-  if (idx === -1) return null;
-  vacancies[idx] = { ...vacancies[idx], ...data, id };
-  return vacancies[idx];
+export async function createVacancy(data: Omit<JobVacancy, "id">): Promise<JobVacancy> {
+  await ensureTables();
+  const db = getDB();
+  const maxRow = await db.prepare(
+    "SELECT MAX(CAST(SUBSTR(id, 2) AS INTEGER)) AS id FROM vacancies"
+  ).first<{ id: number | null }>();
+  const nextNum = (maxRow?.id ?? 0) + 1;
+  const id = `j${nextNum}`;
+  await db.prepare(
+    "INSERT INTO vacancies (id, title, department, location, type, experience, salary, description, requirements) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"
+  ).bind(
+    id,
+    data.title,
+    data.department,
+    data.location,
+    data.type,
+    data.experience,
+    data.salary || "",
+    data.description,
+    JSON.stringify(data.requirements || []),
+  ).run();
+  return { ...data, id };
 }
 
-export function deleteVacancy(id: string): boolean {
-  const idx = vacancies.findIndex((v) => v.id === id);
-  if (idx === -1) return false;
-  vacancies.splice(idx, 1);
-  return true;
+export async function updateVacancy(id: string, data: Partial<JobVacancy>): Promise<JobVacancy | null> {
+  await ensureTables();
+  const existing = await getVacancyById(id);
+  if (!existing) return null;
+  const merged = { ...existing, ...data, id };
+  const db = getDB();
+  await db.prepare(
+    "UPDATE vacancies SET title = ?, department = ?, location = ?, type = ?, experience = ?, salary = ?, description = ?, requirements = ?, updated_at = datetime('now') WHERE id = ?"
+  ).bind(
+    merged.title,
+    merged.department,
+    merged.location,
+    merged.type,
+    merged.experience,
+    merged.salary || "",
+    merged.description,
+    JSON.stringify(merged.requirements || []),
+    id,
+  ).run();
+  return merged;
 }
 
-export function setAdminCredentials(hash: string, salt: string): void {
-  adminHash = hash;
-  adminSalt = salt;
+export async function deleteVacancy(id: string): Promise<boolean> {
+  await ensureTables();
+  const db = getDB();
+  const { success } = await db.prepare("DELETE FROM vacancies WHERE id = ?").bind(id).run();
+  return success;
 }
 
-export function getAdminCredentials(): { passwordHash: string; salt: string } {
-  return { passwordHash: adminHash, salt: adminSalt };
+export async function setAdminCredentials(username: string, password: string): Promise<void> {
+  await ensureTables();
+  const db = getDB();
+  const existing = await db.prepare("SELECT id FROM admin_credentials LIMIT 1").first<{ id: number }>();
+  if (existing) {
+    await db.prepare(
+      "UPDATE admin_credentials SET username = ?, password = ?, updated_at = datetime('now') WHERE id = ?"
+    ).bind(username, password, existing.id).run();
+  } else {
+    await db.prepare(
+      "INSERT INTO admin_credentials (username, password) VALUES (?, ?)"
+    ).bind(username, password).run();
+  }
 }
 
-export function isAdminConfigured(): boolean {
-  return adminHash !== "" && adminSalt !== "";
+export async function getAdminCredentials(): Promise<{ username: string; password: string } | null> {
+  await ensureTables();
+  const db = getDB();
+  const row = await db.prepare(
+    "SELECT username, password FROM admin_credentials LIMIT 1"
+  ).first<{ username: string; password: string }>();
+  if (!row) return null;
+  return { username: row.username, password: row.password };
+}
+
+export async function isAdminConfigured(): Promise<boolean> {
+  await ensureTables();
+  const db = getDB();
+  const row = await db.prepare("SELECT id FROM admin_credentials LIMIT 1").first<{ id: number }>();
+  return !!row;
 }

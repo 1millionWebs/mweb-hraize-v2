@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { verifyPassword, generateToken } from "@/src/lib/auth";
+import { verifyPassword, generateToken, hashPassword } from "@/src/lib/auth";
 import { getAdminCredentials, setAdminCredentials, isAdminConfigured } from "@/src/lib/data";
-import { hashPassword } from "@/src/lib/auth";
 
 export async function POST(request: NextRequest) {
   try {
@@ -11,26 +10,30 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Username and password are required" }, { status: 400 });
     }
 
-    if (!isAdminConfigured()) {
-      const { hash, salt } = hashPassword(password);
-      setAdminCredentials(hash, salt);
+    if (!(await isAdminConfigured())) {
+      const hashed = hashPassword(password);
+      await setAdminCredentials(username, hashed);
       const token = generateToken();
       return NextResponse.json({ token, message: "Admin account created successfully" });
     }
 
-    const { passwordHash, salt } = getAdminCredentials();
+    const creds = await getAdminCredentials();
+    if (!creds) {
+      return NextResponse.json({ error: "Admin not configured" }, { status: 500 });
+    }
 
-    if (username !== "admin") {
+    if (username !== creds.username) {
       return NextResponse.json({ error: "Invalid credentials" }, { status: 401 });
     }
 
-    if (!verifyPassword(password, passwordHash, salt)) {
+    if (!verifyPassword(password, creds.password)) {
       return NextResponse.json({ error: "Invalid credentials" }, { status: 401 });
     }
 
     const token = generateToken();
     return NextResponse.json({ token });
   } catch (error) {
-    return NextResponse.json({ error: "Invalid request" }, { status: 400 });
+    const message = error instanceof Error ? error.message : "Unknown error";
+    return NextResponse.json({ error: message }, { status: 400 });
   }
 }

@@ -5,6 +5,11 @@ compatibility_flags = ["nodejs_compat"]
 main = ".open-next/worker.js"
 assets = { directory = ".open-next/assets", binding = "ASSETS" }
 
+[[d1_databases]]
+binding = "DB"
+database_name = "hraize-db"
+database_id = "db18a95b-6752-4ede-9eba-cd5f2ca92702"
+
 [vars]
 ENVIRONMENT = "production"
 MAILTRAP_SENDER_EMAIL = "info@notify.hraize.com"

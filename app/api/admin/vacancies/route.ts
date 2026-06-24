@@ -27,7 +27,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Invalid job type" }, { status: 400 });
     }
 
-    const vacancy = createVacancy({
+    const vacancy = await createVacancy({
       title: data.title,
       department: data.department,
       location: data.location,

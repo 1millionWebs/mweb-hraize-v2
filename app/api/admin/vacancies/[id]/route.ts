@@ -28,7 +28,7 @@ export async function PUT(request: NextRequest, { params }: { params: Promise<{ 
       return NextResponse.json({ error: "Invalid job type" }, { status: 400 });
     }
 
-    const updated = updateVacancy(id, {
+    const updated = await updateVacancy(id, {
       title: data.title,
       department: data.department,
       location: data.location,
@@ -55,7 +55,7 @@ export async function DELETE(request: NextRequest, { params }: { params: Promise
 
   try {
     const { id } = await params;
-    const deleted = deleteVacancy(id);
+    const deleted = await deleteVacancy(id);
 
     if (!deleted) {
       return NextResponse.json({ error: "Vacancy not found" }, { status: 404 });

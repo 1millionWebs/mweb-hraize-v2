@@ -16,7 +16,7 @@ export async function GET(request: NextRequest) {
   const token = getToken(request);
   if (!token || !verifyToken(token)) return unauthorized();
 
-  const vacancies = getVacancies();
+  const vacancies = await getVacancies();
   return NextResponse.json({ vacancies });
 }
 
@@ -47,13 +47,16 @@ export async function PUT(request: NextRequest) {
       return NextResponse.json({ error: "New password must contain at least one number" }, { status: 400 });
     }
 
-    const { passwordHash, salt } = getAdminCredentials();
-    if (!verifyPassword(currentPassword, passwordHash, salt)) {
+    const creds = await getAdminCredentials();
+    if (!creds) {
+      return NextResponse.json({ error: "Admin not configured" }, { status: 500 });
+    }
+    if (!verifyPassword(currentPassword, creds.password)) {
       return NextResponse.json({ error: "Current password is incorrect" }, { status: 400 });
     }
 
-    const { hash, salt: newSalt } = hashPassword(newPassword);
-    setAdminCredentials(hash, newSalt);
+    const hashed = hashPassword(newPassword);
+    await setAdminCredentials(creds.username, hashed);
 
     return NextResponse.json({ message: "Password updated successfully" });
   } catch {

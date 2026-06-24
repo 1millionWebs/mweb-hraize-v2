@@ -3,27 +3,26 @@ import crypto from "crypto";
 const SECRET = process.env.ADMIN_SECRET || "hraize-admin-secret-key-2026";
 const TOKEN_EXPIRY = 24 * 60 * 60 * 1000;
 
-export interface AdminCredentials {
-  passwordHash: string;
-  salt: string;
+function parsePassword(stored: string): { hash: string; salt: string } {
+  const sep = stored.indexOf(":");
+  if (sep === -1) return { hash: stored, salt: "" };
+  return { salt: stored.slice(0, sep), hash: stored.slice(sep + 1) };
 }
 
-export function hashPassword(password: string, salt?: string): { hash: string; salt: string } {
-  const s = salt || crypto.randomBytes(16).toString("hex");
-  const hash = crypto.pbkdf2Sync(password, s, 1000, 64, "sha512").toString("hex");
-  return { hash, salt: s };
+export function hashPassword(password: string): string {
+  const salt = crypto.randomBytes(16).toString("hex");
+  const hash = crypto.pbkdf2Sync(password, salt, 1000, 64, "sha512").toString("hex");
+  return `${salt}:${hash}`;
 }
 
-export function verifyPassword(password: string, storedHash: string, salt: string): boolean {
-  const { hash } = hashPassword(password, salt);
+export function verifyPassword(password: string, stored: string): boolean {
+  const { hash: storedHash, salt } = parsePassword(stored);
+  const hash = crypto.pbkdf2Sync(password, salt, 1000, 64, "sha512").toString("hex");
   return hash === storedHash;
 }
 
 export function generateToken(): string {
-  const payload = {
-    role: "admin",
-    exp: Date.now() + TOKEN_EXPIRY,
-  };
+  const payload = { role: "admin", exp: Date.now() + TOKEN_EXPIRY };
   const data = Buffer.from(JSON.stringify(payload)).toString("base64");
   const sig = crypto.createHmac("sha256", SECRET).update(data).digest("hex");
   return `${data}.${sig}`;
