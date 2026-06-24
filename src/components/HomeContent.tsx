@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import React from "react";
+import { motion } from "motion/react";
 import {
   Heart, BarChart3, Settings, Users, GraduationCap, Target, ArrowRight,
   Building2, FileText, BadgeCheck, Clock
@@ -15,7 +15,6 @@ export const HomeContent: React.FC<HomeContentProps> = ({
   onGetStarted,
   onNavigateToService,
 }) => {
-  const [activeIdx, setActiveIdx] = useState(0);
   const whatWeDo = [
     {
       title: "For Growing Businesses",
@@ -128,153 +127,61 @@ export const HomeContent: React.FC<HomeContentProps> = ({
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            {/* Left Column: Services list */}
-            <div className="lg:col-span-7 space-y-4">
-              {[
-                {
-                  icon: Settings,
-                  title: "HR Services",
-                  desc: "Setup compliant systems, handbook policies, and advanced interactive dashboards. Audit legal compliance gaps and manage attrition scientifically.",
-                  href: "hr-services",
-                  number: "01",
-                  image: "/services-hr.png",
-                  tag: "Interactive HR Telemetry"
-                },
-                {
-                  icon: Users,
-                  title: "Recruitment Services",
-                  desc: "Identify high-caliber permanent, temporary, and contract team members. Bulletproof candidate preparation with a 60-day replacement guarantee.",
-                  href: "recruitment",
-                  number: "02",
-                  image: "/services-recruitment.png",
-                  tag: "Vetted Candidate Pipelines"
-                },
-                {
-                  icon: GraduationCap,
-                  title: "Training and Development",
-                  desc: "Empower graduates, mid-career professionals, and first-time executives with resume rewriting and recruitment coaching channels.",
-                  href: "training",
-                  number: "03",
-                  image: "/services-training.png",
-                  tag: "Mentor & Career Acceleration"
-                }
-              ].map((svc, idx) => {
-                const Icon = svc.icon;
-                const isActive = activeIdx === idx;
-                return (
-                  <div
-                    key={idx}
-                    onMouseEnter={() => setActiveIdx(idx)}
-                    onClick={() => setActiveIdx(idx)}
-                    className={`group relative flex items-start gap-6 p-6 rounded-2xl border transition-all duration-300 cursor-pointer ${
-                      isActive
-                        ? "bg-cream-50/80 border-sky-600/20 shadow-lg shadow-sky-900/5 translate-x-2"
-                        : "bg-transparent border-transparent hover:bg-cream-50/40"
-                    }`}
-                  >
-                    {/* Active side indicator */}
-                    <div
-                      className={`absolute left-0 top-0 bottom-0 w-1 bg-sky-600 rounded-l-2xl transition-transform duration-300 origin-left ${
-                        isActive ? "scale-x-100" : "scale-x-0"
-                      }`}
-                    />
-                    
-                    <div className={`flex h-10 w-10 sm:h-14 sm:w-14 shrink-0 items-center justify-center rounded-xl transition-all duration-300 ${
-                      isActive 
-                        ? "bg-sky-600 text-white shadow-lg shadow-sky-600/25" 
-                        : "bg-sky-600/5 text-sky-600 group-hover:bg-sky-600 group-hover:text-white"
-                    }`}>
-                      <Icon className="h-5 w-5 sm:h-6 sm:w-6" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-3 mb-2">
-                        <span className={`text-xs font-black transition-colors ${
-                          isActive ? "text-sky-600" : "text-sky-600/40"
-                        }`}>{svc.number}</span>
-                        <span className={`h-px flex-1 transition-colors ${
-                          isActive ? "bg-sky-600/30" : "bg-sky-600/10"
-                        }`} />
-                      </div>
-                      <h4 className="text-lg font-black text-navy-900 uppercase tracking-tight mb-2">{svc.title}</h4>
-                      <p className="text-sm text-navy-900/60 font-medium leading-relaxed">{svc.desc}</p>
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          onNavigateToService(svc.href);
-                        }}
-                        className="mt-4 inline-flex items-center gap-1.5 text-xs font-black text-sky-600 hover:text-sky-700 transition-colors cursor-pointer"
-                      >
-                        Learn more
-                        <ArrowRight className="h-3.5 w-3.5" />
-                      </button>
-                    </div>
+          <div className="space-y-6 max-w-5xl mx-auto">
+            {[
+              {
+                icon: Settings,
+                title: "HR Services",
+                desc: "Setup compliant systems, handbook policies, and advanced interactive dashboards. Audit legal compliance gaps and manage attrition scientifically.",
+                href: "hr-services",
+                number: "01"
+              },
+              {
+                icon: Users,
+                title: "Recruitment Services",
+                desc: "Identify high-caliber permanent, temporary, and contract team members. Bulletproof candidate preparation with a 60-day replacement guarantee.",
+                href: "recruitment",
+                number: "02"
+              },
+              {
+                icon: GraduationCap,
+                title: "Training and Development",
+                desc: "Empower graduates, mid-career professionals, and first-time executives with resume rewriting and recruitment coaching channels.",
+                href: "training",
+                number: "03"
+              }
+            ].map((svc, idx) => {
+              const Icon = svc.icon;
+              return (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{ duration: 0.6, delay: idx * 0.12, ease: "easeOut" }}
+                  className="group relative flex items-start gap-6 p-6 rounded-2xl hover:bg-cream-50 transition-colors"
+                >
+                  <div className="flex h-10 w-10 sm:h-14 sm:w-14 shrink-0 items-center justify-center rounded-xl bg-sky-600/5 text-sky-600 group-hover:bg-sky-600 group-hover:text-white transition-all">
+                    <Icon className="h-5 w-5 sm:h-6 sm:w-6" />
                   </div>
-                );
-              })}
-            </div>
-
-            {/* Right Column: Dynamic Interactive Image Preview */}
-            <div className="lg:col-span-5 relative flex justify-center items-center">
-              <div className="relative w-full aspect-square max-w-[450px] lg:max-w-none rounded-3xl overflow-hidden border border-sky-100 shadow-2xl bg-cream-50 flex items-center justify-center p-3 group/img">
-                {/* Background decorative elements */}
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,var(--color-sky-600)_0%,transparent_75%)] opacity-5" />
-                <div className="absolute -inset-1 rounded-3xl bg-gradient-to-tr from-sky-600/20 to-copper-400/20 blur opacity-30 group-hover/img:opacity-50 transition-opacity duration-500" />
-                
-                <div className="relative w-full h-full rounded-2xl overflow-hidden bg-navy-900">
-                  <AnimatePresence mode="wait">
-                    <motion.div
-                      key={activeIdx}
-                      initial={{ opacity: 0, scale: 0.95 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 1.05 }}
-                      transition={{ duration: 0.4, ease: "easeInOut" }}
-                      className="absolute inset-0 w-full h-full"
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-3 mb-2">
+                      <span className="text-xs font-black text-sky-600/40">{svc.number}</span>
+                      <span className="h-px flex-1 bg-sky-600/10" />
+                    </div>
+                    <h4 className="text-lg font-black text-navy-900 uppercase tracking-tight mb-2">{svc.title}</h4>
+                    <p className="text-sm text-navy-900/60 font-medium leading-relaxed max-w-2xl">{svc.desc}</p>
+                    <button
+                      onClick={() => onNavigateToService(svc.href)}
+                      className="mt-4 inline-flex items-center gap-1.5 text-xs font-black text-sky-600 hover:text-sky-700 transition-colors cursor-pointer"
                     >
-                      <img
-                        src={
-                          activeIdx === 0
-                            ? "/services-hr.png"
-                            : activeIdx === 1
-                            ? "/services-recruitment.png"
-                            : "/services-training.png"
-                        }
-                        alt="Service Illustration"
-                        className="w-full h-full object-cover select-none object-center"
-                      />
-                      {/* Interactive overlay vignette */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-navy-950/80 via-transparent to-transparent opacity-80" />
-                      
-                      {/* Float Tag */}
-                      <motion.div 
-                        initial={{ y: 15, opacity: 0 }}
-                        animate={{ y: 0, opacity: 1 }}
-                        transition={{ delay: 0.2 }}
-                        className="absolute bottom-4 left-4 right-4 bg-cream-100/90 backdrop-blur-md border border-sky-600/20 rounded-xl p-3 shadow-lg flex items-center justify-between"
-                      >
-                        <div>
-                          <span className="text-[9px] font-black uppercase tracking-wider text-copper-400 block mb-0.5 animate-pulse">
-                            {
-                              activeIdx === 0
-                                ? "Interactive HR Telemetry"
-                                : activeIdx === 1
-                                ? "Vetted Candidate Pipelines"
-                                : "Mentor & Career Acceleration"
-                            }
-                          </span>
-                          <span className="text-xs font-black text-navy-900 uppercase">
-                            Hraize Feature
-                          </span>
-                        </div>
-                        <span className="h-6 w-6 rounded-full bg-sky-600 text-white flex items-center justify-center">
-                          <ArrowRight className="h-3 w-3" />
-                        </span>
-                      </motion.div>
-                    </motion.div>
-                  </AnimatePresence>
-                </div>
-              </div>
-            </div>
+                      Learn more
+                      <ArrowRight className="h-3.5 w-3.5" />
+                    </button>
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>
