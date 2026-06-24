@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import {
   Upload, Briefcase, MapPin, Search, Filter,
@@ -8,68 +8,16 @@ import { SectionLabel, FeatureCheck, GlassPanel } from "./UIElements";
 import { JobVacancy } from "../types";
 
 export const Careers: React.FC = () => {
-  const initialVacancies: JobVacancy[] = [
-    {
-      id: "j1",
-      title: "Senior Workforce Analytics Specialist",
-      department: "Analytics & Business Intelligence",
-      location: "Bangalore, India (Hybrid)",
-      type: "Full-Time",
-      experience: "5+ Years",
-      salary: "₹18,00,000 - ₹24,00,000",
-      description: "Own the creation of executive headcount, cost-prediction, and sentiment dashboards for global logistics clients.",
-      requirements: [
-        "Expertise in Power BI, Looker Studio, and SQL database querying",
-        "Strong experience compiling predictive attrition formulas",
-        "Excellent communication skills with C-suite and regional HR directors"
-      ]
-    },
-    {
-      id: "j2",
-      title: "HR Operations Lead (Consulting Frameworks)",
-      department: "HR Systems & Consulting",
-      location: "Chennai, India (On-site)",
-      type: "Full-Time",
-      experience: "7+ Years",
-      salary: "₹15,00,000 - ₹20,00,000",
-      description: "Spearhead policy audits, handbook creation, and statutory compliance framework setups for early-stage engineering and manufacturing SMEs.",
-      requirements: [
-        "Proven background writing employee handbooks and SOP models",
-        "Deep knowledge of regional labor laws and compliance standards",
-        "Prior experience in client-facing advisory or consulting environments"
-      ]
-    },
-    {
-      id: "j3",
-      title: "Senior Technical Recruiter (Contract & Temp)",
-      department: "Recruitment Services",
-      location: "Remote (India)",
-      type: "Contract",
-      experience: "4+ years",
-      salary: "Market Competitive hourly",
-      description: "Manage end-to-end recruitment pipelines for our top-tier software and project management contractors.",
-      requirements: [
-        "In-depth tech screening capability for React, Node, and DevOps profiles",
-        "Strong portfolio of vetted contract candidate channels",
-        "Excellent negotiation and contract lifecycle onboarding experience"
-      ]
-    },
-    {
-      id: "j4",
-      title: "Graduate HR Associate (Talent Acquisition Pipeline)",
-      department: "Graduate Programs",
-      location: "Mumbai, India (On-site)",
-      type: "Internship",
-      experience: "Fresher / Entry-level",
-      salary: "₹4,00,000 - ₹6,00,000",
-      description: "Help build and filter our Emerging Talent pipeline, managing candidate screening logs and coordination.",
-      requirements: [
-        "Recent UG / PG / MBA in Human Resources or related fields",
-        "High energy level with exceptional verbal coordination skills",
-        "Command of Microsoft Excel or Google Sheets for tracker logs"
-      ]
-    }
-  ];
+  const [vacancies, setVacancies] = useState<JobVacancy[]>([]);
+  const [loadingVacancies, setLoadingVacancies] = useState(true);
+
+  useEffect(() => {
+    fetch("/api/vacancies")
+      .then((res) => res.json())
+      .then((data) => setVacancies(data.vacancies ?? []))
+      .catch(() => {})
+      .finally(() => setLoadingVacancies(false));
+  }, []);
 
   const qualificationsList = ["10th", "12th", "UG", "PG", "ITI", "Diploma", "Engineering", "MBA"];
 
@@ -89,7 +37,7 @@ export const Careers: React.FC = () => {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const formRef = useRef<HTMLDivElement>(null);
 
-  const filteredJobs = initialVacancies.filter(job => {
+  const filteredJobs = vacancies.filter(job => {
     const matchesSearch = job.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
       job.department.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesType = selectedType === "All" || job.type === selectedType;
@@ -183,7 +131,12 @@ export const Careers: React.FC = () => {
 
           <div className="space-y-4">
             <AnimatePresence>
-              {filteredJobs.length > 0 ? (
+              {loadingVacancies ? (
+                <div className="text-center py-12">
+                  <div className="animate-spin h-6 w-6 border-2 border-sky-600/50 border-t-transparent rounded-full mx-auto mb-3" />
+                  <p className="text-sm font-bold text-navy-900/50">Loading vacancies...</p>
+                </div>
+              ) : filteredJobs.length > 0 ? (
                 filteredJobs.map((job) => (
                   <motion.div
                     key={job.id}

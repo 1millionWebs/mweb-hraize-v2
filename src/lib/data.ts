@@ -1,70 +1,11 @@
 import type { JobVacancy } from "@/src/types";
 import { getDB } from "@/src/lib/db";
 
-const DEFAULT_VACANCIES: Omit<JobVacancy, "id">[] = [
-  {
-    title: "Senior Workforce Analytics Specialist",
-    department: "Analytics & Business Intelligence",
-    location: "Bangalore, India (Hybrid)",
-    type: "Full-Time",
-    experience: "5+ Years",
-    salary: "₹18,00,000 - ₹24,00,000",
-    description: "Own the creation of executive headcount, cost-prediction, and sentiment dashboards for global logistics clients.",
-    requirements: [
-      "Expertise in Power BI, Looker Studio, and SQL database querying",
-      "Strong experience compiling and translating predictive attrition formulas",
-      "Excellent communication skills with C-suite and regional HR directors",
-    ],
-  },
-  {
-    title: "HR Operations Lead (Consulting Frameworks)",
-    department: "HR Systems & Consulting",
-    location: "Chennai, India (On-site)",
-    type: "Full-Time",
-    experience: "7+ Years",
-    salary: "₹15,00,000 - ₹20,00,000",
-    description: "Spearhead policy audits, handbook creation, and statutory compliance framework setups for early-stage engineering and manufacturing SMEs.",
-    requirements: [
-      "Proven background writing employee handbooks and establishing SOP models",
-      "Deep knowledge of regional labor laws and statutory compliance standards",
-      "Prior experience in client-facing advisory or consulting environments",
-    ],
-  },
-  {
-    title: "Senior Technical Recruiter (Contract & Temp)",
-    department: "Recruitment Services",
-    location: "Remote (India)",
-    type: "Contract",
-    experience: "4+ years",
-    salary: "Market Competitive hourly",
-    description: "Manage end-to-end recruitment pipelines for our top-tier software and project management contractors.",
-    requirements: [
-      "In-depth tech screening capability for React, Node, and DevOps profiles",
-      "Strong portfolio of vetted contract candidate channels",
-      "Excellent negotiation and contract lifecycle onboarding experience",
-    ],
-  },
-  {
-    title: "Graduate HR Associate (Talent Acquisition Pipeline)",
-    department: "Graduate Programs",
-    location: "Mumbai, India (On-site)",
-    type: "Internship",
-    experience: "Fresher / Entry-level",
-    salary: "₹4,00,000 - ₹6,00,000",
-    description: "Help build and filter our Emerging Talent pipeline, managing candidate screening logs and coordination.",
-    requirements: [
-      "Recent UG / PG / MBA in Human Resources or related fields",
-      "High energy level with exceptional verbal coordination skills",
-      "Command of Microsoft Excel or Google Sheets for tracker logs",
-    ],
-  },
-];
-
 // ---------------------------------------------------------------------------
 // In-memory fallback (used when D1 binding is not available – e.g. next dev)
 // ---------------------------------------------------------------------------
-let memVacancies: JobVacancy[] = DEFAULT_VACANCIES.map((v, i) => ({ ...v, id: `j${i + 1}` }));
-let memNextId = DEFAULT_VACANCIES.length + 1;
+let memVacancies: JobVacancy[] = [];
+let memNextId = 1;
 let memAdmin: { username: string; password: string } | null = {
   username: "Admin",
   password: "cf53c5348f1a4beb4a92f2825628578c:bd51582b6361c2808735dd24e02d7956713fa71b269db0e342f94914c837342e444d86742426e138cf106f728aa4c0a8989599c7756c7b4472e5869f4a77f6c2",
@@ -104,20 +45,6 @@ async function ensureTables(): Promise<void> {
       updated_at TEXT NOT NULL DEFAULT (datetime('now'))
     )`
   ).run();
-
-  const { results } = await db.prepare("SELECT COUNT(*) AS count FROM vacancies").all<{ count: number }>();
-  if (results.length === 0 || results[0].count === 0) {
-    const stmt = db.prepare(
-      "INSERT OR IGNORE INTO vacancies (id, title, department, location, type, experience, salary, description, requirements) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"
-    );
-    for (let i = 0; i < DEFAULT_VACANCIES.length; i++) {
-      const v = DEFAULT_VACANCIES[i];
-      await stmt.bind(
-        `j${i + 1}`, v.title, v.department, v.location, v.type,
-        v.experience, v.salary || "", v.description, JSON.stringify(v.requirements || []),
-      ).run();
-    }
-  }
 
   d1Initialized = true;
 }
