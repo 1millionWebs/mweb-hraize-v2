@@ -94,8 +94,8 @@ export const HomeContent: React.FC<HomeContentProps> = ({
                 <span className="text-sky-400">Scale Your Business.</span>
               </h2>
               <p className="text-sm sm:text-base text-sage-100/70 font-semibold max-w-2xl leading-relaxed">
-                Hraize is your dedicated HR, People Operations, and Recruitment partner,
-                structured, practical, and built for scaling businesses.
+                Meet Hraize: a practical, structured extension of your team,
+                built to handle end-to-end recruitment and people operations while you focus on scaling
               </p>
             </div>
             <div className="lg:col-span-4 flex flex-col items-start lg:items-end">
