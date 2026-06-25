@@ -386,8 +386,8 @@ export const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
                   transition={{ duration: 0.6, delay: 0.2 + idx * 0.12, ease: "easeOut" }}
                   className="flex flex-col items-center text-center gap-3"
                 >
-                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white/5 border border-white/10 text-sky-400">
-                    <Icon className="h-10 w-10" />
+                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl text-sky-400">
+                    <Icon className="h-12 w-12" />
                   </div>
                   <div>
                     <span className="text-4xl lg:text-4xl font-black text-white block leading-none tracking-tight">{stat.value}</span>
