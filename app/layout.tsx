@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   },
   description: "Structure Your People. Scale Your Business. HR consultancy, recruitment, training, and strategic advisory services.",
   metadataBase: new URL("https://hraize.com"),
-  icons: { icon: "/favicon.png" },
+  icons: { icon: "/favicon.ico" },
   openGraph: {
     title: "Hraize HR Analytics | HR Services & Consultancy",
     description: "Structure Your People. Scale Your Business. HR consultancy, recruitment, training, and strategic advisory services.",
@@ -38,10 +38,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <GoogleTagManager gtmId="G-DQ1SSF86XY" />
+      <GoogleAnalytics gaId="G-DQ1SSF86XY" />
       <body suppressHydrationWarning className="min-h-screen bg-cream-100 font-sans antialiased">
         {children}
       </body>
-      <GoogleAnalytics gaId="G-MRQPNLMK59" />
+      {/* <GoogleTagManager gtmId="G-DQ1SSF86XY" /> */}
+      {/* <GoogleAnalytics gaId="G-MRQPNLMK59" /> */}
     </html>
   );
 }
