@@ -330,7 +330,7 @@ export const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
                 ease: "linear"
               }}
             >
-              <Image src={avatars[0].url} alt="" fill className="object-cover" />
+              <Image src={avatars[0].url} alt={avatars[0].name} fill className="object-cover" />
             </motion.div>
 
             <motion.div
@@ -347,7 +347,7 @@ export const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
                 ease: "linear"
               }}
             >
-              <Image src={avatars[1].url} alt="" fill className="object-cover" />
+              <Image src={avatars[1].url} alt={avatars[1].name} fill className="object-cover" />
             </motion.div>
 
             <motion.div
@@ -363,7 +363,7 @@ export const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
                 ease: "easeInOut"
               }}
             >
-              <Image src={avatars[2].url} alt="" fill className="object-cover" />
+              <Image src={avatars[2].url} alt={avatars[2].name} fill className="object-cover" />
             </motion.div>
           </motion.div>
         </div>

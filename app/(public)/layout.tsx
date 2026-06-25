@@ -1,5 +1,6 @@
 import { Navbar } from "@/src/components/Navbar";
 import { Footer } from "@/src/components/Footer";
+import JsonLd from "@/src/components/seo/JsonLd";
 
 export default function PublicLayout({
   children,
@@ -13,6 +14,7 @@ export default function PublicLayout({
         <main id="primary-layout">{children}</main>
       </div>
       <Footer />
+      <JsonLd />
     </div>
   );
 }

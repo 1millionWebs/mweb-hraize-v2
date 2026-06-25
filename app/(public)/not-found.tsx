@@ -1,5 +1,12 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "Page Not Found",
+  description: "The page you're looking for doesn't exist or hasn't been deployed yet. Return to Hraize HR Analytics home.",
+  robots: { index: false, follow: true },
+};
 
 export default function NotFound() {
   return (
