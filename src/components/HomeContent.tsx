@@ -83,13 +83,12 @@ export const HomeContent: React.FC<HomeContentProps> = ({
 
   return (
     <div>
-      <section className="relative overflow-hidden bg-navy-card py-24">
+      {/* <section className="relative overflow-hidden bg-navy-card py-24">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,color-mix(in_srgb,var(--color-sky-600)_15%,transparent)_0%,transparent_60%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,color-mix(in_srgb,var(--color-copper-400)_8%,transparent)_0%,transparent_50%)]" />
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-8 space-y-6">
-              {/* <SectionLabel className="text-sage-100">Building HR That Actually Works</SectionLabel> */}
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-white leading-[1.05]">
                 Build Stronger Teams.
                 <br />
@@ -112,7 +111,7 @@ export const HomeContent: React.FC<HomeContentProps> = ({
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       <section className="relative py-24 bg-white">
         <span className="absolute top-0 left-1/2 -translate-x-1/2 w-16 h-0.5 bg-sky-600/30 rounded-full" />

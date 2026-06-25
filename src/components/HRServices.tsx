@@ -28,14 +28,15 @@ export const HRServices: React.FC<HRServicesProps> = ({ onBookCall }) => {
     };
   }, []);
 
-  const [openService, setOpenService] = useState<number>(0);
+  const [activeCard, setActiveCard] = useState<string | null>(null);
 
   const strategicServices = [
     {
       id: "support",
-      title: "HR Subscription Support",
+      title: "Fractional HR Partner (Monthly Support)",
       desc: "Instant answer desk and day-to-day consultation for operations, employee relations, and advisory workflows.",
       icon: Users,
+      image: "/partners.png",
       details: [
         "Dedicated HR point of contact",
         "Email and phone support during business hours",
@@ -46,9 +47,10 @@ export const HRServices: React.FC<HRServicesProps> = ({ onBookCall }) => {
     },
     {
       id: "consulting",
-      title: "HR Consulting & Systems Setup",
+      title: "HR Foundation Setup",
       desc: "Structured systems implementation matching specific organizational goals.",
       icon: Settings,
+      image: "/hr-foundation.png",
       details: [
         "HR technology stack assessment",
         "System implementation roadmap",
@@ -59,9 +61,10 @@ export const HRServices: React.FC<HRServicesProps> = ({ onBookCall }) => {
     },
     {
       id: "audit",
-      title: "HR Audit",
+      title: "HR Health Check & Improvement Plan",
       desc: "Full comprehensive compliance audit identifying statutory gaps and structural risks.",
       icon: ShieldCheck,
+      image: "/health-checkup.png",
       details: [
         "Statutory compliance review",
         "Policy gap analysis",
@@ -72,9 +75,10 @@ export const HRServices: React.FC<HRServicesProps> = ({ onBookCall }) => {
     },
     {
       id: "analytics",
-      title: "People Analytics & Dashboard",
+      title: "Workforce Insights & HR Reporting",
       desc: "Turn employee spreadsheets into powerful executive-level metrics and predictive insights.",
       icon: BarChart3,
+      image: "/reporting.png",
       details: [
         "Custom KPI dashboard design",
         "Headcount and attrition tracking",
@@ -85,9 +89,10 @@ export const HRServices: React.FC<HRServicesProps> = ({ onBookCall }) => {
     },
     {
       id: "policies",
-      title: "HR Policy & Process Documentation",
+      title: "HR Documentation & Process Setup",
       desc: "Handbooks, SOPs, and operational policies structured clearly and tailored to use.",
       icon: FileText,
+      image: "/documentation.png",
       details: [
         "Employee handbook creation",
         "SOP documentation",
@@ -101,6 +106,7 @@ export const HRServices: React.FC<HRServicesProps> = ({ onBookCall }) => {
       title: "Strategic Workforce Planning",
       desc: "Comprehensive role assessments, talent pipelines, and hiring models aligned to forecasts.",
       icon: Layers,
+      image: "/workforce-planning.png",
       details: [
         "Workforce demand modeling",
         "Skills gap analysis",
@@ -147,51 +153,68 @@ export const HRServices: React.FC<HRServicesProps> = ({ onBookCall }) => {
         </div>
 
         <div className="max-w-6xl mx-auto mb-24 px-4">
-          {/* 3-Column Grid Layout matching image_3d6933.png */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {strategicServices.map((srv, idx) => {
               const Icon = srv.icon;
+              const isActive = activeCard === srv.id;
               return (
-                <div
+                <motion.div
                   key={srv.id}
                   id={srv.id}
-                  className="bg-white shadow-md hover:shadow-xl rounded-2xl border border-sky-600/10 p-6 transition-all flex flex-col justify-between"
+                  className="relative h-[340px] rounded-2xl overflow-hidden cursor-pointer"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: idx * 0.08 }}
+                  onHoverStart={() => setActiveCard(srv.id)}
+                  onClick={() => setActiveCard(isActive ? null : srv.id)}
                 >
-                  <div>
-                    {/* Card Header Section */}
-                    <div className="flex items-start gap-4 mb-5">
-                      {/* Large Circular Icon Badge */}
-                      <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-sky-600/10 text-sky-600">
-                        <Icon className="h-6 w-6" />
-                      </div>
+                  {/* Background image */}
+                  <motion.div
+                    className="absolute inset-0 bg-cover bg-center"
+                    style={{ backgroundImage: `url(${srv.image})` }}
+                    animate={{ opacity: isActive ? 0 : 1 }}
+                    whileHover={{ opacity: 0 }}
+                    transition={{ duration: 0.35, ease: "easeInOut" }}
+                  />
 
-                      {/* Title & Short Description */}
-                      <div className="min-w-0 pt-1">
-                        <h4 className="text-base font-bold text-navy-900 tracking-tight">
-                          {idx + 1}. {srv.title}
-                        </h4>
-                        <p className="text-xs text-navy-900/60 font-medium mt-1 leading-relaxed">
-                          {srv.desc}
-                        </p>
-                      </div>
-                    </div>
+                  {/* Gradient overlay on image */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black-100/60 via-black-100/5 to-transparent" />
 
-                    {/* Horizontal Divider Line */}
-                    <div className="border-t border-sky-600/10 my-5" />
-
-                    {/* Inner Features List Section */}
-                    <div className="space-y-4">
-                      {srv.details.map((detail, di) => (
-                        <div key={di} className="flex items-start gap-3">
-                          {/* Reuses your FeatureCheck component formatted into a vertical list stack */}
-                          <FeatureCheck className="text-sm font-medium text-navy-900/80 leading-snug">
-                            {detail}
-                          </FeatureCheck>
-                        </div>
-                      ))}
-                    </div>
+                  {/* Index number */}
+                  <div className="absolute top-4 left-4 flex h-8 w-8 items-center justify-center rounded-full bg-white/10 backdrop-blur-sm text-white text-xs font-black">
+                    {idx + 1}
                   </div>
-                </div>
+
+                  {/* Title - always visible at bottom */}
+                  <div className="absolute bottom-0 left-0 right-0 p-6">
+                    <h4 className="text-lg font-black text-white leading-tight">{srv.title}</h4>
+                  </div>
+
+                  {/* Details overlay - appears on hover (desktop) or tap (mobile) */}
+                  <motion.div
+                    className="absolute inset-0 p-6 flex flex-col justify-center bg-navy-900/95"
+                    animate={{ opacity: isActive ? 1 : 0, pointerEvents: isActive ? "auto" : "none" }}
+                    whileHover={{ opacity: 1, pointerEvents: "auto" }}
+                    transition={{ duration: 0.35, ease: "easeInOut" }}
+                  >
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-sky-600/20 text-sky-400">
+                        <Icon className="h-5 w-5" />
+                      </div>
+                      <h4 className="text-base font-black text-white leading-tight">{srv.title}</h4>
+                    </div>
+                    <p className="text-xs text-white/60 font-medium mb-4 leading-relaxed">{srv.desc}</p>
+                    <ul className="space-y-2.5">
+                      {srv.details.map((detail, di) => (
+                        <li key={di} className="flex items-start gap-2.5">
+                          <Check className="h-3.5 w-3.5 text-sky-400 mt-0.5 shrink-0" />
+                          <span className="text-xs text-white/80 font-medium leading-snug">{detail}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </motion.div>
+                </motion.div>
               );
             })}
           </div>

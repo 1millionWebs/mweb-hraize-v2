@@ -79,7 +79,7 @@ export const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
   ];
 
   return (
-    <section ref={sectionRef} className="relative pb-30 lg:min-h-[calc(100vh-4rem)] overflow-hidden bg-gradient-to-b from-cream-100 to-cream-50">
+    <section ref={sectionRef} className="relative overflow-hidden bg-gradient-to-b from-cream-100 to-cream-50">
       <motion.div className="absolute inset-0 pointer-events-none" style={{ y: bgY }}>
         <div className="absolute top-[-20%] right-[-10%] h-[500px] w-[500px] rounded-full bg-sky-600/5 blur-3xl" />
         <div className="absolute bottom-[-10%] left-[-5%] h-[400px] w-[400px] rounded-full bg-copper-400/5 blur-3xl" />
@@ -115,8 +115,8 @@ export const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
         </svg>
       </motion.div>
 
-      <motion.div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" style={{ y: contentY }}>
-        <div className="grid lg:min-h-[calc(100vh-4rem)] grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <motion.div className="relative mx-auto max-w-7xl px-4 sm:px-6 pb-20 lg:px-8" style={{ y: contentY }}>
+        <div className="grid min-h-[100dvh] lg:min-h-[calc(100vh-4rem)] grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           <motion.div
             className="lg:col-span-7 pt-20 lg:pt-0"
             initial={{ opacity: 0, y: 30 }}
@@ -156,29 +156,6 @@ export const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
                 Get Started
                 <ArrowRight className="h-4 w-4" />
               </motion.button>
-            </div>
-
-            <div className="mt-12 py-4 grid grid-cols-2 gap-x-6 gap-y-4 lg:flex lg:gap-x-8 lg:gap-y-4">
-              {stats.map((stat, idx) => {
-                const Icon = stat.icon;
-                return (
-                  <motion.div
-                    key={idx}
-                    initial={{ opacity: 0, y: 15 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.4 + idx * 0.12, ease: "easeOut" }}
-                    className="flex items-center gap-3"
-                  >
-                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-sky-600/5 text-sky-600">
-                      <Icon className="h-5 w-5" />
-                    </div>
-                    <div>
-                      <span className="text-lg font-black text-navy-900 block leading-none">{stat.value}</span>
-                      <span className="text-[10px] font-bold text-navy-900/40 uppercase leading-tight block mt-0.5">{stat.label}</span>
-                    </div>
-                  </motion.div>
-                );
-              })}
             </div>
           </motion.div>
 
@@ -378,6 +355,45 @@ export const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
           </motion.div>
         </div>
       </motion.div>
+
+      {/* Full-width statistics section */}
+      <div className="relative w-full overflow-hidden bg-navy-card-hero">
+        <div className="absolute inset-0 opacity-[0.04]">
+          <svg className="h-full w-full">
+            <pattern id="stats-grid" width="64" height="64" patternUnits="userSpaceOnUse">
+              <path d="M 64 0 L 0 0 0 64" fill="none" stroke="white" strokeWidth="0.5" />
+            </pattern>
+            <rect width="100%" height="100%" fill="url(#stats-grid)" />
+          </svg>
+        </div>
+        <div className="absolute top-0 right-0 h-[300px] w-[300px] rounded-full bg-sky-500/10 blur-3xl" />
+        <div className="absolute bottom-0 left-0 h-[250px] w-[250px] rounded-full bg-copper-400/5 blur-3xl" />
+
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 lg:py-20">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+            {stats.map((stat, idx) => {
+              const Icon = stat.icon;
+              return (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.2 + idx * 0.12, ease: "easeOut" }}
+                  className="flex flex-col items-center text-center gap-3"
+                >
+                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white/5 border border-white/10 text-sky-400">
+                    <Icon className="h-10 w-10" />
+                  </div>
+                  <div>
+                    <span className="text-4xl lg:text-4xl font-black text-white block leading-none tracking-tight">{stat.value}</span>
+                    <span className="text-[13px] font-bold text-white/80 uppercase leading-tight block mt-1.5 tracking-widest">{stat.label}</span>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
     </section>
   );
 };
