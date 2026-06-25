@@ -16,7 +16,7 @@ export const AboutUs: React.FC = () => {
     {
       role: "Founder",
       roleDesc: "HR Strategy & People Operations",
-      experience: "14+ years across HR transformation, talent acquisition, employee lifecycle management, and organisation development. Focused on helping businesses create practical HR frameworks, improve workforce effectiveness, and build scalable people operations",
+      experience: "Expertise across HR transformation, talent acquisition, employee lifecycle management, and organisation development. Focused on helping businesses create practical HR frameworks, improve workforce effectiveness, and build scalable people operations",
       expertise: [
         "Talent Acquisition & Workforce Planning",
         "HR Operations & Compliance Frameworks",

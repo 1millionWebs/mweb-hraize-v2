@@ -92,6 +92,40 @@ export const TrainingAndDevelopment: React.FC<TrainingAndDevelopmentProps> = ({
         </div>
 
         <div className="mb-20">
+          <div className="text-center max-w-3xl mx-auto mb-12">
+            <h3 className="text-2xl sm:text-3xl font-black text-navy-900 uppercase tracking-tight">
+              What Makes Us Different
+            </h3>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            <div className="bg-white rounded-2xl p-6 shadow-sm border border-sky-600/10">
+              <h4 className="text-base font-black text-navy-900 uppercase tracking-tight mb-3">Honest Feedback</h4>
+              <p className="text-sm text-navy-900/60 font-medium leading-relaxed">Real feedback on what needs improvement, not generic praise.</p>
+            </div>
+            <div className="bg-white rounded-2xl p-6 shadow-sm border border-sky-600/10">
+              <h4 className="text-base font-black text-navy-900 uppercase tracking-tight mb-3">Industry Experience</h4>
+              <p className="text-sm text-navy-900/60 font-medium leading-relaxed">We've hired and placed across tech, healthcare, finance, operations.</p>
+            </div>
+            <div className="bg-white rounded-2xl p-6 shadow-sm border border-sky-600/10">
+              <h4 className="text-base font-black text-navy-900 uppercase tracking-tight mb-3">Practical, Not Theoretical</h4>
+              <p className="text-sm text-navy-900/60 font-medium leading-relaxed">Every resume gets rewritten. Every interview is practiced. You walk away ready.</p>
+            </div>
+            <div className="bg-white rounded-2xl p-6 shadow-sm border border-sky-600/10">
+              <h4 className="text-base font-black text-navy-900 uppercase tracking-tight mb-3">Career Strategy</h4>
+              <p className="text-sm text-navy-900/60 font-medium leading-relaxed">Beyond resume help. We guide your entire career positioning.</p>
+            </div>
+            <div className="bg-white rounded-2xl p-6 shadow-sm border border-sky-600/10">
+              <h4 className="text-base font-black text-navy-900 uppercase tracking-tight mb-3">Ongoing Support</h4>
+              <p className="text-sm text-navy-900/60 font-medium leading-relaxed">We check in, adjust strategy, and keep you moving forward.</p>
+            </div>
+            <div className="bg-white rounded-2xl p-6 shadow-sm border border-sky-600/10">
+              <h4 className="text-base font-black text-navy-900 uppercase tracking-tight mb-3">Affordable Professional Coaching</h4>
+              <p className="text-sm text-navy-900/60 font-medium leading-relaxed">Senior-level guidance at fractional cost.</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="mb-20">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <SectionLabel>The Three Pathways</SectionLabel>
             <h3 className="mt-3 text-2xl sm:text-3xl font-black text-navy-900 uppercase tracking-tight">

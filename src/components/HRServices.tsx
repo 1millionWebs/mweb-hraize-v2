@@ -4,7 +4,7 @@ import {
   Users, Layers, ShieldCheck, BarChart3, Settings, FileText,
   Check, ArrowRight, Sparkles, IndianRupee
 } from "lucide-react";
-import { SectionLabel, StepLine, FeatureCheck } from "./UIElements";
+import { SectionLabel, FeatureCheck } from "./UIElements";
 
 interface HRServicesProps {
   onBookCall: () => void;
@@ -122,19 +122,19 @@ export const HRServices: React.FC<HRServicesProps> = ({ onBookCall }) => {
       step: "01",
       title: "Audit & Diagnose",
       desc: "We understand exactly where you are and what needs attention, scoping out latent operational or legal bottlenecks.",
-      duration: "Week 1-2"
+      duration: ""
     },
     {
       step: "02",
       title: "Build Your Foundation",
       desc: "We create your complete HR system: policies, processes, custom dashboards, integrated cleanly.",
-      duration: "Week 3-6"
+      duration: ""
     },
     {
       step: "03",
       title: "Stay as Your People Partner",
       desc: "Ongoing support: monthly reports, database queries, compliance tracking, and strategic guidance.",
-      duration: "Ongoing"
+      duration: ""
     }
   ];
 
@@ -229,7 +229,7 @@ export const HRServices: React.FC<HRServicesProps> = ({ onBookCall }) => {
           </div>
 
           <div className="max-w-6xl mx-auto px-4">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
               {[
                 {
                   icon: IndianRupee,
@@ -255,11 +255,11 @@ export const HRServices: React.FC<HRServicesProps> = ({ onBookCall }) => {
                 const Icon = feature.icon;
                 return (
                   <div key={idx} className="text-center">
-                    <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-forest-500/10 mb-4">
-                      <Icon className="w-8 h-8 text-sky-500" />
+                    <div className="inline-flex items-center justify-center w-16 h-16 lg:w-20 lg:h-20 rounded-full bg-forest-500/10 mb-3 lg:mb-4">
+                      <Icon className="w-6 h-6 lg:w-8 lg:h-8 text-sky-500" />
                     </div>
-                    <h4 className="text-lg font-black text-navy-900 mb-2">{feature.title}</h4>
-                    <p className="text-sm text-navy-900/60 font-semibold leading-relaxed">{feature.desc}</p>
+                    <h4 className="text-sm lg:text-lg font-black text-navy-900 mb-1 lg:mb-2">{feature.title}</h4>
+                    <p className="text-xs lg:text-sm text-navy-900/60 font-semibold leading-relaxed">{feature.desc}</p>
                   </div>
                 );
               })}
@@ -267,8 +267,8 @@ export const HRServices: React.FC<HRServicesProps> = ({ onBookCall }) => {
           </div>
         </div>
 
-        <div className="mb-24 max-w-4xl mx-auto">
-          <div className="text-center max-w-2xl mx-auto mb-16">
+        <div className="mb-24 max-w-6xl mx-auto px-4">
+          <div className="text-center max-w-2xl mx-auto mb-12 lg:mb-16">
             <SectionLabel>Our Methodology</SectionLabel>
             <h3 className="mt-3 text-2xl sm:text-3xl font-black text-navy-900 uppercase tracking-tight">
               How It Works in 3 Steps
@@ -278,16 +278,38 @@ export const HRServices: React.FC<HRServicesProps> = ({ onBookCall }) => {
             </p>
           </div>
 
-          <div className="max-w-lg mx-auto">
+          <div className="relative grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-8">
+            {/* Connecting line between steps (desktop) */}
+            <div className="hidden md:block absolute top-12 left-[12%] right-[12%] h-px bg-gradient-to-r from-transparent via-sky-600/40 to-transparent" />
+
             {methodology.map((m, idx) => (
-              <StepLine
+              <motion.div
                 key={idx}
-                number={m.step}
-                title={m.title}
-                description={m.desc}
-                duration={m.duration}
-                isLast={idx === methodology.length - 1}
-              />
+                className="relative flex flex-row md:flex-col items-center md:text-center gap-5 md:gap-0"
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: idx * 0.15, ease: "easeOut" }}
+              >
+                {/* Mobile vertical connecting line */}
+                {idx < methodology.length - 1 && (
+                  <div className="md:hidden absolute left-8 top-16 bottom-0 w-px bg-gradient-to-b from-sky-600/30 to-transparent" />
+                )}
+
+                {/* Step number circle with glow */}
+                <div className="relative z-10 shrink-0">
+                  <div className="absolute inset-0 rounded-full bg-sky-600/20 blur-lg md:blur-xl" />
+                  <div className="relative flex h-16 w-16 md:h-24 md:w-24 items-center justify-center rounded-full bg-navy-900 border-2 border-sky-600/20 text-white shadow-xl">
+                    <span className="text-lg md:text-2xl font-black tracking-tight">{m.step}</span>
+                  </div>
+                </div>
+
+                {/* Content */}
+                <div className="md:mt-7 text-left md:text-center">
+                  <h4 className="text-sm md:text-lg font-black text-navy-900 uppercase tracking-tight mb-1 md:mb-3">{m.title}</h4>
+                  <p className="text-xs md:text-sm text-navy-900/60 font-medium leading-relaxed">{m.desc}</p>
+                </div>
+              </motion.div>
             ))}
           </div>
         </div>
