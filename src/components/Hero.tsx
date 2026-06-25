@@ -74,7 +74,7 @@ export const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
   const stats = [
     { value: "20+", label: "Years Global Experience", icon: Calendar },
     { value: "6+", label: "Industries Served", icon: Users },
-    { value: "60-Day", label: "Replacement Guarantee", icon: ShieldCheck },
+    { value: "5+", label: "Global Markets Served", icon: ShieldCheck },
     { value: "100%", label: "Quality Focused", icon: Award },
   ];
 

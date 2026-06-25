@@ -89,15 +89,14 @@ export const HomeContent: React.FC<HomeContentProps> = ({
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-8 space-y-6">
-              <SectionLabel className="text-sage-100">Building HR That Actually Works</SectionLabel>
+              {/* <SectionLabel className="text-sage-100">Building HR That Actually Works</SectionLabel> */}
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-white leading-[1.05]">
-                Structure Your People.
+                Build Stronger Teams.
                 <br />
-                <span className="text-sky-400">Scale Your Business.</span>
+                <span className="text-sky-400">Scale with Confidence.</span>
               </h2>
               <p className="text-sm sm:text-base text-sage-100/70 font-semibold max-w-2xl leading-relaxed">
-                Meet Hraize: a practical, structured extension of your team,
-                built to handle end-to-end recruitment and people operations while you focus on scaling
+                Hraize acts as your strategic HR partner, providing structured recruitment and people operations support that helps growing businesses build, manage, and scale their teams.
               </p>
             </div>
             <div className="lg:col-span-4 flex flex-col items-start lg:items-end">
@@ -155,7 +154,7 @@ export const HomeContent: React.FC<HomeContentProps> = ({
               }
             ].map((svc, idx) => {
               const isActive = idx === activeService;
-              
+
               const handleMouseEnter = () => {
                 if (typeof window !== "undefined" && window.matchMedia("(hover: hover)").matches) {
                   setActiveService(idx);
@@ -173,11 +172,10 @@ export const HomeContent: React.FC<HomeContentProps> = ({
               return (
                 <div
                   key={idx}
-                  className={`relative rounded-3xl overflow-hidden cursor-pointer transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] ${
-                    isActive
-                      ? "flex-[4] md:flex-[3.5] bg-white shadow-xl border border-gray-100"
-                      : "flex-[0.6] md:flex-[0.55] min-h-[60px] md:min-h-0 md:min-w-[64px]"
-                  }`}
+                  className={`relative rounded-3xl overflow-hidden cursor-pointer transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] ${isActive
+                    ? "flex-[4] md:flex-[3.5] bg-white shadow-xl border border-gray-100"
+                    : "flex-[0.6] md:flex-[0.55] min-h-[60px] md:min-h-0 md:min-w-[64px]"
+                    }`}
                   onMouseEnter={handleMouseEnter}
                   onClick={handleCardClick}
                 >

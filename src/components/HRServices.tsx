@@ -146,55 +146,51 @@ export const HRServices: React.FC<HRServicesProps> = ({ onBookCall }) => {
           </p>
         </div>
 
-        <div className="max-w-4xl mx-auto mb-24">
-          <div className="space-y-3">
+        <div className="max-w-6xl mx-auto mb-24 px-4">
+          {/* 3-Column Grid Layout matching image_3d6933.png */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {strategicServices.map((srv, idx) => {
               const Icon = srv.icon;
-              const isOpen = openService === idx;
               return (
                 <div
                   key={srv.id}
                   id={srv.id}
-                  className="shadow-lg hover:shadow-xl rounded-2xl border border-sky-600/10 overflow-hidden transition-all"
+                  className="bg-white shadow-md hover:shadow-xl rounded-2xl border border-sky-600/10 p-6 transition-all flex flex-col justify-between"
                 >
-                  <button
-                    onClick={() => setOpenService(isOpen ? -1 : idx)}
-                    className="w-full flex items-center gap-5 p-5 text-left hover:bg-cream-50 transition-colors cursor-pointer"
-                  >
-                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-sky-600/5 text-sky-600">
-                      <Icon className="h-5 w-5" />
+                  <div>
+                    {/* Card Header Section */}
+                    <div className="flex items-start gap-4 mb-5">
+                      {/* Large Circular Icon Badge */}
+                      <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-sky-600/10 text-sky-600">
+                        <Icon className="h-6 w-6" />
+                      </div>
+
+                      {/* Title & Short Description */}
+                      <div className="min-w-0 pt-1">
+                        <h4 className="text-base font-bold text-navy-900 tracking-tight">
+                          {idx + 1}. {srv.title}
+                        </h4>
+                        <p className="text-xs text-navy-900/60 font-medium mt-1 leading-relaxed">
+                          {srv.desc}
+                        </p>
+                      </div>
                     </div>
-                    <div className="flex-1 min-w-0">
-                      <h4 className="text-sm font-black text-navy-900 uppercase tracking-tight">{srv.title}</h4>
-                      <p className="text-xs text-navy-900/50 font-medium mt-0.5">{srv.desc}</p>
-                    </div>
-                    <motion.div
-                      animate={{ rotate: isOpen ? 180 : 0 }}
-                      transition={{ duration: 0.2 }}
-                      className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-sky-600/5 text-sky-600"
-                    >
-                      <ArrowRight className="h-4 w-4" />
-                    </motion.div>
-                  </button>
-                  <AnimatePresence>
-                    {isOpen && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3 }}
-                        className="overflow-hidden"
-                      >
-                        <div className="px-5 pb-5 pt-0 border-t border-sky-600/50">
-                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-4">
-                            {srv.details.map((detail, di) => (
-                              <FeatureCheck key={di} className="text-navy-900/70">{detail}</FeatureCheck>
-                            ))}
-                          </div>
+
+                    {/* Horizontal Divider Line */}
+                    <div className="border-t border-sky-600/10 my-5" />
+
+                    {/* Inner Features List Section */}
+                    <div className="space-y-4">
+                      {srv.details.map((detail, di) => (
+                        <div key={di} className="flex items-start gap-3">
+                          {/* Reuses your FeatureCheck component formatted into a vertical list stack */}
+                          <FeatureCheck className="text-sm font-medium text-navy-900/80 leading-snug">
+                            {detail}
+                          </FeatureCheck>
                         </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               );
             })}

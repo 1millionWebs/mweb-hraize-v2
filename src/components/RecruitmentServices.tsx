@@ -46,10 +46,6 @@ export const RecruitmentServices: React.FC<RecruitmentServicesProps> = ({
       desc: "We handle JD definition, sourcing, screening, interview coordination, and offer negotiations."
     },
     {
-      title: "60-Day Replacement Guarantee",
-      desc: "If a hired candidate leaves within 60 days, we conduct a complete replacement search at zero cost."
-    },
-    {
       title: "Quality Over Speed",
       desc: "Finding the right cultural and technical match matters more than filling roles fast."
     }
@@ -121,7 +117,7 @@ export const RecruitmentServices: React.FC<RecruitmentServicesProps> = ({
             Permanent &amp; Contract Staffing Services
           </p>
           <p className="mt-4 text-sm sm:text-base text-navy-900/60 font-semibold">
-            We don&apos;t flood your inbox with generic resumes. We deliver high-caliber candidates aligned with your culture.
+            We deliver high-caliber candidates aligned with your culture.
           </p>
         </div>
 
@@ -192,9 +188,9 @@ export const RecruitmentServices: React.FC<RecruitmentServicesProps> = ({
                     <span className="text-[10px] font-bold text-copper-400 bg-copper-50 px-2 py-0.5 rounded-full">{m.tag}</span>
                   </div>
                   <p className="text-xs text-navy-900/60 font-medium mt-2">{m.desc}</p>
-                  <div className="mt-3 pt-3 border-sky-600/50">
+                  {/* <div className="mt-3 pt-3 border-sky-600/50">
                     <span className="text-[10px] font-bold text-sky-600/60 uppercase tracking-wide">60-Day Replacement Covered</span>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             ))}

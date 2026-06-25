@@ -15,7 +15,7 @@ export const AboutUs: React.FC = () => {
     {
       role: "Founder",
       roleDesc: "HR Strategy & People Operations",
-      experience: "14+ years across HR transformation, talent acquisition, employee lifecycle management, and organisation development.",
+      experience: "14+ years across HR transformation, talent acquisition, employee lifecycle management, and organisation development. Focused on helping businesses create practical HR frameworks, improve workforce effectiveness, and build scalable people operations",
       expertise: [
         "Talent Acquisition & Workforce Planning",
         "HR Operations & Compliance Frameworks",
@@ -28,8 +28,8 @@ export const AboutUs: React.FC = () => {
     },
     {
       role: "Co-Founder",
-      roleDesc: "Analytics & Data-Driven Decision Support",
-      experience: "Specialised expertise in workforce analytics, reporting automation, dashboards, and business intelligence solutions.",
+      roleDesc: "Workforce Analytics & Decision Intelligence",
+      experience: "Specialised expertise in workforce analytics, reporting automation, dashboards, and business intelligence solutions that help leaders make informed people decisions.",
       expertise: [
         "Workforce Analytics & Reporting",
         "Executive Dashboards & Headcount Insights",
@@ -56,7 +56,7 @@ export const AboutUs: React.FC = () => {
           </p>
         </div>
 
-        <div className="mb-20 rounded-3xl bg-cream-50 border border-sky-600/50 p-8 sm:p-10">
+        {/* <div className="mb-20 rounded-3xl bg-cream-50 border border-sky-600/50 p-8 sm:p-10">
           <div className="grid grid-cols-2 gap-x-6 gap-y-6 sm:flex sm:flex-wrap sm:justify-center sm:gap-x-12 sm:gap-y-6">
             {stats.map((stat, idx) => {
               const Icon = stat.icon;
@@ -79,6 +79,53 @@ export const AboutUs: React.FC = () => {
                 </motion.div>
               );
             })}
+          </div>
+        </div> */}
+
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-24 rounded-3xl bg-navy-card-subtle p-8 sm:p-12">
+          <div className="lg:col-span-7 space-y-6">
+            <SectionLabel className="text-sky-400">Why We Exist</SectionLabel>
+            <h3 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-white leading-tight">
+              BUILDING THE HR STRUCTURE
+              <br />
+              <span className="text-sky-400">GROWING BUSINESS NEED.</span>
+            </h3>
+            <div className="text-sage-100/70 space-y-4 font-semibold text-sm sm:text-base leading-relaxed">
+              <p>
+                Growing companies often reach a stage where hiring becomes reactive, processes become inconsistent,
+                and people decisions become difficult to manage.
+              </p>
+              <p>
+                Hraize was created to bring practical HR expertise, structured processes, and recruitment support to businesses
+                that need stronger people foundations without the complexity of building everything internally.
+              </p>
+              <p>
+                We help organizations build effective teams, improve people operations,
+                and create HR systems that support sustainable growth.
+                Not just recruitment. Not just policies. A structured HR partner focused on helping businesses grow with the right people and processes.
+              </p>
+            </div>
+          </div>
+          <div className="lg:col-span-5 flex flex-col justify-center h-full">
+            <div className="relative border-l-4 border-sky-600/50 bg-white/5 p-6 rounded-r-2xl">
+              <p className="text-xl sm:text-2xl font-bold tracking-tight text-white uppercase italic leading-snug">
+                &ldquo;It is not a lack of effort. It is a lack of structure.&rdquo;
+              </p>
+            </div>
+            <div className="mt-6 flex flex-col gap-3">
+              <div className="flex items-center gap-3">
+                <span className="h-2 w-2 rounded-full bg-copper-400" />
+                <span className="text-xs font-black tracking-widest uppercase text-copper-400">
+                  BUILD SYSTEMS, NOT JUST HIRE PEOPLE
+                </span>
+              </div>
+              <div className="flex items-center gap-3">
+                <span className="h-2 w-2 rounded-full bg-sky-400" />
+                <span className="text-xs font-black tracking-widest uppercase text-sky-400">
+                  PEOPLE DECISIONS BACKED BY PROCESS
+                </span>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -120,61 +167,15 @@ export const AboutUs: React.FC = () => {
           })}
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-24 rounded-3xl bg-navy-card-subtle p-8 sm:p-12">
-          <div className="lg:col-span-7 space-y-6">
-            <SectionLabel className="text-sky-400">Why We Exist</SectionLabel>
-            <h3 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-white leading-tight">
-              For businesses scaling without full-time HR.
-              <br />
-              <span className="text-sky-400">For professionals climbing without a roadmap.</span>
-            </h3>
-            <div className="text-sage-100/70 space-y-4 font-semibold text-sm sm:text-base leading-relaxed">
-              <p>
-                Most growing businesses reach a point where people management quietly becomes a problem.
-                Hiring happens reactively. Policies live in someone's memory. Attrition creeps up.
-              </p>
-              <p>
-                We started Hraize because we have seen this pattern repeat across industries, geographies,
-                and company sizes. We know what structured HR looks like at scale.
-              </p>
-              <p>
-                Not with a full-time HR department. Not with expensive consultants who hand over a report
-                and leave. With a committed partner who understands both the people side and the data behind it.
-              </p>
-            </div>
-          </div>
-          <div className="lg:col-span-5 flex flex-col justify-center h-full">
-            <div className="relative border-l-4 border-sky-600/50 bg-white/5 p-6 rounded-r-2xl">
-              <p className="text-xl sm:text-2xl font-bold tracking-tight text-white uppercase italic leading-snug">
-                &ldquo;It is not a lack of effort. It is a lack of structure.&rdquo;
-              </p>
-            </div>
-            <div className="mt-6 flex flex-col gap-3">
-              <div className="flex items-center gap-3">
-                <span className="h-2 w-2 rounded-full bg-copper-400" />
-                <span className="text-xs font-black tracking-widest uppercase text-copper-400">
-                  Established Benchmarks
-                </span>
-              </div>
-              <div className="flex items-center gap-3">
-                <span className="h-2 w-2 rounded-full bg-sky-400" />
-                <span className="text-xs font-black tracking-widest uppercase text-sky-400">
-                  Replace Guesswork With Insight
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-
         <div className="mb-24">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <SectionLabel>The Expertise</SectionLabel>
             <h3 className="mt-3 text-3xl font-black text-navy-900 uppercase tracking-tight">
-              Meet the Expertise Behind Hraize
+              Built on HR Expertise. Driven by Data. Focused on Growth
             </h3>
             <p className="mt-3 text-sm text-navy-900/60 font-bold leading-relaxed">
-              Built by professionals with combined experience across HR operations, talent strategy,
-              workforce analytics, and business transformation in India and international markets.
+              Hraize combines deep HR experience and data-driven decision support to help businesses build
+              structured people systems, improve hiring outcomes, and scale effectively
             </p>
           </div>
 
