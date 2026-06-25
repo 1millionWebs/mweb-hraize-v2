@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { motion } from "motion/react";
 import {
   CheckCircle, XCircle, Users, Award, Briefcase, ChevronRight,
-  Building2, GraduationCap, Check, ArrowRight, Briefcase as BriefcaseIcon, User
+  Building2, GraduationCap, Check, ArrowRight
 } from "lucide-react";
 import { SectionLabel, FeatureCheck, StepLine } from "./UIElements";
 
@@ -105,45 +105,6 @@ export const RecruitmentServices: React.FC<RecruitmentServicesProps> = ({
     }
   ];
 
-  const [activeCard, setActiveCard] = useState<string | null>(null);
-
-  const careerCards = [
-    {
-      id: "employer",
-      title: "For Employers",
-      subtitle: "Ready to Hire the Best?",
-      desc: "Tell us what you're looking for. We'll build a shortlist of exceptional candidates.",
-      image: "/services-recruitment.png",
-      icon: BriefcaseIcon,
-      details: [
-        "Submit your job requisition",
-        "Get 3-5 vetted candidates",
-        "Interview-ready profiles delivered",
-        "60-day replacement guarantee",
-        "Full process management"
-      ],
-      buttonText: "Submit Your Requisition",
-      onClick: onEmployerClick
-    },
-    {
-      id: "candidate",
-      title: "For Candidates",
-      subtitle: "Ready for Your Next Opportunity?",
-      desc: "Tell us about your background. We'll connect you with growing industries.",
-      image: "/services-recruitment.png",
-      icon: User,
-      details: [
-        "Submit your resume",
-        "Get matched with top employers",
-        "Interview coaching included",
-        "Career guidance & support",
-        "Access to exclusive opportunities"
-      ],
-      buttonText: "Submit Your Resume",
-      onClick: onCandidateClick
-    }
-  ];
-
   return (
     <div className="bg-cream-100 py-16">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -153,7 +114,7 @@ export const RecruitmentServices: React.FC<RecruitmentServicesProps> = ({
             Quality Hiring for Growing Business
           </h2>
           <p className="mt-3 text-sm font-bold text-navy-900/50 uppercase tracking-[0.12em]">
-            Permanent & Contract Staffing Services
+            Permanent &amp; Contract Staffing Services
           </p>
           <p className="mt-4 text-sm sm:text-base text-navy-900/60 font-semibold">
             We deliver high-caliber candidates aligned with your culture.
@@ -325,96 +286,39 @@ export const RecruitmentServices: React.FC<RecruitmentServicesProps> = ({
           </div>
         </div>
 
-        <div className="max-w-5xl mx-auto mb-24">
-          <div className="text-center max-w-2xl mx-auto mb-12">
-            <SectionLabel>A Career Partner for Every Stage</SectionLabel>
-            <h3 className="mt-3 text-2xl sm:text-3xl font-black text-navy-900 uppercase tracking-tight">
-              Choose Your Path
-            </h3>
-            <p className="mt-2 text-sm text-navy-900/60 font-semibold">
-              Whether you're hiring or job-seeking, we've got you covered.
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          <div className="rounded-3xl shadow-lg bg-navy-card p-8 text-white flex flex-col justify-between items-start relative overflow-hidden">
+            <span className="text-[10px] font-mono tracking-widest bg-white/10 px-2.5 py-1 rounded inline-block uppercase font-bold mb-4">
+              For Employers
+            </span>
+            <h4 className="text-xl font-black uppercase tracking-tight text-white mb-3">Ready to Hire the Best?</h4>
+            <p className="text-xs text-sage-100/70 leading-relaxed font-semibold mb-6">
+              Tell us what you&apos;re looking for. We&apos;ll build a shortlist of exceptional candidates.
             </p>
+            <button
+              onClick={onEmployerClick}
+              className="inline-flex items-center gap-2 rounded-full bg-sky-600 px-6 py-3 text-xs font-black hover:bg-sky-700 shadow-md cursor-pointer text-white transition-all"
+            >
+              Submit Your Requisition
+              <ArrowRight className="h-4 w-4" />
+            </button>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {careerCards.map((card, idx) => {
-              const Icon = card.icon;
-              const isActive = activeCard === card.id;
-              return (
-                <motion.div
-                  key={card.id}
-                  className="relative h-[400px] rounded-2xl overflow-hidden cursor-pointer"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: idx * 0.1 }}
-                  onHoverStart={() => setActiveCard(card.id)}
-                  onClick={() => setActiveCard(isActive ? null : card.id)}
-                >
-                  {/* Background image */}
-                  <motion.div
-                    className="absolute inset-0 bg-cover bg-center"
-                    style={{ backgroundImage: `url(${card.image})` }}
-                    animate={{ opacity: isActive ? 0 : 1 }}
-                    whileHover={{ opacity: 0 }}
-                    transition={{ duration: 0.35, ease: "easeInOut" }}
-                  />
-
-                  {/* Gradient overlay on image */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black-100/80 via-black-100/20 to-transparent" />
-
-                  {/* Index number */}
-                  <div className="absolute top-4 left-4 flex h-8 w-8 items-center justify-center rounded-full bg-white/10 backdrop-blur-sm text-white text-xs font-black">
-                    {idx + 1}
-                  </div>
-
-                  {/* Title - always visible at bottom */}
-                  <div className="absolute bottom-0 left-0 right-0 p-6">
-                    <span className="text-[10px] font-mono tracking-widest bg-white/10 px-2.5 py-1 rounded inline-block uppercase font-bold text-white mb-3">
-                      {card.title}
-                    </span>
-                    <h4 className="text-lg font-black text-white leading-tight">{card.subtitle}</h4>
-                  </div>
-
-                  {/* Details overlay - appears on hover (desktop) or tap (mobile) */}
-                  <motion.div
-                    className="absolute inset-0 p-6 flex flex-col justify-center bg-navy-900/95"
-                    animate={{ opacity: isActive ? 1 : 0, pointerEvents: isActive ? "auto" : "none" }}
-                    whileHover={{ opacity: 1, pointerEvents: "auto" }}
-                    transition={{ duration: 0.35, ease: "easeInOut" }}
-                  >
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-sky-600/20 text-sky-400">
-                        <Icon className="h-5 w-5" />
-                      </div>
-                      <div>
-                        <span className="text-[10px] font-mono tracking-widest text-sky-400 uppercase font-bold block">{card.title}</span>
-                        <h4 className="text-base font-black text-white leading-tight">{card.subtitle}</h4>
-                      </div>
-                    </div>
-                    <p className="text-xs text-white/60 font-medium mb-4 leading-relaxed">{card.desc}</p>
-                    <ul className="space-y-2.5 mb-6">
-                      {card.details.map((detail, di) => (
-                        <li key={di} className="flex items-start gap-2.5">
-                          <Check className="h-3.5 w-3.5 text-sky-400 mt-0.5 shrink-0" />
-                          <span className="text-xs text-white/80 font-medium leading-snug">{detail}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        card.onClick();
-                      }}
-                      className="inline-flex items-center gap-2 rounded-full bg-sky-600 px-6 py-3 text-xs font-black hover:bg-sky-700 shadow-md cursor-pointer text-white transition-all w-fit"
-                    >
-                      {card.buttonText}
-                      <ArrowRight className="h-4 w-4" />
-                    </button>
-                  </motion.div>
-                </motion.div>
-              );
-            })}
+          <div className="rounded-3xl bg-cream-50 border shadow-lg border-sky-600/30 p-8 flex flex-col justify-between items-start relative overflow-hidden">
+            <span className="text-[10px] font-mono tracking-widest bg-sky-600/10 px-2.5 py-1 rounded inline-block uppercase font-bold text-sky-700 mb-4">
+              For Candidates
+            </span>
+            <h4 className="text-xl font-black uppercase text-navy-900 tracking-tight mb-3">Ready for Your Next Opportunity?</h4>
+            <p className="text-xs text-navy-900/60 leading-relaxed font-medium mb-6">
+              Tell us about your background. We&apos;ll connect you with growing industries.
+            </p>
+            <button
+              onClick={onCandidateClick}
+              className="inline-flex items-center gap-2 rounded-full bg-sky-600 px-6 py-3 text-xs font-black hover:bg-sky-700 shadow-md cursor-pointer text-white transition-all"
+            >
+              Submit Your Resume
+              <ArrowRight className="h-4 w-4" />
+            </button>
           </div>
         </div>
       </div>
