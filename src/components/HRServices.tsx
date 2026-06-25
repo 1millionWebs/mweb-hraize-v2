@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import {
   Users, Layers, ShieldCheck, BarChart3, Settings, FileText,
-  Check, ArrowRight, Sparkles
+  Check, ArrowRight, Sparkles, IndianRupee
 } from "lucide-react";
 import { SectionLabel, StepLine, FeatureCheck } from "./UIElements";
 
@@ -217,6 +217,53 @@ export const HRServices: React.FC<HRServicesProps> = ({ onBookCall }) => {
                 </motion.div>
               );
             })}
+          </div>
+        </div>
+
+        <div className="mb-24">
+          <div className="text-center max-w-3xl mx-auto mb-12">
+            <h3 className="text-2xl sm:text-3xl font-black text-navy-900 uppercase tracking-tight">
+              Why Choose Us ?
+            </h3>
+            <div className="mt-4 h-1 w-20 bg-sky-900 mx-auto rounded-full" />
+          </div>
+
+          <div className="max-w-6xl mx-auto px-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+              {[
+                {
+                  icon: IndianRupee,
+                  title: "Cost Effective",
+                  desc: "Get expert HR support without the cost of a full-time HR team."
+                },
+                {
+                  icon: Users,
+                  title: "Practical & Scalable",
+                  desc: "Solutions tailored for your stage of growth and business needs."
+                },
+                {
+                  icon: BarChart3,
+                  title: "Data-Driven Decisions",
+                  desc: "Make better people decisions with insights and reporting."
+                },
+                {
+                  icon: ShieldCheck,
+                  title: "Experienced Partner",
+                  desc: "HR expertise you can trust to help your business grow."
+                }
+              ].map((feature, idx) => {
+                const Icon = feature.icon;
+                return (
+                  <div key={idx} className="text-center">
+                    <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-forest-500/10 mb-4">
+                      <Icon className="w-8 h-8 text-sky-500" />
+                    </div>
+                    <h4 className="text-lg font-black text-navy-900 mb-2">{feature.title}</h4>
+                    <p className="text-sm text-navy-900/60 font-semibold leading-relaxed">{feature.desc}</p>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
 
