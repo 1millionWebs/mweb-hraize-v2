@@ -1,7 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "motion/react";
-import { TrendingUp, Check, ArrowRight } from "lucide-react";
+import { TrendingUp, Check, ArrowRight, GraduationCap, BarChart3, Award, MessageCircle, Briefcase, Target, Compass, Heart, Star } from "lucide-react";
 import { SectionLabel, FeatureCheck } from "./UIElements";
+import { image } from "motion/react-client";
 
 interface TrainingAndDevelopmentProps {
   onLetsFindPath: () => void;
@@ -73,7 +74,66 @@ export const TrainingAndDevelopment: React.FC<TrainingAndDevelopmentProps> = ({
         "8 weeks of ongoing support"
       ],
       tag: "Leader",
+      image: "/managers.png",
       number: "03"
+    }
+  ];
+
+  const [activeCard, setActiveCard] = useState<string | null>(null);
+
+  const careerCards = [
+    {
+      id: "fresher",
+      title: "Graduate",
+      subtitle: "Fresher to Professional",
+      desc: "Fresh graduates entering corporate for the first time. You have a degree. You need the positioning to land the job.",
+      image: "/fresher.png",
+      icon: GraduationCap,
+      details: [
+        "Professional resume rewritten from scratch",
+        "Optimised LinkedIn, Naukri profile",
+        "Interview coaching & mock interviews",
+        "Career clarity session",
+        "Job search strategy",
+        "1 month of ongoing support"
+      ],
+      buttonText: "Start Your Journey",
+      onClick: onLetsFindPath
+    },
+    {
+      id: "mid-career",
+      title: "Accelerator",
+      subtitle: "Mid-Career Acceleration",
+      desc: "Professionals with 3-6 years of experience. You're good at your job, but invisible to promotions.",
+      image: "/services-hr.png",
+      icon: TrendingUp,
+      details: [
+        "Resume repositioning",
+        "LinkedIn visibility boost",
+        "Advanced interview coaching",
+        "Career strategy session",
+        "Application strategy",
+        "6 weeks of ongoing support"
+      ],
+      buttonText: "Accelerate Now",
+      onClick: onLetsFindPath
+    },
+    {
+      id: "manager",
+      title: "Leader",
+      subtitle: "First-Time Managers",
+      desc: "Professionals with 6+ years of experience ready for executive or Manager roles.",
+      image: "/managers.png",
+      icon: Award,
+      details: [
+        "Executive resume",
+        "Executive LinkedIn branding",
+        "Executive interview coaching",
+        "Essential soft skills training",
+        "8 weeks of ongoing support"
+      ],
+      buttonText: "Lead With Confidence",
+      onClick: onLetsFindPath
     }
   ];
 
@@ -97,31 +157,33 @@ export const TrainingAndDevelopment: React.FC<TrainingAndDevelopmentProps> = ({
               What Makes Us Different
             </h3>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            <div className="bg-white rounded-2xl p-6 shadow-sm border border-sky-600/10">
-              <h4 className="text-base font-black text-navy-900 uppercase tracking-tight mb-3">Honest Feedback</h4>
-              <p className="text-sm text-navy-900/60 font-medium leading-relaxed">Real feedback on what needs improvement, not generic praise.</p>
-            </div>
-            <div className="bg-white rounded-2xl p-6 shadow-sm border border-sky-600/10">
-              <h4 className="text-base font-black text-navy-900 uppercase tracking-tight mb-3">Industry Experience</h4>
-              <p className="text-sm text-navy-900/60 font-medium leading-relaxed">We've hired and placed across tech, healthcare, finance, operations.</p>
-            </div>
-            <div className="bg-white rounded-2xl p-6 shadow-sm border border-sky-600/10">
-              <h4 className="text-base font-black text-navy-900 uppercase tracking-tight mb-3">Practical, Not Theoretical</h4>
-              <p className="text-sm text-navy-900/60 font-medium leading-relaxed">Every resume gets rewritten. Every interview is practiced. You walk away ready.</p>
-            </div>
-            <div className="bg-white rounded-2xl p-6 shadow-sm border border-sky-600/10">
-              <h4 className="text-base font-black text-navy-900 uppercase tracking-tight mb-3">Career Strategy</h4>
-              <p className="text-sm text-navy-900/60 font-medium leading-relaxed">Beyond resume help. We guide your entire career positioning.</p>
-            </div>
-            <div className="bg-white rounded-2xl p-6 shadow-sm border border-sky-600/10">
-              <h4 className="text-base font-black text-navy-900 uppercase tracking-tight mb-3">Ongoing Support</h4>
-              <p className="text-sm text-navy-900/60 font-medium leading-relaxed">We check in, adjust strategy, and keep you moving forward.</p>
-            </div>
-            <div className="bg-white rounded-2xl p-6 shadow-sm border border-sky-600/10">
-              <h4 className="text-base font-black text-navy-900 uppercase tracking-tight mb-3">Affordable Professional Coaching</h4>
-              <p className="text-sm text-navy-900/60 font-medium leading-relaxed">Senior-level guidance at fractional cost.</p>
-            </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6 max-w-6xl mx-auto">
+            {[
+              { icon: MessageCircle, title: "Honest Feedback", desc: "Real feedback on what needs improvement, not generic praise." },
+              { icon: Briefcase, title: "Industry Experience", desc: "We've hired and placed across tech, healthcare, finance, operations." },
+              { icon: Target, title: "Practical, Not Theoretical", desc: "Every resume gets rewritten. Every interview is practiced. You walk away ready." },
+              { icon: Compass, title: "Career Strategy", desc: "Beyond resume help. We guide your entire career positioning." },
+              { icon: Heart, title: "Ongoing Support", desc: "We check in, adjust strategy, and keep you moving forward." },
+              { icon: Star, title: "Affordable Professional Coaching", desc: "Senior-level guidance at fractional cost." }
+            ].map((item, idx) => {
+              const Icon = item.icon;
+              return (
+                <motion.div
+                  key={idx}
+                  className="bg-white rounded-2xl p-6 lg:p-6 shadow-sm border border-sky-600/10 hover:shadow-md hover:border-sky-600/20 transition-all"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: idx * 0.08, ease: "easeOut" }}
+                >
+                  <div className="flex h-12 w-12 lg:h-14 lg:w-14 items-center justify-center rounded-xl bg-sky-600/10 text-sky-600 mb-4 lg:mb-5">
+                    <Icon className="h-5 w-5 lg:h-6 lg:w-6" />
+                  </div>
+                  <h4 className="text-sm lg:text-base font-black text-navy-900 uppercase tracking-tight mb-2 lg:mb-3">{item.title}</h4>
+                  <p className="text-xs lg:text-sm text-navy-900/60 font-medium leading-relaxed">{item.desc}</p>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
 
@@ -136,46 +198,88 @@ export const TrainingAndDevelopment: React.FC<TrainingAndDevelopmentProps> = ({
             </p>
           </div>
 
-          <div className="max-w-5xl mx-auto space-y-6">
-            {pathways.map((path, idx) => (
-              <motion.div
-                key={path.id}
-                id={path.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.15 }}
-                transition={{ duration: 0.6, delay: idx * 0.12, ease: "easeOut" }}
-                className="rounded-3xl shadow-lg bg-cream-50 border border-sky-600/20 p-8"
-              >
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-                  <div className="lg:col-span-5">
-                    <div className="flex items-center gap-3 mb-4">
-                      <span className="text-lg font-black text-sky-600/40">{path.number}</span>
-                      <span className="h-px flex-1 bg-sky-600/10" />
+          <div className="max-w-6xl mx-auto px-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {careerCards.map((card, idx) => {
+                const Icon = card.icon;
+                const isActive = activeCard === card.id;
+                return (
+                  <motion.div
+                    key={card.id}
+                    id={card.id}
+                    className="relative h-[400px] rounded-2xl overflow-hidden cursor-pointer"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: idx * 0.08 }}
+                    onHoverStart={() => setActiveCard(card.id)}
+                    onClick={() => setActiveCard(isActive ? null : card.id)}
+                  >
+                    {/* Background image */}
+                    <motion.div
+                      className="absolute inset-0 bg-cover bg-center"
+                      style={{ backgroundImage: `url(${card.image})` }}
+                      animate={{ opacity: isActive ? 0 : 1 }}
+                      whileHover={{ opacity: 0 }}
+                      transition={{ duration: 0.35, ease: "easeInOut" }}
+                    />
+
+                    {/* Gradient overlay on image */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black-100/60 via-black-100/5 to-transparent" />
+
+                    {/* Index number */}
+                    <div className="absolute top-4 left-4 flex h-8 w-8 items-center justify-center rounded-full bg-white/10 backdrop-blur-sm text-white text-xs font-black">
+                      {idx + 1}
                     </div>
-                    <div className="flex items-center gap-3 mb-2">
-                      <span className="text-[10px] font-bold text-copper-400 bg-copper-50 px-2.5 py-1 rounded-full">{path.tag}</span>
-                      <span className="text-[10px] font-bold text-sky-600">{path.timeline}</span>
-                    </div>
-                    <h4 className="text-xl font-black text-navy-900 uppercase tracking-tight mb-3">{path.title}</h4>
-                    <p className="text-sm text-navy-900/60 font-medium leading-relaxed">{path.subtitle}</p>
-                  </div>
-                  <div className="lg:col-span-7">
-                    <p className="text-[10px] font-black tracking-wider text-sky-600 uppercase mb-3">What You Get</p>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                      {path.features.map((feat, fIdx) => (
-                        <FeatureCheck key={fIdx} className="text-navy-900/70">{feat}</FeatureCheck>
-                      ))}
-                    </div>
-                    <div className="mt-6 pt-4 border-t border-sky-600/50">
-                      <span className="text-[10px] font-bold text-navy-900/40 uppercase tracking-wide">
-                        Customised services available
+
+                    {/* Title - always visible at bottom */}
+                    <div className="absolute bottom-0 left-0 right-0 p-6">
+                      <span className="text-[10px] font-mono tracking-widest bg-white/10 px-2.5 py-1 rounded inline-block uppercase font-bold text-white mb-3">
+                        {card.title}
                       </span>
+                      <h4 className="text-lg font-black text-white leading-tight">{card.subtitle}</h4>
                     </div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
+
+                    {/* Details overlay - appears on hover (desktop) or tap (mobile) */}
+                    <motion.div
+                      className="absolute inset-0 p-6 flex flex-col justify-center bg-navy-900/95"
+                      animate={{ opacity: isActive ? 1 : 0, pointerEvents: isActive ? "auto" : "none" }}
+                      whileHover={{ opacity: 1, pointerEvents: "auto" }}
+                      transition={{ duration: 0.35, ease: "easeInOut" }}
+                    >
+                      <div className="flex items-center gap-3 mb-4">
+                        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-sky-600/20 text-sky-400">
+                          <Icon className="h-5 w-5" />
+                        </div>
+                        <div>
+                          <span className="text-[10px] font-mono tracking-widest text-sky-400 uppercase font-bold block">{card.title}</span>
+                          <h4 className="text-base font-black text-white leading-tight">{card.subtitle}</h4>
+                        </div>
+                      </div>
+                      <p className="text-xs text-white/60 font-medium mb-4 leading-relaxed">{card.desc}</p>
+                      <ul className="space-y-2.5 mb-6">
+                        {card.details.map((detail, di) => (
+                          <li key={di} className="flex items-start gap-2.5">
+                            <Check className="h-3.5 w-3.5 text-sky-400 mt-0.5 shrink-0" />
+                            <span className="text-xs text-white/80 font-medium leading-snug">{detail}</span>
+                          </li>
+                        ))}
+                      </ul>
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          card.onClick();
+                        }}
+                        className="inline-flex items-center gap-2 rounded-full bg-sky-600 px-6 py-3 text-xs font-black hover:bg-sky-700 shadow-md cursor-pointer text-white transition-all w-fit"
+                      >
+                        {card.buttonText}
+                        <ArrowRight className="h-4 w-4" />
+                      </button>
+                    </motion.div>
+                  </motion.div>
+                );
+              })}
+            </div>
           </div>
         </div>
 
