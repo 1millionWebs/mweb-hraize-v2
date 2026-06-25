@@ -178,7 +178,15 @@ export const RecruitmentServices: React.FC<RecruitmentServicesProps> = ({
 
           <div className="max-w-4xl mx-auto">
             {hiringModels.map((m, idx) => (
-              <div key={m.id} id={m.id} className="flex items-start gap-6 p-6 border-b border-sky-600/50 last:border-b-0">
+              <motion.div
+                key={m.id}
+                id={m.id}
+                className="flex items-start gap-6 p-6 border-b border-sky-600/50 last:border-b-0 group hover:bg-cream-50/50 transition-colors rounded-lg"
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: idx * 0.1 }}
+              >
                 <div className="hidden sm:flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-sky-600/5 text-sky-600">
                   <span className="text-lg font-black">{String(idx + 1).padStart(2, '0')}</span>
                 </div>
@@ -192,7 +200,7 @@ export const RecruitmentServices: React.FC<RecruitmentServicesProps> = ({
                     <span className="text-[10px] font-bold text-sky-600/60 uppercase tracking-wide">60-Day Replacement Covered</span>
                   </div> */}
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -286,41 +294,74 @@ export const RecruitmentServices: React.FC<RecruitmentServicesProps> = ({
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-          <div className="rounded-3xl shadow-lg bg-navy-card p-8 text-white flex flex-col justify-between items-start relative overflow-hidden">
-            <span className="text-[10px] font-mono tracking-widest bg-white/10 px-2.5 py-1 rounded inline-block uppercase font-bold mb-4">
-              For Employers
-            </span>
-            <h4 className="text-xl font-black uppercase tracking-tight text-white mb-3">Ready to Hire the Best?</h4>
-            <p className="text-xs text-sage-100/70 leading-relaxed font-semibold mb-6">
-              Tell us what you&apos;re looking for. We&apos;ll build a shortlist of exceptional candidates.
-            </p>
-            <button
-              onClick={onEmployerClick}
-              className="inline-flex items-center gap-2 rounded-full bg-sky-600 px-6 py-3 text-xs font-black hover:bg-sky-700 shadow-md cursor-pointer text-white transition-all"
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={{
+              hidden: {},
+              visible: { transition: { staggerChildren: 0.15 } },
+            }}
+          >
+            <motion.div
+              className="rounded-3xl shadow-lg bg-navy-card p-8 text-white flex flex-col justify-between items-start relative overflow-hidden group"
+              variants={{
+                hidden: { opacity: 0, x: -30 },
+                visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] } },
+              }}
             >
-              Submit Your Requisition
-              <ArrowRight className="h-4 w-4" />
-            </button>
-          </div>
+              <motion.span
+                className="text-[10px] font-mono tracking-widest bg-white/10 px-2.5 py-1 rounded inline-block uppercase font-bold mb-4"
+                whileHover={{ letterSpacing: "0.25em" }}
+                transition={{ duration: 0.3 }}
+              >
+                For Employers
+              </motion.span>
+              <h4 className="text-xl font-black uppercase tracking-tight text-white mb-3">Ready to Hire the Best?</h4>
+              <p className="text-xs text-sage-100/70 leading-relaxed font-semibold mb-6">
+                Tell us what you're looking for. We'll build a shortlist of exceptional candidates.
+              </p>
+              <motion.button
+                onClick={onEmployerClick}
+                className="inline-flex items-center gap-2 rounded-full bg-sky-600 px-6 py-3 text-xs font-black hover:bg-sky-700 shadow-md cursor-pointer text-white transition-all"
+                whileHover={{ scale: 1.04 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                Submit Your Requisition
+                <ArrowRight className="h-4 w-4" />
+              </motion.button>
+            </motion.div>
 
-          <div className="rounded-3xl bg-cream-50 border shadow-lg border-sky-600/30 p-8 flex flex-col justify-between items-start relative overflow-hidden">
-            <span className="text-[10px] font-mono tracking-widest bg-sky-600/10 px-2.5 py-1 rounded inline-block uppercase font-bold text-sky-700 mb-4">
-              For Candidates
-            </span>
-            <h4 className="text-xl font-black uppercase text-navy-900 tracking-tight mb-3">Ready for Your Next Opportunity?</h4>
-            <p className="text-xs text-navy-900/60 leading-relaxed font-medium mb-6">
-              Tell us about your background. We&apos;ll connect you with growing industries.
-            </p>
-            <button
-              onClick={onCandidateClick}
-              className="inline-flex items-center gap-2 rounded-full bg-sky-600 px-6 py-3 text-xs font-black hover:bg-sky-700 shadow-md cursor-pointer text-white transition-all"
+            <motion.div
+              className="rounded-3xl bg-cream-50 border shadow-lg border-sky-600/30 p-8 flex flex-col justify-between items-start relative overflow-hidden group"
+              variants={{
+                hidden: { opacity: 0, x: 30 },
+                visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] } },
+              }}
             >
-              Submit Your Resume
-              <ArrowRight className="h-4 w-4" />
-            </button>
-          </div>
-        </div>
+              <motion.span
+                className="text-[10px] font-mono tracking-widest bg-sky-600/10 px-2.5 py-1 rounded inline-block uppercase font-bold text-sky-700 mb-4"
+                whileHover={{ letterSpacing: "0.25em" }}
+                transition={{ duration: 0.3 }}
+              >
+                For Candidates
+              </motion.span>
+              <h4 className="text-xl font-black uppercase text-navy-900 tracking-tight mb-3">Ready for Your Next Opportunity?</h4>
+              <p className="text-xs text-navy-900/60 leading-relaxed font-medium mb-6">
+                Tell us about your background. We'll connect you with growing industries.
+              </p>
+              <motion.button
+                onClick={onCandidateClick}
+                className="inline-flex items-center gap-2 rounded-full bg-sky-600 px-6 py-3 text-xs font-black hover:bg-sky-700 shadow-md cursor-pointer text-white transition-all"
+                whileHover={{ scale: 1.04 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                Submit Your Resume
+                <ArrowRight className="h-4 w-4" />
+              </motion.button>
+            </motion.div>
+          </motion.div>
       </div>
     </div>
   );

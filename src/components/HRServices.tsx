@@ -229,7 +229,16 @@ export const HRServices: React.FC<HRServicesProps> = ({ onBookCall }) => {
           </div>
 
           <div className="max-w-6xl mx-auto px-4">
-            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+            <motion.div
+              className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+              variants={{
+                hidden: {},
+                visible: { transition: { staggerChildren: 0.12 } },
+              }}
+            >
               {[
                 {
                   icon: IndianRupee,
@@ -254,16 +263,27 @@ export const HRServices: React.FC<HRServicesProps> = ({ onBookCall }) => {
               ].map((feature, idx) => {
                 const Icon = feature.icon;
                 return (
-                  <div key={idx} className="text-center">
-                    <div className="inline-flex items-center justify-center w-16 h-16 lg:w-20 lg:h-20 rounded-full bg-forest-500/10 mb-3 lg:mb-4">
-                      <Icon className="w-6 h-6 lg:w-8 lg:h-8 text-sky-500" />
-                    </div>
-                    <h4 className="text-sm lg:text-lg font-black text-navy-900 mb-1 lg:mb-2">{feature.title}</h4>
+                  <motion.div
+                    key={idx}
+                    variants={{
+                      hidden: { opacity: 0, y: 20, scale: 0.9 },
+                      visible: { opacity: 1, y: 0, scale: 1 },
+                    }}
+                    className="text-center group"
+                  >
+                    <motion.div
+                      className="inline-flex items-center justify-center w-16 h-16 lg:w-20 lg:h-20 rounded-full bg-forest-500/10 mb-3 lg:mb-4"
+                      whileHover={{ scale: 1.12, backgroundColor: "rgba(2,132,199,0.18)" }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <Icon className="w-6 h-6 lg:w-8 lg:h-8 text-sky-500 group-hover:text-sky-600 transition-colors" />
+                    </motion.div>
+                    <h4 className="text-sm lg:text-lg font-black text-navy-900 mb-1 lg:mb-2 group-hover:text-sky-700 transition-colors duration-300">{feature.title}</h4>
                     <p className="text-xs lg:text-sm text-navy-900/60 font-semibold leading-relaxed">{feature.desc}</p>
-                  </div>
+                  </motion.div>
                 );
               })}
-            </div>
+            </motion.div>
           </div>
         </div>
 
@@ -278,18 +298,27 @@ export const HRServices: React.FC<HRServicesProps> = ({ onBookCall }) => {
             </p>
           </div>
 
-          <div className="relative grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-8">
+          <motion.div
+            className="relative grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-8"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={{
+              hidden: {},
+              visible: { transition: { staggerChildren: 0.2 } },
+            }}
+          >
             {/* Connecting line between steps (desktop) */}
             <div className="hidden md:block absolute top-12 left-[12%] right-[12%] h-px bg-gradient-to-r from-transparent via-sky-600/40 to-transparent" />
 
             {methodology.map((m, idx) => (
               <motion.div
                 key={idx}
-                className="relative flex flex-row md:flex-col items-center md:text-center gap-5 md:gap-0"
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.15, ease: "easeOut" }}
+                className="relative flex flex-row md:flex-col items-center md:text-center gap-5 md:gap-0 group"
+                variants={{
+                  hidden: { opacity: 0, x: -20 },
+                  visible: { opacity: 1, x: 0, transition: { duration: 0.5, ease: "easeOut" } },
+                }}
               >
                 {/* Mobile vertical connecting line */}
                 {idx < methodology.length - 1 && (
@@ -298,20 +327,28 @@ export const HRServices: React.FC<HRServicesProps> = ({ onBookCall }) => {
 
                 {/* Step number circle with glow */}
                 <div className="relative z-10 shrink-0">
-                  <div className="absolute inset-0 rounded-full bg-sky-600/20 blur-lg md:blur-xl" />
-                  <div className="relative flex h-16 w-16 md:h-24 md:w-24 items-center justify-center rounded-full bg-navy-900 border-2 border-sky-600/20 text-white shadow-xl">
+                  <motion.div
+                    className="absolute inset-0 rounded-full bg-sky-600/20 blur-lg md:blur-xl"
+                    animate={{ scale: [1, 1.2, 1], opacity: [0.2, 0.35, 0.2] }}
+                    transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: idx * 0.5 }}
+                  />
+                  <motion.div
+                    className="relative flex h-16 w-16 md:h-24 md:w-24 items-center justify-center rounded-full bg-navy-900 border-2 border-sky-600/20 text-white shadow-xl"
+                    whileHover={{ scale: 1.1, borderColor: "rgba(2,132,199,0.6)" }}
+                    transition={{ duration: 0.3 }}
+                  >
                     <span className="text-lg md:text-2xl font-black tracking-tight">{m.step}</span>
-                  </div>
+                  </motion.div>
                 </div>
 
                 {/* Content */}
                 <div className="md:mt-7 text-left md:text-center">
-                  <h4 className="text-sm md:text-lg font-black text-navy-900 uppercase tracking-tight mb-1 md:mb-3">{m.title}</h4>
+                  <h4 className="text-sm md:text-lg font-black text-navy-900 uppercase tracking-tight mb-1 md:mb-3 group-hover:text-sky-700 transition-colors duration-300">{m.title}</h4>
                   <p className="text-xs md:text-sm text-navy-900/60 font-medium leading-relaxed">{m.desc}</p>
                 </div>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
 
         <div className="mb-24 overflow-hidden rounded-3xl bg-navy-card-subtle shadow-xl">
@@ -403,7 +440,13 @@ export const HRServices: React.FC<HRServicesProps> = ({ onBookCall }) => {
           </div>
         </div>
 
-        <div className="shadow-lg text-center max-w-3xl mx-auto bg-cream-50 border border-sky-600/10 rounded-3xl p-8 sm:p-12">
+        <motion.div
+          className="shadow-lg text-center max-w-3xl mx-auto bg-cream-50 border border-sky-600/10 rounded-3xl p-8 sm:p-12"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
+        >
           <SectionLabel>Workforce Architecture</SectionLabel>
           <h3 className="mt-3 text-2xl sm:text-3xl font-black text-navy-900 uppercase tracking-tight">
             Ready to Have Your People Partner Today
@@ -412,7 +455,11 @@ export const HRServices: React.FC<HRServicesProps> = ({ onBookCall }) => {
             Schedule a free discovery call. We'll assess your needs, locate bottlenecks, and show you how
             fractional HR can transform your business.
           </p>
-          <div className="mt-8">
+          <motion.div
+            className="mt-8"
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.98 }}
+          >
             <button
               onClick={onBookCall}
               className="inline-flex items-center gap-2 rounded-full bg-sky-600 text-white hover:bg-sky-700 px-8 py-3.5 text-xs font-black tracking-wider uppercase shadow-lg shadow-sky-600/20 transition-all cursor-pointer"
@@ -420,8 +467,8 @@ export const HRServices: React.FC<HRServicesProps> = ({ onBookCall }) => {
               Book Your Call
               <ArrowRight className="h-4 w-4" />
             </button>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
     </div>
   );

@@ -203,7 +203,8 @@ export const AboutUs: React.FC = () => {
                   <div>
                     <h4 className="text-sm font-black text-navy-900 uppercase leading-snug text-center">{founder.roleDesc}</h4>
                   </div>
-                  <p className="text-sm text-navy-900/70 font-medium leading-relaxed">{founder.experience}</p>
+                  <p className="text-sm text-navy-900/70 font-medium leading-relaxed min-h-[100px] italic">{founder.experience}</p>
+
                   <div className="pt-4 border-t border-sky-600/50">
                     <p className="text-[10px] font-black tracking-wider text-sky-600 uppercase mb-2">Areas of Expertise</p>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
@@ -223,6 +224,6 @@ export const AboutUs: React.FC = () => {
 
 
       </div>
-    </div>
+    </div >
   );
 };

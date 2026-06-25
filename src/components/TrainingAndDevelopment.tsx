@@ -170,7 +170,7 @@ export const TrainingAndDevelopment: React.FC<TrainingAndDevelopmentProps> = ({
               return (
                 <motion.div
                   key={idx}
-                  className="bg-white rounded-2xl p-6 lg:p-6 shadow-sm border border-sky-600/10 hover:shadow-md hover:border-sky-600/20 transition-all"
+                  className="bg-white/60 rounded-2xl p-6 lg:p-6 shadow-sm border border-sky-600/10 hover:shadow-md hover:border-sky-600/20 transition-all"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
