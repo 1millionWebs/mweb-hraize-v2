@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import Link from "next/link";
 import { Instagram, Linkedin, Mail, ArrowUp, Facebook } from "lucide-react";
 
@@ -14,7 +15,7 @@ export const Footer: React.FC = () => {
           <div className="md:col-span-4 space-y-4">
             <Link href="/" prefetch={false} className="flex items-center gap-2 group">
               <span className="bg-white p-1.5 rounded-md">
-                <img src="/logo.svg" alt="Hraize" className="h-5 rounded-md w-auto" /></span>
+                <Image src="/logo.svg" alt="Hraize" width={20} height={20} className="h-5 rounded-md w-auto" /></span>
               <div className="flex flex-col min-w-0">
                 <div className="flex items-baseline space-x-1.5">
                   <span className="text-xl font-black tracking-widest text-white group-hover:text-sage-100 transition">

@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
+import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "motion/react";
 import { ChevronDown, Menu, X, ArrowUpRight, Mail } from "lucide-react";
@@ -85,7 +86,7 @@ export const Navbar: React.FC = () => {
           className="flex items-center gap-2.5 group"
           onClick={closeMenus}
         >
-          <img src="/logo.svg" alt="Hraize" className="h-6 rounded-md w-auto" />
+          <Image src="/logo.svg" alt="Hraize" width={24} height={24} className="h-6 rounded-md w-auto" />
           <div className="flex flex-col min-w-0">
             <div className="flex items-baseline space-x-1.5">
               <span className="text-2xl font-black tracking-widest truncate text-navy-900 group-hover:text-navy-900/70 transition-all duration-300">

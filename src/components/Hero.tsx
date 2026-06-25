@@ -1,5 +1,6 @@
 import React, { useMemo, useState, useEffect, useRef } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
+import Image from "next/image";
 import { ArrowRight, Calendar, Users, ShieldCheck, Award, TrendingUp } from "lucide-react";
 
 const rand = (min: number, max: number) => Math.random() * (max - min) + min;
@@ -276,9 +277,11 @@ export const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
                 <p className="text-[10px] font-black tracking-widest text-[#1E3A8A] uppercase mb-2">Talent Sourcing Pool</p>
                 <div className="space-y-2">
                   <div className="flex items-center gap-2">
-                    <img
+                    <Image
                       src="/contact-1.png"
                       alt="Avatar"
+                      width={28}
+                      height={28}
                       className="h-7 w-7 rounded-full object-cover border border-[#0EA5E9]"
                     />
                     <div className="flex-1 min-w-0">
@@ -288,9 +291,11 @@ export const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
                     <span className="text-[9px] font-extrabold text-[#D4A017]">★ 4.9</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <img
+                    <Image
                       src="/contact-2.png"
                       alt="Avatar"
+                      width={28}
+                      height={28}
                       className="h-7 w-7 rounded-full object-cover border border-gray-200"
                     />
                     <div className="flex-1 min-w-0">
@@ -317,7 +322,7 @@ export const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
                 ease: "linear"
               }}
             >
-              <img src={avatars[0].url} alt="" className="h-full w-full object-cover" />
+              <Image src={avatars[0].url} alt="" fill className="object-cover" />
             </motion.div>
 
             <motion.div
@@ -334,7 +339,7 @@ export const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
                 ease: "linear"
               }}
             >
-              <img src={avatars[1].url} alt="" className="h-full w-full object-cover" />
+              <Image src={avatars[1].url} alt="" fill className="object-cover" />
             </motion.div>
 
             <motion.div
@@ -350,7 +355,7 @@ export const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
                 ease: "easeInOut"
               }}
             >
-              <img src={avatars[2].url} alt="" className="h-full w-full object-cover" />
+              <Image src={avatars[2].url} alt="" fill className="object-cover" />
             </motion.div>
           </motion.div>
         </div>

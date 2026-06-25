@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "motion/react";
+import Image from "next/image";
 import { Calendar, Users, ShieldCheck, Award, Eye, Rocket, Heart, Check } from "lucide-react";
 import { SectionLabel, FeatureCheck } from "./UIElements";
 
@@ -190,7 +191,7 @@ export const AboutUs: React.FC = () => {
                 className="shadow-lg flex-1 flex flex-col items-center bg-cream-50 rounded-3xl border border-sky-600/10 p-8 text-center"
               >
                 <div className="w-40 mb-4">
-                  <img src={founder.image} alt={founder.role} className="w-full h-auto" />
+                  <Image src={founder.image} alt={founder.role} width={160} height={160} className="w-full h-auto" />
                 </div>
                 {/* <div className="inline-flex items-center gap-1.5 rounded-full bg-sky-600/10 px-3 py-1 text-[10px] font-black text-sky-700 uppercase mb-4">
                   Hraize Partner
