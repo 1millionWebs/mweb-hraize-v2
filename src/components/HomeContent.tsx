@@ -24,14 +24,14 @@ export const HomeContent: React.FC<HomeContentProps> = ({
       badge: "Scale Growth"
     },
     {
-      title: "For Ambitious Professionals",
-      desc: "Comprehensive 1-on-1 career coaching, interview prep pipelines, career positioning strategy, and executive mentorship to guide you to your target role.",
-      badge: "Talent Career"
-    },
-    {
       title: "For Hiring Leaders",
       desc: "Quality-focused talent acquisition with a bulletproof 60-day replacement guarantee, ensuring high-caliber, carefully briefed candidates.",
       badge: "Quality Hires"
+    },
+    {
+      title: "For Ambitious Professionals",
+      desc: "Comprehensive 1-on-1 career coaching, interview prep pipelines, career positioning strategy, and executive mentorship to guide you to your target role.",
+      badge: "Talent Career"
     }
   ];
 
