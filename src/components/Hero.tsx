@@ -405,27 +405,7 @@ export const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
               const Icon = stat.icon;
               const { target, suffix } = parseStat(stat.value);
               return (
-                <motion.div
-                  key={idx}
-                  variants={{
-                    hidden: { opacity: 0, y: 30, scale: 0.9 },
-                    visible: { opacity: 1, y: 0, scale: 1 },
-                  }}
-                  transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
-                  className="flex flex-col items-center text-center gap-3 group"
-                >
-                  <motion.div
-                    className="flex h-14 w-14 items-center justify-center rounded-2xl text-sky-400"
-                    whileHover={{ scale: 1.15, rotate: [0, -10, 10, -5, 0] }}
-                    transition={{ duration: 0.4 }}
-                  >
-                    <Icon className="h-12 w-12" />
-                  </motion.div>
-                  <div>
-                    <RollingNumber target={target} suffix={suffix} delay={idx * 150} />
-                    <span className="text-[13px] font-bold text-white/80 uppercase leading-tight block mt-1.5 tracking-widest">{stat.label}</span>
-                  </div>
-                </motion.div>
+                <StatItem key={idx} icon={Icon} target={target} suffix={suffix} delay={idx * 150} label={stat.label} />
               );
             })}
           </motion.div>
@@ -435,12 +415,42 @@ export const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
   );
 };
 
+const StatItem = ({ icon: Icon, target, suffix, delay, label }: { icon: React.ComponentType<{ className?: string }>; target: number; suffix: string; delay: number; label: string }) => {
+  const [inView, setInView] = useState(false);
+  return (
+    <motion.div
+      variants={{
+        hidden: { opacity: 0, y: 30, scale: 0.9 },
+        visible: { opacity: 1, y: 0, scale: 1 },
+      }}
+      transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+      className="flex flex-col items-center text-center gap-3 group"
+      onViewportEnter={() => setInView(true)}
+      viewport={{ once: true }}
+    >
+      <motion.div
+        className="flex h-14 w-14 items-center justify-center rounded-2xl text-sky-400"
+        whileHover={{ scale: 1.15, rotate: [0, -10, 10, -5, 0] }}
+        transition={{ duration: 0.4 }}
+      >
+        <Icon className="h-12 w-12" />
+      </motion.div>
+      <div>
+        <RollingNumber target={target} suffix={suffix} delay={delay} inView={inView} />
+        <span className="text-[13px] font-bold text-white/80 uppercase leading-tight block mt-1.5 tracking-widest">{label}</span>
+      </div>
+    </motion.div>
+  );
+};
+
 /** A simple rolling-digit counter that animates after mount+delay */
-function RollingNumber({ target, suffix = "", delay = 0 }: { target: number; suffix?: string; delay?: number }) {
+function RollingNumber({ target, suffix = "", delay = 0, inView = false }: { target: number; suffix?: string; delay?: number; inView?: boolean }) {
   const [display, setDisplay] = useState("");
   const digits = String(target);
 
   useEffect(() => {
+    if (!inView) return;
+
     const timeout = setTimeout(() => {
       // Start with random digits
       setDisplay(digits.split("").map(() => Math.floor(Math.random() * 10)).join(""));
@@ -479,7 +489,7 @@ function RollingNumber({ target, suffix = "", delay = 0 }: { target: number; suf
 
     return () => clearTimeout(timeout);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [delay]);
+  }, [delay, inView]);
 
   return (
     <span className="text-4xl lg:text-4xl font-black text-white block leading-none tracking-tight tabular-nums">
