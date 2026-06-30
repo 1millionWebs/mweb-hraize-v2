@@ -3,8 +3,20 @@ import path from "path";
 
 let cachedLogoBase64: string | null = null;
 
-function getLogoBase64(): string {
+async function getLogoBase64(): Promise<string> {
   if (cachedLogoBase64) return cachedLogoBase64;
+
+  try {
+    const response = await fetch("/logo1.png");
+    if (response.ok) {
+      const buffer = Buffer.from(await response.arrayBuffer());
+      cachedLogoBase64 = buffer.toString("base64");
+      return cachedLogoBase64;
+    }
+  } catch {
+    // fall through to fs
+  }
+
   try {
     const logoPath = path.join(process.cwd(), "public", "logo1.png");
     const logoBuffer = fs.readFileSync(logoPath);
@@ -16,15 +28,17 @@ function getLogoBase64(): string {
 }
 
 function getLogoHtml(): string {
-  if (!getLogoBase64()) return "";
+  if (!cachedLogoBase64) return "";
   return `<div style="text-align:center;padding:24px 0 16px 0;">
     <img src="cid:company-logo" alt="Hraize" style="width:60px;max-height:60px;height:auto;display:inline-block;border:0;outline:none;" />
   </div>`;
 }
 
-function getLogoAttachment(): MailtrapAttachment {
+async function getLogoAttachment(): Promise<MailtrapAttachment | null> {
+  const content = await getLogoBase64();
+  if (!content) return null;
   return {
-    content: getLogoBase64(),
+    content,
     filename: "logo1.png",
     type: "image/png",
     disposition: "inline",
@@ -253,6 +267,9 @@ The Hraize Team
 HR Analytics & Advisory Services
   `.trim();
 
+  const [logoAttachment] = await Promise.all([getLogoAttachment()]);
+  const logoAttachments = logoAttachment ? [logoAttachment] : [];
+
   // Send notifications in parallel
   const [hrResult, userResult] = await Promise.all([
     sendEmail({
@@ -261,7 +278,7 @@ HR Analytics & Advisory Services
       subject: `New Inquiry: ${params.fullName} - ${serviceLabel}`,
       html: hrEmailHtml,
       text: hrText,
-      attachments: [getLogoAttachment()],
+      attachments: logoAttachments,
     }),
     sendEmail({
       from: { email: senderEmail, name: senderName },
@@ -269,7 +286,7 @@ HR Analytics & Advisory Services
       subject: `Acknowledgment: We received your inquiry`,
       html: userEmailHtml,
       text: userText,
-      attachments: [getLogoAttachment()],
+      attachments: logoAttachments,
     }),
   ]);
 
@@ -460,6 +477,8 @@ Hraize HR Analytics
   `.trim();
 
   // Send notifications in parallel
+  const [logoAttachment] = await Promise.all([getLogoAttachment()]);
+  const logoAttachments = logoAttachment ? [logoAttachment] : [];
   const [hrResult, userResult] = await Promise.all([
     sendEmail({
       from: { email: senderEmail, name: senderName },
@@ -474,7 +493,7 @@ Hraize HR Analytics
           type: params.fileMimeType,
           disposition: "attachment",
         },
-        getLogoAttachment(),
+        ...logoAttachments,
       ],
     }),
     sendEmail({
@@ -483,7 +502,7 @@ Hraize HR Analytics
       subject: `Confirmation: We have received your resume`,
       html: userEmailHtml,
       text: userText,
-      attachments: [getLogoAttachment()],
+      attachments: logoAttachments,
     }),
   ]);
 
@@ -556,12 +575,15 @@ Best regards,
 Hraize Admin Services
   `.trim();
 
+  const logoAttachment = await getLogoAttachment();
+  const logoAttachments = logoAttachment ? [logoAttachment] : [];
+
   return sendEmail({
     from: { email: senderEmail, name: senderName },
     to: [{ email, name: "Hraize Admin" }],
     subject: "Reset Your Hraize Admin Password",
     html: emailHtml,
     text: emailText,
-    attachments: [getLogoAttachment()],
+    attachments: logoAttachments,
   });
 }
