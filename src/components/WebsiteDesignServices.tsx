@@ -141,16 +141,18 @@ export const WebsiteDesignServices: React.FC<WebsiteDesignServicesProps> = ({
             Website Design & Development
           </h1>
           <p className="mt-4 text-base sm:text-lg text-navy-900/70 font-semibold leading-relaxed">
-            Business websites, redesign, landing pages, and maintenance through our technology partner.
-            Establish a digital presence that builds trust and drives measurable commercial results.
+            Business websites, website redesign and revamp, landing pages, mobile-responsive development, and ongoing maintenance.
           </p>
+          <div className="mt-4 inline-flex items-center gap-2 text-xs text-navy-900/60 font-medium bg-sky-500/10 px-4 py-2 rounded-xl border border-sky-500/20">
+            <span>Delivered in collaboration with Hraize's technology development partner.</span>
+          </div>
 
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link
               href="/contact?tab=website-solutions"
               className="inline-flex items-center gap-2 rounded-full bg-sky-600 px-7 py-3 text-sm font-bold text-white shadow-md hover:bg-sky-700 transition-all duration-200"
             >
-              Start Your Website Project
+              Request a Service Quote
               <ArrowRight className="h-4 w-4" />
             </Link>
             <a

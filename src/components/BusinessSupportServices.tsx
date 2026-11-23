@@ -143,21 +143,23 @@ export const BusinessSupportServices: React.FC<BusinessSupportServicesProps> = (
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Hero Section */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <SectionLabel>Business Operations</SectionLabel>
+          <SectionLabel>Business Administration</SectionLabel>
           <h1 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-black text-navy-900 uppercase tracking-tight">
-            Business Administration Support
+            Invoice & Receivables Administration
           </h1>
           <p className="mt-4 text-base sm:text-lg text-navy-900/70 font-semibold leading-relaxed">
-            Invoice tracking, receivables administration, payment follow-ups, and operational reports.
-            Keep your business cash flow moving smoothly with dependable operational execution.
+            Sales invoice register maintenance, due-date tracking, customer payment reminders, outstanding follow-ups, and periodic receivables reporting.
           </p>
+          <div className="mt-4 inline-flex items-center gap-2 text-xs text-navy-900/60 font-medium bg-amber-500/10 px-4 py-2 rounded-xl border border-amber-500/20">
+            <span>This is administrative support, not independent accounting, audit, tax or legal debt recovery.</span>
+          </div>
 
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link
               href="/contact?tab=business-support"
               className="inline-flex items-center gap-2 rounded-full bg-sky-600 px-7 py-3 text-sm font-bold text-white shadow-md hover:bg-sky-700 transition-all duration-200"
             >
-              Get Administration Support
+              Request a Service Quote
               <ArrowRight className="h-4 w-4" />
             </Link>
             <a

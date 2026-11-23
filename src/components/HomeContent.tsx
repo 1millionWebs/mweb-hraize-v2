@@ -121,41 +121,51 @@ export const HomeContent: React.FC<HomeContentProps> = ({
             <h3 className="mt-3 text-3xl sm:text-4xl font-black text-navy-900 uppercase tracking-tight">
               Our Services
             </h3>
-            <p className="mt-4 text-sm text-navy-900/60 font-semibold max-w-2xl mx-auto">
-              Payroll processing, recruitment, business administration support, and website solutions designed to keep your business moving forward.
+            <h4 className="mt-2 text-base font-bold text-sky-700">
+              Business support designed around your requirements.
+            </h4>
+            <p className="mt-3 text-sm text-navy-900/60 font-semibold max-w-2xl mx-auto">
+              Hraize offers practical support across HR, recruitment, business administration and website development.
             </p>
           </div>
 
-          {/* Services accordion — 4 core offerings */}
+          {/* Services accordion */}
           <div className="flex flex-col md:flex-row gap-3 h-[580px] md:h-[440px]">
             {[
               {
                 title: "HR & Payroll Services",
                 number: "01",
-                desc: "Payroll processing, PF, ESI, Professional Tax and employee administration.",
+                desc: "Monthly payroll preparation, salary statements, PF/ESI/PT filing support, and statutory compliance.",
                 href: "hr-services",
                 image: "/services-hr.png",
               },
               {
-                title: "Recruitment Solutions",
+                title: "Recruitment & Staffing",
                 number: "02",
-                desc: "Permanent and contract hiring, sourcing, screening and interview coordination.",
+                desc: "Permanent and contract hiring, talent sourcing, screening, and interview coordination with 60-day guarantee.",
                 href: "recruitment",
                 image: "/services-recruitment.png",
               },
               {
-                title: "Business Administration",
+                title: "Invoice & Receivables",
                 number: "03",
-                desc: "Invoice tracking, receivables administration, payment follow-ups and operational reports.",
+                desc: "Sales invoice register, due-date tracking, customer payment reminders, and overdue reports.",
                 href: "business-support",
                 image: "/reporting.png",
               },
               {
                 title: "Website Design & Dev",
                 number: "04",
-                desc: "Business websites, redesign, landing pages and maintenance through our technology partner.",
+                desc: "Business websites, redesign, landing pages, and maintenance through our technology development partner.",
                 href: "website-solutions",
                 image: "/documentation.png",
+              },
+              {
+                title: "Personnel Administration",
+                number: "05",
+                desc: "Employee documentation, personnel data maintenance, attendance/leave records, and lifecycle administration.",
+                href: "hr-services#admin",
+                image: "/partners.png",
               }
             ].map((svc, idx) => {
               const isActive = idx === activeService;

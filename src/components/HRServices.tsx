@@ -135,13 +135,16 @@ export const HRServices: React.FC<HRServicesProps> = () => {
             Payroll processing, PF, ESI, Professional Tax and employee administration.
             Ensure accurate monthly payroll, error-free statutory compliance, and smooth employee operations.
           </p>
+          <div className="mt-4 inline-flex items-center gap-2 text-xs text-navy-900/60 font-medium bg-sky-500/10 px-4 py-2 rounded-xl border border-sky-500/20">
+            <span>Service scope will be agreed with each client and will reflect the applicable statutory requirements.</span>
+          </div>
 
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link
               href="/contact?tab=hr"
               className="inline-flex items-center gap-2 rounded-full bg-sky-600 px-7 py-3 text-sm font-bold text-white shadow-md hover:bg-sky-700 transition-all duration-200"
             >
-              Get Payroll & HR Support
+              Request a Service Quote
               <ArrowRight className="h-4 w-4" />
             </Link>
             <a
