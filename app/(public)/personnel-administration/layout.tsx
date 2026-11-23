@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "HR & Personnel Administration | Hraize",
+  title: "HR & Personnel Administration",
   description: "Employee documentation, personnel data maintenance, attendance records, and complete lifecycle administration.",
   alternates: {
     canonical: "/personnel-administration",

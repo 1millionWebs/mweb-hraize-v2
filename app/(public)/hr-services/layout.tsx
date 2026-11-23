@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "HR & Payroll Services | Hraize",
+  title: "HR & Payroll Services",
   description: "Payroll processing, PF, ESI, Professional Tax, employee administration, and strategic HR consulting for organisations across India.",
   alternates: {
     canonical: "/hr-services",

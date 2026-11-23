@@ -113,7 +113,7 @@ export const RecruitmentServices: React.FC<RecruitmentServicesProps> = ({
   return (
     <div className="bg-cream-100 py-16">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        
+
         {/* HERO SECTION */}
         <div className="text-center max-w-3xl mx-auto mb-12">
           <SectionLabel>Talent Acquisition</SectionLabel>
@@ -147,7 +147,7 @@ export const RecruitmentServices: React.FC<RecruitmentServicesProps> = ({
         </div>
 
         {/* QUICK JUMP NAVIGATION BAR (Corresponds to Navbar Items) */}
-        <div className="mb-20 rounded-2xl bg-white border border-sky-600/20 p-3 shadow-sm">
+        {/* <div className="mb-20 rounded-2xl bg-white border border-sky-600/20 p-3 shadow-sm">
           <p className="text-[10px] font-black uppercase tracking-widest text-navy-900/40 text-center mb-2.5">
             Quick Jump to Hiring Solutions
           </p>
@@ -167,7 +167,7 @@ export const RecruitmentServices: React.FC<RecruitmentServicesProps> = ({
               );
             })}
           </div>
-        </div>
+        </div> */}
 
         {/* PIPELINE ARCHITECTURE CARD */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-24">

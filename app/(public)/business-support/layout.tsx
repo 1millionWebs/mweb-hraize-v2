@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Business Administration Support | Hraize",
+  title: "Business Administration Support",
   description: "Invoice tracking, receivables administration, payment follow-ups and operational reports for growing businesses across India.",
   alternates: {
     canonical: "/business-support",

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Website Design & Development | Hraize",
+  title: "Website Design & Development",
   description: "Business websites, website redesign, high-converting landing pages and maintenance through our technology partner.",
   alternates: {
     canonical: "/website-solutions",
