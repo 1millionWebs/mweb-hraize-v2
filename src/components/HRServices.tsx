@@ -7,14 +7,19 @@ import {
   Layers,
   ShieldCheck,
   BarChart3,
-  Settings,
   FileText,
   Check,
   ArrowRight,
   ArrowUpRight,
-  Sparkles,
   IndianRupee,
   Info,
+  Calculator,
+  FileSpreadsheet,
+  UserCheck,
+  Building2,
+  Scale,
+  FolderKanban,
+  Clock,
 } from "lucide-react";
 import { SectionLabel, FeatureCheck } from "./UIElements";
 
@@ -45,94 +50,102 @@ export const HRServices: React.FC<HRServicesProps> = ({ onBookCall }) => {
     };
   }, []);
 
-  const [activeCard, setActiveCard] = useState<string | null>(null);
-
-  const strategicServices = [
+  const leftServices = [
     {
       id: "payroll",
-      title: "Monthly Payroll & Salary Statements",
-      desc: "Accurate monthly payroll preparation, salary computation, and payslip coordination.",
-      icon: IndianRupee,
-      image: "/services-hr.png",
-      details: [
-        "Monthly payroll preparation and processing.",
-        "Salary statements and payslip coordination.",
-        "Deduction calculations and net pay generation.",
-        "Bank disbursement file preparation.",
-        "Salary queries and employee payroll support.",
-      ],
+      number: "01",
+      title: "Monthly Payroll Preparation & Processing",
+      desc: "Complete gross-to-net salary computation, statutory deductions, reimbursement processing, and timely bank disbursement scheduling.",
+      icon: Calculator,
+    },
+    {
+      id: "payslips",
+      number: "02",
+      title: "Salary Statements & Payslip Coordination",
+      desc: "Detailed monthly salary registers, structured pay breakdown statements, and confidential digital payslip distribution for employees.",
+      icon: FileSpreadsheet,
+    },
+    {
+      id: "joining-exit",
+      number: "03",
+      title: "Employee Joining & Exit Administration",
+      desc: "Structured onboarding documentation, joining protocols, clearance checklists, and full-and-final settlement execution.",
+      icon: UserCheck,
     },
     {
       id: "pf",
-      title: "Provident Fund (PF) & EPFO Filing",
-      desc: "Unified member portal administration, monthly ECR challan filing, and compliance records.",
+      number: "04",
+      title: "Provident Fund (PF) & EPFO Filing Support",
+      desc: "Monthly ECR challan generation, unified portal administration, UAN generation, KYC updates, and statutory compliance filing.",
       icon: ShieldCheck,
-      image: "/health-checkup.png",
-      details: [
-        "Provident Fund (PF) administration and EPFO filing support.",
-        "Monthly ECR challan generation and filing.",
-        "UAN generation, linking, and member KYC updates.",
-        "PF withdrawal, transfer, and claim assistance.",
-        "Annual PF returns and compliance statements.",
-      ],
     },
     {
       id: "esi-pt",
-      title: "ESI & Professional Tax (PT) Support",
-      desc: "State-specific PT calculations, ESIC monthly contribution filing, and statutory returns.",
-      icon: Settings,
-      image: "/hr-foundation.png",
-      details: [
-        "Employee State Insurance (ESI) administration and filing support.",
-        "Monthly ESIC contribution calculations and challan filing.",
-        "Professional Tax (PT) calculations and filing support.",
-        "State-specific PT slabs and periodic returns.",
-        "Statutory inspection and documentation assistance.",
-      ],
+      number: "05",
+      title: "ESI Administration & Filing Support",
+      desc: "Monthly ESIC contribution calculations, online portal challan submissions, member registration, and periodic statutory returns.",
+      icon: Building2,
     },
     {
-      id: "lifecycle",
-      title: "Employee Lifecycle Administration",
-      desc: "Structured documentation from joining and appointment to exit clearance and F&F settlement.",
-      icon: Users,
-      image: "/workforce-planning.png",
-      details: [
-        "Employee joining and exit administration.",
-        "Employee documentation and appointment letters.",
-        "Employee lifecycle administration.",
-        "Asset sign-offs and onboarding verifications.",
-        "Exit clearances and final settlement coordination.",
-      ],
+      id: "pt",
+      number: "06",
+      title: "Professional Tax (PT) Calculations & Filing",
+      desc: "Accurate state-specific PT slab assessments, salary deduction management, and timely periodic statutory challan submissions.",
+      icon: Scale,
+    },
+  ];
+
+  const rightServices = [
+    {
+      id: "statutory-records",
+      number: "07",
+      title: "Employee Data & Statutory Record Maintenance",
+      desc: "Centralized personnel master databases and audit-ready statutory register records maintained under applicable labour regulations.",
+      icon: FolderKanban,
+    },
+    {
+      id: "documentation",
+      number: "08",
+      title: "Employee Documentation",
+      desc: "Standardized employment contracts, offer letters, NDA agreements, verification files, and formal service certificate issuance.",
+      icon: FileText,
     },
     {
       id: "records",
-      title: "Personnel Data & Attendance Records",
-      desc: "Maintenance of digital employee records, shift scheduling, and leave balance tracking.",
-      icon: FileText,
-      image: "/documentation.png",
-      details: [
-        "Personnel data maintenance.",
-        "Attendance and leave records coordination.",
-        "Leave balance statements and holiday calendar administration.",
-        "Shift tracking, regularization, and overtime records.",
-        "Employee digital file maintenance and updates.",
-      ],
+      number: "09",
+      title: "Personnel Data Maintenance",
+      desc: "Regular updates to personnel files, emergency contact records, banking data, and secure digital profile archives.",
+      icon: Users,
+    },
+    {
+      id: "attendance",
+      number: "10",
+      title: "Attendance & Leave Records Coordination",
+      desc: "Shift schedule monitoring, biometric attendance syncing, leave quota administration, and holiday calendar management.",
+      icon: Clock,
+    },
+    {
+      id: "lifecycle",
+      number: "11",
+      title: "Employee Lifecycle Administration",
+      desc: "Lifecycle transition administration including probation reviews, promotions, internal role transfers, and policy updates.",
+      icon: Layers,
     },
     {
       id: "compliance",
-      title: "HR Reports & Compliance Records",
-      desc: "Audit-ready statutory registers, HR documentation, and periodic operational management reports.",
+      number: "12",
+      title: "HR Reports, Compliance Support",
+      desc: "Monthly workforce headcount summaries, statutory inspection dossiers, attrition tracking, and ongoing compliance documentation support.",
       icon: BarChart3,
-      image: "/reporting.png",
-      details: [
-        "Employee data and statutory record maintenance.",
-        "HR reports and documentation.",
-        "Compliance records and documentation support.",
-        "Statutory register maintenance under applicable Labour Acts.",
-        "Monthly headcount, turnover, and attendance summaries.",
-      ],
     },
   ];
+
+  const pairedRows = leftServices.map((left, idx) => ({
+    left,
+    right: rightServices[idx],
+  }));
+
+  const allServices = [...leftServices, ...rightServices];
 
   const methodology = [
     {
@@ -192,114 +205,97 @@ export const HRServices: React.FC<HRServicesProps> = ({ onBookCall }) => {
           </div>
         </div>
 
-        {/* ============ 6 INTERACTIVE HOVER/TAP CARDS ============ */}
-        <div className="max-w-6xl mx-auto mb-24 px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {strategicServices.map((srv, idx) => {
-              const Icon = srv.icon;
-              const isActive = activeCard === srv.id;
-              return (
-                <motion.div
-                  key={srv.id}
-                  id={srv.id}
-                  className="relative h-[360px] rounded-2xl overflow-hidden cursor-pointer border border-navy-900/10 shadow-md group"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: idx * 0.08 }}
-                  onHoverStart={() => setActiveCard(srv.id)}
-                  onClick={() => setActiveCard(isActive ? null : srv.id)}
-                >
-                  {/* Background image */}
-                  <motion.div
-                    className="absolute inset-0 bg-cover bg-center"
-                    style={{ backgroundImage: `url(${srv.image})` }}
-                    animate={{ opacity: isActive ? 0 : 1 }}
-                    whileHover={{ opacity: 0 }}
-                    transition={{ duration: 0.35, ease: "easeInOut" }}
-                  />
+        {/* ============ 12 SCOPE SERVICES (6 + 6) CENTRAL INFOGRAPHIC ============ */}
+        <div className="max-w-6xl mx-auto mb-24 px-4 sm:px-6">
+          <div className="text-center max-w-3xl mx-auto mb-14">
+            <span className="text-[11px] font-black uppercase tracking-widest text-sky-600">
+              Complete Service Scope
+            </span>
+            <h2 className="mt-2 text-2xl sm:text-3xl font-black text-navy-900 uppercase tracking-tight">
+              HR, Payroll &amp; Administrative Capabilities
+            </h2>
+            <p className="mt-3 text-sm text-navy-900/65 font-medium max-w-2xl mx-auto leading-relaxed">
+              Systematic operational execution across your payroll cycle, statutory filings, employee documentation, and workforce records.
+            </p>
+          </div>
 
-                  {/* Gradient overlay on image */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-navy-900/90 via-navy-900/40 to-transparent" />
+          {/* DESKTOP (6 + 6) CENTRAL SPINE LAYOUT */}
+          <div className="hidden md:block relative">
+            {/* Subtle center spine track */}
+            <div className="absolute top-6 bottom-6 left-1/2 -translate-x-1/2 w-0.5 bg-gradient-to-b from-sky-600/10 via-sky-600/30 to-sky-600/10 pointer-events-none" />
 
-                  {/* Index number badge */}
-                  <div className="absolute top-4 left-4 flex h-8 w-8 items-center justify-center rounded-full bg-white/20 backdrop-blur-md text-white text-xs font-black shadow-sm">
-                    {String(idx + 1).padStart(2, "0")}
-                  </div>
+            <div className="space-y-6 lg:space-y-8">
+              {pairedRows.map((pair, rowIdx) => {
+                const LeftIcon = pair.left.icon;
+                const RightIcon = pair.right.icon;
 
-                  {/* Hover indicator pill */}
-                  <div className="absolute top-4 right-4 rounded-full bg-sky-600/80 px-2.5 py-1 text-[10px] font-black uppercase tracking-wider text-white backdrop-blur-sm opacity-90 group-hover:opacity-0 transition-opacity">
-                    Hover for Scope
-                  </div>
-
-                  {/* Title - visible when collapsed at bottom */}
-                  <div className="absolute bottom-0 left-0 right-0 p-6">
-                    <span className="text-[10px] font-black uppercase tracking-widest text-sky-400 block mb-1">
-                      Module 0{idx + 1}
-                    </span>
-                    <h3 className="text-lg font-black text-white leading-tight">
-                      {srv.title}
-                    </h3>
-                    <p className="mt-1 text-xs text-white/70 line-clamp-2 font-medium">
-                      {srv.desc}
-                    </p>
-                  </div>
-
-                  {/* Details overlay - appears on hover (desktop) or tap (mobile) */}
-                  <motion.div
-                    className="absolute inset-0 p-6 flex flex-col justify-between bg-navy-card"
-                    animate={{
-                      opacity: isActive ? 1 : 0,
-                      pointerEvents: isActive ? "auto" : "none",
-                    }}
-                    whileHover={{ opacity: 1, pointerEvents: "auto" }}
-                    transition={{ duration: 0.35, ease: "easeInOut" }}
-                  >
-                    <div>
-                      <div className="flex items-center gap-3 mb-3">
-                        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-sky-600/20 text-sky-400">
-                          <Icon className="h-5 w-5" />
-                        </div>
-                        <div>
-                          <span className="text-[9px] font-black uppercase tracking-widest text-copper-400 block">
-                            Scope Details
-                          </span>
-                          <h4 className="text-base font-black text-white leading-tight">
-                            {srv.title}
-                          </h4>
-                        </div>
+                return (
+                  <div key={rowIdx} className="grid grid-cols-2 gap-x-8 lg:gap-x-12 items-center">
+                    {/* LEFT ITEM (Text right-aligned, Icon on right) */}
+                    <div
+                      id={pair.left.id}
+                      className="group flex items-center justify-end gap-5 text-right p-3.5 rounded-2xl transition-all duration-200 hover:bg-white/80"
+                    >
+                      <div className="max-w-md">
+                        <h3 className="text-base lg:text-lg font-black text-navy-900 group-hover:text-sky-600 transition-colors leading-snug">
+                          {pair.left.title}
+                        </h3>
+                        <p className="mt-1 text-xs lg:text-sm text-navy-900/65 font-medium leading-relaxed">
+                          {pair.left.desc}
+                        </p>
                       </div>
 
-                      <p className="text-xs text-white/70 font-medium mb-3 leading-relaxed">
-                        {srv.desc}
-                      </p>
-
-                      <ul className="space-y-2">
-                        {srv.details.map((detail, di) => (
-                          <li key={di} className="flex items-start gap-2">
-                            <Check className="h-3.5 w-3.5 text-sky-400 mt-0.5 shrink-0" />
-                            <span className="text-[11px] text-white/90 font-medium leading-snug">
-                              {detail}
-                            </span>
-                          </li>
-                        ))}
-                      </ul>
+                      <div className="relative shrink-0 flex h-16 w-16 lg:h-20 lg:w-20 items-center justify-center rounded-2xl bg-navy-card border border-sky-600/25 text-sky-400 shadow-md group-hover:bg-sky-600 group-hover:border-sky-500 group-hover:text-white group-hover:scale-105 group-hover:shadow-lg group-hover:shadow-sky-600/20 transition-all duration-300">
+                        <LeftIcon className="h-7 w-7 lg:h-8 lg:w-8 transition-transform duration-300 group-hover:scale-110" />
+                      </div>
                     </div>
 
-                    <div className="pt-3 border-t border-white/10 flex items-center justify-between">
-                      <span className="text-[10px] font-bold text-copper-400">
-                        Applicable Statutory Scope
-                      </span>
-                      <Link
-                        href={`/contact?tab=consultation&module=${srv.id}`}
-                        className="inline-flex items-center gap-1 text-[11px] font-black uppercase text-sky-400 hover:text-white transition-colors"
-                      >
-                        Inquire Scope
-                        <ArrowRight className="h-3 w-3" />
-                      </Link>
+                    {/* RIGHT ITEM (Icon on left, Text left-aligned) */}
+                    <div
+                      id={pair.right.id}
+                      className="group flex items-center justify-start gap-5 text-left p-3.5 rounded-2xl transition-all duration-200 hover:bg-white/80"
+                    >
+                      <div className="relative shrink-0 flex h-16 w-16 lg:h-20 lg:w-20 items-center justify-center rounded-2xl bg-navy-card border border-sky-600/25 text-sky-400 shadow-md group-hover:bg-sky-600 group-hover:border-sky-500 group-hover:text-white group-hover:scale-105 group-hover:shadow-lg group-hover:shadow-sky-600/20 transition-all duration-300">
+                        <RightIcon className="h-7 w-7 lg:h-8 lg:w-8 transition-transform duration-300 group-hover:scale-110" />
+                      </div>
+
+                      <div className="max-w-md">
+                        <h3 className="text-base lg:text-lg font-black text-navy-900 group-hover:text-sky-600 transition-colors leading-snug">
+                          {pair.right.title}
+                        </h3>
+                        <p className="mt-1 text-xs lg:text-sm text-navy-900/65 font-medium leading-relaxed">
+                          {pair.right.desc}
+                        </p>
+                      </div>
                     </div>
-                  </motion.div>
-                </motion.div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* MOBILE ADAPTIVE VIEW (< md) */}
+          <div className="md:hidden space-y-4">
+            {allServices.map((item, idx) => {
+              const Icon = item.icon;
+              return (
+                <div
+                  key={idx}
+                  id={item.id}
+                  className="flex items-start gap-4 p-4 rounded-2xl bg-white border border-navy-900/10 shadow-sm"
+                >
+                  <div className="shrink-0 flex h-14 w-14 items-center justify-center rounded-2xl bg-navy-card border border-sky-600/25 text-sky-400 shadow-sm">
+                    <Icon className="h-6 w-6" />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <h3 className="text-sm font-black text-navy-900 leading-snug mt-0.5">
+                      {item.title}
+                    </h3>
+                    <p className="mt-1 text-xs text-navy-900/65 font-medium leading-relaxed">
+                      {item.desc}
+                    </p>
+                  </div>
+                </div>
               );
             })}
           </div>
