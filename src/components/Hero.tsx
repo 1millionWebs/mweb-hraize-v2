@@ -390,7 +390,7 @@ export const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
           transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
         />
 
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 lg:py-20">
+        {/* <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 lg:py-20">
           <motion.div
             className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12"
             initial="hidden"
@@ -409,7 +409,7 @@ export const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
               );
             })}
           </motion.div>
-        </div>
+        </div> */}
       </div>
     </section>
   );

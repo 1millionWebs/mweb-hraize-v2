@@ -130,7 +130,7 @@ export const AboutUs: React.FC = () => {
           </div>
         </div>
 
-        <div className="mb-20 grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="mb-20 grid grid-cols-1 md:grid-cols-2 gap-8">
           {[
             {
               icon: Eye,
@@ -142,11 +142,11 @@ export const AboutUs: React.FC = () => {
               title: "Mission",
               desc: "We exist to make great HR accessible to every growing business by delivering people-first recruitment, robust HR frameworks, and trusted workforce solutions."
             },
-            {
-              icon: Heart,
-              title: "Values Statement",
-              desc: "We believe great businesses are built by great people. We help organisations create clear frameworks, fair policies, and strong cultures."
-            }
+            // {
+            //   icon: Heart,
+            //   title: "Values Statement",
+            //   desc: "We believe great businesses are built by great people. We help organisations create clear frameworks, fair policies, and strong cultures."
+            // }
           ].map((item, idx) => {
             const Icon = item.icon;
             return (
