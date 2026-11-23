@@ -8,32 +8,44 @@ import { ChevronDown, Menu, X, ArrowUpRight, Mail } from "lucide-react";
 
 const serviceCategories = [
   {
-    title: "HR Services",
+    title: "HR & Payroll Services",
     href: "/hr-services",
     items: [
-      { name: "Fractional HR Partner", href: "/hr-services#support" },
-      { name: "HR Foundation Setup", href: "/hr-services#consulting" },
-      { name: "HR Health Check & Improvement Plan", href: "/hr-services#audit" },
-      { name: "Workforce Insights & HR Reporting", href: "/hr-services#analytics" },
-      { name: "HR Documentation & Process Setup", href: "/hr-services#policies" },
-      { name: "Strategic Workforce Planning", href: "/hr-services#workforce" },
+      { name: "Payroll Processing", href: "/hr-services#payroll" },
+      { name: "PF (Provident Fund)", href: "/hr-services#pf" },
+      { name: "ESI Compliance", href: "/hr-services#esi" },
+      { name: "Professional Tax (PT)", href: "/hr-services#pt" },
+      { name: "Employee Administration", href: "/hr-services#admin" },
     ],
   },
   {
-    title: "Recruitment Services",
+    title: "Recruitment Solutions",
     href: "/recruitment",
     items: [
       { name: "Permanent Recruitment", href: "/recruitment#permanent" },
       { name: "Contract & Temp Staffing", href: "/recruitment#contract" },
+      { name: "Talent Sourcing & Screening", href: "/recruitment#sourcing" },
+      { name: "Interview Coordination", href: "/recruitment#interview" },
     ],
   },
   {
-    title: "Training and Development",
-    href: "/training",
+    title: "Business Support",
+    href: "/business-support",
     items: [
-      { name: "Fresher to professional", href: "/training#fresher" },
-      { name: "Mid Career Acceleration", href: "/training#mid-career" },
-      { name: "First-Time Managers", href: "/training#manager" },
+      { name: "Invoice Tracking", href: "/business-support#invoicing" },
+      { name: "Receivables Administration", href: "/business-support#receivables" },
+      { name: "Payment Follow-ups", href: "/business-support#followups" },
+      { name: "Operational & MIS Reports", href: "/business-support#reporting" },
+    ],
+  },
+  {
+    title: "Website Solutions",
+    href: "/website-solutions",
+    items: [
+      { name: "Business Websites", href: "/website-solutions#business-websites" },
+      { name: "Website Redesign", href: "/website-solutions#redesign" },
+      { name: "Landing Pages", href: "/website-solutions#landing-pages" },
+      { name: "Maintenance & Tech Partner", href: "/website-solutions#maintenance" },
     ],
   },
 ];
@@ -52,7 +64,7 @@ export const Navbar: React.FC = () => {
   };
 
   const isActive = (path: string) => pathname === path;
-  const isServiceActive = pathname === "/hr-services" || pathname === "/recruitment" || pathname === "/training";
+  const isServiceActive = pathname === "/services" || pathname === "/hr-services" || pathname === "/recruitment" || pathname === "/business-support" || pathname === "/website-solutions";
   const isCareerActive = pathname === "/careers" || pathname === "/submit-resume" || pathname === "/vacancies";
 
   return (
@@ -139,28 +151,28 @@ export const Navbar: React.FC = () => {
                   exit={{ opacity: 0, y: 10 }}
                   className="absolute left-1/2 z-50 top-full pt-3 -translate-x-1/2"
                 >
-                  <div className="w-[640px] md:w-[760px] lg:w-[840px] rounded-2xl border border-sky-200/50 bg-cream-50 p-6 shadow-2xl">
-                    <div className="grid grid-cols-3 gap-8">
+                  <div className="w-[820px] md:w-[940px] lg:w-[1040px] rounded-2xl border border-sky-200/50 bg-cream-50 p-6 shadow-2xl">
+                    <div className="grid grid-cols-4 gap-6">
                       {serviceCategories.map((cat, idx) => (
-                        <div key={idx} className="space-y-4 text-left">
+                        <div key={idx} className="space-y-3.5 text-left">
                           <Link
                             href={cat.href}
                             prefetch={false}
                             onClick={closeMenus}
-                            className="block text-sm font-extrabold uppercase tracking-wider text-sky-600 hover:text-sky-700 transition-colors"
+                            className="block text-xs font-black uppercase tracking-wider text-sky-600 hover:text-sky-700 transition-colors"
                           >
                             {cat.title}
                           </Link>
-                          <ul className="space-y-3">
+                          <ul className="space-y-2.5">
                             {cat.items.map((item, itemIdx) => (
                               <li key={itemIdx}>
                                 <Link
                                   href={item.href}
                                   prefetch={false}
                                   onClick={closeMenus}
-                                  className="flex items-center text-xs font-semibold text-navy-900/60 hover:text-navy-900 transition-all duration-200 hover:translate-x-1"
+                                  className="flex items-center text-xs font-semibold text-navy-900/70 hover:text-navy-900 transition-all duration-200 hover:translate-x-1"
                                 >
-                                  <span className="h-2 w-2 bg-copper-400 rotate-45 shrink-0 mr-2.5" />
+                                  <span className="h-1.5 w-1.5 bg-copper-400 rotate-45 shrink-0 mr-2" />
                                   <span>{item.name}</span>
                                 </Link>
                               </li>
@@ -168,6 +180,21 @@ export const Navbar: React.FC = () => {
                           </ul>
                         </div>
                       ))}
+                    </div>
+
+                    <div className="mt-6 pt-4 border-t border-sky-600/15 flex items-center justify-between">
+                      <span className="text-xs font-semibold text-navy-900/60">
+                        Integrated HR, hiring, operational support, and modern web solutions
+                      </span>
+                      <Link
+                        href="/services"
+                        prefetch={false}
+                        onClick={closeMenus}
+                        className="inline-flex items-center gap-1.5 text-xs font-black text-sky-600 hover:text-sky-700 transition-colors uppercase tracking-wider"
+                      >
+                        View All Services
+                        <ArrowUpRight className="h-3.5 w-3.5" />
+                      </Link>
                     </div>
                   </div>
                 </motion.div>
@@ -277,7 +304,17 @@ export const Navbar: React.FC = () => {
             </Link>
 
             <div className="border-l-2 border-sky-600/50 ml-2 pl-3 space-y-3">
-              <p className="text-xs font-extrabold tracking-widest uppercase py-1 text-navy-900/50 transition-colors duration-300">Services</p>
+              <div className="flex items-center justify-between py-1">
+                <p className="text-xs font-extrabold tracking-widest uppercase text-navy-900/50 transition-colors duration-300">Services</p>
+                <Link
+                  href="/services"
+                  prefetch={false}
+                  onClick={closeMenus}
+                  className="text-[11px] font-bold text-sky-600 hover:underline flex items-center gap-0.5"
+                >
+                  All Services <ArrowUpRight className="h-3 w-3" />
+                </Link>
+              </div>
 
               {serviceCategories.map((cat, idx) => (
                 <div key={idx} className="space-y-1.5">

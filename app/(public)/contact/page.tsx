@@ -6,7 +6,7 @@ import { Contact } from "@/src/components/Contact";
 
 function ContactPageContent() {
   const searchParams = useSearchParams();
-  const tab = searchParams.get("tab") as "hr" | "recruitment" | "training" | "general" | null;
+  const tab = searchParams.get("tab") as "hr" | "recruitment" | "business-support" | "website-solutions" | "general" | null;
 
   return (
     <motion.div

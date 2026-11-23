@@ -5,12 +5,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const pages = [
     "",
     "/about",
-    "/careers",
-    "/contact",
+    "/services",
     "/hr-services",
     "/recruitment",
+    "/business-support",
+    "/website-solutions",
+    "/careers",
+    "/contact",
     "/submit-resume",
-    "/training",
     "/vacancies",
   ];
 

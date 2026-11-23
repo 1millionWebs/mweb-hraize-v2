@@ -135,24 +135,18 @@ export const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
             <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-sky-600/10 px-4 py-1.5">
               <span className="h-2 w-2 rounded-full bg-sky-600" />
               <span className="text-[11px] font-black tracking-[0.15em] text-sky-700 uppercase">
-                Raise Your People, Raise Your Potential
+                HR Solutions. Business Support. Digital Services.
               </span>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-5xl font-black tracking-tight text-navy-900 uppercase leading-[1.02]">
-              Structure Your
-              <br />
-              <span className="text-sky-600">People.</span>
-              <br />
-              Scale Your
-              <br />
-              <span className="text-sky-600">Business.</span>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-navy-900 leading-[1.08]">
+              Right support to keep{" "}
+              <br className="hidden sm:inline" />
+              <span className="text-sky-600">business moving.</span>
             </h1>
 
-            <p className="mt-6 text-base sm:text-md text-navy-900/60 font-semibold max-w-2xl leading-relaxed">
-              Hraize is your dedicated HR, People Operations, and Recruitment partner,
-              structured, practical, and built for businesses that are serious about
-              growing the right way.
+            <p className="mt-6 text-base sm:text-lg text-navy-900/70 font-medium max-w-2xl leading-relaxed">
+              Hraize provides recruitment, payroll and HR administration, business support services and website solutions to organisations across India. We help businesses manage essential operational requirements through experienced service delivery and trusted technology partnerships.
             </p>
 
             <div className="mt-8 flex flex-wrap items-center gap-4">

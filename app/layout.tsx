@@ -5,20 +5,20 @@ import { GoogleTagManager, GoogleAnalytics } from '@next/third-parties/google'
 
 export const metadata: Metadata = {
   title: {
-    default: "Hraize HR Analytics | HR Services & Consultancy",
-    template: "%s | Hraize HR Analytics",
+    default: "Hraize | HR Solutions, Business Support & Digital Services",
+    template: "%s | Hraize",
   },
-  description: "Structure Your People. Scale Your Business. HR consultancy, recruitment, training, and strategic advisory services.",
+  description: "The right support to keep business moving. HR & payroll solutions, recruitment, business administration support, and website solutions across India.",
   metadataBase: new URL("https://hraize.com"),
   icons: { icon: "/favicon.ico" },
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "Hraize HR Analytics | HR Services & Consultancy",
-    description: "Structure Your People. Scale Your Business. HR consultancy, recruitment, training, and strategic advisory services.",
+    title: "Hraize | HR Solutions, Business Support & Digital Services",
+    description: "The right support to keep business moving. HR & payroll solutions, recruitment, business administration support, and website solutions across India.",
     url: "https://hraize.com",
-    siteName: "Hraize HR Analytics",
+    siteName: "Hraize",
     locale: "en_US",
     type: "website",
     images: [
@@ -26,14 +26,14 @@ export const metadata: Metadata = {
         url: "/logo1.png",
         width: 1200,
         height: 630,
-        alt: "Hraize HR Analytics — Structure Your People. Scale Your Business.",
+        alt: "Hraize — The right support to keep business moving.",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Hraize HR Analytics | HR Services & Consultancy",
-    description: "Structure Your People. Scale Your Business. HR consultancy, recruitment, training, and strategic advisory services.",
+    title: "Hraize | HR Solutions, Business Support & Digital Services",
+    description: "The right support to keep business moving. HR & payroll solutions, recruitment, business administration support, and website solutions across India.",
     images: ["/logo1.png"],
   },
   robots: {

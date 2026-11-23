@@ -19,19 +19,19 @@ export const HomeContent: React.FC<HomeContentProps> = ({
   const [activeService, setActiveService] = useState(0);
   const whatWeDo = [
     {
-      title: "For Growing Businesses",
-      desc: "HR systems, analytics dashboards, recruitment frameworks, and legal compliance structures so you scale seamlessly without a bloated, full-time HR team.",
-      badge: "Scale Growth"
+      title: "For Growing Organizations",
+      desc: "HR systems, payroll processing, statutory compliance (PF/ESI/PT), and workforce analytics so you scale seamlessly without administrative overhead.",
+      badge: "HR & Payroll"
     },
     {
       title: "For Hiring Leaders",
-      desc: "Quality-focused talent acquisition with a bulletproof 60-day replacement guarantee, ensuring high-caliber, carefully briefed candidates.",
-      badge: "Quality Hires"
+      desc: "Quality-focused talent acquisition with a bulletproof 60-day replacement guarantee, delivering pre-screened, carefully vetted candidates.",
+      badge: "Recruitment"
     },
     {
-      title: "For Ambitious Professionals",
-      desc: "Comprehensive 1-on-1 career coaching, interview prep pipelines, career positioning strategy, and executive mentorship to guide you to your target role.",
-      badge: "Talent Career"
+      title: "For Business & Digital Growth",
+      desc: "Operational administration, invoice and receivables tracking, and high-impact website development delivered with our trusted technology partner.",
+      badge: "Support & Tech"
     }
   ];
 
@@ -117,39 +117,45 @@ export const HomeContent: React.FC<HomeContentProps> = ({
         <span className="absolute top-0 left-1/2 -translate-x-1/2 w-16 h-0.5 bg-sky-600/30 rounded-full" />
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <SectionLabel>Practical Offerings</SectionLabel>
+            <SectionLabel>Integrated Capabilities</SectionLabel>
             <h3 className="mt-3 text-3xl sm:text-4xl font-black text-navy-900 uppercase tracking-tight">
               Our Services
             </h3>
             <p className="mt-4 text-sm text-navy-900/60 font-semibold max-w-2xl mx-auto">
-              Complete HR frameworks, high-caliber recruitment, and certified career coaching
-              pathways for growing SMEs, ambitious talents, and professional organizations.
+              Payroll processing, recruitment, business administration support, and website solutions designed to keep your business moving forward.
             </p>
           </div>
 
-          {/* Services accordion — matches reference design */}
+          {/* Services accordion — 4 core offerings */}
           <div className="flex flex-col md:flex-row gap-3 h-[580px] md:h-[440px]">
             {[
               {
-                title: "HR Services",
+                title: "HR & Payroll Services",
                 number: "01",
-                desc: "Setup compliant systems, handbook policies, and advanced interactive dashboards. Audit legal compliance gaps and manage attrition scientifically.",
+                desc: "Payroll processing, PF, ESI, Professional Tax and employee administration.",
                 href: "hr-services",
                 image: "/services-hr.png",
               },
               {
-                title: "Recruitment Services",
+                title: "Recruitment Solutions",
                 number: "02",
-                desc: "Identify high-caliber permanent, temporary, and contract team members. Bulletproof candidate preparation with a 60-day replacement guarantee.",
+                desc: "Permanent and contract hiring, sourcing, screening and interview coordination.",
                 href: "recruitment",
                 image: "/services-recruitment.png",
               },
               {
-                title: "Training & Development",
+                title: "Business Administration",
                 number: "03",
-                desc: "Empower graduates, mid-career professionals, and first-time executives with resume rewriting and recruitment coaching channels.",
-                href: "training",
-                image: "/services-training.png",
+                desc: "Invoice tracking, receivables administration, payment follow-ups and operational reports.",
+                href: "business-support",
+                image: "/reporting.png",
+              },
+              {
+                title: "Website Design & Dev",
+                number: "04",
+                desc: "Business websites, redesign, landing pages and maintenance through our technology partner.",
+                href: "website-solutions",
+                image: "/documentation.png",
               }
             ].map((svc, idx) => {
               const isActive = idx === activeService;

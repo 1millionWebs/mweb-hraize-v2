@@ -109,15 +109,15 @@ export const RecruitmentServices: React.FC<RecruitmentServicesProps> = ({
     <div className="bg-cream-100 py-16">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <SectionLabel>Talent Requisition</SectionLabel>
-          <h2 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-black text-navy-900 uppercase tracking-tight">
-            Quality Hiring for Growing Business
-          </h2>
-          <p className="mt-3 text-sm font-bold text-navy-900/50 uppercase tracking-[0.12em]">
-            Permanent &amp; Contract Staffing Services
+          <SectionLabel>Talent Acquisition</SectionLabel>
+          <h1 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-black text-navy-900 uppercase tracking-tight">
+            Recruitment Solutions
+          </h1>
+          <p className="mt-3 text-sm font-bold text-sky-700 uppercase tracking-[0.12em]">
+            Permanent and contract hiring, sourcing, screening and interview coordination.
           </p>
-          <p className="mt-4 text-sm sm:text-base text-navy-900/60 font-semibold">
-            We deliver high-caliber candidates aligned with your culture.
+          <p className="mt-4 text-sm sm:text-base text-navy-900/70 font-semibold leading-relaxed">
+            We deliver high-caliber candidates aligned with your culture, backed by comprehensive screening and a bulletproof 60-day replacement guarantee.
           </p>
         </div>
 

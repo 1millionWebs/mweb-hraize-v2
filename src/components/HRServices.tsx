@@ -1,16 +1,17 @@
-import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import React, { useEffect } from "react";
+import { motion } from "motion/react";
+import Link from "next/link";
 import {
-  Users, Layers, ShieldCheck, BarChart3, Settings, FileText,
-  Check, ArrowRight, Sparkles, IndianRupee
+  IndianRupee, ShieldCheck, Users, FileText, CheckCircle2,
+  ArrowRight, Clock, FileCheck, Landmark, Calculator
 } from "lucide-react";
 import { SectionLabel, FeatureCheck } from "./UIElements";
 
 interface HRServicesProps {
-  onBookCall: () => void;
+  onBookCall?: () => void;
 }
 
-export const HRServices: React.FC<HRServicesProps> = ({ onBookCall }) => {
+export const HRServices: React.FC<HRServicesProps> = () => {
   useEffect(() => {
     const scrollToHash = () => {
       const hash = window.location.hash;
@@ -28,447 +29,242 @@ export const HRServices: React.FC<HRServicesProps> = ({ onBookCall }) => {
     };
   }, []);
 
-  const [activeCard, setActiveCard] = useState<string | null>(null);
-
-  const strategicServices = [
+  const coreServices = [
     {
-      id: "support",
-      title: "Fractional HR Partner (Monthly Support)",
-      desc: "Instant answer desk and day-to-day consultation for operations, employee relations, and advisory workflows.",
-      icon: Users,
-      image: "/partners.png",
-      details: [
-        "Dedicated HR point of contact",
-        "Email and phone support during business hours",
-        "Employee relations guidance",
-        "Policy interpretation and application",
-        "Monthly check-in and reporting"
+      id: "payroll",
+      number: "01",
+      title: "Payroll Processing",
+      desc: "Accurate, on-time monthly salary calculations, structured compensation breakups, and confidential disbursement.",
+      icon: IndianRupee,
+      deliverables: [
+        "Monthly salary computation & attendance/leave sync",
+        "Tax-efficient salary structuring (Basic, HRA, Allowances)",
+        "Secure digital payslip generation & email distribution",
+        "Reimbursements, bonuses, arrears & deduction management",
+        "Bank disbursement advice file preparation",
+        "Full and Final (F&F) settlement computation"
       ]
     },
     {
-      id: "consulting",
-      title: "HR Foundation Setup",
-      desc: "Structured systems implementation matching specific organizational goals.",
-      icon: Settings,
-      image: "/hr-foundation.png",
-      details: [
-        "HR technology stack assessment",
-        "System implementation roadmap",
-        "Process automation setup",
-        "Integration with existing tools",
-        "Team training and handover"
+      id: "pf",
+      number: "02",
+      title: "Provident Fund (PF) Compliance",
+      desc: "Complete end-to-end management of Employee Provident Fund (EPF) and Pension Scheme (EPS) statutory requirements.",
+      icon: Landmark,
+      deliverables: [
+        "Monthly EPF/EPS contribution computation",
+        "Electronic Challan cum Return (ECR) preparation & filing",
+        "UAN generation, activation & KYC document linking",
+        "Member transfer claims & withdrawal assistance",
+        "Annual PF return reconciliation & inspection register maintenance"
       ]
     },
     {
-      id: "audit",
-      title: "HR Health Check & Improvement Plan",
-      desc: "Full comprehensive compliance audit identifying statutory gaps and structural risks.",
+      id: "esi",
+      number: "03",
+      title: "ESI (Employee State Insurance)",
+      desc: "Timely contribution calculations, monthly portal returns, and employee healthcare benefit registration.",
       icon: ShieldCheck,
-      image: "/health-checkup.png",
-      details: [
-        "Statutory compliance review",
-        "Policy gap analysis",
-        "Payroll and benefits audit",
-        "Data privacy assessment",
-        "Risk mitigation roadmap"
+      deliverables: [
+        "Monthly ESI wage limit assessment & contribution calculation",
+        "Online challan generation & monthly contribution remittance",
+        "Employee registration & e-Pehchan card generation",
+        "Dispensary and family member mapping",
+        "Statutory Form-5 and accident/maternity register maintenance"
       ]
     },
     {
-      id: "analytics",
-      title: "Workforce Insights & HR Reporting",
-      desc: "Turn employee spreadsheets into powerful executive-level metrics and predictive insights.",
-      icon: BarChart3,
-      image: "/reporting.png",
-      details: [
-        "Custom KPI dashboard design",
-        "Headcount and attrition tracking",
-        "Diversity and inclusion metrics",
-        "Predictive workforce modeling",
-        "Executive reporting suite"
+      id: "pt",
+      number: "04",
+      title: "Professional Tax (PT)",
+      desc: "State-wise Professional Tax calculations, slab compliance, and prompt return filings across Indian states.",
+      icon: Calculator,
+      deliverables: [
+        "State-specific PT slab rate calculation for all employees",
+        "Timely monthly/quarterly tax remittance through state portals",
+        "Annual Professional Tax return filing & documentation",
+        "PTRC and PTEC statutory compliance support",
+        "Notice resolution and tax assessment representation"
       ]
     },
     {
-      id: "policies",
-      title: "HR Documentation & Process Setup",
-      desc: "Handbooks, SOPs, and operational policies structured clearly and tailored to use.",
-      icon: FileText,
-      image: "/documentation.png",
-      details: [
-        "Employee handbook creation",
-        "SOP documentation",
-        "Policy templates and frameworks",
-        "Compliance-ready formats",
-        "Version-controlled repository"
-      ]
-    },
-    {
-      id: "workforce",
-      title: "Strategic Workforce Planning",
-      desc: "Comprehensive role assessments, talent pipelines, and hiring models aligned to forecasts.",
-      icon: Layers,
-      image: "/workforce-planning.png",
-      details: [
-        "Workforce demand modeling",
-        "Skills gap analysis",
-        "Talent pipeline development",
-        "Succession planning frameworks",
-        "Cost forecasting models"
+      id: "admin",
+      number: "05",
+      title: "Employee Administration",
+      desc: "Systematic lifecycle administration, personnel records, documentation, and employee query support.",
+      icon: Users,
+      deliverables: [
+        "Digital employee onboarding & KYC document collection",
+        "Centralized employee records & personnel files",
+        "Issuance of Offer Letters, Appointment Letters & Agreements",
+        "Leave, holiday & daily attendance tracking",
+        "HR policy communication & code of conduct enforcement",
+        "Exit formalities: Relieving letters, Experience certificates & NOCs"
       ]
     }
   ];
 
-  const methodology = [
+  const statutoryHighlights = [
     {
-      step: "01",
-      title: "Audit & Diagnose",
-      desc: "We understand exactly where you are and what needs attention, scoping out latent operational or legal bottlenecks.",
-      duration: ""
+      title: "100% Statutory Compliance",
+      desc: "Zero penalties. We ensure PF, ESI, and PT filings are submitted accurately before government deadlines.",
+      icon: FileCheck
     },
     {
-      step: "02",
-      title: "Build Your Foundation",
-      desc: "We create your complete HR system: policies, processes, custom dashboards, integrated cleanly.",
-      duration: ""
+      title: "Confidential & Secure",
+      desc: "Bank-grade data handling for sensitive salary information, employee identity records, and bank accounts.",
+      icon: ShieldCheck
     },
     {
-      step: "03",
-      title: "Stay as Your People Partner",
-      desc: "Ongoing support: monthly reports, database queries, compliance tracking, and strategic guidance.",
-      duration: ""
+      title: "Dedicated SPOC Support",
+      desc: "A single point of contact for your leadership team and an employee helpdesk for day-to-day query resolution.",
+      icon: Clock
     }
   ];
 
   return (
     <div className="bg-cream-100 py-16">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <SectionLabel>Strategic Consulting</SectionLabel>
-          <h2 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-black text-navy-900 uppercase tracking-tight">
-            Your HR Partner for the Next Stage of Growth
-          </h2>
-          <p className="mt-4 text-base sm:text-lg text-navy-900/60 font-semibold">
-            Growing companies routinely reach a transition phase (100-500 employees).
-            We bring complete framework clarity to your workforce.
+          <SectionLabel>People & Compliance</SectionLabel>
+          <h1 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-black text-navy-900 uppercase tracking-tight">
+            HR & Payroll Services
+          </h1>
+          <p className="mt-4 text-base sm:text-lg text-navy-900/70 font-semibold leading-relaxed">
+            Payroll processing, PF, ESI, Professional Tax and employee administration.
+            Ensure accurate monthly payroll, error-free statutory compliance, and smooth employee operations.
           </p>
+
+          <div className="mt-8 flex flex-wrap justify-center gap-4">
+            <Link
+              href="/contact?tab=hr"
+              className="inline-flex items-center gap-2 rounded-full bg-sky-600 px-7 py-3 text-sm font-bold text-white shadow-md hover:bg-sky-700 transition-all duration-200"
+            >
+              Get Payroll & HR Support
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+            <a
+              href="#services"
+              className="inline-flex items-center gap-2 rounded-full border border-sky-600/30 bg-white/70 px-7 py-3 text-sm font-bold text-navy-900 hover:bg-white transition-all duration-200"
+            >
+              Explore Scope
+            </a>
+          </div>
         </div>
 
-        <div className="max-w-6xl mx-auto mb-24 px-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {strategicServices.map((srv, idx) => {
+        {/* Highlights */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-20">
+          {statutoryHighlights.map((item, idx) => {
+            const Icon = item.icon;
+            return (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: idx * 0.1 }}
+                className="rounded-2xl bg-white border border-sky-600/20 p-6 shadow-sm hover:shadow-md transition-shadow"
+              >
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-sky-600/10 text-sky-600 mb-4">
+                  <Icon className="h-6 w-6" />
+                </div>
+                <h3 className="text-base font-extrabold text-navy-900 mb-2">{item.title}</h3>
+                <p className="text-xs text-navy-900/60 font-medium leading-relaxed">{item.desc}</p>
+              </motion.div>
+            );
+          })}
+        </div>
+
+        {/* Services List */}
+        <div id="services" className="space-y-8 mb-24">
+          <div className="text-center max-w-2xl mx-auto mb-12">
+            <SectionLabel>Detailed Deliverables</SectionLabel>
+            <h2 className="mt-2 text-2xl sm:text-3xl font-black text-navy-900 uppercase tracking-tight">
+              Payroll, Compliance & Administration Scope
+            </h2>
+            <p className="mt-3 text-xs sm:text-sm text-navy-900/60 font-semibold">
+              Complete, end-to-end handling of your monthly payroll cycle, employee documentation, and state/central statutory obligations.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {coreServices.map((srv, idx) => {
               const Icon = srv.icon;
-              const isActive = activeCard === srv.id;
+              const isFullWidth = idx === 4;
+
               return (
                 <motion.div
                   key={srv.id}
                   id={srv.id}
-                  className="relative h-[340px] rounded-2xl overflow-hidden cursor-pointer"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: idx * 0.08 }}
-                  onHoverStart={() => setActiveCard(srv.id)}
-                  onClick={() => setActiveCard(isActive ? null : srv.id)}
+                  className={`rounded-3xl bg-white border border-sky-600/20 p-8 shadow-sm hover:border-sky-600/50 transition-all flex flex-col justify-between ${
+                    isFullWidth ? "md:col-span-2" : ""
+                  }`}
                 >
-                  {/* Background image */}
-                  <motion.div
-                    className="absolute inset-0 bg-cover bg-center"
-                    style={{ backgroundImage: `url(${srv.image})` }}
-                    animate={{ opacity: isActive ? 0 : 1 }}
-                    whileHover={{ opacity: 0 }}
-                    transition={{ duration: 0.35, ease: "easeInOut" }}
-                  />
-
-                  {/* Gradient overlay on image */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black-100/60 via-black-100/5 to-transparent" />
-
-                  {/* Index number */}
-                  <div className="absolute top-4 left-4 flex h-8 w-8 items-center justify-center rounded-full bg-white/10 backdrop-blur-sm text-white text-xs font-black">
-                    {idx + 1}
-                  </div>
-
-                  {/* Title - always visible at bottom */}
-                  <div className="absolute bottom-0 left-0 right-0 p-6">
-                    <h4 className="text-lg font-black text-white leading-tight">{srv.title}</h4>
-                  </div>
-
-                  {/* Details overlay - appears on hover (desktop) or tap (mobile) */}
-                  <motion.div
-                    className="absolute inset-0 p-6 flex flex-col justify-center bg-navy-900/95"
-                    animate={{ opacity: isActive ? 1 : 0, pointerEvents: isActive ? "auto" : "none" }}
-                    whileHover={{ opacity: 1, pointerEvents: "auto" }}
-                    transition={{ duration: 0.35, ease: "easeInOut" }}
-                  >
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-sky-600/20 text-sky-400">
-                        <Icon className="h-5 w-5" />
+                  <div>
+                    <div className="flex items-center gap-4 mb-4">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-sky-600/10 text-sky-600">
+                        <Icon className="h-6 w-6" />
                       </div>
-                      <h4 className="text-base font-black text-white leading-tight">{srv.title}</h4>
+                      <div>
+                        <span className="text-[10px] font-black uppercase tracking-widest text-sky-600">
+                          Pillar {srv.number}
+                        </span>
+                        <h3 className="text-lg font-black text-navy-900">{srv.title}</h3>
+                      </div>
                     </div>
-                    <p className="text-xs text-white/60 font-medium mb-4 leading-relaxed">{srv.desc}</p>
-                    <ul className="space-y-2.5">
-                      {srv.details.map((detail, di) => (
-                        <li key={di} className="flex items-start gap-2.5">
-                          <Check className="h-3.5 w-3.5 text-sky-400 mt-0.5 shrink-0" />
-                          <span className="text-xs text-white/80 font-medium leading-snug">{detail}</span>
-                        </li>
+                    <p className="text-xs sm:text-sm text-navy-900/70 font-medium leading-relaxed mb-6">
+                      {srv.desc}
+                    </p>
+
+                    <div className={`space-y-2.5 pt-4 border-t border-gray-100 ${
+                      isFullWidth ? "grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2.5 space-y-0" : ""
+                    }`}>
+                      {srv.deliverables.map((item, dIdx) => (
+                        <FeatureCheck key={dIdx} className="text-navy-900/80">
+                          {item}
+                        </FeatureCheck>
                       ))}
-                    </ul>
-                  </motion.div>
+                    </div>
+                  </div>
+
+                  <div className="mt-8 pt-4">
+                    <Link
+                      href={`/contact?tab=hr&service=${srv.id}`}
+                      className="inline-flex items-center gap-1.5 text-xs font-black text-sky-600 hover:text-sky-700 uppercase tracking-wider group"
+                    >
+                      Inquire About This Service
+                      <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-1 transition-transform" />
+                    </Link>
+                  </div>
                 </motion.div>
               );
             })}
           </div>
         </div>
 
-        <div className="mb-24">
-          <div className="text-center max-w-3xl mx-auto mb-12">
-            <h3 className="text-2xl sm:text-3xl font-black text-navy-900 uppercase tracking-tight">
-              Why Choose Us ?
+        {/* Bottom CTA Box */}
+        <div className="rounded-3xl bg-gradient-to-r from-sky-600 to-navy-900 p-8 sm:p-12 text-white shadow-xl flex flex-col md:flex-row items-center justify-between gap-8">
+          <div className="max-w-xl">
+            <h3 className="text-2xl sm:text-3xl font-black tracking-tight leading-tight">
+              Looking for dependable HR & payroll support?
             </h3>
-            <div className="mt-4 h-1 w-20 bg-sky-900 mx-auto rounded-full" />
-          </div>
-
-          <div className="max-w-6xl mx-auto px-4">
-            <motion.div
-              className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.2 }}
-              variants={{
-                hidden: {},
-                visible: { transition: { staggerChildren: 0.12 } },
-              }}
-            >
-              {[
-                {
-                  icon: IndianRupee,
-                  title: "Cost Effective",
-                  desc: "Get expert HR support without the cost of a full-time HR team."
-                },
-                {
-                  icon: Users,
-                  title: "Practical & Scalable",
-                  desc: "Solutions tailored for your stage of growth and business needs."
-                },
-                {
-                  icon: BarChart3,
-                  title: "Data-Driven Decisions",
-                  desc: "Make better people decisions with insights and reporting."
-                },
-                {
-                  icon: ShieldCheck,
-                  title: "Experienced Partner",
-                  desc: "HR expertise you can trust to help your business grow."
-                }
-              ].map((feature, idx) => {
-                const Icon = feature.icon;
-                return (
-                  <motion.div
-                    key={idx}
-                    variants={{
-                      hidden: { opacity: 0, y: 20, scale: 0.9 },
-                      visible: { opacity: 1, y: 0, scale: 1 },
-                    }}
-                    className="text-center group"
-                  >
-                    <motion.div
-                      className="inline-flex items-center justify-center w-16 h-16 lg:w-20 lg:h-20 rounded-full bg-forest-500/10 mb-3 lg:mb-4"
-                      whileHover={{ scale: 1.12, backgroundColor: "rgba(2,132,199,0.18)" }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <Icon className="w-6 h-6 lg:w-8 lg:h-8 text-sky-500 group-hover:text-sky-600 transition-colors" />
-                    </motion.div>
-                    <h4 className="text-sm lg:text-lg font-black text-navy-900 mb-1 lg:mb-2 group-hover:text-sky-700 transition-colors duration-300">{feature.title}</h4>
-                    <p className="text-xs lg:text-sm text-navy-900/60 font-semibold leading-relaxed">{feature.desc}</p>
-                  </motion.div>
-                );
-              })}
-            </motion.div>
-          </div>
-        </div>
-
-        <div className="mb-24 max-w-6xl mx-auto px-4">
-          <div className="text-center max-w-2xl mx-auto mb-12 lg:mb-16">
-            <SectionLabel>Our Methodology</SectionLabel>
-            <h3 className="mt-3 text-2xl sm:text-3xl font-black text-navy-900 uppercase tracking-tight">
-              How It Works in 3 Steps
-            </h3>
-            <p className="mt-3 text-sm text-navy-900/50 font-semibold">
-              A straightforward process designed to integrate smoothly with your business.
+            <p className="mt-3 text-xs sm:text-sm text-white/80 leading-relaxed font-semibold">
+              Speak with our team today to streamline your payroll processing, ensure complete PF, ESI, and PT compliance, and organize your employee records.
             </p>
           </div>
-
-          <motion.div
-            className="relative grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-8"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={{
-              hidden: {},
-              visible: { transition: { staggerChildren: 0.2 } },
-            }}
+          <Link
+            href="/contact?tab=hr"
+            className="shrink-0 inline-flex items-center gap-2 rounded-full bg-white px-8 py-3.5 text-sm font-black text-navy-900 hover:bg-cream-50 shadow-lg transition-all"
           >
-            {/* Connecting line between steps (desktop) */}
-            <div className="hidden md:block absolute top-12 left-[12%] right-[12%] h-px bg-gradient-to-r from-transparent via-sky-600/40 to-transparent" />
-
-            {methodology.map((m, idx) => (
-              <motion.div
-                key={idx}
-                className="relative flex flex-row md:flex-col items-center md:text-center gap-5 md:gap-0 group"
-                variants={{
-                  hidden: { opacity: 0, x: -20 },
-                  visible: { opacity: 1, x: 0, transition: { duration: 0.5, ease: "easeOut" } },
-                }}
-              >
-                {/* Mobile vertical connecting line */}
-                {idx < methodology.length - 1 && (
-                  <div className="md:hidden absolute left-8 top-16 bottom-0 w-px bg-gradient-to-b from-sky-600/30 to-transparent" />
-                )}
-
-                {/* Step number circle with glow */}
-                <div className="relative z-10 shrink-0">
-                  <motion.div
-                    className="absolute inset-0 rounded-full bg-sky-600/20 blur-lg md:blur-xl"
-                    animate={{ scale: [1, 1.2, 1], opacity: [0.2, 0.35, 0.2] }}
-                    transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: idx * 0.5 }}
-                  />
-                  <motion.div
-                    className="relative flex h-16 w-16 md:h-24 md:w-24 items-center justify-center rounded-full bg-navy-900 border-2 border-sky-600/20 text-white shadow-xl"
-                    whileHover={{ scale: 1.1, borderColor: "rgba(2,132,199,0.6)" }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <span className="text-lg md:text-2xl font-black tracking-tight">{m.step}</span>
-                  </motion.div>
-                </div>
-
-                {/* Content */}
-                <div className="md:mt-7 text-left md:text-center">
-                  <h4 className="text-sm md:text-lg font-black text-navy-900 uppercase tracking-tight mb-1 md:mb-3 group-hover:text-sky-700 transition-colors duration-300">{m.title}</h4>
-                  <p className="text-xs md:text-sm text-navy-900/60 font-medium leading-relaxed">{m.desc}</p>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
+            Request a Consultation
+            <ArrowRight className="h-4 w-4 text-sky-600" />
+          </Link>
         </div>
-
-        <div className="mb-24 overflow-hidden rounded-3xl bg-navy-card-subtle shadow-xl">
-          <div className="grid grid-cols-1 lg:grid-cols-2">
-            <div className="p-8 sm:p-12 flex flex-col justify-center">
-              <SectionLabel className="text-sky-400">HR Dashboard Builder</SectionLabel>
-              <h3 className="mt-3 text-2xl sm:text-3xl font-black text-white uppercase tracking-tight">
-                People Analytics That Works
-              </h3>
-              <p className="mt-4 text-sm text-sage-100/70 font-semibold leading-relaxed">
-                Turn employee data into real-time dashboards for headcount, attrition, diversity, and hiring costs.
-              </p>
-              <div className="mt-6 text-white space-y-3">
-                {[
-                  "Headcount trends & forecasting",
-                  "Attrition analysis with predictive alerts",
-                  "Diversity & inclusion metrics",
-                  "Time-to-hire & cost-per-hire tracking",
-                  "Custom report builder"
-                ].map((item, idx) => (
-                  <FeatureCheck key={idx} className="text-white">{item}</FeatureCheck>
-                ))}
-              </div>
-            </div>
-
-            <div className="bg-gradient-to-br from-navy-800 to-navy-900 p-8 sm:p-12 flex items-center justify-center min-h-[300px] relative overflow-hidden">
-              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,color-mix(in_srgb,var(--color-sky-600)_8%,transparent)_0%,transparent_70%)]" />
-              <div className="relative w-full max-w-sm space-y-4">
-                <div className="grid grid-cols-3 gap-3">
-                  {[
-                    { label: "Headcount", value: "342" },
-                    { label: "Attrition", value: "6.8%" },
-                    { label: "Avg Tenure", value: "3.2yr" },
-                  ].map((kpi, idx) => (
-                    <div key={idx} className="glass-dark rounded-xl p-4 text-center">
-                      <p className="text-[9px] text-sage-100/50 font-bold uppercase tracking-wider">{kpi.label}</p>
-                      <p className="text-xl font-black mt-1 text-sky-400">{kpi.value}</p>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="glass-dark rounded-xl p-4">
-                  <div className="flex justify-between mb-2">
-                    <span className="text-[10px] text-sage-100/50 font-bold uppercase tracking-wider">Headcount Trend</span>
-                    <span className="text-[10px] text-forest-500 font-bold">+14.2% YoY</span>
-                  </div>
-                  <div className="h-8 flex items-end gap-1.5">
-                    {[35, 42, 38, 55, 50, 62, 78].map((h, i) => (
-                      <div key={i} className="flex-1 bg-white/5 rounded-sm h-full flex flex-col justify-end overflow-hidden">
-                        <motion.div
-                          className="bg-gradient-to-t from-sky-600 to-sky-400 w-full"
-                          initial={{ height: 0 }}
-                          animate={{ height: `${h}%` }}
-                          transition={{ delay: i * 0.1, duration: 0.8 }}
-                        />
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="glass-dark rounded-xl p-4">
-                  <p className="text-[10px] text-sage-100/50 font-bold uppercase tracking-wider mb-2">Departments</p>
-                  <div className="space-y-2">
-                    {[
-                      { dept: "Engineering", pct: 42 },
-                      { dept: "Operations", pct: 28 },
-                      { dept: "Sales & Marketing", pct: 18 },
-                      { dept: "Support", pct: 12 },
-                    ].map((d, idx) => (
-                      <div key={idx}>
-                        <div className="flex justify-between text-[10px] mb-0.5">
-                          <span className="text-sage-100/70 font-semibold">{d.dept}</span>
-                          <span className="text-sage-100/50">{d.pct}%</span>
-                        </div>
-                        <div className="h-1.5 bg-white/5 rounded-full overflow-hidden">
-                          <motion.div
-                            className="h-full bg-sky-600 rounded-full"
-                            initial={{ width: 0 }}
-                            animate={{ width: `${d.pct}%` }}
-                            transition={{ delay: 0.5 + idx * 0.1, duration: 0.8 }}
-                          />
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <motion.div
-          className="shadow-lg text-center max-w-3xl mx-auto bg-cream-50 border border-sky-600/10 rounded-3xl p-8 sm:p-12"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
-        >
-          <SectionLabel>Workforce Architecture</SectionLabel>
-          <h3 className="mt-3 text-2xl sm:text-3xl font-black text-navy-900 uppercase tracking-tight">
-            Ready to Have Your People Partner Today
-          </h3>
-          <p className="mt-4 text-sm text-navy-900/60 font-semibold max-w-xl mx-auto">
-            Schedule a free discovery call. We'll assess your needs, locate bottlenecks, and show you how
-            fractional HR can transform your business.
-          </p>
-          <motion.div
-            className="mt-8"
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.98 }}
-          >
-            <button
-              onClick={onBookCall}
-              className="inline-flex items-center gap-2 rounded-full bg-sky-600 text-white hover:bg-sky-700 px-8 py-3.5 text-xs font-black tracking-wider uppercase shadow-lg shadow-sky-600/20 transition-all cursor-pointer"
-            >
-              Book Your Call
-              <ArrowRight className="h-4 w-4" />
-            </button>
-          </motion.div>
-        </motion.div>
       </div>
     </div>
   );

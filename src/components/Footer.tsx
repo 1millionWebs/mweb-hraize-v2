@@ -66,13 +66,19 @@ export const Footer: React.FC = () => {
                 <Link href="/about" prefetch={false} className="hover:text-white hover:underline transition">About us</Link>
               </li>
               <li>
-                <Link href="/hr-services" prefetch={false} className="hover:text-white hover:underline transition">HR Services</Link>
+                <Link href="/services" prefetch={false} className="hover:text-white hover:underline transition">Our Services</Link>
               </li>
               <li>
-                <Link href="/recruitment" prefetch={false} className="hover:text-white hover:underline transition">Recruitment Services</Link>
+                <Link href="/hr-services" prefetch={false} className="hover:text-white hover:underline transition">HR & Payroll Services</Link>
               </li>
               <li>
-                <Link href="/training" prefetch={false} className="hover:text-white hover:underline transition">Training and Development</Link>
+                <Link href="/recruitment" prefetch={false} className="hover:text-white hover:underline transition">Recruitment Solutions</Link>
+              </li>
+              <li>
+                <Link href="/business-support" prefetch={false} className="hover:text-white hover:underline transition">Business Administration Support</Link>
+              </li>
+              <li>
+                <Link href="/website-solutions" prefetch={false} className="hover:text-white hover:underline transition">Website Design & Development</Link>
               </li>
               <li>
                 <Link href="/careers" prefetch={false} className="hover:text-white hover:underline transition">Careers</Link>

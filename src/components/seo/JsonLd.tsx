@@ -10,8 +10,8 @@ const organizationSchema = {
   url: "https://hraize.com",
   logo: "https://hraize.com/logo.svg",
   description:
-    "High-end HR workforce analytics, recruitment consulting, and training platform.",
-  slogan: "Structure Your People. Scale Your Business.",
+    "HR & Payroll services, recruitment solutions, business administration support, and website solutions across India.",
+  slogan: "The right support to keep business moving.",
   foundingDate: "2020",
   contactPoint: {
     "@type": "ContactPoint",
@@ -49,21 +49,29 @@ const breadcrumbMap: Record<string, BreadcrumbItem[]> = {
     { name: "Home", path: "/" },
     { name: "Contact Us", path: "/contact" },
   ],
+  "/services": [
+    { name: "Home", path: "/" },
+    { name: "Our Services", path: "/services" },
+  ],
   "/hr-services": [
     { name: "Home", path: "/" },
-    { name: "HR Services", path: "/hr-services" },
+    { name: "HR & Payroll Services", path: "/hr-services" },
   ],
   "/recruitment": [
     { name: "Home", path: "/" },
-    { name: "Recruitment", path: "/recruitment" },
+    { name: "Recruitment Solutions", path: "/recruitment" },
+  ],
+  "/business-support": [
+    { name: "Home", path: "/" },
+    { name: "Business Administration Support", path: "/business-support" },
+  ],
+  "/website-solutions": [
+    { name: "Home", path: "/" },
+    { name: "Website Design & Development", path: "/website-solutions" },
   ],
   "/submit-resume": [
     { name: "Home", path: "/" },
     { name: "Submit Resume", path: "/submit-resume" },
-  ],
-  "/training": [
-    { name: "Home", path: "/" },
-    { name: "Training", path: "/training" },
   ],
   "/vacancies": [
     { name: "Home", path: "/" },

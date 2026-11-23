@@ -2,16 +2,16 @@ import React, { useState, useEffect } from "react";
 import { motion } from "motion/react";
 import {
   Building2, Mail, Clock, CheckCircle2,
-  Send, HelpCircle, Layers, Shield, GraduationCap
+  Send, HelpCircle, Layers, Shield, Users, FileText, Globe
 } from "lucide-react";
 import { SectionLabel } from "./UIElements";
 
 interface ContactProps {
-  initialTab?: "hr" | "recruitment" | "training" | "general";
+  initialTab?: "hr" | "recruitment" | "business-support" | "website-solutions" | "general";
 }
 
 export const Contact: React.FC<ContactProps> = ({ initialTab = "hr" }) => {
-  type EnquiryType = "hr" | "recruitment" | "training" | "general";
+  type EnquiryType = "hr" | "recruitment" | "business-support" | "website-solutions" | "general";
   const [activeTab, setActiveTab] = useState<EnquiryType>(initialTab);
 
   const [formData, setFormData] = useState({
@@ -33,34 +33,45 @@ export const Contact: React.FC<ContactProps> = ({ initialTab = "hr" }) => {
   }, [initialTab]);
 
   const tabs = [
-    { id: "hr", label: "1. HR Services", icon: Shield },
-    { id: "recruitment", label: "2. Recruitment Services", icon: Layers },
-    { id: "training", label: "3. Training & Development", icon: GraduationCap },
-    { id: "general", label: "4. General Inquiry", icon: HelpCircle }
+    { id: "hr", label: "1. HR & Payroll", icon: Shield },
+    { id: "recruitment", label: "2. Recruitment", icon: Users },
+    { id: "business-support", label: "3. Business Support", icon: FileText },
+    { id: "website-solutions", label: "4. Website Solutions", icon: Globe },
+    { id: "general", label: "5. General Inquiry", icon: HelpCircle }
   ];
 
   const getServiceOptions = () => {
     switch (activeTab) {
       case "hr":
         return [
-          { value: "subscription", label: "HR Subscription Support" },
-          { value: "consulting", label: "HR Consulting & Systems Setup" },
-          { value: "audit", label: "HR Audit" },
-          { value: "analytics", label: "People Analytics & Dashboard" },
-          { value: "policies", label: "HR Policy and Process Documentation" },
-          { value: "workforce", label: "Strategic Workforce Planning" }
+          { value: "payroll", label: "Payroll Processing & Disbursement" },
+          { value: "pf-esi-pt", label: "PF, ESI & Professional Tax Compliance" },
+          { value: "employee-admin", label: "Employee Lifecycle Administration" },
+          { value: "subscription", label: "Monthly HR Support (Fractional)" },
+          { value: "consulting", label: "HR Foundation Setup & Policies" },
+          { value: "audit", label: "HR Health Check & Improvement Plan" },
+          { value: "analytics", label: "Workforce Insights & Dashboards" }
         ];
       case "recruitment":
         return [
-          { value: "permanent", label: "Permanent Recruitment" },
-          { value: "contract", label: "Contract & Temp Staffing" },
-          { value: "graduate", label: "Graduate & Emerging Talent Pipeline" }
+          { value: "permanent", label: "Permanent Hiring (60-Day Guarantee)" },
+          { value: "contract", label: "Contract & Interim Staffing" },
+          { value: "sourcing", label: "Candidate Sourcing & Screening" },
+          { value: "interview", label: "Interview Coordination & Offer Management" }
         ];
-      case "training":
+      case "business-support":
         return [
-          { value: "fresher", label: "Fresher to professional" },
-          { value: "mid-career", label: "Mid Career Acceleration" },
-          { value: "managers", label: "First-Time Managers" }
+          { value: "invoicing", label: "Invoice Tracking & Verification" },
+          { value: "receivables", label: "Receivables Administration" },
+          { value: "followups", label: "Payment Follow-ups & Collections" },
+          { value: "reporting", label: "Operational & MIS Reports" }
+        ];
+      case "website-solutions":
+        return [
+          { value: "business-website", label: "Business Website Design & Development" },
+          { value: "redesign", label: "Website Redesign & Modernization" },
+          { value: "landing-page", label: "High-Converting Campaign Landing Page" },
+          { value: "maintenance", label: "Website Maintenance & Tech Partner Support" }
         ];
       case "general":
       default:
