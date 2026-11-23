@@ -6,17 +6,36 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "motion/react";
 import { ChevronDown, Menu, X, ArrowUpRight, Mail } from "lucide-react";
 
-const serviceCategories = [
+interface ServiceItem {
+  name: string;
+  href: string;
+}
+
+interface ServiceCategory {
+  title: string;
+  href: string;
+  initialLimit?: number;
+  items: ServiceItem[];
+}
+
+const serviceCategories: ServiceCategory[] = [
   {
     title: "HR, Payroll & Admin",
     href: "/hr-services",
+    initialLimit: 6,
     items: [
-      { name: "Monthly Payroll & Salary", href: "/hr-services#payroll" },
-      { name: "Provident Fund (PF) & EPFO", href: "/hr-services#pf" },
-      { name: "ESI & Professional Tax (PT)", href: "/hr-services#esi-pt" },
-      { name: "Employee Lifecycle Admin", href: "/hr-services#lifecycle" },
-      { name: "Personnel Data & Records", href: "/hr-services#records" },
-      { name: "Compliance & HR Reports", href: "/hr-services#compliance" },
+      { name: "Monthly payroll preparation and processing", href: "/hr-services#payroll" },
+      { name: "Salary statements and payslip coordination", href: "/hr-services#payroll" },
+      { name: "Employee joining and exit administration", href: "/hr-services#lifecycle" },
+      { name: "Provident Fund (PF) administration and EPFO filing support", href: "/hr-services#pf" },
+      { name: "Employee State Insurance (ESI) administration and filing support", href: "/hr-services#esi-pt" },
+      { name: "Professional Tax (PT) calculations and filing support", href: "/hr-services#esi-pt" },
+      { name: "Employee data and statutory record maintenance", href: "/hr-services#compliance" },
+      { name: "Employee documentation", href: "/hr-services#lifecycle" },
+      { name: "Personnel data maintenance", href: "/hr-services#records" },
+      { name: "Attendance and leave records coordination", href: "/hr-services#records" },
+      { name: "Employee lifecycle administration", href: "/hr-services#lifecycle" },
+      { name: "HR reports, Compliance support", href: "/hr-services#compliance" },
     ],
   },
   {
@@ -62,11 +81,20 @@ export const Navbar: React.FC = () => {
   const [servicesOpen, setServicesOpen] = useState(false);
   const [careersOpen, setCareersOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [expandedCategories, setExpandedCategories] = useState<Record<string, boolean>>({});
+
+  const toggleCategory = (title: string) => {
+    setExpandedCategories((prev) => ({
+      ...prev,
+      [title]: !prev[title],
+    }));
+  };
 
   const closeMenus = () => {
     setMobileMenuOpen(false);
     setServicesOpen(false);
     setCareersOpen(false);
+    setExpandedCategories({});
   };
 
   const handleNavAnchorClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -173,34 +201,58 @@ export const Navbar: React.FC = () => {
                   className="absolute left-1/2 z-50 top-full pt-3 -translate-x-1/2"
                 >
                   <div className="w-[880px] md:w-[980px] lg:w-[1060px] rounded-2xl border border-sky-200/50 bg-cream-50 p-6 shadow-2xl">
-                    <div className="grid grid-cols-4 gap-5 lg:gap-6">
-                      {serviceCategories.map((cat, idx) => (
-                        <div key={idx} className="space-y-3.5 text-left">
-                          <Link
-                            href={cat.href}
-                            prefetch={false}
-                            onClick={closeMenus}
-                            className="block text-xs font-black uppercase tracking-wider text-sky-600 hover:text-sky-700 transition-colors"
-                          >
-                            {cat.title}
-                          </Link>
-                          <ul className="space-y-2.5">
-                            {cat.items.map((item, itemIdx) => (
-                              <li key={itemIdx}>
-                                <Link
-                                  href={item.href}
-                                  prefetch={false}
-                                  onClick={(e) => handleNavAnchorClick(e, item.href)}
-                                  className="flex items-center text-xs font-semibold text-navy-900/70 hover:text-navy-900 transition-all duration-200 hover:translate-x-1"
-                                >
-                                  <span className="h-1.5 w-1.5 bg-copper-400 rotate-45 shrink-0 mr-2" />
-                                  <span>{item.name}</span>
-                                </Link>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      ))}
+                    <div className="grid grid-cols-4 gap-5 lg:gap-6 items-start">
+                      {serviceCategories.map((cat, idx) => {
+                        const isExpanded = !!expandedCategories[cat.title];
+                        const hasMore = Boolean(cat.initialLimit && cat.items.length > cat.initialLimit);
+                        const visibleItems = hasMore && !isExpanded && cat.initialLimit
+                          ? cat.items.slice(0, cat.initialLimit)
+                          : cat.items;
+                        const remainingCount = cat.initialLimit ? cat.items.length - cat.initialLimit : 0;
+
+                        return (
+                          <div key={idx} className="space-y-3.5 text-left">
+                            <Link
+                              href={cat.href}
+                              prefetch={false}
+                              onClick={closeMenus}
+                              className="block text-xs font-black uppercase tracking-wider text-sky-600 hover:text-sky-700 transition-colors"
+                            >
+                              {cat.title}
+                            </Link>
+                            <ul className="space-y-2.5">
+                              {visibleItems.map((item, itemIdx) => (
+                                <li key={itemIdx}>
+                                  <Link
+                                    href={item.href}
+                                    prefetch={false}
+                                    onClick={(e) => handleNavAnchorClick(e, item.href)}
+                                    className="flex items-start text-xs font-semibold text-navy-900/70 hover:text-navy-900 transition-all duration-200 hover:translate-x-1 leading-snug"
+                                  >
+                                    <span className="h-1.5 w-1.5 bg-copper-400 rotate-45 shrink-0 mr-2 mt-1.5" />
+                                    <span>{item.name}</span>
+                                  </Link>
+                                </li>
+                              ))}
+                            </ul>
+
+                            {hasMore && (
+                              <button
+                                type="button"
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  e.stopPropagation();
+                                  toggleCategory(cat.title);
+                                }}
+                                className="inline-flex items-center gap-1 text-[11px] font-bold text-sky-600 hover:text-sky-700 transition-colors pt-1 cursor-pointer group"
+                              >
+                                <span>{isExpanded ? "Show less" : `+ Show more (${remainingCount})`}</span>
+                                <ChevronDown className={`h-3 w-3 transition-transform duration-200 ${isExpanded ? "rotate-180" : ""}`} />
+                              </button>
+                            )}
+                          </div>
+                        );
+                      })}
                     </div>
 
                     <div className="mt-6 pt-4 border-t border-sky-600/15 flex items-center justify-between">
@@ -337,32 +389,56 @@ export const Navbar: React.FC = () => {
                 </Link>
               </div>
 
-              {serviceCategories.map((cat, idx) => (
-                <div key={idx} className="space-y-1.5">
-                  <Link
-                    href={cat.href}
-                    prefetch={false}
-                    onClick={closeMenus}
-                    className="block w-full px-3 py-0.5 text-sm font-bold text-sky-600 hover:text-sky-500"
-                  >
-                    {cat.title}
-                  </Link>
-                  <div className="pl-4 space-y-1.5">
-                    {cat.items.map((item, itemIdx) => (
-                      <Link
-                        key={itemIdx}
-                        href={item.href}
-                        prefetch={false}
-                        onClick={(e) => handleNavAnchorClick(e, item.href)}
-                        className="flex items-center w-full px-3 py-0.5 text-xs font-medium text-navy-900/60 hover:text-navy-900 transition-colors duration-300"
-                      >
-                        <span className="h-2 w-2 rounded-full border border-sky-600/50 shrink-0 mr-2" />
-                        <span>{item.name}</span>
-                      </Link>
-                    ))}
+              {serviceCategories.map((cat, idx) => {
+                const isExpanded = !!expandedCategories[cat.title];
+                const hasMore = Boolean(cat.initialLimit && cat.items.length > cat.initialLimit);
+                const visibleItems = hasMore && !isExpanded && cat.initialLimit
+                  ? cat.items.slice(0, cat.initialLimit)
+                  : cat.items;
+                const remainingCount = cat.initialLimit ? cat.items.length - cat.initialLimit : 0;
+
+                return (
+                  <div key={idx} className="space-y-1.5">
+                    <Link
+                      href={cat.href}
+                      prefetch={false}
+                      onClick={closeMenus}
+                      className="block w-full px-3 py-0.5 text-sm font-bold text-sky-600 hover:text-sky-500"
+                    >
+                      {cat.title}
+                    </Link>
+                    <div className="pl-4 space-y-1.5">
+                      {visibleItems.map((item, itemIdx) => (
+                        <Link
+                          key={itemIdx}
+                          href={item.href}
+                          prefetch={false}
+                          onClick={(e) => handleNavAnchorClick(e, item.href)}
+                          className="flex items-start w-full px-3 py-0.5 text-xs font-medium text-navy-900/60 hover:text-navy-900 transition-colors duration-300 leading-snug"
+                        >
+                          <span className="h-1.5 w-1.5 rounded-full border border-sky-600/50 shrink-0 mr-2 mt-1" />
+                          <span>{item.name}</span>
+                        </Link>
+                      ))}
+
+                      {hasMore && (
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            toggleCategory(cat.title);
+                          }}
+                          className="flex items-center gap-1 px-3 pt-1 text-[11px] font-bold text-sky-600 hover:text-sky-700 transition-colors cursor-pointer"
+                        >
+                          <span>{isExpanded ? "Show less" : `+ Show more (${remainingCount})`}</span>
+                          <ChevronDown className={`h-3 w-3 transition-transform duration-200 ${isExpanded ? "rotate-180" : ""}`} />
+                        </button>
+                      )}
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
 
             <div className="border-l-2 border-sky-600/50 ml-2 pl-3 space-y-3">
