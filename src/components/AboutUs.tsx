@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "motion/react";
 import Image from "next/image";
-import { Calendar, Users, ShieldCheck, Award, Eye, Rocket, Heart, Check } from "lucide-react";
+import { Calendar, Users, ShieldCheck, Award, Eye, Rocket, Heart, Check, Building2, FileText, UserCheck, Briefcase } from "lucide-react";
 import { SectionLabel, FeatureCheck } from "./UIElements";
 
 export const AboutUs: React.FC = () => {
@@ -12,48 +12,16 @@ export const AboutUs: React.FC = () => {
     { value: "100%", label: "Quality Focused", icon: Award },
   ];
 
-  const founders = [
-    {
-      role: "Founder",
-      roleDesc: "HR Strategy & People Operations",
-      experience: "Expertise across HR transformation, talent acquisition, employee lifecycle management, and organisation development. Focused on helping businesses create practical HR frameworks, improve workforce effectiveness, and build scalable people operations",
-      expertise: [
-        "Talent Acquisition & Workforce Planning",
-        "HR Operations & Compliance Frameworks",
-        "HR Policies, SOPs & Documentation",
-        "Training & Development Programs",
-        "Employee Experience & Lifecycle Management"
-      ],
-      valueStatement: "Building scalable people systems that support business growth",
-      image: "/founder-svg.svg"
-    },
-    {
-      role: "Co-Founder",
-      roleDesc: "Workforce Analytics & Decision Intelligence",
-      experience: "Specialised expertise in workforce analytics, reporting automation, dashboards, and business intelligence solutions that help leaders make informed people decisions.",
-      expertise: [
-        "Workforce Analytics & Reporting",
-        "Executive Dashboards & Headcount Insights",
-        "Power BI & Looker Studio Solutions",
-        "Automation & Process Optimization",
-        "Metrics and Insights"
-      ],
-      valueStatement: "Turning workforce data into decisions leaders can act on.",
-      image: "/founder-svg.svg"
-    }
-  ];
-
   return (
     <div className="bg-cream-100 py-16">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <SectionLabel>Your HR & People Partner</SectionLabel>
+          <SectionLabel>Your Business Support Partner</SectionLabel>
           <h2 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-black text-navy-900 uppercase tracking-tight">
-            Building HR that actually works.
+            Practical Business Support. Professional Service Delivery.
           </h2>
           <p className="mt-6 text-navy-900/60 font-semibold text-base sm:text-lg leading-relaxed">
-            Founded by HR operations and data analytics professionals, Hraize helps growing businesses
-            build structured HR systems and people dashboards.
+            Hraize is a business support services company based in Bengaluru, India, providing integrated recruitment, payroll administration, finance operations and statutory coordination services to growing businesses.
           </p>
         </div>
 
@@ -87,23 +55,23 @@ export const AboutUs: React.FC = () => {
           <div className="lg:col-span-7 space-y-6">
             <SectionLabel className="text-sky-400">Why We Exist</SectionLabel>
             <h3 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-white leading-tight">
-              BUILDING THE HR STRUCTURE
+              BUILDING THE BUSINESS SUPPORT STRUCTURE
               <br />
-              <span className="text-sky-400">GROWING BUSINESS NEED.</span>
+              <span className="text-sky-400">GROWING BUSINESSES NEED.</span>
             </h3>
             <div className="text-sage-100/70 space-y-4 font-semibold text-sm sm:text-base leading-relaxed">
               <p>
                 Growing companies often reach a stage where hiring becomes reactive, processes become inconsistent,
-                and people decisions become difficult to manage.
+                and operational decisions become difficult to manage.
               </p>
               <p>
-                Hraize was created to bring practical HR expertise, structured processes, and recruitment support to businesses
-                that need stronger people foundations without the complexity of building everything internally.
+                Hraize was created to bring practical business support expertise, structured processes, and professional
+                services to businesses that need stronger operational foundations without the complexity of building everything internally.
               </p>
               <p>
-                We help organizations build effective teams, improve people operations,
-                and create HR systems that support sustainable growth.
-                Not just recruitment. Not just policies. A structured HR partner focused on helping businesses grow with the right people and processes.
+                We help organizations build effective teams, improve business operations,
+                and create support systems that support sustainable growth.
+                Not just recruitment. Not just payroll. A structured business support partner focused on helping businesses grow with the right people and processes.
               </p>
             </div>
           </div>
@@ -123,10 +91,70 @@ export const AboutUs: React.FC = () => {
               <div className="flex items-center gap-3">
                 <span className="h-2 w-2 rounded-full bg-sky-400" />
                 <span className="text-xs font-black tracking-widest uppercase text-sky-400">
-                  PEOPLE DECISIONS BACKED BY PROCESS
+                  OPERATIONAL DECISIONS BACKED BY PROCESS
                 </span>
               </div>
             </div>
+          </div>
+        </div>
+
+        {/* ============ WHAT WE DO - CORE PILLARS ============ */}
+        <div className="mb-24">
+          <div className="text-center max-w-2xl mx-auto mb-12">
+            <SectionLabel>What We Do</SectionLabel>
+            <h3 className="mt-3 text-2xl sm:text-3xl font-black uppercase leading-tight tracking-tight text-navy-900">
+              Core Pillars of Our Support
+            </h3>
+            <p className="mt-3 text-sm text-navy-900/60 font-bold leading-relaxed">
+              Four fundamentals that define how we help businesses operate.
+            </p>
+          </div>
+
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              {
+                icon: Building2,
+                title: "Dependable Professional Support",
+                desc: "We work with organisations that require dependable professional support to manage essential business activities, improve administrative processes and maintain organised operational records.",
+              },
+              {
+                icon: FileText,
+                title: "Extended Service Scope",
+                desc: "Our services also extend to invoice and receivables administration, payment follow-ups and website design solutions delivered through our technology partner network.",
+              },
+              {
+                icon: UserCheck,
+                title: "Structured Workflows & Reporting",
+                desc: "Through structured workflows, competent personnel and consistent management reporting, we help businesses manage routine operational responsibilities while allowing their internal teams to focus on core business priorities.",
+              },
+              {
+                icon: Briefcase,
+                title: "Accessible Without Internal Overhead",
+                desc: "We believe that businesses should be able to access practical support without having to build a separate internal team for every operational requirement.",
+              },
+            ].map((item, idx) => {
+              const Icon = item.icon;
+              return (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{ duration: 0.6, delay: idx * 0.12, ease: "easeOut" }}
+                  className="group rounded-3xl border border-sky-600/15 bg-white p-6 shadow-sm hover:border-sky-600/40 hover:shadow-lg transition-all duration-300"
+                >
+                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-sky-600/10 text-sky-600 group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300 mb-4">
+                    <Icon className="h-5 w-5" />
+                  </div>
+                  <h4 className="text-lg font-black uppercase leading-tight tracking-tight text-navy-900 mb-3">
+                    {item.title}
+                  </h4>
+                  <p className="text-sm font-medium text-navy-900/70 leading-relaxed">
+                    {item.desc}
+                  </p>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
 
@@ -134,13 +162,13 @@ export const AboutUs: React.FC = () => {
           {[
             {
               icon: Eye,
-              title: "Vision",
-              desc: "To become the trusted people partner for growing businesses, helping them build workplaces where people thrive, processes scale, and success is sustainable."
+              title: "Our Vision",
+              desc: "To become a dependable business support partner for growing organisations across India.",
             },
             {
               icon: Rocket,
-              title: "Mission",
-              desc: "We exist to make great HR accessible to every growing business by delivering people-first recruitment, robust HR frameworks, and trusted workforce solutions."
+              title: "Our Mission",
+              desc: "To simplify essential business operations through practical HR, recruitment, administrative and digital services.",
             },
             // {
             //   icon: Heart,
@@ -168,60 +196,76 @@ export const AboutUs: React.FC = () => {
           })}
         </div>
 
+        {/* ============ SERVICE APPROACH ============ */}
         <div className="mb-24">
-          <div className="text-center max-w-2xl mx-auto mb-16">
-            <SectionLabel>The Expertise</SectionLabel>
-            <h3 className="mt-3 text-3xl font-black text-navy-900 uppercase tracking-tight">
-              Built on HR Expertise. Driven by Data. Focused on Growth
+          <div className="text-center max-w-2xl mx-auto mb-12">
+            <SectionLabel>Our Service Approach</SectionLabel>
+            <h3 className="mt-3 text-2xl sm:text-3xl font-black uppercase leading-tight tracking-tight text-navy-900">
+              Five Principles That Guide Every Engagement
             </h3>
             <p className="mt-3 text-sm text-navy-900/60 font-bold leading-relaxed">
-              Hraize combines deep HR experience and data-driven decision support to help businesses build
-              structured people systems, improve hiring outcomes, and scale effectively
+              Our approach is built on these core principles.
             </p>
           </div>
 
-          <div className="flex flex-col lg:flex-row gap-8">
-            {founders.map((founder, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.7, delay: idx * 0.15, ease: "easeOut" }}
-                className="shadow-lg flex-1 flex flex-col items-center bg-cream-50 rounded-3xl border border-sky-600/10 p-8 text-center"
-              >
-                <div className="w-40 mb-4">
-                  <Image src={founder.image} alt={founder.role} width={160} height={160} className="w-full h-auto" />
-                </div>
-                {/* <div className="inline-flex items-center gap-1.5 rounded-full bg-sky-600/10 px-3 py-1 text-[10px] font-black text-sky-700 uppercase mb-4">
-                  Hraize Partner
-                </div> */}
-                <div className="space-y-4 w-full text-left">
-                  <div>
-                    <h4 className="text-lg font-black text-navy-900 uppercase leading-snug text-center">{founder.role}</h4>
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
+            {[
+              { icon: Check, title: "Practical", desc: "Services are structured around each client's actual requirements." },
+              { icon: ShieldCheck, title: "Accountable", desc: "Clear responsibilities, timelines and deliverables." },
+              { icon: Rocket, title: "Flexible", desc: "Support can be arranged according to business size and workload." },
+              { icon: Users, title: "Professional", desc: "Confidentiality and responsible handling of client information." },
+              { icon: Award, title: "Collaborative", desc: "Specialist partners support services requiring additional technical expertise." },
+            ].map((item, idx) => {
+              const Icon = item.icon;
+              return (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{ duration: 0.6, delay: idx * 0.12, ease: "easeOut" }}
+                  className="group rounded-3xl border border-sky-600/15 bg-white p-6 shadow-sm hover:border-sky-600/40 hover:shadow-lg transition-all duration-300"
+                >
+                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-sky-600/10 text-sky-600 group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300 mb-4">
+                    <Icon className="h-5 w-5" />
                   </div>
-                  <div>
-                    <h4 className="text-sm font-black text-navy-900 uppercase leading-snug text-center">{founder.roleDesc}</h4>
-                  </div>
-                  <p className="text-sm text-navy-900/70 font-medium leading-relaxed min-h-[100px] italic">{founder.experience}</p>
-
-                  <div className="pt-4 border-t border-sky-600/50">
-                    <p className="text-[10px] font-black tracking-wider text-sky-600 uppercase mb-2">Areas of Expertise</p>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
-                      {founder.expertise.map((exp, skillIdx) => (
-                        <FeatureCheck key={skillIdx} className="text-navy-900/70">{exp}</FeatureCheck>
-                      ))}
-                    </div>
-                  </div>
-                  <div className="pt-4 border-t border-sky-600/50 italic">
-                    <p className="text-sm font-bold text-copper-400">&ldquo;{founder.valueStatement}&rdquo;</p>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
+                  <h3 className="text-lg font-black uppercase leading-tight tracking-tight text-navy-900 mb-2">
+                    {item.title}
+                  </h3>
+                  <p className="text-sm font-medium text-navy-900/70 leading-relaxed">
+                    {item.desc}
+                  </p>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
 
+        {/* ============ CLOSING STATEMENT ============ */}
+        <div className="rounded-3xl bg-cream-50 border border-sky-600/20 p-8 sm:p-12 text-center">
+          <p className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-navy-900 mb-4">
+            Hraize – Supporting Your People. Simplifying Your Business.
+          </p>
+          <p className="text-base font-semibold text-navy-900/60 max-w-2xl mx-auto">
+            Practical support for growing businesses across recruitment, payroll, administration, and digital solutions.
+          </p>
+          <div className="mt-8 flex items-center justify-center gap-4">
+            <a
+              href="/contact?tab=general"
+              className="inline-flex items-center gap-2 rounded-full bg-sky-600 px-7 py-3.5 text-sm font-black text-white shadow-lg shadow-sky-600/25 transition-all duration-200 hover:bg-sky-700"
+            >
+              Start a Conversation
+              <Rocket className="h-4 w-4" />
+            </a>
+            <a
+              href="/services"
+              className="inline-flex items-center gap-2 rounded-full border border-sky-600/30 bg-white px-6 py-3.5 text-sm font-bold text-navy-900 shadow-sm transition-all duration-200 hover:bg-cream-50"
+            >
+              Explore Services
+              <Rocket className="h-4 w-4" />
+            </a>
+          </div>
+        </div>
 
       </div>
     </div >
