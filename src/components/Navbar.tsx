@@ -11,11 +11,13 @@ const serviceCategories = [
     title: "HR & Payroll Services",
     href: "/hr-services",
     items: [
-      { name: "Payroll Processing", href: "/hr-services#payroll" },
-      { name: "PF (Provident Fund)", href: "/hr-services#pf" },
-      { name: "ESI Compliance", href: "/hr-services#esi" },
+      { name: "Payroll Preparation & Processing", href: "/hr-services#payroll" },
+      { name: "Salary Statements & Payslips", href: "/hr-services#salary-statements" },
+      { name: "Employee Joining & Exit Admin", href: "/hr-services#joining-exit" },
+      { name: "Provident Fund (PF) & EPFO", href: "/hr-services#pf" },
+      { name: "ESI Administration & Filing", href: "/hr-services#esi" },
       { name: "Professional Tax (PT)", href: "/hr-services#pt" },
-      { name: "Employee Administration", href: "/hr-services#admin" },
+      { name: "Statutory Record Maintenance", href: "/hr-services#statutory-records" },
     ],
   },
   {
@@ -32,20 +34,37 @@ const serviceCategories = [
     title: "Invoice & Receivables",
     href: "/business-support",
     items: [
-      { name: "Sales Invoice Register", href: "/business-support#invoicing" },
-      { name: "Due-Date Tracking", href: "/business-support#receivables" },
-      { name: "Payment Reminders", href: "/business-support#followups" },
-      { name: "Receivables & Overdue Reports", href: "/business-support#reporting" },
+      { name: "Sales Invoice Register", href: "/business-support#sales-register" },
+      { name: "Due-Date Tracking", href: "/business-support#due-dates" },
+      { name: "Customer Payment Reminders", href: "/business-support#payment-reminders" },
+      { name: "Outstanding Follow-ups", href: "/business-support#follow-ups" },
+      { name: "Payment Status Updates", href: "/business-support#status-updates" },
+      { name: "Periodic Receivables Reports", href: "/business-support#overdue-reports" },
+      { name: "Accounts Team Coordination", href: "/business-support#accounts-coordination" },
     ],
   },
   {
     title: "Website Design & Dev",
     href: "/website-solutions",
     items: [
-      { name: "Business Websites", href: "/website-solutions#business-websites" },
+      { name: "Business Website Design", href: "/website-solutions#business-website" },
       { name: "Website Redesign & Revamp", href: "/website-solutions#redesign" },
       { name: "Landing Page Development", href: "/website-solutions#landing-pages" },
+      { name: "Mobile-Responsive Development", href: "/website-solutions#mobile-responsive" },
+      { name: "Website Content Updates", href: "/website-solutions#content-updates" },
       { name: "Maintenance & Tech Support", href: "/website-solutions#maintenance" },
+    ],
+  },
+  {
+    title: "HR & Personnel Admin",
+    href: "/personnel-administration",
+    items: [
+      { name: "Employee Documentation", href: "/personnel-administration#documentation" },
+      { name: "Personnel Data Maintenance", href: "/personnel-administration#personnel-data" },
+      { name: "Attendance & Leave Records", href: "/personnel-administration#attendance-leave" },
+      { name: "Employee Lifecycle Admin", href: "/personnel-administration#lifecycle" },
+      { name: "HR Reports & Documentation", href: "/personnel-administration#hr-reports" },
+      { name: "Compliance Records Support", href: "/personnel-administration#compliance-records" },
     ],
   },
 ];
@@ -63,8 +82,23 @@ export const Navbar: React.FC = () => {
     setCareersOpen(false);
   };
 
+  const handleNavAnchorClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    closeMenus();
+    if (href.includes("#")) {
+      const [targetPath, hash] = href.split("#");
+      if (pathname === targetPath || (targetPath === "" && pathname.startsWith(targetPath))) {
+        e.preventDefault();
+        const el = document.getElementById(hash);
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth", block: "start" });
+          window.history.pushState(null, "", `#${hash}`);
+        }
+      }
+    }
+  };
+
   const isActive = (path: string) => pathname === path;
-  const isServiceActive = pathname === "/services" || pathname === "/hr-services" || pathname === "/recruitment" || pathname === "/business-support" || pathname === "/website-solutions";
+  const isServiceActive = pathname === "/services" || pathname === "/hr-services" || pathname === "/recruitment" || pathname === "/business-support" || pathname === "/website-solutions" || pathname === "/personnel-administration";
   const isCareerActive = pathname === "/careers" || pathname === "/submit-resume" || pathname === "/vacancies";
 
   return (
@@ -151,8 +185,8 @@ export const Navbar: React.FC = () => {
                   exit={{ opacity: 0, y: 10 }}
                   className="absolute left-1/2 z-50 top-full pt-3 -translate-x-1/2"
                 >
-                  <div className="w-[820px] md:w-[940px] lg:w-[1040px] rounded-2xl border border-sky-200/50 bg-cream-50 p-6 shadow-2xl">
-                    <div className="grid grid-cols-4 gap-6">
+                  <div className="w-[980px] md:w-[1080px] lg:w-[1200px] xl:w-[1260px] rounded-2xl border border-sky-200/50 bg-cream-50 p-6 shadow-2xl">
+                    <div className="grid grid-cols-5 gap-4 lg:gap-5">
                       {serviceCategories.map((cat, idx) => (
                         <div key={idx} className="space-y-3.5 text-left">
                           <Link
@@ -169,7 +203,7 @@ export const Navbar: React.FC = () => {
                                 <Link
                                   href={item.href}
                                   prefetch={false}
-                                  onClick={closeMenus}
+                                  onClick={(e) => handleNavAnchorClick(e, item.href)}
                                   className="flex items-center text-xs font-semibold text-navy-900/70 hover:text-navy-900 transition-all duration-200 hover:translate-x-1"
                                 >
                                   <span className="h-1.5 w-1.5 bg-copper-400 rotate-45 shrink-0 mr-2" />
@@ -332,7 +366,7 @@ export const Navbar: React.FC = () => {
                         key={itemIdx}
                         href={item.href}
                         prefetch={false}
-                        onClick={closeMenus}
+                        onClick={(e) => handleNavAnchorClick(e, item.href)}
                         className="flex items-center w-full px-3 py-0.5 text-xs font-medium text-navy-900/60 hover:text-navy-900 transition-colors duration-300"
                       >
                         <span className="h-2 w-2 rounded-full border border-sky-600/50 shrink-0 mr-2" />

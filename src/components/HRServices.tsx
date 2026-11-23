@@ -1,11 +1,10 @@
+"use client";
 import React, { useEffect } from "react";
-import { motion } from "motion/react";
 import Link from "next/link";
 import {
-  IndianRupee, ShieldCheck, Users, FileText, CheckCircle2,
-  ArrowRight, Clock, FileCheck, Landmark, Calculator
+  IndianRupee, ShieldCheck, Users, Landmark, Calculator,
+  ArrowRight, Check, Info, Shield, ArrowDown, FileText, CheckCircle2
 } from "lucide-react";
-import { SectionLabel, FeatureCheck } from "./UIElements";
 
 interface HRServicesProps {
   onBookCall?: () => void;
@@ -13,261 +12,245 @@ interface HRServicesProps {
 
 export const HRServices: React.FC<HRServicesProps> = () => {
   useEffect(() => {
-    const scrollToHash = () => {
+    const handleScrollToHash = () => {
       const hash = window.location.hash;
       if (hash) {
         const id = hash.replace("#", "");
         const element = document.getElementById(id);
-        if (element) element.scrollIntoView({ behavior: "smooth", block: "center" });
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
       }
     };
-    const timer = setTimeout(scrollToHash, 250);
-    window.addEventListener("hashchange", scrollToHash);
+
+    const t1 = setTimeout(handleScrollToHash, 150);
+    const t2 = setTimeout(handleScrollToHash, 450);
+
+    window.addEventListener("hashchange", handleScrollToHash);
     return () => {
-      clearTimeout(timer);
-      window.removeEventListener("hashchange", scrollToHash);
+      clearTimeout(t1);
+      clearTimeout(t2);
+      window.removeEventListener("hashchange", handleScrollToHash);
     };
   }, []);
 
-  const coreServices = [
+  const quickNav = [
+    { id: "payroll", label: "01. Payroll Processing", icon: IndianRupee },
+    { id: "salary-statements", label: "02. Salary Statements", icon: FileText },
+    { id: "joining-exit", label: "03. Joining & Exit Admin", icon: Users },
+    { id: "pf", label: "04. Provident Fund (PF)", icon: Landmark },
+    { id: "esi", label: "05. ESI Administration", icon: ShieldCheck },
+    { id: "pt", label: "06. Professional Tax (PT)", icon: Calculator },
+    { id: "statutory-records", label: "07. Statutory Records", icon: CheckCircle2 },
+  ];
+
+  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    e.preventDefault();
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+      window.history.pushState(null, "", `#${id}`);
+    }
+  };
+
+  const hrServicesItems = [
     {
       id: "payroll",
       number: "01",
-      title: "Payroll Processing",
-      desc: "Accurate, on-time monthly salary calculations, structured compensation breakups, and confidential disbursement.",
-      icon: IndianRupee,
-      deliverables: [
-        "Monthly salary computation & attendance/leave sync",
-        "Tax-efficient salary structuring (Basic, HRA, Allowances)",
-        "Secure digital payslip generation & email distribution",
-        "Reimbursements, bonuses, arrears & deduction management",
-        "Bank disbursement advice file preparation",
-        "Full and Final (F&F) settlement computation"
-      ]
+      title: "Monthly Payroll Preparation and Processing",
+      point: "Monthly payroll preparation and processing.",
+      actionLabel: "Request Quote for Payroll",
+      serviceQuery: "payroll",
+    },
+    {
+      id: "salary-statements",
+      number: "02",
+      title: "Salary Statements and Payslip Coordination",
+      point: "Salary statements and payslip coordination.",
+      actionLabel: "Request Quote for Salary Statements",
+      serviceQuery: "salary-statements",
+    },
+    {
+      id: "joining-exit",
+      number: "03",
+      title: "Employee Joining and Exit Administration",
+      point: "Employee joining and exit administration.",
+      actionLabel: "Request Quote for Joining & Exit",
+      serviceQuery: "joining-exit",
     },
     {
       id: "pf",
-      number: "02",
-      title: "Provident Fund (PF) Compliance",
-      desc: "Complete end-to-end management of Employee Provident Fund (EPF) and Pension Scheme (EPS) statutory requirements.",
-      icon: Landmark,
-      deliverables: [
-        "Monthly EPF/EPS contribution computation",
-        "Electronic Challan cum Return (ECR) preparation & filing",
-        "UAN generation, activation & KYC document linking",
-        "Member transfer claims & withdrawal assistance",
-        "Annual PF return reconciliation & inspection register maintenance"
-      ]
+      number: "04",
+      title: "Provident Fund (PF) Administration and EPFO Filing Support",
+      point: "Provident Fund (PF) administration and EPFO filing support.",
+      actionLabel: "Inquire PF Filing Scope",
+      serviceQuery: "pf",
     },
     {
       id: "esi",
-      number: "03",
-      title: "ESI (Employee State Insurance)",
-      desc: "Timely contribution calculations, monthly portal returns, and employee healthcare benefit registration.",
-      icon: ShieldCheck,
-      deliverables: [
-        "Monthly ESI wage limit assessment & contribution calculation",
-        "Online challan generation & monthly contribution remittance",
-        "Employee registration & e-Pehchan card generation",
-        "Dispensary and family member mapping",
-        "Statutory Form-5 and accident/maternity register maintenance"
-      ]
+      number: "05",
+      title: "Employee State Insurance (ESI) Administration and Filing Support",
+      point: "Employee State Insurance (ESI) administration and filing support.",
+      actionLabel: "Inquire ESI Filing Scope",
+      serviceQuery: "esi",
     },
     {
       id: "pt",
-      number: "04",
-      title: "Professional Tax (PT)",
-      desc: "State-wise Professional Tax calculations, slab compliance, and prompt return filings across Indian states.",
-      icon: Calculator,
-      deliverables: [
-        "State-specific PT slab rate calculation for all employees",
-        "Timely monthly/quarterly tax remittance through state portals",
-        "Annual Professional Tax return filing & documentation",
-        "PTRC and PTEC statutory compliance support",
-        "Notice resolution and tax assessment representation"
-      ]
+      number: "06",
+      title: "Professional Tax (PT) Calculations and Filing Support",
+      point: "Professional Tax (PT) calculations and filing support.",
+      actionLabel: "Inquire PT Scope",
+      serviceQuery: "pt",
     },
     {
-      id: "admin",
-      number: "05",
-      title: "Employee Administration",
-      desc: "Systematic lifecycle administration, personnel records, documentation, and employee query support.",
-      icon: Users,
-      deliverables: [
-        "Digital employee onboarding & KYC document collection",
-        "Centralized employee records & personnel files",
-        "Issuance of Offer Letters, Appointment Letters & Agreements",
-        "Leave, holiday & daily attendance tracking",
-        "HR policy communication & code of conduct enforcement",
-        "Exit formalities: Relieving letters, Experience certificates & NOCs"
-      ]
-    }
-  ];
-
-  const statutoryHighlights = [
-    {
-      title: "100% Statutory Compliance",
-      desc: "Zero penalties. We ensure PF, ESI, and PT filings are submitted accurately before government deadlines.",
-      icon: FileCheck
+      id: "statutory-records",
+      number: "07",
+      title: "Employee Data and Statutory Record Maintenance",
+      point: "Employee data and statutory record maintenance.",
+      actionLabel: "Request Quote for Record Maintenance",
+      serviceQuery: "statutory-records",
     },
-    {
-      title: "Confidential & Secure",
-      desc: "Bank-grade data handling for sensitive salary information, employee identity records, and bank accounts.",
-      icon: ShieldCheck
-    },
-    {
-      title: "Dedicated SPOC Support",
-      desc: "A single point of contact for your leadership team and an employee helpdesk for day-to-day query resolution.",
-      icon: Clock
-    }
   ];
 
   return (
-    <div className="bg-cream-100 py-16">
+    <div className="relative overflow-hidden bg-cream-100 py-16">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <SectionLabel>People & Compliance</SectionLabel>
-          <h1 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-black text-navy-900 uppercase tracking-tight">
+        
+        {/* EXECUTIVE HERO */}
+        <div className="text-center max-w-4xl mx-auto mb-12">
+          <div className="inline-flex items-center gap-2 rounded-full bg-sky-600/10 px-4 py-1.5 mb-4 border border-sky-600/20">
+            <span className="h-2 w-2 rounded-full bg-sky-600" />
+            <span className="text-[11px] font-black tracking-[0.15em] text-sky-700 uppercase">
+              01. HR & Payroll Services
+            </span>
+          </div>
+
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-navy-900 uppercase tracking-tight leading-[1.05]">
             HR & Payroll Services
           </h1>
-          <p className="mt-4 text-base sm:text-lg text-navy-900/70 font-semibold leading-relaxed">
-            Payroll processing, PF, ESI, Professional Tax and employee administration.
-            Ensure accurate monthly payroll, error-free statutory compliance, and smooth employee operations.
+
+          <p className="mt-4 text-base sm:text-xl text-navy-900/70 font-semibold leading-relaxed max-w-3xl mx-auto">
+            Practical support across payroll processing, statutory compliance, and employee administration.
           </p>
-          <div className="mt-4 inline-flex items-center gap-2 text-xs text-navy-900/60 font-medium bg-sky-500/10 px-4 py-2 rounded-xl border border-sky-500/20">
+
+          <div className="mt-5 inline-flex items-center gap-2 text-xs text-navy-900/80 font-medium bg-sky-500/10 px-5 py-2.5 rounded-2xl border border-sky-500/20 max-w-2xl text-left sm:text-center">
+            <Info className="h-4 w-4 text-sky-600 shrink-0" />
             <span>Service scope will be agreed with each client and will reflect the applicable statutory requirements.</span>
           </div>
 
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link
               href="/contact?tab=hr"
-              className="inline-flex items-center gap-2 rounded-full bg-sky-600 px-7 py-3 text-sm font-bold text-white shadow-md hover:bg-sky-700 transition-all duration-200"
+              className="inline-flex items-center gap-2 rounded-full bg-sky-600 px-8 py-3.5 text-sm font-black text-white shadow-lg shadow-sky-600/25 hover:bg-sky-700 transition-all duration-200"
             >
               Request a Service Quote
               <ArrowRight className="h-4 w-4" />
             </Link>
             <a
-              href="#services"
-              className="inline-flex items-center gap-2 rounded-full border border-sky-600/30 bg-white/70 px-7 py-3 text-sm font-bold text-navy-900 hover:bg-white transition-all duration-200"
+              href="#payroll"
+              onClick={(e) => scrollToSection(e, "payroll")}
+              className="inline-flex items-center gap-2 rounded-full border border-sky-600/30 bg-white px-7 py-3.5 text-sm font-bold text-navy-900 hover:bg-cream-50 shadow-sm transition-all duration-200"
             >
-              Explore Scope
+              View Service Scope Below
+              <ArrowDown className="h-4 w-4 text-sky-600" />
             </a>
           </div>
         </div>
 
-        {/* Highlights */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-20">
-          {statutoryHighlights.map((item, idx) => {
-            const Icon = item.icon;
-            return (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="rounded-2xl bg-white border border-sky-600/20 p-6 shadow-sm hover:shadow-md transition-shadow"
-              >
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-sky-600/10 text-sky-600 mb-4">
-                  <Icon className="h-6 w-6" />
-                </div>
-                <h3 className="text-base font-extrabold text-navy-900 mb-2">{item.title}</h3>
-                <p className="text-xs text-navy-900/60 font-medium leading-relaxed">{item.desc}</p>
-              </motion.div>
-            );
-          })}
-        </div>
-
-        {/* Services List */}
-        <div id="services" className="space-y-8 mb-24">
-          <div className="text-center max-w-2xl mx-auto mb-12">
-            <SectionLabel>Detailed Deliverables</SectionLabel>
-            <h2 className="mt-2 text-2xl sm:text-3xl font-black text-navy-900 uppercase tracking-tight">
-              Payroll, Compliance & Administration Scope
-            </h2>
-            <p className="mt-3 text-xs sm:text-sm text-navy-900/60 font-semibold">
-              Complete, end-to-end handling of your monthly payroll cycle, employee documentation, and state/central statutory obligations.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {coreServices.map((srv, idx) => {
-              const Icon = srv.icon;
-              const isFullWidth = idx === 4;
-
+        {/* QUICK JUMP NAVIGATION BAR */}
+        <div className="mb-16 rounded-2xl bg-white border border-sky-600/20 p-3 shadow-sm">
+          <p className="text-[10px] font-black uppercase tracking-widest text-navy-900/40 text-center mb-2.5">
+            Quick Jump to Scope Sections
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-2">
+            {quickNav.map((item) => {
+              const Icon = item.icon;
               return (
-                <motion.div
-                  key={srv.id}
-                  id={srv.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: idx * 0.08 }}
-                  className={`rounded-3xl bg-white border border-sky-600/20 p-8 shadow-sm hover:border-sky-600/50 transition-all flex flex-col justify-between ${
-                    isFullWidth ? "md:col-span-2" : ""
-                  }`}
+                <a
+                  key={item.id}
+                  href={`#${item.id}`}
+                  onClick={(e) => scrollToSection(e, item.id)}
+                  className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-bold text-navy-900 bg-cream-50 hover:bg-sky-600 hover:text-white border border-sky-600/15 hover:border-sky-600 transition-all shadow-sm"
                 >
-                  <div>
-                    <div className="flex items-center gap-4 mb-4">
-                      <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-sky-600/10 text-sky-600">
-                        <Icon className="h-6 w-6" />
-                      </div>
-                      <div>
-                        <span className="text-[10px] font-black uppercase tracking-widest text-sky-600">
-                          Pillar {srv.number}
-                        </span>
-                        <h3 className="text-lg font-black text-navy-900">{srv.title}</h3>
-                      </div>
-                    </div>
-                    <p className="text-xs sm:text-sm text-navy-900/70 font-medium leading-relaxed mb-6">
-                      {srv.desc}
-                    </p>
-
-                    <div className={`space-y-2.5 pt-4 border-t border-gray-100 ${
-                      isFullWidth ? "grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2.5 space-y-0" : ""
-                    }`}>
-                      {srv.deliverables.map((item, dIdx) => (
-                        <FeatureCheck key={dIdx} className="text-navy-900/80">
-                          {item}
-                        </FeatureCheck>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="mt-8 pt-4">
-                    <Link
-                      href={`/contact?tab=hr&service=${srv.id}`}
-                      className="inline-flex items-center gap-1.5 text-xs font-black text-sky-600 hover:text-sky-700 uppercase tracking-wider group"
-                    >
-                      Inquire About This Service
-                      <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-1 transition-transform" />
-                    </Link>
-                  </div>
-                </motion.div>
+                  <Icon className="h-3.5 w-3.5 shrink-0" />
+                  <span>{item.label}</span>
+                </a>
               );
             })}
           </div>
         </div>
 
-        {/* Bottom CTA Box */}
-        <div className="rounded-3xl bg-gradient-to-r from-sky-600 to-navy-900 p-8 sm:p-12 text-white shadow-xl flex flex-col md:flex-row items-center justify-between gap-8">
+        {/* 7 VERIFIED SCOPE CARDS */}
+        <div className="space-y-8 mb-20">
+          {hrServicesItems.map((item) => (
+            <section
+              key={item.id}
+              id={item.id}
+              className="scroll-mt-28 rounded-3xl bg-white border border-sky-600/20 shadow-sm p-8 sm:p-10 hover:border-sky-600/40 transition-all"
+            >
+              <div className="flex items-center gap-3 mb-4">
+                <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-sky-600 text-white font-black text-xs shadow-sm">
+                  {item.number}
+                </span>
+                <div>
+                  <span className="text-[10px] font-black uppercase tracking-widest text-sky-600 block">
+                    HR & Payroll Services
+                  </span>
+                  <h2 className="text-xl sm:text-2xl font-black text-navy-900 uppercase tracking-tight">
+                    {item.title}
+                  </h2>
+                </div>
+              </div>
+
+              <div className="pt-4 border-t border-gray-100">
+                <div className="flex items-start gap-3 p-4 rounded-xl bg-cream-50 border border-sky-600/10">
+                  <div className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-sky-600/10 text-sky-600">
+                    <Check className="h-2.5 w-2.5 stroke-[3]" />
+                  </div>
+                  <span className="text-xs sm:text-sm font-bold text-navy-900/85">
+                    {item.point}
+                  </span>
+                </div>
+              </div>
+
+              <div className="mt-6 pt-4 border-t border-gray-100 flex flex-wrap items-center justify-between gap-4 text-xs">
+                <span className="text-navy-900/60 font-medium italic">
+                  Service scope will be agreed with each client and will reflect the applicable statutory requirements.
+                </span>
+                <Link
+                  href={`/contact?tab=hr&service=${item.serviceQuery}`}
+                  className="inline-flex items-center gap-1.5 font-black text-sky-600 hover:text-sky-700 uppercase tracking-wider"
+                >
+                  {item.actionLabel} <ArrowRight className="h-3.5 w-3.5" />
+                </Link>
+              </div>
+            </section>
+          ))}
+        </div>
+
+        {/* BOTTOM CTA BANNER */}
+        <div className="rounded-3xl bg-gradient-to-r from-sky-600 via-navy-900 to-navy-900 p-8 sm:p-12 text-white shadow-2xl flex flex-col md:flex-row items-center justify-between gap-8 border border-white/10">
           <div className="max-w-xl">
+            <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3.5 py-1 text-xs font-bold text-sky-300 mb-4 backdrop-blur-sm">
+              <Shield className="h-3.5 w-3.5" />
+              Statutory Support
+            </span>
             <h3 className="text-2xl sm:text-3xl font-black tracking-tight leading-tight">
-              Looking for dependable HR & payroll support?
+              Need support with your business operations?
             </h3>
             <p className="mt-3 text-xs sm:text-sm text-white/80 leading-relaxed font-semibold">
-              Speak with our team today to streamline your payroll processing, ensure complete PF, ESI, and PT compliance, and organize your employee records.
+              Contact Hraize to discuss the service requirements and delivery arrangements.
             </p>
           </div>
           <Link
             href="/contact?tab=hr"
-            className="shrink-0 inline-flex items-center gap-2 rounded-full bg-white px-8 py-3.5 text-sm font-black text-navy-900 hover:bg-cream-50 shadow-lg transition-all"
+            className="shrink-0 inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 text-sm font-black text-navy-900 hover:bg-cream-50 shadow-xl transition-all cursor-pointer"
           >
-            Request a Consultation
+            Request a Service Quote
             <ArrowRight className="h-4 w-4 text-sky-600" />
           </Link>
         </div>
+
       </div>
     </div>
   );

@@ -81,6 +81,9 @@ export const Footer: React.FC = () => {
                 <Link href="/website-solutions" prefetch={false} className="hover:text-white hover:underline transition">Website Design & Development</Link>
               </li>
               <li>
+                <Link href="/personnel-administration" prefetch={false} className="hover:text-white hover:underline transition">HR & Personnel Administration</Link>
+              </li>
+              <li>
                 <Link href="/careers" prefetch={false} className="hover:text-white hover:underline transition">Careers</Link>
               </li>
             </ul>

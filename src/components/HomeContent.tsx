@@ -135,37 +135,30 @@ export const HomeContent: React.FC<HomeContentProps> = ({
               {
                 title: "HR & Payroll Services",
                 number: "01",
-                desc: "Monthly payroll preparation, salary statements, PF/ESI/PT filing support, and statutory compliance.",
+                desc: "Payroll processing, PF, ESI, Professional Tax and employee administration.",
                 href: "hr-services",
                 image: "/services-hr.png",
               },
               {
-                title: "Recruitment & Staffing",
+                title: "Recruitment Solutions",
                 number: "02",
-                desc: "Permanent and contract hiring, talent sourcing, screening, and interview coordination with 60-day guarantee.",
+                desc: "Permanent and contract hiring, sourcing, screening and interview coordination.",
                 href: "recruitment",
                 image: "/services-recruitment.png",
               },
               {
-                title: "Invoice & Receivables",
+                title: "Business Administration Support",
                 number: "03",
-                desc: "Sales invoice register, due-date tracking, customer payment reminders, and overdue reports.",
+                desc: "Invoice tracking, receivables administration, payment follow-ups and operational reports.",
                 href: "business-support",
                 image: "/reporting.png",
               },
               {
-                title: "Website Design & Dev",
+                title: "Website Design & Development",
                 number: "04",
-                desc: "Business websites, redesign, landing pages, and maintenance through our technology development partner.",
+                desc: "Business websites, redesign, landing pages and maintenance through our technology partner.",
                 href: "website-solutions",
                 image: "/documentation.png",
-              },
-              {
-                title: "Personnel Administration",
-                number: "05",
-                desc: "Employee documentation, personnel data maintenance, attendance/leave records, and lifecycle administration.",
-                href: "hr-services#admin",
-                image: "/partners.png",
               }
             ].map((svc, idx) => {
               const isActive = idx === activeService;

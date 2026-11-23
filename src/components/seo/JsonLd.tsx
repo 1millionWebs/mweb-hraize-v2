@@ -69,6 +69,10 @@ const breadcrumbMap: Record<string, BreadcrumbItem[]> = {
     { name: "Home", path: "/" },
     { name: "Website Design & Development", path: "/website-solutions" },
   ],
+  "/personnel-administration": [
+    { name: "Home", path: "/" },
+    { name: "HR & Personnel Administration", path: "/personnel-administration" },
+  ],
   "/submit-resume": [
     { name: "Home", path: "/" },
     { name: "Submit Resume", path: "/submit-resume" },

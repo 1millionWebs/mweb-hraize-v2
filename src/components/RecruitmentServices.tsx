@@ -1,10 +1,14 @@
+"use client";
 import React, { useEffect } from "react";
 import { motion } from "motion/react";
+import Image from "next/image";
+import Link from "next/link";
 import {
   CheckCircle, XCircle, Users, Award, Briefcase, ChevronRight,
-  Building2, GraduationCap, Check, ArrowRight
+  Building2, GraduationCap, Check, ArrowRight, UserCheck,
+  Search, CalendarCheck, ShieldCheck, Filter, Sparkles, ArrowDown
 } from "lucide-react";
-import { SectionLabel, FeatureCheck, StepLine } from "./UIElements";
+import { SectionLabel, FeatureCheck } from "./UIElements";
 
 interface RecruitmentServicesProps {
   onEmployerClick: () => void;
@@ -16,21 +20,43 @@ export const RecruitmentServices: React.FC<RecruitmentServicesProps> = ({
   onCandidateClick,
 }) => {
   useEffect(() => {
-    const scrollToHash = () => {
+    const handleScrollToHash = () => {
       const hash = window.location.hash;
       if (hash) {
         const id = hash.replace("#", "");
         const element = document.getElementById(id);
-        if (element) element.scrollIntoView({ behavior: "smooth", block: "center" });
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
       }
     };
-    const timer = setTimeout(scrollToHash, 250);
-    window.addEventListener("hashchange", scrollToHash);
+
+    const t1 = setTimeout(handleScrollToHash, 150);
+    const t2 = setTimeout(handleScrollToHash, 450);
+
+    window.addEventListener("hashchange", handleScrollToHash);
     return () => {
-      clearTimeout(timer);
-      window.removeEventListener("hashchange", scrollToHash);
+      clearTimeout(t1);
+      clearTimeout(t2);
+      window.removeEventListener("hashchange", handleScrollToHash);
     };
   }, []);
+
+  const quickNav = [
+    { id: "permanent", label: "01. Permanent Recruitment", icon: Briefcase },
+    { id: "contract", label: "02. Contract & Temp Staffing", icon: Users },
+    { id: "sourcing", label: "03. Sourcing & Screening", icon: Search },
+    { id: "interview", label: "04. Interview Coordination", icon: CalendarCheck },
+  ];
+
+  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    e.preventDefault();
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+      window.history.pushState(null, "", `#${id}`);
+    }
+  };
 
   const corePillars = [
     {
@@ -48,27 +74,6 @@ export const RecruitmentServices: React.FC<RecruitmentServicesProps> = ({
     {
       title: "Quality Over Speed",
       desc: "Finding the right cultural and technical match matters more than filling roles fast."
-    }
-  ];
-
-  const hiringModels = [
-    {
-      id: "permanent",
-      title: "Permanent Placement",
-      desc: "Full-time positions for your core team. We handle sourcing, screening, coaching, and placement. 60-day replacement guarantee included.",
-      tag: "Core Team"
-    },
-    {
-      id: "contract",
-      title: "Contract & Temporary Staffing",
-      desc: "Project-based, seasonal, or interim roles from 3 months to 12 months.",
-      tag: "Flexible Output"
-    },
-    {
-      id: "graduate",
-      title: "Graduate & Emerging Talent Pipeline",
-      desc: "Build your bench before you need it. We identify high-potential graduates and early-career professionals.",
-      tag: "Next Generation"
     }
   ];
 
@@ -108,7 +113,9 @@ export const RecruitmentServices: React.FC<RecruitmentServicesProps> = ({
   return (
     <div className="bg-cream-100 py-16">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        
+        {/* HERO SECTION */}
+        <div className="text-center max-w-3xl mx-auto mb-12">
           <SectionLabel>Talent Acquisition</SectionLabel>
           <h1 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-black text-navy-900 uppercase tracking-tight">
             Recruitment Solutions
@@ -119,8 +126,50 @@ export const RecruitmentServices: React.FC<RecruitmentServicesProps> = ({
           <p className="mt-4 text-sm sm:text-base text-navy-900/70 font-semibold leading-relaxed">
             We deliver high-caliber candidates aligned with your culture, backed by comprehensive screening and a bulletproof 60-day replacement guarantee.
           </p>
+
+          <div className="mt-8 flex flex-wrap justify-center gap-4">
+            <button
+              onClick={onEmployerClick}
+              className="inline-flex items-center gap-2 rounded-full bg-sky-600 px-8 py-3.5 text-sm font-black text-white shadow-lg shadow-sky-600/20 hover:bg-sky-700 transition-all cursor-pointer"
+            >
+              Request Hiring Support
+              <ArrowRight className="h-4 w-4" />
+            </button>
+            <a
+              href="#permanent"
+              onClick={(e) => scrollToSection(e, "permanent")}
+              className="inline-flex items-center gap-2 rounded-full border border-sky-600/30 bg-white px-7 py-3.5 text-sm font-bold text-navy-900 hover:bg-cream-50 shadow-sm transition-all"
+            >
+              Explore Solutions Below
+              <ArrowDown className="h-4 w-4 text-sky-600" />
+            </a>
+          </div>
         </div>
 
+        {/* QUICK JUMP NAVIGATION BAR (Corresponds to Navbar Items) */}
+        <div className="mb-20 rounded-2xl bg-white border border-sky-600/20 p-3 shadow-sm">
+          <p className="text-[10px] font-black uppercase tracking-widest text-navy-900/40 text-center mb-2.5">
+            Quick Jump to Hiring Solutions
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-2">
+            {quickNav.map((item) => {
+              const Icon = item.icon;
+              return (
+                <a
+                  key={item.id}
+                  href={`#${item.id}`}
+                  onClick={(e) => scrollToSection(e, item.id)}
+                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold text-navy-900 bg-cream-50 hover:bg-sky-600 hover:text-white border border-sky-600/15 hover:border-sky-600 transition-all shadow-sm"
+                >
+                  <Icon className="h-3.5 w-3.5 shrink-0" />
+                  <span>{item.label}</span>
+                </a>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* PIPELINE ARCHITECTURE CARD */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-24">
           <div className="lg:col-span-5 relative bg-navy-card p-8 rounded-3xl flex flex-col justify-between min-h-[400px]">
             <div>
@@ -165,46 +214,288 @@ export const RecruitmentServices: React.FC<RecruitmentServicesProps> = ({
           </div>
         </div>
 
-        <div className="mb-24">
-          <div className="text-center max-w-2xl mx-auto mb-16">
-            <SectionLabel>Engagement Structures</SectionLabel>
-            <h3 className="mt-3 text-2xl sm:text-3xl font-black text-navy-900 uppercase tracking-tight">
-              Hiring Models
-            </h3>
-            <p className="mt-2 text-sm text-navy-900/60 font-semibold">
-              Dynamic placements mapped to your business growth.
-            </p>
-          </div>
+        {/* 4 DEDICATED SECTIONS MAPPED TO NAVBAR ITEMS */}
 
-          <div className="max-w-4xl mx-auto">
-            {hiringModels.map((m, idx) => (
-              <motion.div
-                key={m.id}
-                id={m.id}
-                className="flex items-start gap-6 p-6 border-b border-sky-600/50 last:border-b-0 group hover:bg-cream-50/50 transition-colors rounded-lg"
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: idx * 0.1 }}
-              >
-                <div className="hidden sm:flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-sky-600/5 text-sky-600">
-                  <span className="text-lg font-black">{String(idx + 1).padStart(2, '0')}</span>
-                </div>
-                <div className="flex-1">
-                  <div className="flex items-center gap-3 mb-1">
-                    <h4 className="text-base font-black text-navy-900 uppercase tracking-tight">{m.title}</h4>
-                    <span className="text-[10px] font-bold text-copper-400 bg-copper-50 px-2 py-0.5 rounded-full">{m.tag}</span>
+        {/* SECTION 1: PERMANENT RECRUITMENT (#permanent) */}
+        <section
+          id="permanent"
+          className="scroll-mt-28 mb-16 rounded-3xl bg-white border border-sky-600/20 shadow-md p-8 sm:p-10 lg:p-12"
+        >
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div className="lg:col-span-7">
+              <div className="flex items-center gap-2 mb-2">
+                <span className="h-1.5 w-1.5 rounded-full bg-sky-600" />
+                <span className="text-xs font-black uppercase tracking-widest text-sky-600">
+                  Hiring Model 01
+                </span>
+              </div>
+              <h2 className="text-2xl sm:text-3xl font-black text-navy-900 uppercase tracking-tight">
+                Permanent Recruitment & Placement
+              </h2>
+              <p className="mt-2 text-sm font-bold text-sky-700">
+                Full-time talent for your core team with a 60-day replacement guarantee.
+              </p>
+              <p className="mt-3 text-xs sm:text-sm text-navy-900/70 font-medium leading-relaxed">
+                We identify, vet, and place high-performing full-time professionals who align with your long-term organizational vision, culture, and technical benchmarks.
+              </p>
+
+              <div className="mt-6 pt-6 border-t border-gray-100">
+                <h4 className="text-xs font-black uppercase tracking-widest text-navy-900/50 mb-3">
+                  Scope & Inclusions:
+                </h4>
+                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {[
+                    "Detailed Job Description (JD) benchmarking & calibration.",
+                    "Active headhunting across senior & niche talent pools.",
+                    "Rigorous multi-round technical & behavioural evaluations.",
+                    "Candidate briefing, company coaching & motivation checks.",
+                    "Compensation structuring and offer negotiation.",
+                    "Free replacement coverage if candidate exits within 60 days."
+                  ].map((item, idx) => (
+                    <li key={idx} className="flex items-start gap-2">
+                      <div className="mt-1 h-3.5 w-3.5 rounded-full bg-sky-600/10 text-sky-600 flex items-center justify-center shrink-0">
+                        <Check className="h-2 w-2 stroke-[3]" />
+                      </div>
+                      <span className="text-xs font-semibold text-navy-900/80">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="mt-8 pt-4 border-t border-gray-100 flex items-center gap-4">
+                <button
+                  onClick={onEmployerClick}
+                  className="inline-flex items-center gap-2 rounded-xl bg-sky-600 px-6 py-2.5 text-xs font-black text-white hover:bg-sky-700 transition-colors shadow-sm cursor-pointer"
+                >
+                  Hire Permanent Staff
+                  <ArrowRight className="h-3.5 w-3.5" />
+                </button>
+              </div>
+            </div>
+
+            <div className="lg:col-span-5 relative h-64 sm:h-72 lg:h-80 rounded-2xl overflow-hidden bg-navy-900">
+              <Image
+                src="/services-recruitment.png"
+                alt="Permanent Recruitment"
+                fill
+                className="object-cover opacity-90"
+                sizes="(max-width: 1024px) 100vw, 40vw"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-navy-900/85 via-navy-900/20 to-transparent" />
+              <div className="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-md p-4 rounded-xl border border-white/40">
+                <p className="text-[10px] font-black uppercase text-sky-600">Core Team Security</p>
+                <p className="text-xs font-black text-navy-900">60-Day Candidate Replacement Guarantee Included</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* SECTION 2: CONTRACT & TEMP STAFFING (#contract) */}
+        <section
+          id="contract"
+          className="scroll-mt-28 mb-16 rounded-3xl bg-white border border-sky-600/20 shadow-md p-8 sm:p-10 lg:p-12"
+        >
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div className="lg:col-span-5 relative h-64 sm:h-72 lg:h-80 rounded-2xl overflow-hidden bg-navy-900 order-2 lg:order-1">
+              <Image
+                src="/health-checkup.png"
+                alt="Contract and Temporary Staffing"
+                fill
+                className="object-cover opacity-90"
+                sizes="(max-width: 1024px) 100vw, 40vw"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-navy-900/85 via-navy-900/20 to-transparent" />
+              <div className="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-md p-4 rounded-xl border border-white/40">
+                <p className="text-[10px] font-black uppercase text-copper-500">Flexible Deployment</p>
+                <p className="text-xs font-black text-navy-900">Rapid Onboarding from 3 to 12 Months</p>
+              </div>
+            </div>
+
+            <div className="lg:col-span-7 order-1 lg:order-2">
+              <div className="flex items-center gap-2 mb-2">
+                <span className="h-1.5 w-1.5 rounded-full bg-sky-600" />
+                <span className="text-xs font-black uppercase tracking-widest text-sky-600">
+                  Hiring Model 02
+                </span>
+              </div>
+              <h2 className="text-2xl sm:text-3xl font-black text-navy-900 uppercase tracking-tight">
+                Contract & Temporary Staffing
+              </h2>
+              <p className="mt-2 text-sm font-bold text-sky-700">
+                Agile workforce deployment for seasonal surges, interim projects, and specialized scopes.
+              </p>
+              <p className="mt-3 text-xs sm:text-sm text-navy-900/70 font-medium leading-relaxed">
+                Scale your capacity dynamically without long-term headcount overhead. We manage contract talent with turnkey speed, verified credentials, and full administrative coordination.
+              </p>
+
+              <div className="mt-6 pt-6 border-t border-gray-100">
+                <h4 className="text-xs font-black uppercase tracking-widest text-navy-900/50 mb-3">
+                  Contract Deliverables:
+                </h4>
+                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {[
+                    "Rapid turnaround for project-based engagements (3-12 months).",
+                    "Immediate talent availability for surge volumes or maternity leaves.",
+                    "Statutory onboarding & timesheet administrative coordination.",
+                    "Seamless contract extensions or permanent absorption workflows.",
+                    "Pre-vetted contractors across IT, finance, operations & administration.",
+                    "Zero long-term severance or separation liability."
+                  ].map((item, idx) => (
+                    <li key={idx} className="flex items-start gap-2">
+                      <div className="mt-1 h-3.5 w-3.5 rounded-full bg-sky-600/10 text-sky-600 flex items-center justify-center shrink-0">
+                        <Check className="h-2 w-2 stroke-[3]" />
+                      </div>
+                      <span className="text-xs font-semibold text-navy-900/80">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="mt-8 pt-4 border-t border-gray-100 flex items-center gap-4">
+                <button
+                  onClick={onEmployerClick}
+                  className="inline-flex items-center gap-2 rounded-xl bg-sky-600 px-6 py-2.5 text-xs font-black text-white hover:bg-sky-700 transition-colors shadow-sm cursor-pointer"
+                >
+                  Request Contract Talent
+                  <ArrowRight className="h-3.5 w-3.5" />
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* SECTION 3: SOURCING & SCREENING (#sourcing) */}
+        <section
+          id="sourcing"
+          className="scroll-mt-28 mb-16 rounded-3xl bg-white border border-sky-600/20 shadow-md p-8 sm:p-10 lg:p-12"
+        >
+          <div className="flex items-center gap-2 mb-2">
+            <span className="h-1.5 w-1.5 rounded-full bg-sky-600" />
+            <span className="text-xs font-black uppercase tracking-widest text-sky-600">
+              Hiring Capability 03
+            </span>
+          </div>
+          <h2 className="text-2xl sm:text-3xl font-black text-navy-900 uppercase tracking-tight">
+            Candidate Sourcing & Multi-Stage Screening
+          </h2>
+          <p className="mt-2 text-sm font-bold text-sky-700">
+            Multi-channel candidate discovery, rigorous CV filtering, and culture-fit assessments.
+          </p>
+          <p className="mt-3 text-xs sm:text-sm text-navy-900/70 font-medium leading-relaxed max-w-4xl">
+            We eliminate resume spam by evaluating hundreds of profiles to present only 3 to 5 thoroughly vetted, interview-ready candidates who genuinely fit your specific requirements.
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+            <div className="p-6 rounded-2xl bg-cream-50 border border-sky-600/15">
+              <div className="h-10 w-10 rounded-xl bg-sky-600/10 text-sky-600 flex items-center justify-center mb-4">
+                <Search className="h-5 w-5" />
+              </div>
+              <h3 className="text-base font-black text-navy-900 uppercase">Multi-Channel Sourcing</h3>
+              <p className="text-xs text-navy-900/65 font-medium mt-2 leading-relaxed">
+                Active headhunting across LinkedIn Recruiter, proprietary candidate databases, industry networks, and passive talent channels.
+              </p>
+            </div>
+
+            <div className="p-6 rounded-2xl bg-cream-50 border border-sky-600/15">
+              <div className="h-10 w-10 rounded-xl bg-sky-600/10 text-sky-600 flex items-center justify-center mb-4">
+                <Filter className="h-5 w-5" />
+              </div>
+              <h3 className="text-base font-black text-navy-900 uppercase">Technical Screening</h3>
+              <p className="text-xs text-navy-900/65 font-medium mt-2 leading-relaxed">
+                Verification of core functional skills, hands-on experience, past project achievements, and salary expectations calibration.
+              </p>
+            </div>
+
+            <div className="p-6 rounded-2xl bg-cream-50 border border-sky-600/15">
+              <div className="h-10 w-10 rounded-xl bg-sky-600/10 text-sky-600 flex items-center justify-center mb-4">
+                <UserCheck className="h-5 w-5" />
+              </div>
+              <h3 className="text-base font-black text-navy-900 uppercase">Culture & Background Fit</h3>
+              <p className="text-xs text-navy-900/65 font-medium mt-2 leading-relaxed">
+                Communication checks, behavioural evaluation, notice period verification, and preliminary reference checks.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* SECTION 4: INTERVIEW COORDINATION (#interview) */}
+        <section
+          id="interview"
+          className="scroll-mt-28 mb-24 rounded-3xl bg-white border border-sky-600/20 shadow-md p-8 sm:p-10 lg:p-12"
+        >
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div className="lg:col-span-8">
+              <div className="flex items-center gap-2 mb-2">
+                <span className="h-1.5 w-1.5 rounded-full bg-sky-600" />
+                <span className="text-xs font-black uppercase tracking-widest text-sky-600">
+                  Hiring Capability 04
+                </span>
+              </div>
+              <h2 className="text-2xl sm:text-3xl font-black text-navy-900 uppercase tracking-tight">
+                Interview Coordination & Process Management
+              </h2>
+              <p className="mt-2 text-sm font-bold text-sky-700">
+                End-to-end calendar management, candidate coaching, feedback loops, and offer negotiation.
+              </p>
+              <p className="mt-3 text-xs sm:text-sm text-navy-900/70 font-medium leading-relaxed">
+                Hraize takes full ownership of the hiring workflow so your hiring managers never waste valuable time on scheduling conflicts, no-shows, or post-interview follow-ups.
+              </p>
+
+              <div className="mt-6 pt-6 border-t border-gray-100">
+                <h4 className="text-xs font-black uppercase tracking-widest text-navy-900/50 mb-3">
+                  Coordination Features:
+                </h4>
+                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {[
+                    "Calendar scheduling and interview link generation across time zones.",
+                    "Pre-interview candidate briefing and company context coaching.",
+                    "Automated interview reminders to guarantee zero candidate no-shows.",
+                    "Structured interviewer feedback collection and decision alignment.",
+                    "Post-interview debriefing with candidates to gauge real interest.",
+                    "Offer rollout guidance, counter-offer mitigation & joining date tracking."
+                  ].map((item, idx) => (
+                    <li key={idx} className="flex items-start gap-2">
+                      <div className="mt-1 h-3.5 w-3.5 rounded-full bg-sky-600/10 text-sky-600 flex items-center justify-center shrink-0">
+                        <Check className="h-2 w-2 stroke-[3]" />
+                      </div>
+                      <span className="text-xs font-semibold text-navy-900/80">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            <div className="lg:col-span-4 rounded-2xl bg-sky-50/60 border border-sky-600/20 p-6 flex flex-col justify-between">
+              <div>
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-sky-600 text-white shadow-md">
+                    <CalendarCheck className="h-6 w-6" />
                   </div>
-                  <p className="text-xs text-navy-900/60 font-medium mt-2">{m.desc}</p>
-                  {/* <div className="mt-3 pt-3 border-sky-600/50">
-                    <span className="text-[10px] font-bold text-sky-600/60 uppercase tracking-wide">60-Day Replacement Covered</span>
-                  </div> */}
+                  <div>
+                    <span className="text-xs font-black uppercase text-navy-900 block">Seamless Process</span>
+                    <span className="text-[10px] font-bold text-sky-700 uppercase">Zero Scheduling Drag</span>
+                  </div>
                 </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
 
+                <p className="text-xs text-navy-900/70 font-medium leading-relaxed">
+                  Candidates arrive briefed, coached, and ready to engage meaningfully with your interview panel.
+                </p>
+              </div>
+
+              <div className="mt-6 pt-4 border-t border-sky-600/15">
+                <button
+                  onClick={onEmployerClick}
+                  className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-sky-600 px-5 py-3 text-xs font-black text-white hover:bg-sky-700 transition-colors shadow-sm cursor-pointer"
+                >
+                  Start Hiring with Hraize
+                  <ArrowRight className="h-3.5 w-3.5" />
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* WHO WE RECRUIT */}
         <div className="mb-24 rounded-3xl bg-navy-card p-8 sm:p-12">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <SectionLabel className="text-sky-400">Who We Serve</SectionLabel>
@@ -251,6 +542,7 @@ export const RecruitmentServices: React.FC<RecruitmentServicesProps> = ({
           </div>
         </div>
 
+        {/* AGENCY COMPARISON TABLE */}
         <div className="mb-24 bg-cream-50 border shadow-lg border-sky-600/30 rounded-3xl p-6 sm:p-10 overflow-hidden">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <SectionLabel>Agency Matrix</SectionLabel>
@@ -276,7 +568,6 @@ export const RecruitmentServices: React.FC<RecruitmentServicesProps> = ({
                 {comparisonRows.map((row, idx) => (
                   <tr key={idx} className="hover:bg-cream-50 transition-colors">
                     <td className="py-4 px-4 text-xs font-black text-navy-900 uppercase">{row.feature}</td>
-
                     <td className="py-4 px-4 text-xs text-navy-900 bg-sky-600/5 border-x border-sky-600/50 font-bold">
                       <div className="flex items-center gap-2">
                         <CheckCircle className="h-4 w-4 text-forest-500 shrink-0" />
@@ -294,74 +585,43 @@ export const RecruitmentServices: React.FC<RecruitmentServicesProps> = ({
           </div>
         </div>
 
-          <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={{
-              hidden: {},
-              visible: { transition: { staggerChildren: 0.15 } },
-            }}
-          >
-            <motion.div
-              className="rounded-3xl shadow-lg bg-navy-card p-8 text-white flex flex-col justify-between items-start relative overflow-hidden group"
-              variants={{
-                hidden: { opacity: 0, x: -30 },
-                visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] } },
-              }}
+        {/* BOTTOM ACTION CARDS */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          <div className="rounded-3xl shadow-lg bg-navy-card p-8 text-white flex flex-col justify-between items-start relative overflow-hidden group">
+            <span className="text-[10px] font-mono tracking-widest bg-white/10 px-2.5 py-1 rounded inline-block uppercase font-bold mb-4">
+              For Employers
+            </span>
+            <h4 className="text-xl font-black uppercase tracking-tight text-white mb-3">Ready to Hire the Best?</h4>
+            <p className="text-xs text-sage-100/70 leading-relaxed font-semibold mb-6">
+              Tell us what you&apos;re looking for. We&apos;ll build a shortlist of exceptional candidates.
+            </p>
+            <button
+              onClick={onEmployerClick}
+              className="inline-flex items-center gap-2 rounded-full bg-sky-600 px-6 py-3 text-xs font-black hover:bg-sky-700 shadow-md cursor-pointer text-white transition-all"
             >
-              <motion.span
-                className="text-[10px] font-mono tracking-widest bg-white/10 px-2.5 py-1 rounded inline-block uppercase font-bold mb-4"
-                whileHover={{ letterSpacing: "0.25em" }}
-                transition={{ duration: 0.3 }}
-              >
-                For Employers
-              </motion.span>
-              <h4 className="text-xl font-black uppercase tracking-tight text-white mb-3">Ready to Hire the Best?</h4>
-              <p className="text-xs text-sage-100/70 leading-relaxed font-semibold mb-6">
-                Tell us what you're looking for. We'll build a shortlist of exceptional candidates.
-              </p>
-              <motion.button
-                onClick={onEmployerClick}
-                className="inline-flex items-center gap-2 rounded-full bg-sky-600 px-6 py-3 text-xs font-black hover:bg-sky-700 shadow-md cursor-pointer text-white transition-all"
-                whileHover={{ scale: 1.04 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                Submit Your Requisition
-                <ArrowRight className="h-4 w-4" />
-              </motion.button>
-            </motion.div>
+              Submit Your Requisition
+              <ArrowRight className="h-4 w-4" />
+            </button>
+          </div>
 
-            <motion.div
-              className="rounded-3xl bg-cream-50 border shadow-lg border-sky-600/30 p-8 flex flex-col justify-between items-start relative overflow-hidden group"
-              variants={{
-                hidden: { opacity: 0, x: 30 },
-                visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] } },
-              }}
+          <div className="rounded-3xl bg-cream-50 border shadow-lg border-sky-600/30 p-8 flex flex-col justify-between items-start relative overflow-hidden group">
+            <span className="text-[10px] font-mono tracking-widest bg-sky-600/10 px-2.5 py-1 rounded inline-block uppercase font-bold text-sky-700 mb-4">
+              For Candidates
+            </span>
+            <h4 className="text-xl font-black uppercase text-navy-900 tracking-tight mb-3">Ready for Your Next Opportunity?</h4>
+            <p className="text-xs text-navy-900/60 leading-relaxed font-medium mb-6">
+              Tell us about your background. We&apos;ll connect you with growing industries.
+            </p>
+            <button
+              onClick={onCandidateClick}
+              className="inline-flex items-center gap-2 rounded-full bg-sky-600 px-6 py-3 text-xs font-black hover:bg-sky-700 shadow-md cursor-pointer text-white transition-all"
             >
-              <motion.span
-                className="text-[10px] font-mono tracking-widest bg-sky-600/10 px-2.5 py-1 rounded inline-block uppercase font-bold text-sky-700 mb-4"
-                whileHover={{ letterSpacing: "0.25em" }}
-                transition={{ duration: 0.3 }}
-              >
-                For Candidates
-              </motion.span>
-              <h4 className="text-xl font-black uppercase text-navy-900 tracking-tight mb-3">Ready for Your Next Opportunity?</h4>
-              <p className="text-xs text-navy-900/60 leading-relaxed font-medium mb-6">
-                Tell us about your background. We'll connect you with growing industries.
-              </p>
-              <motion.button
-                onClick={onCandidateClick}
-                className="inline-flex items-center gap-2 rounded-full bg-sky-600 px-6 py-3 text-xs font-black hover:bg-sky-700 shadow-md cursor-pointer text-white transition-all"
-                whileHover={{ scale: 1.04 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                Submit Your Resume
-                <ArrowRight className="h-4 w-4" />
-              </motion.button>
-            </motion.div>
-          </motion.div>
+              Submit Your Resume
+              <ArrowRight className="h-4 w-4" />
+            </button>
+          </div>
+        </div>
+
       </div>
     </div>
   );
