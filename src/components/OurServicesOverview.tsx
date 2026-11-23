@@ -83,23 +83,22 @@ export const OurServicesOverview: React.FC = () => {
       note: "This is administrative support, not independent accounting, audit, tax or legal debt recovery."
     },
     {
-      id: "website-design",
+      id: "digital-it-services",
       number: "04",
-      title: "Website Design & Development",
-      subtitle: "Modern Web Experiences Delivered with Our Technology Partner",
+      title: "Digital IT Services",
+      subtitle: "Complete Digital & Technology Solutions Delivered with Our Partner",
       href: "/website-solutions",
       contactTab: "website-solutions",
       image: "/documentation.png",
       badgeText: "Tech Partner Delivered",
-      statLabel: "Mobile-First & High Speed",
+      statLabel: "Scalable & Modern Stack",
       icon: Globe,
       bullets: [
-        "Business website design.",
-        "Website redesign and revamp.",
-        "Landing page development.",
-        "Mobile-responsive website development.",
-        "Website content and page updates.",
-        "Website maintenance and technical support."
+        "Website development & SEO.",
+        "Mobile app development.",
+        "Digital Marketing.",
+        "ERP solutions.",
+        "Infrastructure & Cloud support."
       ],
       note: "Delivered in collaboration with Hraize's technology development partner."
     }

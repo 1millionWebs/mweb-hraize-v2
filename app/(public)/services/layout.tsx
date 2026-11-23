@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Our Services | HR, Recruitment, Business Support & Web Solutions",
-  description: "Explore Hraize's integrated services: HR & Payroll Services, Recruitment Solutions, Business Administration Support, and Website Design & Development.",
+  title: "Our Services | HR, Recruitment, Business Support & Digital IT",
+  description: "Explore Hraize's integrated services: HR, Payroll & Admin, Recruitment Solutions, Business Administration Support, and Digital IT Services.",
   alternates: {
     canonical: "/services",
   },
   openGraph: {
     title: "Our Services | Hraize",
-    description: "Explore Hraize's integrated services: HR & Payroll Services, Recruitment Solutions, Business Administration Support, and Website Design & Development.",
+    description: "Explore Hraize's integrated services: HR, Payroll & Admin, Recruitment Solutions, Business Administration Support, and Digital IT Services.",
     url: "https://hraize.com/services",
     images: [
       {
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Our Services | Hraize",
-    description: "Explore Hraize's integrated services: HR & Payroll Services, Recruitment Solutions, Business Administration Support, and Website Design & Development.",
+    description: "Explore Hraize's integrated services: HR, Payroll & Admin, Recruitment Solutions, Business Administration Support, and Digital IT Services.",
     images: ["/logo1.png"],
   },
 };

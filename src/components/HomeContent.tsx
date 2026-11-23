@@ -58,9 +58,9 @@ export const HomeContent: React.FC<HomeContentProps> = ({
       tag: "Operational Desk",
     },
     {
-      title: "Website Design & Development",
+      title: "Digital IT Services",
       number: "04",
-      desc: "Business websites, redesign, landing pages and maintenance through our technology partner.",
+      desc: "Website development & SEO, mobile apps, digital marketing, ERP solutions, and cloud infrastructure.",
       href: "/website-solutions",
       image: "/documentation.png",
       tag: "Digital Solutions",

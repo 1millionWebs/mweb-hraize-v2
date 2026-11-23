@@ -62,15 +62,14 @@ const serviceCategories: ServiceCategory[] = [
     ],
   },
   {
-    title: "Website Design & Dev",
+    title: "Digital IT Services",
     href: "/website-solutions",
     items: [
-      { name: "Business Website Design", href: "/website-solutions#business-website" },
-      { name: "Website Redesign & Revamp", href: "/website-solutions#redesign" },
-      { name: "Landing Page Development", href: "/website-solutions#landing-pages" },
-      { name: "Mobile-Responsive Development", href: "/website-solutions#mobile-responsive" },
-      { name: "Website Content Updates", href: "/website-solutions#content-updates" },
-      { name: "Maintenance & Tech Support", href: "/website-solutions#maintenance" },
+      { name: "Website development & SEO", href: "/website-solutions#web-seo" },
+      { name: "Mobile app development", href: "/website-solutions#mobile-apps" },
+      { name: "Digital Marketing", href: "/website-solutions#digital-marketing" },
+      { name: "ERP solutions", href: "/website-solutions#erp-solutions" },
+      { name: "Infrastructure & Cloud support", href: "/website-solutions#cloud-infra" },
     ],
   },
 ];

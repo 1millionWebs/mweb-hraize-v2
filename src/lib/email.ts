@@ -89,7 +89,12 @@ export function getServiceLabel(service: string): string {
     "payment-reminders": "Customer Payment Reminders",
     "follow-ups": "Outstanding Payment Follow-ups",
     "overdue-reports": "Periodic Receivables & Overdue Reports",
-    // 04. Website Solutions
+    // 04. Digital IT Services
+    "web-seo": "Website Development & SEO",
+    "mobile-apps": "Mobile App Development",
+    "digital-marketing": "Digital Marketing",
+    "erp-solutions": "ERP Solutions",
+    "cloud-infra": "Infrastructure & Cloud Support",
     "business-website": "Business Website Design",
     redesign: "Website Redesign & Revamp",
     "landing-pages": "Landing Page Development",

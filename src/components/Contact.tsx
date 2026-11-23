@@ -70,7 +70,7 @@ export const Contact: React.FC<ContactProps> = ({ initialTab = "hr" }) => {
     { id: "hr", label: "01. HR, Payroll & Admin", icon: Shield },
     { id: "recruitment", label: "02. Recruitment", icon: Users },
     { id: "business-support", label: "03. Invoicing Desk", icon: FileText },
-    { id: "website-solutions", label: "04. Website Dev", icon: Globe },
+    { id: "website-solutions", label: "04. Digital IT", icon: Globe },
     { id: "general", label: "Consultation / Quote", icon: Sparkles },
   ];
 
@@ -109,11 +109,11 @@ export const Contact: React.FC<ContactProps> = ({ initialTab = "hr" }) => {
         ];
       case "website-solutions":
         return [
-          { value: "business-website", label: "Business Website Design" },
-          { value: "redesign", label: "Website Redesign & Revamp" },
-          { value: "landing-pages", label: "Landing Page Development" },
-          { value: "mobile-responsive", label: "Mobile-Responsive Website Development" },
-          { value: "maintenance", label: "Website Maintenance & Tech Partner Support" },
+          { value: "web-seo", label: "Website Development & SEO" },
+          { value: "mobile-apps", label: "Mobile App Development" },
+          { value: "digital-marketing", label: "Digital Marketing" },
+          { value: "erp-solutions", label: "ERP Solutions" },
+          { value: "cloud-infra", label: "Infrastructure & Cloud Support" },
         ];
       case "general":
       default:

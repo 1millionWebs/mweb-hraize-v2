@@ -87,15 +87,15 @@ export const Hero: React.FC<HeroProps> = () => {
             {/* Introductory Paragraphs */}
             <p className="mt-6 text-base sm:text-lg text-navy-900/75 font-medium max-w-2xl leading-relaxed">
               Hraize provides practical HR, recruitment, business administration
-              and website services to help organisations operate smoothly and scale
+              and digital IT services to help organisations operate smoothly and scale
               effectively.
             </p>
 
-            <p className="mt-3 text-sm sm:text-base text-navy-900/65 font-medium max-w-2xl leading-relaxed">
+            {/* <p className="mt-3 text-sm sm:text-base text-navy-900/65 font-medium max-w-2xl leading-relaxed">
               By combining experienced service delivery with reliable operational
               support, we assist businesses in managing essential functions
               efficiently — allowing teams to focus on their core priorities.
-            </p>
+            </p> */}
 
             {/* Primary & Secondary Call to Actions */}
             <div className="mt-8 flex flex-wrap items-center gap-4">
@@ -241,10 +241,10 @@ export const Hero: React.FC<HeroProps> = () => {
                     </span>
                   </div>
                   <h4 className="text-xs font-black text-navy-900 leading-snug">
-                    Website Design &amp; Dev
+                    Digital IT Services
                   </h4>
                   <p className="mt-1 text-[11px] font-semibold text-navy-900/60 leading-tight">
-                    Business websites, revamps &amp; support
+                    Web &amp; SEO, apps, ERP &amp; cloud
                   </p>
                   <div className="mt-2.5 flex items-center gap-1.5 text-[10px] font-bold text-sky-700">
                     <span className="h-1.5 w-1.5 rounded-full bg-sky-600" />
