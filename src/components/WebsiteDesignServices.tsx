@@ -254,20 +254,19 @@ export const WebsiteDesignServices: React.FC<WebsiteDesignServicesProps> = () =>
 
               <div className="mt-7 flex flex-wrap gap-3">
                 <Link
-                  href="/contact?tab=website-solutions"
+                  href="/contact?tab=consultation"
                   className="inline-flex items-center gap-2 rounded-full bg-sky-500 px-7 py-3.5 text-sm font-black text-white shadow-lg shadow-sky-500/30 transition-all duration-200 hover:bg-sky-400"
                 >
-                  Request a Service Quote
+                  Request a Consultation
                   <ArrowRight className="h-4 w-4" />
                 </Link>
-                <a
-                  href="#business-website"
-                  onClick={(e) => scrollToSection(e, "business-website")}
+                <Link
+                  href="/contact?tab=quote&service=website"
                   className="inline-flex items-center gap-2 rounded-full border border-white/25 px-6 py-3.5 text-sm font-bold text-white transition-all duration-200 hover:bg-white/10"
                 >
-                  View Service Scope Below
-                  <ArrowUpRight className="h-4 w-4 rotate-90" />
-                </a>
+                  Get a Service Quote
+                  <ArrowUpRight className="h-4 w-4" />
+                </Link>
               </div>
             </motion.div>
           </div>
@@ -434,17 +433,17 @@ export const WebsiteDesignServices: React.FC<WebsiteDesignServicesProps> = () =>
 
             <div className="flex shrink-0 flex-wrap gap-3">
               <Link
-                href="/contact?tab=website-solutions"
+                href="/contact?tab=consultation"
                 className="inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 text-sm font-black text-navy-900 shadow-xl transition-all hover:bg-cream-50"
               >
-                Request a Service Quote
+                Request a Consultation
                 <ArrowRight className="h-4 w-4 text-sky-600" />
               </Link>
               <Link
-                href="/services"
+                href="/contact?tab=quote&service=website"
                 className="inline-flex items-center gap-2 rounded-full border border-white/30 px-6 py-3.5 text-sm font-bold text-white transition-all hover:bg-white/10"
               >
-                All services
+                Get a Service Quote
                 <ArrowUpRight className="h-4 w-4" />
               </Link>
             </div>

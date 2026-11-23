@@ -4,7 +4,7 @@ import { ArrowLeft } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Page Not Found",
-  description: "The page you're looking for doesn't exist or hasn't been deployed yet. Return to Hraize HR Analytics home.",
+  description: "The page you're looking for doesn't exist. Return to Hraize home.",
   robots: { index: false, follow: true },
 };
 

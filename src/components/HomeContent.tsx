@@ -1,166 +1,124 @@
+"use client";
 import React, { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "motion/react";
 import {
-  Heart, BarChart3, Target, ArrowRight,
-  Building2, FileText, BadgeCheck, Clock
+  ArrowRight,
+  ArrowUpRight,
+  CheckCircle2,
+  ShieldCheck,
+  Users,
+  FileText,
+  Globe,
+  Sparkles,
+  Layers,
+  HelpCircle,
+  Building2,
+  Briefcase,
+  Workflow,
+  Headphones,
+  Check,
 } from "lucide-react";
-import { SectionLabel, FeatureCheck } from "./UIElements";
+import { SectionLabel } from "./UIElements";
 
 interface HomeContentProps {
-  onGetStarted: () => void;
-  onNavigateToService: (service: string) => void;
+  onGetStarted?: () => void;
+  onNavigateToService?: (service: string) => void;
 }
 
 export const HomeContent: React.FC<HomeContentProps> = ({
-  onGetStarted,
   onNavigateToService,
 }) => {
   const [activeService, setActiveService] = useState(0);
-  const whatWeDo = [
+
+  const services = [
     {
-      title: "For Growing Organizations",
-      desc: "HR systems, payroll processing, statutory compliance (PF/ESI/PT), and workforce analytics so you scale seamlessly without administrative overhead.",
-      badge: "HR & Payroll"
+      title: "HR & Payroll Services",
+      number: "01",
+      desc: "Payroll processing, PF, ESI, Professional Tax and employee administration.",
+      href: "/hr-services",
+      image: "/services-hr.png",
+      tag: "Payroll & Compliance",
     },
     {
-      title: "For Hiring Leaders",
-      desc: "Quality-focused talent acquisition with a bulletproof 60-day replacement guarantee, delivering pre-screened, carefully vetted candidates.",
-      badge: "Recruitment"
+      title: "Recruitment Solutions",
+      number: "02",
+      desc: "Permanent and contract hiring, sourcing, screening and interview coordination.",
+      href: "/recruitment",
+      image: "/services-recruitment.png",
+      tag: "Talent Acquisition",
     },
     {
-      title: "For Business & Digital Growth",
-      desc: "Operational administration, invoice and receivables tracking, and high-impact website development delivered with our trusted technology partner.",
-      badge: "Support & Tech"
-    }
+      title: "Business Administration Support",
+      number: "03",
+      desc: "Invoice tracking, receivables administration, payment follow-ups and operational reports.",
+      href: "/business-support",
+      image: "/reporting.png",
+      tag: "Operational Desk",
+    },
+    {
+      title: "Website Design & Development",
+      number: "04",
+      desc: "Business websites, redesign, landing pages and maintenance through our technology partner.",
+      href: "/website-solutions",
+      image: "/documentation.png",
+      tag: "Digital Solutions",
+    },
   ];
 
-  const whyChooseHraize = [
+  const whyWorkWithHraize = [
     {
-      title: "Complete HR Partner Under One Roof",
-      desc: "HR systems, live employee analytics, high-caliber recruitment, and ongoing strategic retention support in a single trusted partnership.",
-      icon: Building2
+      number: "01",
+      title: "Practical, Dependable Support",
+      desc: "Practical, dependable operational support focused on execution and outcomes rather than complex, rigid frameworks.",
+      icon: ShieldCheck,
     },
     {
-      title: "Build Professional HR Systems",
-      desc: "Stop managing people in fragile spreadsheets. Obtain fully documented structured policies, compliant onboarding workflows, and live KPI dashboards.",
-      icon: FileText
+      number: "02",
+      title: "Zero Team Expansion Overhead",
+      desc: "Hands-on assistance without the overhead and long-term commitment of expanding internal headcount for every function.",
+      icon: Building2,
     },
     {
-      title: "Data-Driven People Decisions",
-      desc: "Beautiful analytics dashboards highlight headcount shifts, regional attrition vectors, retention rates, and hiring costs.",
-      icon: BarChart3
+      number: "03",
+      title: "Clear Communication & Process",
+      desc: "Clear communication, regular status updates, structured workflows and complete visibility over all work undertaken.",
+      icon: Workflow,
     },
     {
-      title: "Quality Recruitment With Guarantee",
-      desc: "We send only rigorously vetted candidates, not bulk CVs. Our 60-day replacement guarantee ensures we remain active partners in your success.",
-      icon: BadgeCheck
+      number: "04",
+      title: "Adaptable & Flexible",
+      desc: "Flexibility to adapt to your changing business needs, whether during peak workloads or steady-state operations.",
+      icon: Layers,
     },
     {
-      title: "Stays With You Long-Term",
-      desc: "Continuous monthly HR subscription support, ongoing contract hiring, and quarterly compliance tracking, not an isolated project.",
-      icon: Clock
-    }
-  ];
-
-  const coreValues = [
-    {
-      title: "People First",
-      desc: "We put people at the heart of every decision, every process, and every conversation. When businesses get their people right, everything else follows.",
-      icon: Heart,
+      number: "05",
+      title: "Single Point of Coordination",
+      desc: "One trusted point of contact across HR, recruitment, business administration and digital web services.",
+      icon: Headphones,
     },
-    {
-      title: "Data Driven",
-      desc: "We replace guesswork with metrics. Every recommendation is backed by real analytics, workforce telemetry, and deep operational experience.",
-      icon: BarChart3,
-    },
-    {
-      title: "Outcome Focused",
-      desc: "We don't consider an engagement complete until the results are visible. Your success remains the single metric that matters.",
-      icon: Target,
-    }
   ];
 
   return (
-    <div>
-      {/* <section className="relative overflow-hidden bg-navy-card py-24">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,color-mix(in_srgb,var(--color-sky-600)_15%,transparent)_0%,transparent_60%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,color-mix(in_srgb,var(--color-copper-400)_8%,transparent)_0%,transparent_50%)]" />
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            <div className="lg:col-span-8 space-y-6">
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-white leading-[1.05]">
-                Build Stronger Teams.
-                <br />
-                <span className="text-sky-400">Scale with Confidence.</span>
-              </h2>
-              <p className="text-sm sm:text-base text-sage-100/70 font-semibold max-w-2xl leading-relaxed">
-                Hraize acts as your strategic HR partner, providing structured recruitment and people operations support that helps growing businesses build, manage, and scale their teams.
-              </p>
-            </div>
-            <div className="lg:col-span-4 flex flex-col items-start lg:items-end">
-              <motion.button
-                onClick={onGetStarted}
-                className="inline-flex items-center gap-2 rounded-full bg-copper-400 hover:bg-copper-500 px-8 py-4 text-xs font-black tracking-wider uppercase text-white shadow-lg shadow-copper-400/20 cursor-pointer transition-all"
-                whileHover={{ scale: 1.04 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                Get Started
-                <ArrowRight className="h-4 w-4" />
-              </motion.button>
-            </div>
-          </div>
-        </div>
-      </section> */}
-
-      <section className="relative py-24 bg-white">
+    <div className="bg-white">
+      {/* ============ OUR SERVICES OVERVIEW ============ */}
+      <section className="relative py-20 lg:py-24 bg-white">
         <span className="absolute top-0 left-1/2 -translate-x-1/2 w-16 h-0.5 bg-sky-600/30 rounded-full" />
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <SectionLabel>Integrated Capabilities</SectionLabel>
-            <h3 className="mt-3 text-3xl sm:text-4xl font-black text-navy-900 uppercase tracking-tight">
-              Our Services
-            </h3>
-            <h4 className="mt-2 text-base font-bold text-sky-700">
+          <div className="text-center max-w-3xl mx-auto mb-14">
+            <SectionLabel>Our Services</SectionLabel>
+            <h2 className="mt-3 text-3xl sm:text-4xl font-black text-navy-900 uppercase tracking-tight">
               Business support designed around your requirements.
-            </h4>
-            <p className="mt-3 text-sm text-navy-900/60 font-semibold max-w-2xl mx-auto">
+            </h2>
+            <p className="mt-4 text-base text-navy-900/65 font-medium max-w-2xl mx-auto leading-relaxed">
               Hraize offers practical support across HR, recruitment, business administration and website development.
             </p>
           </div>
 
-          {/* Services accordion */}
-          <div className="flex flex-col md:flex-row gap-3 h-[580px] md:h-[440px]">
-            {[
-              {
-                title: "HR & Payroll Services",
-                number: "01",
-                desc: "Payroll processing, PF, ESI, Professional Tax and employee administration.",
-                href: "hr-services",
-                image: "/services-hr.png",
-              },
-              {
-                title: "Recruitment Solutions",
-                number: "02",
-                desc: "Permanent and contract hiring, sourcing, screening and interview coordination.",
-                href: "recruitment",
-                image: "/services-recruitment.png",
-              },
-              {
-                title: "Business Administration Support",
-                number: "03",
-                desc: "Invoice tracking, receivables administration, payment follow-ups and operational reports.",
-                href: "business-support",
-                image: "/reporting.png",
-              },
-              {
-                title: "Website Design & Development",
-                number: "04",
-                desc: "Business websites, redesign, landing pages and maintenance through our technology partner.",
-                href: "website-solutions",
-                image: "/documentation.png",
-              }
-            ].map((svc, idx) => {
+          {/* Interactive Services Showcase */}
+          <div className="flex flex-col md:flex-row gap-4 h-[620px] md:h-[460px]">
+            {services.map((svc, idx) => {
               const isActive = idx === activeService;
 
               const handleMouseEnter = () => {
@@ -169,73 +127,74 @@ export const HomeContent: React.FC<HomeContentProps> = ({
                 }
               };
 
-              const handleCardClick = () => {
-                if (isActive) {
-                  onNavigateToService(svc.href);
-                } else {
-                  setActiveService(idx);
-                }
-              };
-
               return (
                 <div
                   key={idx}
-                  className={`relative rounded-3xl overflow-hidden cursor-pointer transition-all duration-100 ease-[cubic-bezier(0.4,0,0.2,1)] ${isActive
-                    ? "flex-[4] md:flex-[3.5] bg-white shadow-xl border border-gray-100"
-                    : "flex-[0.6] md:flex-[0.55] min-h-[60px] md:min-h-0 md:min-w-[64px]"
-                    }`}
+                  className={`relative rounded-3xl overflow-hidden cursor-pointer transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] ${
+                    isActive
+                      ? "flex-[4] md:flex-[3.5] bg-white shadow-xl border border-sky-600/20"
+                      : "flex-[0.6] md:flex-[0.6] min-h-[64px] md:min-h-0 md:min-w-[68px] hover:border-sky-600/30"
+                  }`}
                   onMouseEnter={handleMouseEnter}
-                  onClick={handleCardClick}
+                  onClick={() => setActiveService(idx)}
                 >
                   {isActive ? (
-                    /* ── EXPANDED: white card with image on top, text below ── */
-                    <div className="flex flex-col h-full w-full">
-                      {/* Image panel — takes ~70% of height */}
-                      <div className="relative flex-1 m-3 rounded-2xl overflow-hidden">
+                    /* ── EXPANDED CARD ── */
+                    <div className="flex flex-col h-full w-full bg-white">
+                      {/* Image Frame */}
+                      <div className="relative flex-1 m-3 rounded-2xl overflow-hidden border border-navy-900/10">
                         <Image
                           src={svc.image}
                           alt={svc.title}
                           fill
                           className="object-cover"
                           sizes="(max-width: 768px) 100vw, 40vw"
+                          priority={idx === 0}
                         />
+                        <div className="absolute inset-0 bg-gradient-to-t from-navy-900/60 via-transparent to-transparent" />
+                        <span className="absolute top-3 left-3 rounded-full bg-white/90 backdrop-blur-sm px-3 py-1 text-[10px] font-black uppercase tracking-wider text-sky-700">
+                          {svc.tag}
+                        </span>
                       </div>
 
-                      {/* Text + CTA below the image */}
-                      <div className="px-5 pb-5 pt-2 flex items-end justify-between gap-3">
+                      {/* Content + Action */}
+                      <div className="px-5 pb-5 pt-1 flex items-end justify-between gap-4">
                         <div className="min-w-0">
-                          <h4 className="text-lg font-black text-sky-600  tracking-tight leading-tight">
+                          <span className="text-[10px] font-black uppercase tracking-widest text-copper-500">
+                            Service {svc.number}
+                          </span>
+                          <h3 className="text-lg font-black text-navy-900 tracking-tight leading-snug">
                             {svc.title}
-                          </h4>
-                          <p className="text-xs text-navy-900/55 font-medium leading-relaxed mt-1 line-clamp-2">
+                          </h3>
+                          <p className="text-xs text-navy-900/65 font-medium leading-relaxed mt-1">
                             {svc.desc}
                           </p>
                         </div>
-                        <button
-                          onClick={(e) => { e.stopPropagation(); onNavigateToService(svc.href); }}
-                          className="shrink-0 h-9 w-9 rounded-full bg-sky-600 hover:bg-sky-500 text-white flex items-center justify-center transition-colors shadow-md shadow-sky-600/30"
+                        <Link
+                          href={svc.href}
+                          className="shrink-0 h-10 w-10 rounded-full bg-sky-600 hover:bg-sky-700 text-white flex items-center justify-center transition-colors shadow-md shadow-sky-600/25"
+                          title={`View ${svc.title}`}
                         >
                           <ArrowRight className="h-4 w-4" />
-                        </button>
+                        </Link>
                       </div>
                     </div>
                   ) : (
-                    /* ── COLLAPSED: narrow strip — image bg + rotated title ── */
+                    /* ── COLLAPSED STRIP ── */
                     <div className="relative h-full w-full rounded-3xl overflow-hidden">
                       <Image
                         src={svc.image}
                         alt={svc.title}
                         fill
                         className="object-cover"
-                        sizes="(max-width: 768px) 100vw, 80px"
+                        sizes="(max-width: 768px) 100vw, 90px"
                       />
-                      {/* Dark overlay */}
-                      <div className="absolute inset-0 bg-navy-900/55" />
+                      <div className="absolute inset-0 bg-navy-900/65" />
 
-                      {/* Rotated title (Desktop: bottom-up) */}
+                      {/* Desktop Rotated Title */}
                       <div className="absolute inset-0 hidden md:flex items-center justify-center">
                         <span
-                          className="text-sm font-black text-white uppercase tracking-widest whitespace-nowrap select-none"
+                          className="text-xs font-black text-white uppercase tracking-widest whitespace-nowrap select-none"
                           style={{
                             writingMode: "vertical-rl",
                             textOrientation: "mixed",
@@ -246,9 +205,9 @@ export const HomeContent: React.FC<HomeContentProps> = ({
                         </span>
                       </div>
 
-                      {/* Horizontal title (Mobile: horizontal centered) */}
+                      {/* Mobile Horizontal Title */}
                       <div className="absolute inset-0 flex md:hidden items-center justify-between px-6">
-                        <span className="text-sm font-black text-white uppercase tracking-widest">
+                        <span className="text-xs font-black text-white uppercase tracking-widest">
                           {svc.title}
                         </span>
                         <span className="text-xs font-bold text-sky-400">
@@ -261,197 +220,118 @@ export const HomeContent: React.FC<HomeContentProps> = ({
               );
             })}
           </div>
+
+          {/* Full Scope Navigation Pill */}
+          <div className="mt-10 text-center">
+            <Link
+              href="/services"
+              className="inline-flex items-center gap-2 rounded-full border border-sky-600/30 bg-cream-50 px-6 py-2.5 text-xs font-black uppercase tracking-wider text-sky-700 hover:bg-sky-600 hover:text-white transition-all shadow-sm"
+            >
+              Explore Complete 5-Pillar Service Scope
+              <ArrowUpRight className="h-4 w-4" />
+            </Link>
+          </div>
         </div>
       </section>
 
-      <section className="relative py-24 bg-sky-50">
-        <span className="absolute top-0 left-1/2 -translate-x-1/2 w-16 h-0.5 bg-copper-400/20 rounded-full" />
+      {/* ============ WHY WORK WITH HRAIZE? ============ */}
+      <section className="relative py-20 lg:py-24 bg-cream-50 border-y border-sky-600/10">
+        <span className="absolute top-0 left-1/2 -translate-x-1/2 w-16 h-0.5 bg-copper-400/30 rounded-full" />
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start mb-20">
-            <div className="lg:col-span-5">
-              <SectionLabel>Who We Are</SectionLabel>
-              <h3 className="mt-3 text-3xl sm:text-4xl font-black text-navy-900 uppercase tracking-tight">
-                Why Us?
-              </h3>
-            </div>
-            <div className="lg:col-span-7">
-              <div className="border-l-4 border-sky-600/50 pl-6">
-                <p className="text-base sm:text-lg text-navy-900/70 font-semibold leading-relaxed">
-                  Hraize is more than an HR service provider; we are your people partner.
-                  We believe businesses deserve HR that actually works, and ambitious
-                  professionals deserve careers they are truly proud of.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="mb-12">
-            <div className="flex items-center gap-3 mb-10">
-              <span className="h-px flex-1 bg-navy-900/10" />
-              <span className="text-[10px] font-black text-sand-400 uppercase tracking-[0.2em]">What We Do</span>
-              <span className="h-px flex-1 bg-navy-900/10" />
-            </div>
-          </div>
-
-          <motion.div
-            className="grid grid-cols-1 md:grid-cols-3 gap-8"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={{
-              hidden: {},
-              visible: { transition: { staggerChildren: 0.12, delayChildren: 0.1 } },
-            }}
-          >
-            {whatWeDo.map((w, idx) => (
-              <motion.div
-                key={idx}
-                variants={{
-                  hidden: { opacity: 0, y: 30 },
-                  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] } },
-                }}
-                className="relative group"
-              >
-                <div className="mb-4 flex items-center gap-3">
-                  <span className="text-[40px] font-black text-sand-200 leading-none group-hover:text-sky-600/30 transition-colors duration-500">
-                    {String(idx + 1).padStart(2, '0')}
-                  </span>
-                  <motion.span
-                    className="h-px flex-1 bg-sky-600/10"
-                    initial={{ scaleX: 0 }}
-                    whileInView={{ scaleX: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8, delay: 0.3 + idx * 0.12 }}
-                    style={{ transformOrigin: "left" }}
-                  />
-                </div>
-                <motion.span
-                  className="inline-block text-[10px] font-black tracking-wider text-copper-400 uppercase mb-3"
-                  whileHover={{ letterSpacing: "0.25em" }}
-                  transition={{ duration: 0.3 }}
-                >
-                  {w.badge}
-                </motion.span>
-                <h4 className="text-base font-black text-navy-900 uppercase tracking-tight mb-3 group-hover:text-sky-700 transition-colors duration-300">{w.title}</h4>
-                <p className="text-xs text-navy-900/60 font-medium leading-relaxed">{w.desc}</p>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      <section className="relative py-24 bg-sand-100/70">
-        <span className="absolute top-0 left-1/2 -translate-x-1/2 w-16 h-0.5 bg-sky-600/30 rounded-full" />
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-16">
-            <SectionLabel>Our Credentials</SectionLabel>
-            <h3 className="mt-3 text-3xl sm:text-4xl font-black text-navy-900 uppercase tracking-tight">
-              Why Choose Hraize
-            </h3>
-            <p className="mt-3 text-xs text-navy-900/50 font-bold uppercase tracking-wide">
-              Complete support frameworks bypassing the limits of traditional networks.
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <SectionLabel>Client Commitment</SectionLabel>
+            <h2 className="mt-3 text-3xl sm:text-4xl font-black text-navy-900 uppercase tracking-tight">
+              Why Work With Hraize?
+            </h2>
+            <p className="mt-3 text-base text-navy-900/65 font-medium max-w-xl mx-auto leading-relaxed">
+              Dependable, structured operational support built around your unique business priorities.
             </p>
           </div>
 
-          <motion.div
-            className="max-w-4xl mx-auto space-y-0"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
-            variants={{
-              hidden: {},
-              visible: { transition: { staggerChildren: 0.1, delayChildren: 0.05 } },
-            }}
-          >
-            {whyChooseHraize.map((item, idx) => (
-              <motion.div
-                key={idx}
-                variants={{
-                  hidden: { opacity: 0, x: -30 },
-                  visible: { opacity: 1, x: 0, transition: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] } },
-                }}
-                className="group flex gap-4 sm:gap-8 py-8 border-t border-sky-600/50 first:border-t-0 hover:bg-cream-50/50 px-4 -mx-4 rounded-2xl transition-colors cursor-default"
-              >
-                <motion.div
-                  className="flex w-10 sm:w-12 shrink-0 items-start pt-1"
-                  whileHover={{ scale: 1.2, rotate: [0, -15, 15, -5, 0] }}
-                  transition={{ duration: 0.4 }}
-                >
-                  <item.icon className="h-5 w-5 sm:h-6 sm:w-6 text-sky-600 group-hover:text-sky-500 transition-colors" />
-                </motion.div>
-                <div className="flex-1">
-                  <h4 className="text-base font-black text-navy-900 uppercase tracking-tight mb-2 group-hover:text-sky-700 transition-colors duration-300">{item.title}</h4>
-                  <p className="text-sm text-navy-900/60 font-medium leading-relaxed">{item.desc}</p>
-                </div>
-                <div className="hidden lg:flex w-8 shrink-0 items-start pt-1 justify-center">
-                  <motion.div
-                    whileHover={{ x: 5 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <ArrowRight className="h-4 w-4 text-sky-600/20 group-hover:text-sky-600 transition-colors" />
-                  </motion.div>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      <section className="py-24 bg-cream-50">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-16">
-            <SectionLabel>Our Ethical Standard</SectionLabel>
-            <h3 className="mt-3 text-3xl sm:text-4xl font-black text-navy-900 uppercase tracking-tight">
-              Our Core Values
-            </h3>
-            <p className="mt-3 text-xs text-navy-900/50 font-bold uppercase tracking-wide">
-              The foundational principles steering every client engagement.
-            </p>
-          </div>
-
-          <motion.div
-            className="grid grid-cols-1 md:grid-cols-3 gap-12"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={{
-              hidden: {},
-              visible: { transition: { staggerChildren: 0.15, delayChildren: 0.1 } },
-            }}
-          >
-            {coreValues.map((value, idx) => {
-              const IconComponent = value.icon;
+          {/* 5-Column Interconnected Architecture */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-5">
+            {whyWorkWithHraize.map((item, idx) => {
+              const Icon = item.icon;
               return (
                 <motion.div
                   key={idx}
-                  variants={{
-                    hidden: { opacity: 0, scale: 0.85 },
-                    visible: { opacity: 1, scale: 1, transition: { duration: 0.7, ease: [0.25, 0.1, 0.25, 1] } },
-                  }}
-                  className="text-center group"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.15 }}
+                  transition={{ duration: 0.5, delay: idx * 0.1, ease: "easeOut" }}
+                  className="group rounded-3xl border border-sky-600/15 bg-white p-6 shadow-sm hover:border-sky-600/40 hover:shadow-lg transition-all duration-300 flex flex-col justify-between"
                 >
-                  <motion.div
-                    className="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-sky-600/5 text-sky-600 mb-6 mx-auto"
-                    whileHover={{ scale: 1.15, backgroundColor: "rgba(2,132,199,0.12)" }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <IconComponent className="h-7 w-7" />
-                  </motion.div>
-                  <h4 className="text-lg font-black text-navy-900 uppercase tracking-tight mb-4 group-hover:text-sky-700 transition-colors duration-300">
-                    {value.title}
-                  </h4>
-                  <p className="text-sm text-navy-900/60 font-medium leading-relaxed max-w-xs mx-auto">
-                    {value.desc}
-                  </p>
-                  <motion.div
-                    className="mt-6 mx-auto w-12 h-px bg-sky-600/20"
-                    whileHover={{ width: 48, backgroundColor: "rgba(2,132,199,0.5)" }}
-                    transition={{ duration: 0.3 }}
-                  />
+                  <div>
+                    <div className="flex items-center justify-between mb-5">
+                      <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-sky-600/10 text-sky-600 group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300">
+                        <Icon className="h-5 w-5" />
+                      </div>
+                      <span className="text-xs font-black text-navy-900/35 tracking-wider">
+                        {item.number}
+                      </span>
+                    </div>
+
+                    <h3 className="text-base font-black text-navy-900 uppercase tracking-tight leading-snug mb-2 group-hover:text-sky-700 transition-colors">
+                      {item.title}
+                    </h3>
+
+                    <p className="text-xs font-medium text-navy-900/65 leading-relaxed">
+                      {item.desc}
+                    </p>
+                  </div>
+
+                  <div className="mt-6 pt-4 border-t border-sky-600/10 flex items-center gap-1.5 text-[10px] font-black uppercase tracking-wider text-sky-600">
+                    <Check className="h-3 w-3 text-copper-500" />
+                    <span>Hraize Principle</span>
+                  </div>
                 </motion.div>
               );
             })}
-          </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* ============ LET'S DISCUSS YOUR BUSINESS REQUIREMENTS ============ */}
+      <section className="relative py-20 bg-white">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="relative overflow-hidden rounded-3xl bg-navy-card p-8 sm:p-12 lg:p-16 shadow-2xl border border-navy-900/10">
+            {/* Background ambient accents */}
+            <div className="absolute top-0 right-0 h-96 w-96 rounded-full bg-sky-600/15 blur-3xl pointer-events-none" />
+            <div className="absolute bottom-0 left-0 h-80 w-80 rounded-full bg-copper-400/10 blur-3xl pointer-events-none" />
+
+            <div className="relative max-w-3xl">
+              <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-[11px] font-black uppercase tracking-[0.16em] text-sky-300 backdrop-blur-sm">
+                <Sparkles className="h-3.5 w-3.5 text-copper-400" />
+                Operational Engagement
+              </span>
+
+              <h2 className="mt-5 text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-white leading-tight">
+                Let&apos;s Discuss Your Business Requirements
+              </h2>
+
+              <p className="mt-5 text-base sm:text-lg text-sage-100/75 font-medium leading-relaxed">
+                Whether you need ongoing operational support or assistance with a specific project, Hraize is here to help.
+              </p>
+
+              <div className="mt-8 flex flex-wrap items-center gap-4">
+                <Link
+                  href="/contact?tab=consultation"
+                  className="inline-flex items-center gap-2 rounded-full bg-sky-600 px-8 py-4 text-sm font-black tracking-wider text-white shadow-xl shadow-sky-600/30 hover:bg-sky-500 transition-all duration-200"
+                >
+                  Contact Hraize
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+
+                <Link
+                  href="/contact?tab=quote"
+                  className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 backdrop-blur-sm px-7 py-4 text-sm font-black text-white hover:bg-white/15 transition-all duration-200"
+                >
+                  Get a Service Quote
+                  <ArrowUpRight className="h-4 w-4 text-sky-400" />
+                </Link>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     </div>

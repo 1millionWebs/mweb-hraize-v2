@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import {
   CheckCircle, XCircle, Users, Award, Briefcase, ChevronRight,
-  Building2, GraduationCap, Check, ArrowRight, UserCheck,
+  Building2, GraduationCap, Check, ArrowRight, ArrowUpRight, UserCheck,
   Search, CalendarCheck, ShieldCheck, Filter, Sparkles, ArrowDown,
   Info
 } from "lucide-react";
@@ -163,21 +163,20 @@ export const RecruitmentServices: React.FC<RecruitmentServicesProps> = ({
               </div>
 
               <div className="mt-7 flex flex-wrap gap-3">
-                <button
-                  onClick={onEmployerClick}
+                <Link
+                  href="/contact?tab=consultation"
                   className="inline-flex items-center gap-2 rounded-full bg-sky-600 px-7 py-3.5 text-sm font-black text-white shadow-lg shadow-sky-600/25 transition-all duration-200 hover:bg-sky-700 cursor-pointer"
                 >
-                  Request Hiring Support
+                  Request a Consultation
                   <ArrowRight className="h-4 w-4" />
-                </button>
-                <a
-                  href="#permanent"
-                  onClick={(e) => scrollToSection(e, "permanent")}
+                </Link>
+                <Link
+                  href="/contact?tab=quote&service=recruitment"
                   className="inline-flex items-center gap-2 rounded-full border border-sky-600/30 bg-white px-6 py-3.5 text-sm font-bold text-navy-900 shadow-sm transition-all duration-200 hover:bg-cream-50"
                 >
-                  View Service Scope Below
-                  <ArrowDown className="h-4 w-4 text-sky-600" />
-                </a>
+                  Get a Service Quote
+                  <ArrowUpRight className="h-4 w-4 text-sky-600" />
+                </Link>
               </div>
             </motion.div>
           </div>

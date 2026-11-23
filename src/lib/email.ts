@@ -70,18 +70,39 @@ interface MailtrapSendPayload {
 
 export function getServiceLabel(service: string): string {
   const serviceMap: Record<string, string> = {
-    subscription: "HR Subscription Support",
-    consulting: "HR Consulting & Systems Setup",
-    audit: "HR Audit",
-    analytics: "People Analytics & Dashboard",
-    policies: "HR Policy and Process Documentation",
-    workforce: "Strategic Workforce Planning",
+    // 01. HR & Payroll
+    payroll: "Monthly Payroll Preparation & Processing",
+    "salary-statements": "Salary Statements & Payslip Coordination",
+    "joining-exit": "Employee Joining & Exit Administration",
+    pf: "Provident Fund (PF) & EPFO Filing Support",
+    esi: "Employee State Insurance (ESI) Filing Support",
+    pt: "Professional Tax (PT) Calculations & Filing",
+    "statutory-records": "Employee Data & Statutory Record Maintenance",
+    // 02. Recruitment & Staffing
     permanent: "Permanent Recruitment",
     contract: "Contract & Temp Staffing",
-    graduate: "Graduate & Emerging Talent Pipeline",
-    fresher: "Fresher to professional",
-    "mid-career": "Mid Career Acceleration",
-    managers: "First-Time Managers",
+    sourcing: "Candidate Sourcing & Screening",
+    interview: "Interview Coordination",
+    // 03. Invoice & Receivables
+    "sales-register": "Sales Invoice Register Maintenance",
+    "due-dates": "Invoice Due-Date Tracking",
+    "payment-reminders": "Customer Payment Reminders",
+    "follow-ups": "Outstanding Payment Follow-ups",
+    "overdue-reports": "Periodic Receivables & Overdue Reports",
+    // 04. Website Solutions
+    "business-website": "Business Website Design",
+    redesign: "Website Redesign & Revamp",
+    "landing-pages": "Landing Page Development",
+    "mobile-responsive": "Mobile-Responsive Website Development",
+    maintenance: "Website Maintenance & Tech Support",
+    // 05. Personnel Administration
+    documentation: "Employee Documentation",
+    "personnel-data": "Personnel Data Maintenance",
+    "attendance-leave": "Attendance & Leave Records Coordination",
+    lifecycle: "Employee Lifecycle Administration",
+    // Inquiries & General
+    consultation: "Request a Comprehensive Consultation",
+    quote: "Request a Service Quote",
     partnership: "General Corporate Partnership",
     pr: "Media & PR Inquiry",
     other: "Other Business Matter",
@@ -144,7 +165,7 @@ interface ContactEmailParams {
 export async function sendContactEmails(params: ContactEmailParams): Promise<{ success: boolean; errors?: string[] }> {
   const hrRecipient = process.env.HR_RECIPIENT_EMAIL || "admin@hraize.com";
   const senderEmail = process.env.MAILTRAP_SENDER_EMAIL || "info@hraize.com";
-  const senderName = process.env.MAILTRAP_SENDER_NAME || "Hraize HR Analytics";
+  const senderName = process.env.MAILTRAP_SENDER_NAME || "Hraize";
 
   const serviceLabel = getServiceLabel(params.serviceInterested);
   const currentYear = new Date().getFullYear();
@@ -244,7 +265,7 @@ ${params.message}
       <p>If you have any urgent matters, feel free to reply directly to this email or call us during business hours (Monday to Saturday, 9:00 AM to 6:00 PM).</p>
       <br/>
       <p>Best regards,</p>
-      <p><strong>The Hraize Team</strong><br/>HR Analytics & Advisory Services</p>
+      <p><strong>The Hraize Team</strong><br/>Business Operations & Support Services</p>
     </div>
     <div class="footer">
       <p>Hraize, Thanjavur, Tamil Nadu.</p>
@@ -258,13 +279,13 @@ ${params.message}
   const userText = `
 Dear ${params.fullName},
 
-Thank you for reaching out to Hraize HR Analytics! We have successfully received your inquiry regarding ${serviceLabel}.
+Thank you for reaching out to Hraize! We have successfully received your inquiry regarding ${serviceLabel}.
 
 Our advisory team is currently reviewing your details and will get back to you within 24-48 business hours.
 
 Best regards,
 The Hraize Team
-HR Analytics & Advisory Services
+Business Operations & Support Services
   `.trim();
 
   const [logoAttachment] = await Promise.all([getLogoAttachment()]);
@@ -323,7 +344,7 @@ interface ResumeEmailParams {
 export async function sendResumeEmails(params: ResumeEmailParams): Promise<{ success: boolean; errors?: string[] }> {
   const hrRecipient = process.env.HR_RECIPIENT_EMAIL || "admin@hraize.com";
   const senderEmail = process.env.MAILTRAP_SENDER_EMAIL || "info@hraize.com";
-  const senderName = process.env.MAILTRAP_SENDER_NAME || "Hraize HR Analytics";
+  const senderName = process.env.MAILTRAP_SENDER_NAME || "Hraize";
   const currentYear = new Date().getFullYear();
 
   // Convert buffer to base64 for attachment
@@ -397,7 +418,7 @@ export async function sendResumeEmails(params: ResumeEmailParams): Promise<{ suc
       ${params.comments.replace(/\r?\n/g, "<br/>")}
     </div>
     <div class="footer">
-      <p>This message was sent automatically from the Hraize HR Analytics website resume submission system.</p>
+      <p>This message was sent automatically from the Hraize website resume submission system.</p>
     </div>
   </div>
 </body>
@@ -450,7 +471,7 @@ ${params.comments}
       <p>You can also check our current vacancies at any time on our careers page.</p>
       <br/>
       <p>Best of luck with your search!</p>
-      <p><strong>The Hraize Recruitment Team</strong><br/>Hraize HR Analytics</p>
+      <p><strong>The Hraize Recruitment Team</strong><br/>Hraize</p>
     </div>
     <div class="footer">
       <p>Hraize, Thanjavur, Tamil Nadu.</p>
@@ -464,7 +485,7 @@ ${params.comments}
   const userText = `
 Dear ${params.firstName},
 
-Thank you for submitting your resume to Hraize HR Analytics!
+Thank you for submitting your resume to Hraize!
 
 We have successfully received your details and added your profile to our talent database. Our recruiting team will evaluate your background against our open vacancies and client requirements.
 
@@ -473,7 +494,7 @@ If your profile matches any of our current or future needs, we will reach out to
 Best of luck with your search!
 
 The Hraize Recruitment Team
-Hraize HR Analytics
+Hraize
   `.trim();
 
   // Send notifications in parallel
@@ -518,7 +539,7 @@ Hraize HR Analytics
 
 export async function sendResetPasswordEmail(email: string, resetLink: string): Promise<{ success: boolean; error?: string }> {
   const senderEmail = process.env.MAILTRAP_SENDER_EMAIL || "lorrybusvanjeep@gmail.com";
-  const senderName = process.env.MAILTRAP_SENDER_NAME || "Hraize HR Analytics";
+  const senderName = process.env.MAILTRAP_SENDER_NAME || "Hraize";
   const currentYear = new Date().getFullYear();
 
   const emailHtml = `

@@ -165,18 +165,18 @@ export const OurServicesOverview: React.FC = () => {
 
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link
-              href="/contact?tab=general"
+              href="/contact?tab=consultation"
               className="inline-flex items-center gap-2 rounded-full bg-sky-600 px-8 py-3.5 text-sm font-black text-white shadow-lg shadow-sky-600/20 hover:bg-sky-700 transition-all duration-200"
             >
-              Request a Service Quote
+              Request a Consultation
               <ArrowRight className="h-4 w-4" />
             </Link>
-            <a
-              href="#service-01"
+            <Link
+              href="/contact?tab=quote"
               className="inline-flex items-center gap-2 rounded-full border border-sky-600/30 bg-white/80 px-7 py-3.5 text-sm font-bold text-navy-900 hover:bg-white shadow-sm transition-all duration-200"
             >
-              Explore Scope Below
-            </a>
+              Get a Service Quote
+            </Link>
           </div>
         </div>
 
@@ -339,13 +339,21 @@ export const OurServicesOverview: React.FC = () => {
               Contact Hraize to discuss the service requirements and delivery arrangements.
             </p>
           </div>
-          <Link
-            href="/contact?tab=general"
-            className="shrink-0 inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 text-sm font-black text-navy-900 hover:bg-cream-50 shadow-xl transition-all cursor-pointer"
-          >
-            Request a Service Quote
-            <ArrowRight className="h-4 w-4 text-sky-600" />
-          </Link>
+          <div className="flex flex-wrap items-center gap-3">
+            <Link
+              href="/contact?tab=consultation"
+              className="shrink-0 inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 text-sm font-black text-navy-900 hover:bg-cream-50 shadow-xl transition-all cursor-pointer"
+            >
+              Request a Consultation
+              <ArrowRight className="h-4 w-4 text-sky-600" />
+            </Link>
+            <Link
+              href="/contact?tab=quote"
+              className="shrink-0 inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-7 py-4 text-sm font-bold text-white hover:bg-white/20 transition-all cursor-pointer"
+            >
+              Get a Service Quote
+            </Link>
+          </div>
         </div>
       </div>
     </div>

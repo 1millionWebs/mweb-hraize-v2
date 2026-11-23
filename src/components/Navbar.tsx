@@ -292,12 +292,12 @@ export const Navbar: React.FC = () => {
 
         <div className="hidden md:flex items-center">
           <Link
-            href="/contact?tab=general"
+            href="/contact?tab=consultation"
             prefetch={false}
             onClick={closeMenus}
             className="inline-flex items-center gap-1.5 rounded-full bg-sky-600 px-5 py-2 text-sm font-bold text-white shadow-md hover:bg-sky-700 transition-all duration-200"
           >
-            Get in Touch
+            Request a Consultation
             <ArrowUpRight className="h-4 w-4" />
           </Link>
         </div>
@@ -402,12 +402,12 @@ export const Navbar: React.FC = () => {
               </div>
             </div>
             <Link
-              href="/contact?tab=general"
+              href="/contact?tab=consultation"
               prefetch={false}
               onClick={closeMenus}
               className="block w-full text-center mt-4 bg-sky-600 py-2.5 text-base font-bold text-white rounded-lg shadow-md hover:bg-sky-700"
             >
-              Get in Touch
+              Request a Consultation
             </Link>
           </motion.div>
         )}

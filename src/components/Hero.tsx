@@ -1,493 +1,278 @@
+"use client";
 import React, { useState, useEffect, useRef } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
-import Image from "next/image";
-import { ArrowRight, Calendar, Users, ShieldCheck, Award, TrendingUp } from "lucide-react";
-
-const rand = (min: number, max: number) => Math.random() * (max - min) + min;
-
-const generateBubbles = (count: number, maxAttempts = 200) => {
-  const bubbles: { top: number; left: number; size: number; driftX: number; driftY: number; duration: number; delay: number }[] = [];
-  const gap = 30;
-  for (let i = 0; i < count; i++) {
-    let attempts = 0;
-    let placed = false;
-    while (attempts < maxAttempts && !placed) {
-      const size = rand(28, 150);
-      const top = rand(1, 80);
-      const left = rand(1, 85);
-      const topPx = top * 7.2;
-      const leftPx = left * 7.2;
-      const half = size / 2 + gap;
-      let overlap = false;
-      for (const b of bubbles) {
-        const bTop = b.top * 7.2;
-        const bLeft = b.left * 7.2;
-        const bHalf = b.size / 2 + gap;
-        if (Math.abs(topPx - bTop) < half + bHalf && Math.abs(leftPx - bLeft) < half + bHalf) {
-          overlap = true;
-          break;
-        }
-      }
-      if (!overlap) {
-        bubbles.push({
-          top, left, size,
-          driftX: rand(30, 80) * (Math.random() > 0.5 ? 1 : -1),
-          driftY: rand(30, 80) * (Math.random() > 0.5 ? 1 : -1),
-          duration: rand(6, 14),
-          delay: rand(0, 5),
-        });
-        placed = true;
-      }
-      attempts++;
-    }
-  }
-  return bubbles;
-};
+import Link from "next/link";
+import {
+  ArrowRight,
+  ArrowUpRight,
+  ShieldCheck,
+  Users,
+  FileText,
+  Globe,
+  CheckCircle2,
+  Sparkles,
+  Clock,
+  Layers,
+} from "lucide-react";
 
 interface HeroProps {
-  onGetStarted: () => void;
+  onGetStarted?: () => void;
 }
 
-export const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
+export const Hero: React.FC<HeroProps> = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const [bubbles, setBubbles] = useState<{ top: number; left: number; size: number; driftX: number; driftY: number; duration: number; delay: number }[]>([]);
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start start", "end start"],
   });
 
-  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
-  const bubbleY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
-  const contentY = useTransform(scrollYProgress, [0, 1], ["0%", "10%"]);
-
-  useEffect(() => {
-    setBubbles(generateBubbles(15));
-  }, []);
-
-  const avatars = [
-    { id: 1, name: "Sarah K.", url: "/contact-1.png" },
-    { id: 2, name: "David M.", url: "/contact-2.png" },
-    { id: 3, name: "Elena R.", url: "/contact-3.png" },
-    { id: 4, name: "Marcus T.", url: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=80" }
-  ];
-
-  const parseStat = (value: string) => {
-    const match = value.match(/^(\d+)(.*)$/);
-    if (match) {
-      return { target: parseInt(match[1], 10), suffix: match[2] };
-    }
-    return { target: 0, suffix: value };
-  };
-
-  const stats = [
-    { value: "20+", label: "Years Global Experience", icon: Calendar },
-    { value: "6+", label: "Industries Served", icon: Users },
-    { value: "5+", label: "Global Markets Served", icon: ShieldCheck },
-    { value: "100%", label: "Quality Focused", icon: Award },
-  ];
+  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "25%"]);
+  const contentY = useTransform(scrollYProgress, [0, 1], ["0%", "8%"]);
 
   return (
-    <section ref={sectionRef} className="relative overflow-hidden bg-gradient-to-b from-cream-100 to-cream-50">
-      <motion.div className="absolute inset-0 pointer-events-none" style={{ y: bgY }}>
-        <div className="absolute top-[-20%] right-[-10%] h-[500px] w-[500px] rounded-full bg-sky-600/5 blur-3xl" />
-        <div className="absolute bottom-[-10%] left-[-5%] h-[400px] w-[400px] rounded-full bg-copper-400/5 blur-3xl" />
-        {bubbles.map((b, i) => (
-          <motion.div
-            key={i}
-            className="absolute rounded-full"
-            style={{
-              width: b.size,
-              height: b.size,
-              top: `${b.top}%`,
-              left: `${b.left}%`,
-              backgroundColor: "#F2F5F8",
-            }}
-            animate={{
-              x: [0, b.driftX * 0.3, b.driftX * 0.6, b.driftX * 0.3, 0],
-              y: [0, b.driftY * 0.3, b.driftY * 0.6, b.driftY * 0.3, 0],
-              scale: [1, 1.04, 0.97, 1.02, 1],
-            }}
-            transition={{
-              duration: b.duration,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: b.delay,
-            }}
-          />
-        ))}
-        <svg className="absolute inset-0 h-full w-full opacity-[0.03]">
+    <section
+      ref={sectionRef}
+      className="relative overflow-hidden bg-gradient-to-b from-cream-100 via-cream-50 to-white"
+    >
+      {/* Decorative ambient background glows */}
+      <motion.div
+        className="absolute inset-0 pointer-events-none"
+        style={{ y: bgY }}
+      >
+        <div className="absolute top-[-10%] right-[-5%] h-[520px] w-[520px] rounded-full bg-sky-600/8 blur-3xl" />
+        <div className="absolute bottom-[-10%] left-[-5%] h-[420px] w-[420px] rounded-full bg-copper-400/8 blur-3xl" />
+        <svg className="absolute inset-0 h-full w-full opacity-[0.035]">
           <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
-            <path d="M 48 0 L 0 0 0 48" fill="none" stroke="var(--color-teal)" strokeWidth="0.5" />
+            <path
+              d="M 48 0 L 0 0 0 48"
+              fill="none"
+              stroke="#0284c7"
+              strokeWidth="0.5"
+            />
           </pattern>
           <rect width="100%" height="100%" fill="url(#grid)" />
         </svg>
       </motion.div>
 
-      <motion.div className="relative mx-auto max-w-7xl px-4 sm:px-6 pb-20 lg:px-8" style={{ y: contentY }}>
-        <div className="grid min-h-[100dvh] lg:min-h-[calc(100vh-4rem)] grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <motion.div
+        className="relative mx-auto max-w-7xl px-4 sm:px-6 pt-12 pb-20 lg:px-8 lg:pt-16 lg:pb-28"
+        style={{ y: contentY }}
+      >
+        <div className="grid min-h-[calc(100vh-6rem)] grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
+          {/* ============ LEFT COLUMN: VALUE PROPOSITION ============ */}
           <motion.div
-            className="lg:col-span-7 pt-20 lg:pt-0"
-            initial={{ opacity: 0, y: 30 }}
+            className="lg:col-span-7 pt-4 lg:pt-0"
+            initial={{ opacity: 0, y: 25 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, ease: [0.25, 0.1, 0.25, 1] }}
+            transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
           >
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-sky-600/10 px-4 py-1.5">
-              <span className="h-2 w-2 rounded-full bg-sky-600" />
-              <span className="text-[11px] font-black tracking-[0.15em] text-sky-700 uppercase">
-                HR Solutions. Business Support. Digital Services.
+            {/* Tagline Pill */}
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-sky-600/25 bg-white/90 px-4 py-1.5 shadow-sm backdrop-blur-sm">
+              <span className="h-2 w-2 rounded-full bg-copper-400 animate-pulse" />
+              <span className="text-[11px] font-black uppercase tracking-[0.16em] text-navy-900">
+                The right support to keep business moving.
               </span>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-navy-900 leading-[1.08]">
-              Right support to keep{" "}
-              <br className="hidden sm:inline" />
-              <span className="text-sky-600">business moving.</span>
+            {/* Headline */}
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-navy-900 leading-[1.06]">
+              HR Solutions.
+              <br />
+              Business Support.
+              <br />
+              <span className="text-sky-600">Digital Services.</span>
             </h1>
 
-            <p className="mt-6 text-base sm:text-lg text-navy-900/70 font-medium max-w-2xl leading-relaxed">
-              Hraize provides recruitment, payroll and HR administration, business support services and website solutions to organisations across India. We help businesses manage essential operational requirements through experienced service delivery and trusted technology partnerships.
+            {/* Introductory Paragraphs */}
+            <p className="mt-6 text-base sm:text-lg text-navy-900/75 font-medium max-w-2xl leading-relaxed">
+              Hraize provides practical HR, recruitment, business administration
+              and website services to help organisations operate smoothly and scale
+              effectively.
             </p>
 
+            <p className="mt-3 text-sm sm:text-base text-navy-900/65 font-medium max-w-2xl leading-relaxed">
+              By combining experienced service delivery with reliable operational
+              support, we assist businesses in managing essential functions
+              efficiently — allowing teams to focus on their core priorities.
+            </p>
+
+            {/* Primary & Secondary Call to Actions */}
             <div className="mt-8 flex flex-wrap items-center gap-4">
-              <motion.button
-                onClick={onGetStarted}
-                className="inline-flex items-center gap-2 rounded-full bg-sky-600 px-8 py-4 text-sm font-black tracking-wider text-white shadow-lg shadow-sky-600/20 hover:bg-sky-700 transition-all duration-200 cursor-pointer"
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.98 }}
+              <Link
+                href="/contact?tab=consultation"
+                className="inline-flex items-center gap-2 rounded-full bg-sky-600 px-8 py-4 text-sm font-black tracking-wider text-white shadow-lg shadow-sky-600/25 hover:bg-sky-700 transition-all duration-200 cursor-pointer"
               >
-                Get Started
+                Request a Consultation
                 <ArrowRight className="h-4 w-4" />
-              </motion.button>
+              </Link>
+
+              <Link
+                href="/services"
+                className="inline-flex items-center gap-2 rounded-full border border-sky-600/30 bg-white/90 backdrop-blur-sm px-7 py-4 text-sm font-black text-navy-900 shadow-sm hover:bg-cream-50 transition-all duration-200"
+              >
+                Get a Service Quote
+                <ArrowUpRight className="h-4 w-4 text-sky-600" />
+              </Link>
+            </div>
+
+            {/* Micro Trust Indicators */}
+            <div className="mt-10 flex flex-wrap items-center gap-6 pt-6 border-t border-navy-900/10 text-xs font-bold text-navy-900/60">
+              <div className="flex items-center gap-2">
+                <CheckCircle2 className="h-4 w-4 text-emerald-600" />
+                <span>Headquartered in Bengaluru</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle2 className="h-4 w-4 text-sky-600" />
+                <span>Structured Delivery Routines</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle2 className="h-4 w-4 text-copper-500" />
+                <span>Single Point of Coordination</span>
+              </div>
             </div>
           </motion.div>
 
+          {/* ============ RIGHT COLUMN: OPERATIONAL SYNCHRONY CONSOLE ============ */}
           <motion.div
-            className="lg:col-span-5 relative w-full h-[480px] lg:h-[500px] flex items-center justify-center p-4 rounded-3xl border border-white/40 shadow-inner"
-            style={{ background: "linear-gradient(rgba(255,255,255,0.50), rgba(255,255,255,0.50)), url('/Map1.png') center/cover no-repeat" }}
-            initial={{ opacity: 0, scale: 0.9 }}
+            className="lg:col-span-5 relative w-full"
+            initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.2 }}
+            transition={{ duration: 0.9, delay: 0.15, ease: "easeOut" }}
           >
-            <svg viewBox="0 0 400 500" className="absolute inset-0 w-full h-full pointer-events-none z-0">
-              <motion.path
-                d="M 50,450 C 150,420 80,180 200,160 C 320,140 280,50 350,50"
-                stroke="#1E3A8A"
-                strokeWidth="4"
-                fill="none"
-                strokeLinecap="round"
-                initial={{ pathLength: 0 }}
-                animate={{ pathLength: 1 }}
-                transition={{ duration: 2, ease: "easeInOut" }}
-              />
-              <motion.path
-                d="M 50,450 C 150,420 80,180 200,160 C 320,140 280,50 350,50"
-                stroke="#0EA5E9"
-                strokeWidth="1.5"
-                fill="none"
-                strokeDasharray="10 15"
-                animate={{ strokeDashoffset: [-100, 0] }}
-                transition={{ repeat: Infinity, ease: "linear", duration: 8 }}
-              />
-              <motion.path
-                d="M 350,450 C 250,380 320,250 200,180 C 80,110 120,50 50,50"
-                stroke="#0EA5E9"
-                strokeWidth="3.5"
-                fill="none"
-                strokeLinecap="round"
-                initial={{ pathLength: 0 }}
-                animate={{ pathLength: 1 }}
-                transition={{ duration: 2.2, ease: "easeInOut" }}
-              />
-              <motion.path
-                d="M 350,450 C 250,380 320,250 200,180 C 80,110 120,50 50,50"
-                stroke="#1E3A8A"
-                strokeWidth="1.5"
-                fill="none"
-                strokeDasharray="12 18"
-                animate={{ strokeDashoffset: [0, 100] }}
-                transition={{ repeat: Infinity, ease: "linear", duration: 6 }}
-              />
-              <line x1="200" y1="180" x2="200" y2="160" stroke="#D4A017" strokeWidth="2" strokeDasharray="3 3" />
-            </svg>
-
-            <div className="relative w-full h-full z-10 grid grid-rows-3 gap-4">
-              <motion.div
-                className="justify-self-start self-center w-[230px] rounded-xl border border-white/30 bg-white/70 p-4 shadow-[0_8px_30px_rgb(0,0,0,0.06)] backdrop-blur-md"
-                animate={{ y: [-5, 5, -5] }}
-                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-              >
-                <div className="flex items-center gap-2 mb-3">
-                  <div className="flex h-7 w-7 items-center justify-center rounded-md bg-[#1E3A8A]/10 text-[#1E3A8A]">
-                    <Users className="h-3.5 w-3.5" />
-                  </div>
-                  <span className="text-xs font-black text-[#1E3A8A]">Workforce Overview</span>
-                </div>
-                <div className="space-y-2.5">
-                  <div className="flex items-center justify-between text-[10px]">
-                    <span className="font-semibold text-gray-500">Permanent</span>
-                    <span className="font-black text-[#1E3A8A]">Full-Time</span>
-                  </div>
-                  <div className="flex items-center justify-between text-[10px]">
-                    <span className="font-semibold text-gray-500">Contract</span>
-                    <span className="font-black text-[#0EA5E9]">Temporary</span>
-                  </div>
-                  <div className="flex items-center justify-between text-[10px]">
-                    <span className="font-semibold text-gray-500">Pipeline</span>
-                    <span className="font-black text-emerald-500">Active</span>
-                  </div>
-                </div>
-              </motion.div>
-
-              <motion.div
-                className="justify-self-end self-center w-[240px] rounded-xl border border-white/40 bg-white/80 p-4 shadow-[0_10px_35px_rgb(0,0,0,0.08)] backdrop-blur-lg"
-                animate={{ y: [5, -5, 5] }}
-                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-              >
-                <div className="flex items-center gap-2 mb-2">
-                  <div className="flex h-6 w-6 items-center justify-center rounded-md bg-[#0EA5E9] text-white">
-                    <TrendingUp className="h-3.5 w-3.5" />
+            <div className="relative rounded-3xl border border-sky-600/20 bg-white/90 p-5 sm:p-7 shadow-2xl shadow-navy-900/10 backdrop-blur-md">
+              {/* Top Status Bar */}
+              <div className="flex items-center justify-between pb-4 border-b border-navy-900/10">
+                <div className="flex items-center gap-2">
+                  <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-sky-600/10 text-sky-600">
+                    <Layers className="h-4 w-4" />
                   </div>
                   <div>
-                    <h4 className="text-xs font-black text-[#1E3A8A]">Performance Peak</h4>
-                    <p className="text-[9px] text-[#0EA5E9] leading-none">Top Performers Highlight</p>
+                    <h3 className="text-xs font-black uppercase tracking-wider text-navy-900">
+                      Operations Console
+                    </h3>
+                    <p className="text-[10px] font-bold text-sky-600">
+                      Bengaluru Delivery Hub
+                    </p>
                   </div>
                 </div>
-                <div className="space-y-2 mt-2">
-                  <div className="flex justify-between items-center text-[11px]">
-                    <span className="font-bold text-gray-600">Core Engineering</span>
-                    <span className="font-black text-[#1E3A8A]">96% Match</span>
-                  </div>
-                  <div className="h-1.5 w-full bg-gray-200 rounded-full overflow-hidden">
-                    <div className="h-full bg-[#0EA5E9]" style={{ width: "96%" }} />
-                  </div>
-                  <div className="flex justify-between items-center text-[11px]">
-                    <span className="font-bold text-gray-600">Product Strategy</span>
-                    <span className="font-black text-[#1E3A8A]">88% Performance</span>
-                  </div>
-                  <div className="h-1.5 w-full bg-gray-200 rounded-full overflow-hidden">
-                    <div className="h-full bg-[#D4A017]" style={{ width: "88%" }} />
-                  </div>
+                <div className="flex items-center gap-2 rounded-full bg-emerald-50 border border-emerald-200/60 px-2.5 py-1 text-[10px] font-black text-emerald-700">
+                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-ping" />
+                  <span>Active Support</span>
                 </div>
-              </motion.div>
+              </div>
 
-              <motion.div
-                className="justify-self-start self-center w-[220px] rounded-xl border border-[#0EA5E9]/20 bg-white/95 p-3 shadow-[0_12px_40px_rgb(30,58,138,0.08)] backdrop-blur-xl"
-                animate={{ y: [-4, 4, -4] }}
-                transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-              >
-                <p className="text-[10px] font-black tracking-widest text-[#1E3A8A] uppercase mb-2">Talent Sourcing Pool</p>
-                <div className="space-y-2">
-                  <div className="flex items-center gap-2">
-                    <Image
-                      src="/contact-1.png"
-                      alt="Avatar"
-                      width={28}
-                      height={28}
-                      className="h-7 w-7 rounded-full object-cover border border-[#0EA5E9]"
-                    />
-                    <div className="flex-1 min-w-0">
-                      <p className="text-xs font-black text-gray-800 truncate">Sarah K. (Senior Lead)</p>
-                      <p className="text-[9px] text-[#0EA5E9]">Recruited: Product Growth</p>
+              {/* 4 Synchronized Operational Pillars Grid */}
+              <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                {/* 01. HR & Payroll */}
+                <div className="group rounded-2xl border border-sky-600/15 bg-cream-50/60 p-3.5 transition-all duration-200 hover:border-sky-600/40 hover:bg-white hover:shadow-md">
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-sky-600/10 text-sky-600 group-hover:bg-sky-600 group-hover:text-white transition-colors">
+                      <ShieldCheck className="h-4 w-4" />
                     </div>
-                    <span className="text-[9px] font-extrabold text-[#D4A017]">★ 4.9</span>
+                    <span className="text-[10px] font-black uppercase tracking-wider text-sky-700 bg-sky-100/60 px-2 py-0.5 rounded-md">
+                      01 · Payroll
+                    </span>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <Image
-                      src="/contact-2.png"
-                      alt="Avatar"
-                      width={28}
-                      height={28}
-                      className="h-7 w-7 rounded-full object-cover border border-gray-200"
-                    />
-                    <div className="flex-1 min-w-0">
-                      <p className="text-xs font-black text-gray-800 truncate">David M. (Systems Dev)</p>
-                      <p className="text-[9px] text-[#1E3A8A]">Matched: Cloud Solutions</p>
-                    </div>
-                    <span className="text-[9px] font-extrabold text-emerald-500">HIRED</span>
+                  <h4 className="text-xs font-black text-navy-900 leading-snug">
+                    Monthly Payroll &amp; Compliance
+                  </h4>
+                  <p className="mt-1 text-[11px] font-semibold text-navy-900/60 leading-tight">
+                    PF, ESI, PT calculations &amp; filing coordination
+                  </p>
+                  <div className="mt-2.5 flex items-center gap-1.5 text-[10px] font-bold text-emerald-700">
+                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+                    <span>Statutory record maintenance</span>
                   </div>
                 </div>
-              </motion.div>
+
+                {/* 02. Recruitment Solutions */}
+                <div className="group rounded-2xl border border-sky-600/15 bg-cream-50/60 p-3.5 transition-all duration-200 hover:border-sky-600/40 hover:bg-white hover:shadow-md">
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-sky-600/10 text-sky-600 group-hover:bg-sky-600 group-hover:text-white transition-colors">
+                      <Users className="h-4 w-4" />
+                    </div>
+                    <span className="text-[10px] font-black uppercase tracking-wider text-sky-700 bg-sky-100/60 px-2 py-0.5 rounded-md">
+                      02 · Hiring
+                    </span>
+                  </div>
+                  <h4 className="text-xs font-black text-navy-900 leading-snug">
+                    Recruitment &amp; Staffing
+                  </h4>
+                  <p className="mt-1 text-[11px] font-semibold text-navy-900/60 leading-tight">
+                    Permanent &amp; contract talent sourcing
+                  </p>
+                  <div className="mt-2.5 flex items-center gap-1.5 text-[10px] font-bold text-sky-700">
+                    <span className="h-1.5 w-1.5 rounded-full bg-sky-600" />
+                    <span>Vetted candidate pipeline</span>
+                  </div>
+                </div>
+
+                {/* 03. Business Administration */}
+                <div className="group rounded-2xl border border-copper-400/20 bg-cream-50/60 p-3.5 transition-all duration-200 hover:border-copper-400/50 hover:bg-white hover:shadow-md">
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-copper-400/15 text-copper-600 group-hover:bg-copper-400 group-hover:text-white transition-colors">
+                      <FileText className="h-4 w-4" />
+                    </div>
+                    <span className="text-[10px] font-black uppercase tracking-wider text-copper-700 bg-copper-100/60 px-2 py-0.5 rounded-md">
+                      03 · Admin
+                    </span>
+                  </div>
+                  <h4 className="text-xs font-black text-navy-900 leading-snug">
+                    Invoice &amp; Receivables
+                  </h4>
+                  <p className="mt-1 text-[11px] font-semibold text-navy-900/60 leading-tight">
+                    Due-date tracking &amp; payment reminders
+                  </p>
+                  <div className="mt-2.5 flex items-center gap-1.5 text-[10px] font-bold text-copper-700">
+                    <span className="h-1.5 w-1.5 rounded-full bg-copper-500" />
+                    <span>Weekly receivables reporting</span>
+                  </div>
+                </div>
+
+                {/* 04. Website Solutions */}
+                <div className="group rounded-2xl border border-sky-600/15 bg-cream-50/60 p-3.5 transition-all duration-200 hover:border-sky-600/40 hover:bg-white hover:shadow-md">
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-sky-600/10 text-sky-600 group-hover:bg-sky-600 group-hover:text-white transition-colors">
+                      <Globe className="h-4 w-4" />
+                    </div>
+                    <span className="text-[10px] font-black uppercase tracking-wider text-sky-700 bg-sky-100/60 px-2 py-0.5 rounded-md">
+                      04 · Digital
+                    </span>
+                  </div>
+                  <h4 className="text-xs font-black text-navy-900 leading-snug">
+                    Website Design &amp; Dev
+                  </h4>
+                  <p className="mt-1 text-[11px] font-semibold text-navy-900/60 leading-tight">
+                    Business websites, revamps &amp; support
+                  </p>
+                  <div className="mt-2.5 flex items-center gap-1.5 text-[10px] font-bold text-sky-700">
+                    <span className="h-1.5 w-1.5 rounded-full bg-sky-600" />
+                    <span>Technology partner delivery</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Bottom Operating Assurance Banner */}
+              <div className="mt-5 rounded-2xl border border-sky-600/15 bg-white p-3.5 shadow-sm">
+                <div className="flex items-center justify-between text-xs font-bold text-navy-900">
+                  <div className="flex items-center gap-2">
+                    <Clock className="h-4 w-4 text-sky-600" />
+                    <span>Structured Execution Cycles</span>
+                  </div>
+                  <Link
+                    href="/services"
+                    className="inline-flex items-center gap-1 text-[11px] font-black uppercase tracking-wider text-sky-600 hover:text-sky-700"
+                  >
+                    All 5 Services
+                    <ArrowUpRight className="h-3.5 w-3.5" />
+                  </Link>
+                </div>
+              </div>
             </div>
-
-            <motion.div
-              className="absolute h-9 w-9 rounded-full border-2 border-white bg-[#0EA5E9]/20 shadow-md overflow-hidden z-20 pointer-events-none"
-              style={{ left: "10%", bottom: "20%" }}
-              animate={{
-                x: [0, 80, 180, 230],
-                y: [0, -40, -110, -180],
-                scale: [1, 1.1, 0.9, 1]
-              }}
-              transition={{
-                repeat: Infinity,
-                duration: 12,
-                ease: "linear"
-              }}
-            >
-              <Image src={avatars[0].url} alt={avatars[0].name} fill className="object-cover" />
-            </motion.div>
-
-            <motion.div
-              className="absolute h-8 w-8 rounded-full border-2 border-white bg-[#1E3A8A]/20 shadow-md overflow-hidden z-20 pointer-events-none"
-              style={{ right: "12%", bottom: "15%" }}
-              animate={{
-                x: [0, -100, -180, -220],
-                y: [0, -60, -140, -230],
-                scale: [0.9, 1, 1.1, 0.9]
-              }}
-              transition={{
-                repeat: Infinity,
-                duration: 10,
-                ease: "linear"
-              }}
-            >
-              <Image src={avatars[1].url} alt={avatars[1].name} fill className="object-cover" />
-            </motion.div>
-
-            <motion.div
-              className="absolute h-9 w-9 rounded-full border-2 border-white bg-white/30 shadow-md overflow-hidden z-20 pointer-events-none"
-              style={{ left: "45%", top: "45%" }}
-              animate={{
-                y: [-12, 12, -12],
-                x: [-10, 10, -10]
-              }}
-              transition={{
-                repeat: Infinity,
-                duration: 4,
-                ease: "easeInOut"
-              }}
-            >
-              <Image src={avatars[2].url} alt={avatars[2].name} fill className="object-cover" />
-            </motion.div>
           </motion.div>
         </div>
       </motion.div>
-
-      {/* Full-width statistics section */}
-      <div className="relative w-full overflow-hidden bg-navy-card-hero">
-        <div className="absolute inset-0 opacity-[0.04]">
-          <svg className="h-full w-full">
-            <pattern id="stats-grid" width="64" height="64" patternUnits="userSpaceOnUse">
-              <path d="M 64 0 L 0 0 0 64" fill="none" stroke="white" strokeWidth="0.5" />
-            </pattern>
-            <rect width="100%" height="100%" fill="url(#stats-grid)" />
-          </svg>
-        </div>
-        <motion.div
-          className="absolute top-0 right-0 h-[300px] w-[300px] rounded-full bg-sky-500/10 blur-3xl"
-          animate={{ scale: [1, 1.2, 1], opacity: [0.1, 0.15, 0.1] }}
-          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.div
-          className="absolute bottom-0 left-0 h-[250px] w-[250px] rounded-full bg-copper-400/5 blur-3xl"
-          animate={{ scale: [1, 1.3, 1], opacity: [0.05, 0.1, 0.05] }}
-          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-        />
-
-        {/* <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 lg:py-20">
-          <motion.div
-            className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-            variants={{
-              visible: { transition: { staggerChildren: 0.15, delayChildren: 0.1 } },
-              hidden: {},
-            }}
-          >
-            {stats.map((stat, idx) => {
-              const Icon = stat.icon;
-              const { target, suffix } = parseStat(stat.value);
-              return (
-                <StatItem key={idx} icon={Icon} target={target} suffix={suffix} delay={idx * 150} label={stat.label} />
-              );
-            })}
-          </motion.div>
-        </div> */}
-      </div>
     </section>
   );
 };
-
-const StatItem = ({ icon: Icon, target, suffix, delay, label }: { icon: React.ComponentType<{ className?: string }>; target: number; suffix: string; delay: number; label: string }) => {
-  const [inView, setInView] = useState(false);
-  return (
-    <motion.div
-      variants={{
-        hidden: { opacity: 0, y: 30, scale: 0.9 },
-        visible: { opacity: 1, y: 0, scale: 1 },
-      }}
-      transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
-      className="flex flex-col items-center text-center gap-3 group"
-      onViewportEnter={() => setInView(true)}
-      viewport={{ once: true }}
-    >
-      <motion.div
-        className="flex h-14 w-14 items-center justify-center rounded-2xl text-sky-400"
-        whileHover={{ scale: 1.15, rotate: [0, -10, 10, -5, 0] }}
-        transition={{ duration: 0.4 }}
-      >
-        <Icon className="h-12 w-12" />
-      </motion.div>
-      <div>
-        <RollingNumber target={target} suffix={suffix} delay={delay} inView={inView} />
-        <span className="text-[13px] font-bold text-white/80 uppercase leading-tight block mt-1.5 tracking-widest">{label}</span>
-      </div>
-    </motion.div>
-  );
-};
-
-/** A simple rolling-digit counter that animates after mount+delay */
-function RollingNumber({ target, suffix = "", delay = 0, inView = false }: { target: number; suffix?: string; delay?: number; inView?: boolean }) {
-  const [display, setDisplay] = useState("");
-  const digits = String(target);
-
-  useEffect(() => {
-    if (!inView) return;
-
-    const timeout = setTimeout(() => {
-      // Start with random digits
-      setDisplay(digits.split("").map(() => Math.floor(Math.random() * 10)).join(""));
-
-      const totalDuration = 1800;
-      const perDigitStagger = 100;
-      const interval = 40;
-      let elapsed = 0;
-
-      const timer = setInterval(() => {
-        elapsed += interval;
-        const progress = Math.min(elapsed / totalDuration, 1);
-
-        if (progress >= 1) {
-          setDisplay(digits);
-          clearInterval(timer);
-          return;
-        }
-
-        const rolled = digits.split("").map((finalChar, idx) => {
-          const start = idx * perDigitStagger;
-          const dur = totalDuration - start;
-          if (dur <= 0) return finalChar;
-          const dp = Math.max(0, elapsed - start) / dur;
-          if (dp >= 1) return finalChar;
-          const cycles = 5;
-          if (Math.floor(dp * cycles) >= cycles - 1) return finalChar;
-          return Math.floor(Math.random() * 10).toString();
-        });
-
-        setDisplay(rolled.join(""));
-      }, interval);
-
-      return () => clearInterval(timer);
-    }, delay);
-
-    return () => clearTimeout(timeout);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [delay, inView]);
-
-  return (
-    <span className="text-4xl lg:text-4xl font-black text-white block leading-none tracking-tight tabular-nums">
-      {display || digits}{suffix}
-    </span>
-  );
-}

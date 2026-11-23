@@ -192,20 +192,19 @@ export const BusinessSupportServices: React.FC<BusinessSupportServicesProps> = (
 
               <div className="mt-7 flex flex-wrap gap-3">
                 <Link
-                  href="/contact?tab=business-support"
+                  href="/contact?tab=consultation"
                   className="inline-flex items-center gap-2 rounded-full bg-sky-600 px-7 py-3.5 text-sm font-black text-white shadow-lg shadow-sky-600/25 transition-all duration-200 hover:bg-sky-700"
                 >
-                  Request a Service Quote
+                  Request a Consultation
                   <ArrowRight className="h-4 w-4" />
                 </Link>
-                <a
-                  href="#sales-register"
-                  onClick={(e) => scrollToSection(e, "sales-register")}
+                <Link
+                  href="/contact?tab=quote&service=business-support"
                   className="inline-flex items-center gap-2 rounded-full border border-sky-600/30 bg-white px-6 py-3.5 text-sm font-bold text-navy-900 shadow-sm transition-all duration-200 hover:bg-cream-50"
                 >
-                  View Service Scope Below
-                  <ArrowUpRight className="h-4 w-4 rotate-90 text-sky-600" />
-                </a>
+                  Get a Service Quote
+                  <ArrowUpRight className="h-4 w-4 text-sky-600" />
+                </Link>
               </div>
             </motion.div>
           </div>
@@ -387,17 +386,17 @@ export const BusinessSupportServices: React.FC<BusinessSupportServicesProps> = (
 
             <div className="flex shrink-0 flex-wrap gap-3">
               <Link
-                href="/contact?tab=business-support"
+                href="/contact?tab=consultation"
                 className="inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 text-sm font-black text-navy-900 shadow-xl transition-all hover:bg-cream-50"
               >
-                Request a Service Quote
+                Request a Consultation
                 <ArrowRight className="h-4 w-4 text-sky-600" />
               </Link>
               <Link
-                href="/services"
+                href="/contact?tab=quote&service=business-support"
                 className="inline-flex items-center gap-2 rounded-full border border-white/25 px-6 py-3.5 text-sm font-bold text-white transition-all hover:bg-white/10"
               >
-                All services
+                Get a Service Quote
                 <ArrowUpRight className="h-4 w-4" />
               </Link>
             </div>

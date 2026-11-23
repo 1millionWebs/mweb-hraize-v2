@@ -5,18 +5,18 @@ import { GoogleTagManager, GoogleAnalytics } from '@next/third-parties/google'
 
 export const metadata: Metadata = {
   title: {
-    default: "Hraize | HR Solutions, Business Support & Digital Services",
+    default: "Hraize - Business operations and Support service",
     template: "%s | Hraize",
   },
-  description: "The right support to keep business moving. HR & payroll solutions, recruitment, business administration support, and website solutions across India.",
+  description: "Hraize provides practical HR, recruitment, business administration and website services to help organisations operate smoothly and scale effectively.",
   metadataBase: new URL("https://hraize.com"),
   icons: { icon: "/favicon.ico" },
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "Hraize | HR Solutions, Business Support & Digital Services",
-    description: "The right support to keep business moving. HR & payroll solutions, recruitment, business administration support, and website solutions across India.",
+    title: "Hraize - Business operations and Support service",
+    description: "Hraize provides practical HR, recruitment, business administration and website services to help organisations operate smoothly and scale effectively.",
     url: "https://hraize.com",
     siteName: "Hraize",
     locale: "en_US",
@@ -32,8 +32,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Hraize | HR Solutions, Business Support & Digital Services",
-    description: "The right support to keep business moving. HR & payroll solutions, recruitment, business administration support, and website solutions across India.",
+    title: "Hraize - Business operations and Support service",
+    description: "Hraize provides practical HR, recruitment, business administration and website services to help organisations operate smoothly and scale effectively.",
     images: ["/logo1.png"],
   },
   robots: {

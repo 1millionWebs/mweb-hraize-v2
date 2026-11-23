@@ -2,11 +2,11 @@
 import { Suspense } from "react";
 import { motion } from "motion/react";
 import { useSearchParams } from "next/navigation";
-import { Contact } from "@/src/components/Contact";
+import { Contact, EnquiryType } from "@/src/components/Contact";
 
 function ContactPageContent() {
   const searchParams = useSearchParams();
-  const tab = searchParams.get("tab") as "hr" | "recruitment" | "business-support" | "website-solutions" | "general" | null;
+  const tab = searchParams.get("tab") as EnquiryType | null;
 
   return (
     <motion.div

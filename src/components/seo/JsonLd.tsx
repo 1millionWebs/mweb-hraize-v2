@@ -5,8 +5,8 @@ import { usePathname } from "next/navigation";
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "Hraize HR Analytics",
-  alternateName: "Hraize",
+  name: "Hraize",
+  alternateName: "Hraize Advisory Services Private Limited",
   url: "https://hraize.com",
   logo: "https://hraize.com/logo.svg",
   description:

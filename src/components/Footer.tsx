@@ -25,8 +25,7 @@ export const Footer: React.FC = () => {
               </div>
             </Link>
             <p className="text-xs text-sage-100/60 leading-relaxed font-semibold">
-              Real HR expertise. Real analytics. Real outcomes. Focus on real business value:
-              talent retention, performance, and recruitment growth.
+              The right support to keep business moving. Practical HR, recruitment, business administration and digital services to help organisations operate smoothly and scale effectively.
             </p>
             <div className="flex gap-3">
               <a
@@ -97,7 +96,7 @@ export const Footer: React.FC = () => {
                 <a href="mailto:info@hraize.com" className="font-extrabold text-white text-xs">info@hraize.com</a>
               </div>
               <p className="text-[10px] text-sage-100/40 leading-relaxed font-bold">
-                Reach out with your HR and recruitment needs. Our team responds during working hours.
+                Reach out to discuss your service requirements and operational delivery arrangements.
               </p>
             </div>
           </div>

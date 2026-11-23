@@ -157,20 +157,19 @@ export const PersonnelAdminServices: React.FC<PersonnelAdminServicesProps> = () 
 
             <div className="mt-7 flex flex-wrap gap-3">
               <Link
-                href="/contact?tab=hr"
+                href="/contact?tab=consultation"
                 className="inline-flex items-center gap-2 rounded-full bg-sky-600 px-7 py-3.5 text-sm font-black text-white shadow-lg shadow-sky-600/25 transition-all duration-200 hover:bg-sky-700"
               >
-                Request a Service Quote
+                Request a Consultation
                 <ArrowRight className="h-4 w-4" />
               </Link>
-              <a
-                href="#documentation"
-                onClick={(e) => scrollToSection(e, "documentation")}
+              <Link
+                href="/contact?tab=quote&service=personnel-admin"
                 className="inline-flex items-center gap-2 rounded-full border border-sky-600/30 bg-cream-50 px-6 py-3.5 text-sm font-bold text-navy-900 shadow-sm transition-all duration-200 hover:bg-white"
               >
-                View Service Scope Below
-                <ArrowUpRight className="h-4 w-4 rotate-90 text-sky-600" />
-              </a>
+                Get a Service Quote
+                <ArrowUpRight className="h-4 w-4 text-sky-600" />
+              </Link>
             </div>
 
             <div className="mt-7 flex items-center gap-3 border-t border-sky-600/10 pt-5">
@@ -325,18 +324,18 @@ export const PersonnelAdminServices: React.FC<PersonnelAdminServicesProps> = () 
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
               <Link
-                href="/contact?tab=hr"
+                href="/contact?tab=consultation"
                 className="inline-flex items-center gap-2 rounded-full bg-sky-600 px-7 py-3.5 text-sm font-black text-white shadow-lg shadow-sky-600/25 transition-all hover:bg-sky-700"
               >
-                Request a Service Quote
+                Request a Consultation
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
-                href="/services"
+                href="/contact?tab=quote&service=personnel-admin"
                 className="inline-flex items-center gap-2 rounded-full border border-sky-600/30 px-6 py-3.5 text-sm font-bold text-navy-900 transition-all hover:bg-cream-50"
               >
-                All services
-                <ArrowUpRight className="h-4 w-4" />
+                Get a Service Quote
+                <ArrowUpRight className="h-4 w-4 text-sky-600" />
               </Link>
             </div>
           </div>
