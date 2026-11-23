@@ -1,28 +1,28 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Business Administration Support",
-  description: "Invoice tracking, receivables administration, payment follow-ups and operational reports for growing businesses across India.",
+  title: "Invoice & Receivables Administration | Hraize",
+  description: "Sales invoice register maintenance, due-date tracking, customer reminders, overdue reports, and payment follow-ups.",
   alternates: {
     canonical: "/business-support",
   },
   openGraph: {
-    title: "Business Administration Support | Hraize",
-    description: "Invoice tracking, receivables administration, payment follow-ups and operational reports for growing businesses across India.",
+    title: "Invoice & Receivables Administration | Hraize",
+    description: "Sales invoice register maintenance, due-date tracking, customer reminders, overdue reports, and payment follow-ups.",
     url: "https://hraize.com/business-support",
     images: [
       {
         url: "/logo1.png",
         width: 1200,
         height: 630,
-        alt: "Business Administration Support from Hraize",
+        alt: "Invoice & Receivables Administration from Hraize",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Business Administration Support | Hraize",
-    description: "Invoice tracking, receivables administration, payment follow-ups and operational reports for growing businesses across India.",
+    title: "Invoice & Receivables Administration | Hraize",
+    description: "Sales invoice register maintenance, due-date tracking, customer reminders, overdue reports, and payment follow-ups.",
     images: ["/logo1.png"],
   },
 };
