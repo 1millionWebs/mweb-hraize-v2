@@ -8,16 +8,15 @@ import { ChevronDown, Menu, X, ArrowUpRight, Mail } from "lucide-react";
 
 const serviceCategories = [
   {
-    title: "HR & Payroll Services",
+    title: "HR, Payroll & Admin",
     href: "/hr-services",
     items: [
-      { name: "Payroll Preparation & Processing", href: "/hr-services#payroll" },
-      { name: "Salary Statements & Payslips", href: "/hr-services#salary-statements" },
-      { name: "Employee Joining & Exit Admin", href: "/hr-services#joining-exit" },
+      { name: "Monthly Payroll & Salary", href: "/hr-services#payroll" },
       { name: "Provident Fund (PF) & EPFO", href: "/hr-services#pf" },
-      { name: "ESI Administration & Filing", href: "/hr-services#esi" },
-      { name: "Professional Tax (PT)", href: "/hr-services#pt" },
-      { name: "Statutory Record Maintenance", href: "/hr-services#statutory-records" },
+      { name: "ESI & Professional Tax (PT)", href: "/hr-services#esi-pt" },
+      { name: "Employee Lifecycle Admin", href: "/hr-services#lifecycle" },
+      { name: "Personnel Data & Records", href: "/hr-services#records" },
+      { name: "Compliance & HR Reports", href: "/hr-services#compliance" },
     ],
   },
   {
@@ -55,18 +54,6 @@ const serviceCategories = [
       { name: "Maintenance & Tech Support", href: "/website-solutions#maintenance" },
     ],
   },
-  {
-    title: "HR & Personnel Admin",
-    href: "/personnel-administration",
-    items: [
-      { name: "Employee Documentation", href: "/personnel-administration#documentation" },
-      { name: "Personnel Data Maintenance", href: "/personnel-administration#personnel-data" },
-      { name: "Attendance & Leave Records", href: "/personnel-administration#attendance-leave" },
-      { name: "Employee Lifecycle Admin", href: "/personnel-administration#lifecycle" },
-      { name: "HR Reports & Documentation", href: "/personnel-administration#hr-reports" },
-      { name: "Compliance Records Support", href: "/personnel-administration#compliance-records" },
-    ],
-  },
 ];
 
 export const Navbar: React.FC = () => {
@@ -98,7 +85,7 @@ export const Navbar: React.FC = () => {
   };
 
   const isActive = (path: string) => pathname === path;
-  const isServiceActive = pathname === "/services" || pathname === "/hr-services" || pathname === "/recruitment" || pathname === "/business-support" || pathname === "/website-solutions" || pathname === "/personnel-administration";
+  const isServiceActive = pathname === "/services" || pathname === "/hr-services" || pathname === "/recruitment" || pathname === "/business-support" || pathname === "/website-solutions";
   const isCareerActive = pathname === "/careers" || pathname === "/submit-resume" || pathname === "/vacancies";
 
   return (
@@ -185,8 +172,8 @@ export const Navbar: React.FC = () => {
                   exit={{ opacity: 0, y: 10 }}
                   className="absolute left-1/2 z-50 top-full pt-3 -translate-x-1/2"
                 >
-                  <div className="w-[980px] md:w-[1080px] lg:w-[1200px] xl:w-[1260px] rounded-2xl border border-sky-200/50 bg-cream-50 p-6 shadow-2xl">
-                    <div className="grid grid-cols-5 gap-4 lg:gap-5">
+                  <div className="w-[880px] md:w-[980px] lg:w-[1060px] rounded-2xl border border-sky-200/50 bg-cream-50 p-6 shadow-2xl">
+                    <div className="grid grid-cols-4 gap-5 lg:gap-6">
                       {serviceCategories.map((cat, idx) => (
                         <div key={idx} className="space-y-3.5 text-left">
                           <Link

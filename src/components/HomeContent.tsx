@@ -34,7 +34,7 @@ export const HomeContent: React.FC<HomeContentProps> = ({
 
   const services = [
     {
-      title: "HR & Payroll Services",
+      title: "HR, Payroll Services & Administration",
       number: "01",
       desc: "Payroll processing, PF, ESI, Professional Tax and employee administration.",
       href: "/hr-services",
@@ -227,7 +227,7 @@ export const HomeContent: React.FC<HomeContentProps> = ({
               href="/services"
               className="inline-flex items-center gap-2 rounded-full border border-sky-600/30 bg-cream-50 px-6 py-2.5 text-xs font-black uppercase tracking-wider text-sky-700 hover:bg-sky-600 hover:text-white transition-all shadow-sm"
             >
-              Explore Complete 5-Pillar Service Scope
+              Explore Complete 4-Pillar Service Scope
               <ArrowUpRight className="h-4 w-4" />
             </Link>
           </div>

@@ -10,7 +10,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/recruitment",
     "/business-support",
     "/website-solutions",
-    "/personnel-administration",
     "/careers",
     "/contact",
     "/submit-resume",

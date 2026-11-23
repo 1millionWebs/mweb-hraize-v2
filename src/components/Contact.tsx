@@ -34,10 +34,9 @@ interface ContactProps {
 }
 
 export const Contact: React.FC<ContactProps> = ({ initialTab = "hr" }) => {
-  // Normalize initialTab to one of the 6 active UI tab keys
-  const getNormalizedTab = (tab: EnquiryType): "hr" | "recruitment" | "business-support" | "website-solutions" | "personnel-admin" | "general" => {
+  // Normalize initialTab to one of the 5 active UI tab keys
+  const getNormalizedTab = (tab: EnquiryType): "hr" | "recruitment" | "business-support" | "website-solutions" | "general" => {
     if (tab === "consultation" || tab === "quote") return "general";
-    if (tab === "personnel-admin") return "personnel-admin";
     if (tab === "recruitment") return "recruitment";
     if (tab === "business-support") return "business-support";
     if (tab === "website-solutions") return "website-solutions";
@@ -45,7 +44,7 @@ export const Contact: React.FC<ContactProps> = ({ initialTab = "hr" }) => {
     return "hr";
   };
 
-  const [activeTab, setActiveTab] = useState<"hr" | "recruitment" | "business-support" | "website-solutions" | "personnel-admin" | "general">(
+  const [activeTab, setActiveTab] = useState<"hr" | "recruitment" | "business-support" | "website-solutions" | "general">(
     getNormalizedTab(initialTab)
   );
 
@@ -68,11 +67,10 @@ export const Contact: React.FC<ContactProps> = ({ initialTab = "hr" }) => {
   }, [initialTab]);
 
   const tabs = [
-    { id: "hr", label: "01. HR & Payroll", icon: Shield },
+    { id: "hr", label: "01. HR, Payroll & Admin", icon: Shield },
     { id: "recruitment", label: "02. Recruitment", icon: Users },
-    { id: "business-support", label: "03. Invoicing", icon: FileText },
+    { id: "business-support", label: "03. Invoicing Desk", icon: FileText },
     { id: "website-solutions", label: "04. Website Dev", icon: Globe },
-    { id: "personnel-admin", label: "05. Personnel Admin", icon: UserCheck },
     { id: "general", label: "Consultation / Quote", icon: Sparkles },
   ];
 
@@ -87,6 +85,12 @@ export const Contact: React.FC<ContactProps> = ({ initialTab = "hr" }) => {
           { value: "esi", label: "Employee State Insurance (ESI) Administration" },
           { value: "pt", label: "Professional Tax (PT) Calculations & Filing" },
           { value: "statutory-records", label: "Employee Data & Statutory Record Maintenance" },
+          { value: "documentation", label: "Employee Documentation & Letters" },
+          { value: "personnel-data", label: "Personnel Data Maintenance" },
+          { value: "attendance-leave", label: "Attendance & Leave Records Coordination" },
+          { value: "lifecycle", label: "Employee Lifecycle Administration" },
+          { value: "hr-reports", label: "HR Reports & Periodic Documentation" },
+          { value: "compliance-records", label: "Compliance Records Support" },
         ];
       case "recruitment":
         return [
@@ -110,13 +114,6 @@ export const Contact: React.FC<ContactProps> = ({ initialTab = "hr" }) => {
           { value: "landing-pages", label: "Landing Page Development" },
           { value: "mobile-responsive", label: "Mobile-Responsive Website Development" },
           { value: "maintenance", label: "Website Maintenance & Tech Partner Support" },
-        ];
-      case "personnel-admin":
-        return [
-          { value: "documentation", label: "Employee Documentation" },
-          { value: "personnel-data", label: "Personnel Data Maintenance" },
-          { value: "attendance-leave", label: "Attendance & Leave Records Coordination" },
-          { value: "lifecycle", label: "Employee Lifecycle Administration" },
         ];
       case "general":
       default:
@@ -289,7 +286,7 @@ export const Contact: React.FC<ContactProps> = ({ initialTab = "hr" }) => {
             </div>
 
             {/* Division Switcher */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 mb-8 bg-cream-50 p-2 rounded-2xl border border-sky-600/15">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 mb-8 bg-cream-50 p-2 rounded-2xl border border-sky-600/15">
               {tabs.map((tab) => {
                 const TabIcon = tab.icon;
                 const active = activeTab === tab.id;

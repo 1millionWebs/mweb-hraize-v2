@@ -14,13 +14,13 @@ export const OurServicesOverview: React.FC = () => {
     {
       id: "hr-payroll",
       number: "01",
-      title: "HR & Payroll Services",
-      subtitle: "End-to-End Monthly Payroll & Statutory Compliance",
+      title: "HR, Payroll Services & Administration",
+      subtitle: "End-to-End Payroll Processing, Statutory Compliance & Personnel Administration",
       href: "/hr-services",
       contactTab: "hr",
       image: "/services-hr.png",
-      badgeText: "Statutory & EPFO Ready",
-      statLabel: "100% On-Time Filing",
+      badgeText: "Statutory & Records Ready",
+      statLabel: "100% On-Time Execution",
       icon: Shield,
       bullets: [
         "Monthly payroll preparation and processing.",
@@ -29,7 +29,13 @@ export const OurServicesOverview: React.FC = () => {
         "Provident Fund (PF) administration and EPFO filing support.",
         "Employee State Insurance (ESI) administration and filing support.",
         "Professional Tax (PT) calculations and filing support.",
-        "Employee data and statutory record maintenance."
+        "Employee data and statutory record maintenance.",
+        "Employee documentation.",
+        "Personnel data maintenance.",
+        "Attendance and leave records coordination.",
+        "Employee lifecycle administration.",
+        "HR reports and documentation.",
+        "Compliance records and documentation support."
       ],
       note: "Service scope will be agreed with each client and will reflect the applicable statutory requirements."
     },
@@ -96,34 +102,13 @@ export const OurServicesOverview: React.FC = () => {
         "Website maintenance and technical support."
       ],
       note: "Delivered in collaboration with Hraize's technology development partner."
-    },
-    {
-      id: "personnel-admin",
-      number: "05",
-      title: "HR & Personnel Administration",
-      subtitle: "Organized Employee Lifecycle Documentation & Records",
-      href: "/personnel-administration",
-      contactTab: "hr",
-      image: "/partners.png",
-      badgeText: "Audit-Ready Records",
-      statLabel: "Lifecycle Management",
-      icon: UserCheck,
-      bullets: [
-        "Employee documentation.",
-        "Personnel data maintenance.",
-        "Attendance and leave records coordination.",
-        "Employee lifecycle administration.",
-        "HR reports and documentation.",
-        "Compliance records and documentation support."
-      ],
-      note: "Dedicated personnel administration support to keep employee records organized and audit-ready."
     }
   ];
 
   const valueProps = [
     {
-      value: "05",
-      label: "Service Pillars Under One Roof",
+      value: "04",
+      label: "Core Service Pillars Under One Roof",
       icon: Layers
     },
     {

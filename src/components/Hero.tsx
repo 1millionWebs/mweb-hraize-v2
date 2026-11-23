@@ -264,7 +264,7 @@ export const Hero: React.FC<HeroProps> = () => {
                     href="/services"
                     className="inline-flex items-center gap-1 text-[11px] font-black uppercase tracking-wider text-sky-600 hover:text-sky-700"
                   >
-                    All 5 Services
+                    All Services
                     <ArrowUpRight className="h-3.5 w-3.5" />
                   </Link>
                 </div>
