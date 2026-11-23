@@ -50,83 +50,77 @@ export const PersonnelAdminServices: React.FC<PersonnelAdminServicesProps> = () 
       id: "documentation",
       number: "01",
       title: "Employee Documentation",
-      point: "Employee documentation.",
+      point: "Employee documentation and records management.",
       serviceQuery: "documentation",
       actionLabel: "Request Documentation Support",
       icon: FileText,
-      span: "md:col-span-4",
-      tint: "bg-white border-sky-600/15",
-      iconTone: "bg-sky-600 text-white",
+      iconBg: "bg-sky-100 text-sky-600",
+      cardBorder: "border-sky-600/20",
     },
     {
       id: "personnel-data",
       number: "02",
       title: "Personnel Data Maintenance",
-      point: "Personnel data maintenance.",
+      point: "Personnel data maintenance and accuracy.",
       serviceQuery: "personnel-data",
       actionLabel: "Request Personnel Data Support",
       icon: Users,
-      span: "md:col-span-2",
-      tint: "bg-teal-100 border-forest-500/20",
-      iconTone: "bg-forest-500 text-white",
+      iconBg: "bg-forest-100 text-forest-600",
+      cardBorder: "border-forest-500/20",
     },
     {
       id: "attendance-leave",
       number: "03",
-      title: "Attendance and Leave Records Coordination",
+      title: "Attendance & Leave Records",
       point: "Attendance and leave records coordination.",
       serviceQuery: "attendance-leave",
       actionLabel: "Request Attendance Records Support",
       icon: CalendarCheck,
-      span: "md:col-span-2",
-      tint: "bg-white border-sky-600/15",
-      iconTone: "bg-copper-400 text-white",
+      iconBg: "bg-copper-100 text-copper-600",
+      cardBorder: "border-copper-400/20",
     },
     {
       id: "lifecycle",
       number: "04",
       title: "Employee Lifecycle Administration",
-      point: "Employee lifecycle administration.",
+      point: "Employee lifecycle administration end-to-end.",
       serviceQuery: "lifecycle",
       actionLabel: "Request Lifecycle Admin Support",
       icon: UserCheck,
-      span: "md:col-span-4",
-      tint: "bg-sage-100 border-forest-500/20",
-      iconTone: "bg-navy-900 text-white",
+      iconBg: "bg-navy-100 text-navy-600",
+      cardBorder: "border-navy-900/15",
     },
     {
       id: "hr-reports",
       number: "05",
-      title: "HR Reports and Documentation",
-      point: "HR reports and documentation.",
+      title: "HR Reports & Documentation",
+      point: "HR reports and documentation support.",
       serviceQuery: "hr-reports",
       actionLabel: "Request HR Reports Support",
       icon: BarChart3,
-      span: "md:col-span-3",
-      tint: "bg-white border-sky-600/15",
-      iconTone: "bg-sky-600 text-white",
+      iconBg: "bg-sky-100 text-sky-600",
+      cardBorder: "border-sky-600/20",
     },
     {
       id: "compliance-records",
       number: "06",
-      title: "Compliance Records and Documentation Support",
+      title: "Compliance Records Support",
       point: "Compliance records and documentation support.",
       serviceQuery: "compliance-records",
       actionLabel: "Request Compliance Records Support",
       icon: ShieldCheck,
-      span: "md:col-span-3",
-      tint: "bg-cream-50 border-copper-400/30",
-      iconTone: "bg-copper-400 text-white",
+      iconBg: "bg-copper-100 text-copper-600",
+      cardBorder: "border-copper-400/20",
     },
   ];
 
   const scopePoints = [
-    "Employee documentation.",
-    "Personnel data maintenance.",
-    "Attendance and leave records coordination.",
-    "Employee lifecycle administration.",
-    "HR reports and documentation.",
-    "Compliance records and documentation support.",
+    "Employee documentation and records management",
+    "Personnel data maintenance and accuracy",
+    "Attendance and leave records coordination",
+    "Employee lifecycle administration end-to-end",
+    "HR reports and documentation support",
+    "Compliance records and documentation support",
   ];
 
   return (
@@ -267,19 +261,19 @@ export const PersonnelAdminServices: React.FC<PersonnelAdminServicesProps> = () 
           </div>
         </div>
 
-        {/* ============ SERVICES BENTO GRID ============ */}
-        <div className="grid gap-5 md:grid-cols-6">
+        {/* ============ SERVICES UNIFORM GRID ============ */}
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {adminItems.map((item) => {
             const Icon = item.icon;
             return (
               <section
                 key={item.id}
                 id={item.id}
-                className={`scroll-mt-32 flex flex-col rounded-3xl border p-6 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-xl sm:p-7 ${item.span} ${item.tint}`}
+                className={`group scroll-mt-32 flex flex-col h-full rounded-3xl border p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl sm:p-7 bg-white ${item.cardBorder}`}
               >
                 <div className="flex items-start justify-between gap-4">
                   <span
-                    className={`flex h-12 w-12 items-center justify-center rounded-2xl shadow-sm ${item.iconTone}`}
+                    className={`flex h-12 w-12 items-center justify-center rounded-2xl shadow-sm transition-transform duration-300 group-hover:scale-105 ${item.iconBg}`}
                   >
                     <Icon className="h-5 w-5" />
                   </span>
@@ -292,11 +286,11 @@ export const PersonnelAdminServices: React.FC<PersonnelAdminServicesProps> = () 
                   {item.title}
                 </h3>
 
-                <div className="mt-3 flex items-start gap-2.5 rounded-xl border border-navy-900/10 bg-white/70 px-3.5 py-3">
+                <div className="mt-3 flex items-start gap-2.5 rounded-xl border border-navy-900/10 bg-cream-50/50 px-3.5 py-3">
                   <span className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-forest-500/15 text-forest-600">
                     <CheckCircle2 className="h-3 w-3" />
                   </span>
-                  <span className="text-sm font-bold text-navy-900/85">{item.point}</span>
+                  <span className="text-sm font-medium text-navy-900/80">{item.point}</span>
                 </div>
 
                 <div className="mt-auto flex flex-wrap items-center justify-between gap-3 border-t border-navy-900/10 pt-4">

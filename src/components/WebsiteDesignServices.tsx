@@ -391,9 +391,9 @@ export const WebsiteDesignServices: React.FC<WebsiteDesignServicesProps> = () =>
                   <span className="text-sm font-bold text-navy-900/85">{item.point}</span>
                 </div>
 
-                <p className="mt-4 text-[11px] font-medium italic leading-relaxed text-navy-900/55">
+                {/* <p className="mt-4 text-[11px] font-medium italic leading-relaxed text-navy-900/55">
                   {DISCLAIMER}
-                </p>
+                </p> */}
 
                 <Link
                   href={`/contact?tab=website-solutions&service=${item.serviceQuery}`}

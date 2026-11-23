@@ -6,7 +6,8 @@ import Link from "next/link";
 import {
   CheckCircle, XCircle, Users, Award, Briefcase, ChevronRight,
   Building2, GraduationCap, Check, ArrowRight, UserCheck,
-  Search, CalendarCheck, ShieldCheck, Filter, Sparkles, ArrowDown
+  Search, CalendarCheck, ShieldCheck, Filter, Sparkles, ArrowDown,
+  Info
 } from "lucide-react";
 import { SectionLabel, FeatureCheck } from "./UIElements";
 
@@ -110,40 +111,112 @@ export const RecruitmentServices: React.FC<RecruitmentServicesProps> = ({
     }
   ];
 
+  const DISCLAIMER = "Service scope will be agreed with each client and will reflect the applicable statutory requirements.";
+
   return (
-    <div className="bg-cream-100 py-16">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div className="relative bg-cream-100">
+      {/* Decorative backdrop */}
+      <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div className="absolute inset-x-0 top-0 h-[420px] bg-[radial-gradient(70%_100%_at_50%_0%,rgba(2,132,199,0.14),transparent_70%)]" />
+        <div className="absolute -left-28 top-72 h-72 w-72 rounded-full bg-copper-100 blur-3xl" />
+        <div className="absolute -right-24 top-24 h-64 w-64 rounded-full bg-sky-100 blur-3xl" />
+      </div>
 
-        {/* HERO SECTION */}
-        <div className="text-center max-w-3xl mx-auto mb-12">
-          <SectionLabel>Talent Acquisition</SectionLabel>
-          <h1 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-black text-navy-900 uppercase tracking-tight">
-            Recruitment Solutions
-          </h1>
-          <p className="mt-3 text-sm font-bold text-sky-700 uppercase tracking-[0.12em]">
-            Permanent and contract hiring, sourcing, screening and interview coordination.
-          </p>
-          <p className="mt-4 text-sm sm:text-base text-navy-900/70 font-semibold leading-relaxed">
-            We deliver high-caliber candidates aligned with your culture, backed by comprehensive screening and a bulletproof 60-day replacement guarantee.
-          </p>
+      <div className="relative mx-auto max-w-7xl px-4 pb-20 pt-12 sm:px-6 lg:px-8">
+        {/* ============ EDITORIAL SPLIT HERO ============ */}
+        <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14 mb-16">
+          <div>
+            <motion.span
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.45, ease: "easeOut" }}
+              className="inline-flex items-center gap-2 rounded-full border border-sky-600/25 bg-white px-4 py-1.5 text-[11px] font-black uppercase tracking-[0.18em] text-sky-700 shadow-sm"
+            >
+              <span className="h-1.5 w-1.5 rounded-full bg-copper-400" />
+              02. Recruitment Solutions
+            </motion.span>
 
-          <div className="mt-8 flex flex-wrap justify-center gap-4">
-            <button
-              onClick={onEmployerClick}
-              className="inline-flex items-center gap-2 rounded-full bg-sky-600 px-8 py-3.5 text-sm font-black text-white shadow-lg shadow-sky-600/20 hover:bg-sky-700 transition-all cursor-pointer"
+            <motion.h1
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.06, ease: "easeOut" }}
+              className="mt-5 text-4xl font-black uppercase leading-[1.03] tracking-tight text-navy-900 sm:text-5xl lg:text-6xl"
             >
-              Request Hiring Support
-              <ArrowRight className="h-4 w-4" />
-            </button>
-            <a
-              href="#permanent"
-              onClick={(e) => scrollToSection(e, "permanent")}
-              className="inline-flex items-center gap-2 rounded-full border border-sky-600/30 bg-white px-7 py-3.5 text-sm font-bold text-navy-900 hover:bg-cream-50 shadow-sm transition-all"
+              Recruitment
+              <span className="block text-sky-600">Solutions</span>
+            </motion.h1>
+
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.12, ease: "easeOut" }}
             >
-              Explore Solutions Below
-              <ArrowDown className="h-4 w-4 text-sky-600" />
-            </a>
+              <p className="mt-5 max-w-xl text-base font-semibold leading-relaxed text-navy-900/70 sm:text-lg">
+                Permanent and contract hiring, sourcing, screening, and interview coordination.
+              </p>
+
+              <div className="mt-5 flex max-w-xl items-start gap-3 rounded-2xl border-l-4 border-copper-400 bg-white/80 px-4 py-3.5 shadow-sm">
+                <Info className="mt-0.5 h-4 w-4 shrink-0 text-copper-500" />
+                <span className="text-xs font-medium leading-relaxed text-navy-900/75">
+                  {DISCLAIMER}
+                </span>
+              </div>
+
+              <div className="mt-7 flex flex-wrap gap-3">
+                <button
+                  onClick={onEmployerClick}
+                  className="inline-flex items-center gap-2 rounded-full bg-sky-600 px-7 py-3.5 text-sm font-black text-white shadow-lg shadow-sky-600/25 transition-all duration-200 hover:bg-sky-700 cursor-pointer"
+                >
+                  Request Hiring Support
+                  <ArrowRight className="h-4 w-4" />
+                </button>
+                <a
+                  href="#permanent"
+                  onClick={(e) => scrollToSection(e, "permanent")}
+                  className="inline-flex items-center gap-2 rounded-full border border-sky-600/30 bg-white px-6 py-3.5 text-sm font-bold text-navy-900 shadow-sm transition-all duration-200 hover:bg-cream-50"
+                >
+                  View Service Scope Below
+                  <ArrowDown className="h-4 w-4 text-sky-600" />
+                </a>
+              </div>
+            </motion.div>
           </div>
+
+          {/* Hero visual */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
+            className="relative"
+          >
+            {/* Image container styled to match decorative copper border (rounded-2rem, copper border) */}
+            <div className="relative overflow-hidden rounded-[2rem] border border-copper-400/45 shadow-2xl shadow-navy-900/10">
+              <Image
+                src="/services-recruitment.png"
+                alt="Recruitment specialists reviewing candidate profiles and hiring strategies"
+                width={1400}
+                height={788}
+                priority
+                className="h-[280px] w-full object-cover sm:h-[360px] lg:h-[430px]"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-navy-900/85 via-navy-900/15 to-transparent" />
+              <div className="absolute inset-x-5 bottom-5">
+                <p className="text-[10px] font-black uppercase tracking-[0.2em] text-sky-300">
+                  Permanent · Contract · Executive Search
+                </p>
+                <p className="mt-1.5 text-sm font-bold text-white">
+                  Quality matches, not resume volume.
+                </p>
+              </div>
+            </div>
+
+            <div className="absolute -bottom-6 right-4 rounded-2xl border border-sky-600/20 bg-white px-5 py-4 shadow-xl sm:right-8">
+              <span className="block text-3xl font-black leading-none text-sky-600">04</span>
+              <span className="mt-1.5 block text-[10px] font-black uppercase tracking-[0.15em] text-navy-900/50">
+                Hiring models
+              </span>
+            </div>
+          </motion.div>
         </div>
 
         {/* QUICK JUMP NAVIGATION BAR (Corresponds to Navbar Items) */}

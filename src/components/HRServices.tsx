@@ -183,11 +183,8 @@ export const HRServices: React.FC<HRServicesProps> = () => {
             transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
             className="relative"
           >
-            <div
-              aria-hidden
-              className="absolute -inset-2 translate-x-4 translate-y-4 rounded-[2rem] border border-copper-400/45"
-            />
-            <div className="relative overflow-hidden rounded-[1.75rem] border border-sky-600/20 shadow-2xl shadow-navy-900/10">
+            {/* Image container styled to match decorative copper border (rounded-2rem, copper border) */}
+            <div className="relative overflow-hidden rounded-[2rem] border border-copper-400/45 shadow-2xl shadow-navy-900/10">
               <Image
                 src="/services-hr.png"
                 alt="HR specialists reviewing employment and payroll documents"
