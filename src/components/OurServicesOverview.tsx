@@ -67,7 +67,7 @@ export const OurServicesOverview: React.FC = () => {
       subtitle: "Back-Office Invoicing, Due-Date Tracking & Collections Follow-up",
       href: "/business-support",
       contactTab: "business-support",
-      image: "/reporting.png",
+      image: "/documentation.png",
       badgeText: "DSO & Cash Flow Support",
       statLabel: "Structured Ledger Tracking",
       icon: FileSpreadsheet,
@@ -89,7 +89,7 @@ export const OurServicesOverview: React.FC = () => {
       subtitle: "Complete Digital & Technology Solutions Delivered with Our Partner",
       href: "/website-solutions",
       contactTab: "website-solutions",
-      image: "/documentation.png",
+      image: "/it-web-dev.jpg",
       badgeText: "Tech Partner Delivered",
       statLabel: "Scalable & Modern Stack",
       icon: Globe,
@@ -202,9 +202,8 @@ export const OurServicesOverview: React.FC = () => {
               >
                 <div className={`grid grid-cols-1 lg:grid-cols-12 items-stretch`}>
                   {/* Visual / Image Side */}
-                  <div className={`lg:col-span-5 relative min-h-[300px] lg:min-h-[440px] bg-navy-900 overflow-hidden ${
-                    isReversed ? "lg:order-2" : "lg:order-1"
-                  }`}>
+                  <div className={`lg:col-span-5 relative min-h-[300px] lg:min-h-[440px] bg-navy-900 overflow-hidden ${isReversed ? "lg:order-2" : "lg:order-1"
+                    }`}>
                     <Image
                       src={srv.image}
                       alt={srv.title}
@@ -240,9 +239,8 @@ export const OurServicesOverview: React.FC = () => {
                   </div>
 
                   {/* Content / Scope Side */}
-                  <div className={`lg:col-span-7 p-8 sm:p-10 lg:p-12 flex flex-col justify-between ${
-                    isReversed ? "lg:order-1" : "lg:order-2"
-                  }`}>
+                  <div className={`lg:col-span-7 p-8 sm:p-10 lg:p-12 flex flex-col justify-between ${isReversed ? "lg:order-1" : "lg:order-2"
+                    }`}>
                     <div>
                       <div className="flex items-center gap-2 mb-3">
                         <span className="h-2 w-2 rounded-full bg-sky-600" />

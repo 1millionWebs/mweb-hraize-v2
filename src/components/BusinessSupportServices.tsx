@@ -73,7 +73,7 @@ export const BusinessSupportServices: React.FC<BusinessSupportServicesProps> = (
       title: "Invoice Due-Date Tracking",
       desc: "Proactive tracking of credit periods, maturity timelines, and payment milestone dates.",
       icon: Clock,
-      image: "/health-checkup.png",
+      image: "/services-training.png",
       details: [
         "Invoice due-date tracking across all client accounts.",
         "Milestone alerts prior to payment due dates.",
