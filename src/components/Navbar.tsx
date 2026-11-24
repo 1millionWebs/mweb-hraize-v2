@@ -82,6 +82,11 @@ export const Navbar: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [expandedCategories, setExpandedCategories] = useState<Record<string, boolean>>({});
 
+  // Mobile navigation expansion state
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+  const [mobileCareersOpen, setMobileCareersOpen] = useState(false);
+  const [mobileExpandedCat, setMobileExpandedCat] = useState<string | null>(null);
+
   const toggleCategory = (title: string) => {
     setExpandedCategories((prev) => ({
       ...prev,
@@ -89,10 +94,17 @@ export const Navbar: React.FC = () => {
     }));
   };
 
+  const toggleMobileCategory = (title: string) => {
+    setMobileExpandedCat((prev) => (prev === title ? null : title));
+  };
+
   const closeMenus = () => {
     setMobileMenuOpen(false);
     setServicesOpen(false);
     setCareersOpen(false);
+    setMobileServicesOpen(false);
+    setMobileCareersOpen(false);
+    setMobileExpandedCat(null);
     setExpandedCategories({});
   };
 
@@ -356,121 +368,239 @@ export const Navbar: React.FC = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden border-t border-sky-600/50 bg-cream-100 px-4 py-4 space-y-2"
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="md:hidden border-t border-sky-600/20 bg-cream-100/98 backdrop-blur-lg px-4 pt-3 pb-6 max-h-[calc(100vh-4.5rem)] overflow-y-auto shadow-2xl space-y-2.5"
           >
-            <Link
-              href="/"
-              prefetch={false}
-              onClick={closeMenus}
-              className="block w-full px-3 py-2 text-base font-semibold rounded-lg text-navy-900 hover:bg-cream-50 transition-colors duration-300"
-            >
-              Home
-            </Link>
-            <Link
-              href="/about"
-              prefetch={false}
-              onClick={closeMenus}
-              className="block w-full px-3 py-2 text-base font-semibold rounded-lg text-navy-900 hover:bg-cream-50 transition-colors duration-300"
-            >
-              About us
-            </Link>
+            {/* Top Level Nav Items */}
+            <div className="space-y-1.5">
+              {/* Home */}
+              <Link
+                href="/"
+                prefetch={false}
+                onClick={closeMenus}
+                className={`flex items-center justify-between w-full px-4 py-3 rounded-xl text-sm transition-all ${
+                  isActive("/")
+                    ? "bg-sky-600/10 text-sky-600 font-black"
+                    : "text-navy-900 font-bold hover:bg-white/80"
+                }`}
+              >
+                <span>Home</span>
+              </Link>
 
-            <div className="border-l-2 border-sky-600/50 ml-2 pl-3 space-y-3">
-              <div className="flex items-center justify-between py-1">
-                <p className="text-xs font-extrabold tracking-widest uppercase text-navy-900/50 transition-colors duration-300">Services</p>
-                <Link
-                  href="/services"
-                  prefetch={false}
-                  onClick={closeMenus}
-                  className="text-[11px] font-bold text-sky-600 hover:underline flex items-center gap-0.5"
+              {/* About Us */}
+              <Link
+                href="/about"
+                prefetch={false}
+                onClick={closeMenus}
+                className={`flex items-center justify-between w-full px-4 py-3 rounded-xl text-sm transition-all ${
+                  isActive("/about")
+                    ? "bg-sky-600/10 text-sky-600 font-black"
+                    : "text-navy-900 font-bold hover:bg-white/80"
+                }`}
+              >
+                <span>About us</span>
+              </Link>
+
+              {/* Services - Modern Simple View with Expandable Arrow */}
+              <div className="rounded-xl overflow-hidden transition-colors">
+                <div
+                  className={`flex items-center justify-between w-full px-4 py-3 rounded-xl cursor-pointer transition-all ${
+                    isServiceActive || mobileServicesOpen
+                      ? "bg-white shadow-xs text-sky-600 font-black"
+                      : "text-navy-900 hover:bg-white/80 font-bold"
+                  }`}
+                  onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
                 >
-                  All Services <ArrowUpRight className="h-3 w-3" />
-                </Link>
-              </div>
-
-              {serviceCategories.map((cat, idx) => {
-                const isExpanded = !!expandedCategories[cat.title];
-                const hasMore = Boolean(cat.initialLimit && cat.items.length > cat.initialLimit);
-                const visibleItems = hasMore && !isExpanded && cat.initialLimit
-                  ? cat.items.slice(0, cat.initialLimit)
-                  : cat.items;
-                const remainingCount = cat.initialLimit ? cat.items.length - cat.initialLimit : 0;
-
-                return (
-                  <div key={idx} className="space-y-1.5">
-                    <Link
-                      href={cat.href}
-                      prefetch={false}
-                      onClick={closeMenus}
-                      className="block w-full px-3 py-0.5 text-sm font-bold text-sky-600 hover:text-sky-500"
-                    >
-                      {cat.title}
-                    </Link>
-                    <div className="pl-4 space-y-1.5">
-                      {visibleItems.map((item, itemIdx) => (
-                        <Link
-                          key={itemIdx}
-                          href={item.href}
-                          prefetch={false}
-                          onClick={(e) => handleNavAnchorClick(e, item.href)}
-                          className="flex items-start w-full px-3 py-0.5 text-xs font-medium text-navy-900/60 hover:text-navy-900 transition-colors duration-300 leading-snug"
-                        >
-                          <span className="h-1.5 w-1.5 rounded-full border border-sky-600/50 shrink-0 mr-2 mt-1" />
-                          <span>{item.name}</span>
-                        </Link>
-                      ))}
-
-                      {hasMore && (
-                        <button
-                          type="button"
-                          onClick={(e) => {
-                            e.preventDefault();
-                            e.stopPropagation();
-                            toggleCategory(cat.title);
-                          }}
-                          className="flex items-center gap-1 px-3 pt-1 text-[11px] font-bold text-sky-600 hover:text-sky-700 transition-colors cursor-pointer"
-                        >
-                          <span>{isExpanded ? "Show less" : `+ Show more (${remainingCount})`}</span>
-                          <ChevronDown className={`h-3 w-3 transition-transform duration-200 ${isExpanded ? "rotate-180" : ""}`} />
-                        </button>
-                      )}
-                    </div>
+                  <span className="text-sm">Services</span>
+                  <div className="p-1 rounded-lg text-navy-900/50 hover:text-sky-600">
+                    <ChevronDown
+                      className={`h-4 w-4 transition-transform duration-300 ${
+                        mobileServicesOpen ? "rotate-180 text-sky-600" : ""
+                      }`}
+                    />
                   </div>
-                );
-              })}
-            </div>
+                </div>
 
-            <div className="border-l-2 border-sky-600/50 ml-2 pl-3 space-y-3">
-              <p className="text-xs font-extrabold tracking-widest uppercase py-1 text-navy-900/50 transition-colors duration-300">Careers</p>
-              <div className="space-y-1.5">
-                <Link
-                  href="/submit-resume"
-                  prefetch={false}
-                  onClick={closeMenus}
-                  className="flex items-center w-full px-3 py-1.5 text-xs font-semibold rounded-lg text-sky-600 hover:text-sky-500"
+                {/* Elaborated Services Sub-Menu */}
+                <AnimatePresence initial={false}>
+                  {mobileServicesOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.28, ease: "easeInOut" }}
+                      className="overflow-hidden"
+                    >
+                      <div className="mt-1.5 mb-2 ml-2 pl-3 pr-1 border-l-2 border-sky-600/30 space-y-1.5">
+                        {/* Quick View All Services Link */}
+                        <div className="flex items-center justify-between py-1.5 px-3">
+                          <span className="text-[10px] font-black uppercase tracking-wider text-navy-900/50">
+                            Our 4 Pillars
+                          </span>
+                          <Link
+                            href="/services"
+                            prefetch={false}
+                            onClick={closeMenus}
+                            className="inline-flex items-center gap-1 text-[11px] font-black text-sky-600 hover:text-sky-700"
+                          >
+                            <span>All Services</span>
+                            <ArrowUpRight className="h-3 w-3" />
+                          </Link>
+                        </div>
+
+                        {/* 4 Service Pillars Accordion */}
+                        {serviceCategories.map((cat, idx) => {
+                          const isCatOpen = mobileExpandedCat === cat.title;
+
+                          return (
+                            <div
+                              key={idx}
+                              className={`rounded-xl border transition-all ${
+                                isCatOpen
+                                  ? "border-sky-600/30 bg-white shadow-xs"
+                                  : "border-transparent bg-white/60 hover:bg-white"
+                              }`}
+                            >
+                              <div
+                                className="flex items-center justify-between px-3.5 py-2.5 cursor-pointer"
+                                onClick={() => toggleMobileCategory(cat.title)}
+                              >
+                                <span className={`text-xs font-bold ${isCatOpen ? "text-sky-600" : "text-navy-900"}`}>
+                                  {cat.title}
+                                </span>
+                                <div className="p-0.5">
+                                  <ChevronDown
+                                    className={`h-3.5 w-3.5 transition-transform duration-200 ${
+                                      isCatOpen ? "rotate-180 text-sky-600" : "text-navy-900/40"
+                                    }`}
+                                  />
+                                </div>
+                              </div>
+
+                              <AnimatePresence initial={false}>
+                                {isCatOpen && (
+                                  <motion.div
+                                    initial={{ opacity: 0, height: 0 }}
+                                    animate={{ opacity: 1, height: "auto" }}
+                                    exit={{ opacity: 0, height: 0 }}
+                                    transition={{ duration: 0.22, ease: "easeInOut" }}
+                                    className="overflow-hidden"
+                                  >
+                                    <div className="px-3.5 pb-3 pt-1 border-t border-navy-900/5 space-y-1.5">
+                                      {/* Main Pillar Overview Link */}
+                                      <Link
+                                        href={cat.href}
+                                        prefetch={false}
+                                        onClick={closeMenus}
+                                        className="inline-flex items-center gap-1 text-[11px] font-black uppercase tracking-wider text-sky-600 py-1"
+                                      >
+                                        <span>Explore {cat.title}</span>
+                                        <ArrowUpRight className="h-3 w-3" />
+                                      </Link>
+
+                                      {/* Pillar Capability Links */}
+                                      <ul className="space-y-1.5 pt-1">
+                                        {cat.items.map((item, itemIdx) => (
+                                          <li key={itemIdx}>
+                                            <Link
+                                              href={item.href}
+                                              prefetch={false}
+                                              onClick={(e) => handleNavAnchorClick(e, item.href)}
+                                              className="flex items-start text-xs font-medium text-navy-900/70 hover:text-navy-900 py-1 leading-snug"
+                                            >
+                                              <span className="h-1.5 w-1.5 rounded-full bg-copper-400 shrink-0 mr-2 mt-1.5" />
+                                              <span>{item.name}</span>
+                                            </Link>
+                                          </li>
+                                        ))}
+                                      </ul>
+                                    </div>
+                                  </motion.div>
+                                )}
+                              </AnimatePresence>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
+              {/* Careers - Modern Simple View with Expandable Arrow */}
+              <div className="rounded-xl overflow-hidden transition-colors">
+                <div
+                  className={`flex items-center justify-between w-full px-4 py-3 rounded-xl cursor-pointer transition-all ${
+                    isCareerActive || mobileCareersOpen
+                      ? "bg-white shadow-xs text-sky-600 font-black"
+                      : "text-navy-900 hover:bg-white/80 font-bold"
+                  }`}
+                  onClick={() => setMobileCareersOpen(!mobileCareersOpen)}
                 >
-                  <span className="h-2 w-2 bg-copper-400 rotate-45 shrink-0 mr-2" />
-                  Submit your resume
-                </Link>
-                <Link
-                  href="/vacancies"
-                  prefetch={false}
-                  onClick={closeMenus}
-                  className="flex items-center w-full px-3 py-1.5 text-xs font-semibold rounded-lg text-sky-600 hover:text-sky-500"
-                >
-                  <span className="h-2 w-2 bg-copper-400 rotate-45 shrink-0 mr-2" />
-                  Current Vacancies
-                </Link>
+                  <span className="text-sm">Careers</span>
+                  <div className="p-1 rounded-lg text-navy-900/50 hover:text-sky-600">
+                    <ChevronDown
+                      className={`h-4 w-4 transition-transform duration-300 ${
+                        mobileCareersOpen ? "rotate-180 text-sky-600" : ""
+                      }`}
+                    />
+                  </div>
+                </div>
+
+                {/* Elaborated Careers Sub-Menu */}
+                <AnimatePresence initial={false}>
+                  {mobileCareersOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.25, ease: "easeInOut" }}
+                      className="overflow-hidden"
+                    >
+                      <div className="mt-1.5 mb-2 ml-2 pl-3 pr-1 border-l-2 border-sky-600/30 space-y-1">
+                        <Link
+                          href="/submit-resume"
+                          prefetch={false}
+                          onClick={closeMenus}
+                          className="flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-white/60 hover:bg-white text-xs font-bold text-navy-900 transition-colors"
+                        >
+                          <span className="flex items-center gap-2">
+                            <span className="h-1.5 w-1.5 bg-copper-400 rotate-45 shrink-0" />
+                            Submit your resume
+                          </span>
+                          <ArrowUpRight className="h-3 w-3 text-sky-600" />
+                        </Link>
+                        <Link
+                          href="/vacancies"
+                          prefetch={false}
+                          onClick={closeMenus}
+                          className="flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-white/60 hover:bg-white text-xs font-bold text-navy-900 transition-colors"
+                        >
+                          <span className="flex items-center gap-2">
+                            <span className="h-1.5 w-1.5 bg-copper-400 rotate-45 shrink-0" />
+                            Current Vacancies
+                          </span>
+                          <ArrowUpRight className="h-3 w-3 text-sky-600" />
+                        </Link>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
             </div>
-            <Link
-              href="/contact?tab=consultation"
-              prefetch={false}
-              onClick={closeMenus}
-              className="block w-full text-center mt-4 bg-sky-600 py-2.5 text-base font-bold text-white rounded-lg shadow-md hover:bg-sky-700"
-            >
-              Request a Consultation
-            </Link>
+
+            {/* Mobile Bottom Consultation CTA */}
+            <div className="pt-2">
+              <Link
+                href="/contact?tab=consultation"
+                prefetch={false}
+                onClick={closeMenus}
+                className="flex items-center justify-center gap-2 w-full py-3 text-sm font-black text-white bg-sky-600 hover:bg-sky-700 rounded-xl shadow-md shadow-sky-600/20 transition-all cursor-pointer"
+              >
+                <span>Request a Consultation</span>
+                <ArrowUpRight className="h-4 w-4" />
+              </Link>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

@@ -51,7 +51,7 @@ export const Hero: React.FC<HeroProps> = () => {
             className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-[11px] font-black uppercase tracking-[0.18em] text-sky-300 backdrop-blur"
           >
             <span className="h-2 w-2 rounded-full bg-copper-400 animate-pulse" />
-            The right support to keep business moving.
+            Right support to keep business moving.
           </motion.div>
 
           <motion.h1
