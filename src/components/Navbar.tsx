@@ -77,6 +77,10 @@ const serviceCategories: ServiceCategory[] = [
 export const Navbar: React.FC = () => {
   const pathname = usePathname();
   const router = useRouter();
+
+  // Flag to hide/show Careers menu & pages (static mode: hidden for now, set to true to restore)
+  const SHOW_CAREERS_MENU = false;
+
   const [servicesOpen, setServicesOpen] = useState(false);
   const [careersOpen, setCareersOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -286,58 +290,61 @@ export const Navbar: React.FC = () => {
             </AnimatePresence>
           </div>
 
-          <div
-            className="relative"
-            onMouseLeave={() => setCareersOpen(false)}
-          >
-            <button
-              onClick={() => setCareersOpen(!careersOpen)}
-              onMouseEnter={() => setCareersOpen(true)}
-              className={`flex items-center gap-1 text-sm font-semibold transition-colors duration-200 cursor-pointer ${isCareerActive ? "text-sky-600" : "text-navy-900/80 hover:text-sky-600"
-                }`}
+          {/* FUTURE UPGRADE: Careers Dropdown Menu (Hidden for now in static mode) */}
+          {SHOW_CAREERS_MENU && (
+            <div
+              className="relative"
+              onMouseLeave={() => setCareersOpen(false)}
             >
-              Careers
-              <ChevronDown className={`h-4 w-4 transition-transform ${careersOpen ? "rotate-180" : ""}`} />
-            </button>
+              <button
+                onClick={() => setCareersOpen(!careersOpen)}
+                onMouseEnter={() => setCareersOpen(true)}
+                className={`flex items-center gap-1 text-sm font-semibold transition-colors duration-200 cursor-pointer ${isCareerActive ? "text-sky-600" : "text-navy-900/80 hover:text-sky-600"
+                  }`}
+              >
+                Careers
+                <ChevronDown className={`h-4 w-4 transition-transform ${careersOpen ? "rotate-180" : ""}`} />
+              </button>
 
-            <AnimatePresence>
-              {careersOpen && (
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 10 }}
-                  className="absolute left-1/2 z-50 top-full pt-3 -translate-x-1/2"
-                >
-                  <div className="w-[260px] rounded-2xl border border-sky-200/50 bg-cream-50 p-6 shadow-2xl">
-                    <ul className="space-y-3">
-                      <li>
-                        <Link
-                          href="/submit-resume"
-                          prefetch={false}
-                          onClick={closeMenus}
-                          className="flex items-center text-xs font-semibold text-navy-900/60 hover:text-navy-900 transition-all duration-200 hover:translate-x-1"
-                        >
-                          <span className="h-2 w-2 bg-copper-400 rotate-45 shrink-0 mr-2.5" />
-                          <span>Submit your resume</span>
-                        </Link>
-                      </li>
-                      <li>
-                        <Link
-                          href="/vacancies"
-                          prefetch={false}
-                          onClick={closeMenus}
-                          className="flex items-center text-xs font-semibold text-navy-900/60 hover:text-navy-900 transition-all duration-200 hover:translate-x-1"
-                        >
-                          <span className="h-2 w-2 bg-copper-400 rotate-45 shrink-0 mr-2.5" />
-                          <span>Current Vacancies</span>
-                        </Link>
-                      </li>
-                    </ul>
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
+              <AnimatePresence>
+                {careersOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 10 }}
+                    className="absolute left-1/2 z-50 top-full pt-3 -translate-x-1/2"
+                  >
+                    <div className="w-[260px] rounded-2xl border border-sky-200/50 bg-cream-50 p-6 shadow-2xl">
+                      <ul className="space-y-3">
+                        <li>
+                          <Link
+                            href="/submit-resume"
+                            prefetch={false}
+                            onClick={closeMenus}
+                            className="flex items-center text-xs font-semibold text-navy-900/60 hover:text-navy-900 transition-all duration-200 hover:translate-x-1"
+                          >
+                            <span className="h-2 w-2 bg-copper-400 rotate-45 shrink-0 mr-2.5" />
+                            <span>Submit your resume</span>
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            href="/vacancies"
+                            prefetch={false}
+                            onClick={closeMenus}
+                            className="flex items-center text-xs font-semibold text-navy-900/60 hover:text-navy-900 transition-all duration-200 hover:translate-x-1"
+                          >
+                            <span className="h-2 w-2 bg-copper-400 rotate-45 shrink-0 mr-2.5" />
+                            <span>Current Vacancies</span>
+                          </Link>
+                        </li>
+                      </ul>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          )}
         </nav>
 
         <div className="hidden md:flex items-center">
@@ -527,66 +534,68 @@ export const Navbar: React.FC = () => {
                 </AnimatePresence>
               </div>
 
-              {/* Careers - Modern Simple View with Expandable Arrow */}
-              <div className="rounded-xl overflow-hidden transition-colors">
-                <div
-                  className={`flex items-center justify-between w-full px-4 py-3 rounded-xl cursor-pointer transition-all ${
-                    isCareerActive || mobileCareersOpen
-                      ? "bg-white shadow-xs text-sky-600 font-black"
-                      : "text-navy-900 hover:bg-white/80 font-bold"
-                  }`}
-                  onClick={() => setMobileCareersOpen(!mobileCareersOpen)}
-                >
-                  <span className="text-sm">Careers</span>
-                  <div className="p-1 rounded-lg text-navy-900/50 hover:text-sky-600">
-                    <ChevronDown
-                      className={`h-4 w-4 transition-transform duration-300 ${
-                        mobileCareersOpen ? "rotate-180 text-sky-600" : ""
-                      }`}
-                    />
+              {/* FUTURE UPGRADE: Careers Mobile Menu (Hidden for now in static mode) */}
+              {SHOW_CAREERS_MENU && (
+                <div className="rounded-xl overflow-hidden transition-colors">
+                  <div
+                    className={`flex items-center justify-between w-full px-4 py-3 rounded-xl cursor-pointer transition-all ${
+                      isCareerActive || mobileCareersOpen
+                        ? "bg-white shadow-xs text-sky-600 font-black"
+                        : "text-navy-900 hover:bg-white/80 font-bold"
+                    }`}
+                    onClick={() => setMobileCareersOpen(!mobileCareersOpen)}
+                  >
+                    <span className="text-sm">Careers</span>
+                    <div className="p-1 rounded-lg text-navy-900/50 hover:text-sky-600">
+                      <ChevronDown
+                        className={`h-4 w-4 transition-transform duration-300 ${
+                          mobileCareersOpen ? "rotate-180 text-sky-600" : ""
+                        }`}
+                      />
+                    </div>
                   </div>
-                </div>
 
-                {/* Elaborated Careers Sub-Menu */}
-                <AnimatePresence initial={false}>
-                  {mobileCareersOpen && (
-                    <motion.div
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: "auto" }}
-                      exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.25, ease: "easeInOut" }}
-                      className="overflow-hidden"
-                    >
-                      <div className="mt-1.5 mb-2 ml-2 pl-3 pr-1 border-l-2 border-sky-600/30 space-y-1">
-                        <Link
-                          href="/submit-resume"
-                          prefetch={false}
-                          onClick={closeMenus}
-                          className="flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-white/60 hover:bg-white text-xs font-bold text-navy-900 transition-colors"
-                        >
-                          <span className="flex items-center gap-2">
-                            <span className="h-1.5 w-1.5 bg-copper-400 rotate-45 shrink-0" />
-                            Submit your resume
-                          </span>
-                          <ArrowUpRight className="h-3 w-3 text-sky-600" />
-                        </Link>
-                        <Link
-                          href="/vacancies"
-                          prefetch={false}
-                          onClick={closeMenus}
-                          className="flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-white/60 hover:bg-white text-xs font-bold text-navy-900 transition-colors"
-                        >
-                          <span className="flex items-center gap-2">
-                            <span className="h-1.5 w-1.5 bg-copper-400 rotate-45 shrink-0" />
-                            Current Vacancies
-                          </span>
-                          <ArrowUpRight className="h-3 w-3 text-sky-600" />
-                        </Link>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
+                  {/* Elaborated Careers Sub-Menu */}
+                  <AnimatePresence initial={false}>
+                    {mobileCareersOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.25, ease: "easeInOut" }}
+                        className="overflow-hidden"
+                      >
+                        <div className="mt-1.5 mb-2 ml-2 pl-3 pr-1 border-l-2 border-sky-600/30 space-y-1">
+                          <Link
+                            href="/submit-resume"
+                            prefetch={false}
+                            onClick={closeMenus}
+                            className="flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-white/60 hover:bg-white text-xs font-bold text-navy-900 transition-colors"
+                          >
+                            <span className="flex items-center gap-2">
+                              <span className="h-1.5 w-1.5 bg-copper-400 rotate-45 shrink-0" />
+                              Submit your resume
+                            </span>
+                            <ArrowUpRight className="h-3 w-3 text-sky-600" />
+                          </Link>
+                          <Link
+                            href="/vacancies"
+                            prefetch={false}
+                            onClick={closeMenus}
+                            className="flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-white/60 hover:bg-white text-xs font-bold text-navy-900 transition-colors"
+                          >
+                            <span className="flex items-center gap-2">
+                              <span className="h-1.5 w-1.5 bg-copper-400 rotate-45 shrink-0" />
+                              Current Vacancies
+                            </span>
+                            <ArrowUpRight className="h-3 w-3 text-sky-600" />
+                          </Link>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              )}
             </div>
 
             {/* Mobile Bottom Consultation CTA */}

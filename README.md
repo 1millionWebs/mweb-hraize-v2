@@ -1,1 +1,1 @@
-Hraize-Version_2.0
+Hraize-Version_3.0
