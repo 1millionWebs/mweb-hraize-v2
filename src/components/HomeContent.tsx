@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
 import {
   ArrowRight,
   ArrowUpRight,
@@ -30,40 +30,48 @@ interface HomeContentProps {
 export const HomeContent: React.FC<HomeContentProps> = ({
   onNavigateToService,
 }) => {
-  const [activeService, setActiveService] = useState(0);
+  const [hoveredService, setHoveredService] = useState<number>(0);
 
   const services = [
     {
       title: "HR, Payroll Services & Administration",
       number: "01",
-      desc: "Payroll processing, PF, ESI, Professional Tax and employee administration.",
+      desc: "Complete payroll processing, salary statements, EPFO & ESIC statutory filing support, and employee lifecycle administration.",
       href: "/hr-services",
       image: "/services-hr.png",
       tag: "Payroll & Compliance",
+      pills: ["Monthly Payroll", "PF & EPFO Filing", "ESI & Professional Tax", "Personnel Records", "Lifecycle Admin"],
+      highlights: ["100% On-Time Payroll", "Statutory Compliance", "Dedicated HR Desk"],
     },
     {
       title: "Recruitment Solutions",
       number: "02",
-      desc: "Permanent and contract hiring, sourcing, screening and interview coordination.",
+      desc: "Permanent and contract talent placement, candidate sourcing, rigorous screening, and end-to-end interview coordination.",
       href: "/recruitment",
       image: "/services-recruitment.png",
-      tag: "Talent Acquisition",
+      tag: "Staffing & Hiring",
+      pills: ["Permanent Hiring", "Contract Staffing", "Candidate Vetting", "Interview Sync", "Executive Search"],
+      highlights: ["3.5% Match SLA", "Vetted Profiles Only", "60-Day Replacement Guarantee"],
     },
     {
       title: "Business Administration Support",
       number: "03",
-      desc: "Invoice tracking, receivables administration, payment follow-ups and operational reports.",
+      desc: "Sales invoice register maintenance, due-date tracking, professional payment reminders, and periodic overdue reports.",
       href: "/business-support",
       image: "/reporting.png",
-      tag: "Operational Desk",
+      tag: "Receivables & Operations",
+      pills: ["Invoice Register", "Due-Date Tracking", "Payment Reminders", "Overdue Reports", "Accounts Coordination"],
+      highlights: ["Administrative Cash Flow Desk", "Courteous Follow-ups", "Aging Reports"],
     },
     {
       title: "Digital IT Services",
       number: "04",
-      desc: "Website development & SEO, mobile apps, digital marketing, ERP solutions, and cloud infrastructure.",
+      desc: "Website development & SEO, mobile applications, digital marketing, ERP implementations, and cloud infrastructure.",
       href: "/website-solutions",
       image: "/documentation.png",
-      tag: "Digital Solutions",
+      tag: "Digital & IT",
+      pills: ["Website & SEO", "Mobile App Development", "Digital Marketing", "ERP Solutions", "Cloud & Infra"],
+      highlights: ["High Speed Web Apps", "Enterprise ERP Modules", "Technology Partner Delivered"],
     },
   ];
 
@@ -116,107 +124,143 @@ export const HomeContent: React.FC<HomeContentProps> = ({
             </p>
           </div>
 
-          {/* Interactive Services Showcase */}
-          <div className="flex flex-col md:flex-row gap-4 h-[620px] md:h-[460px]">
+          {/* Vertical Stack Cards Showcase with Ultra-Smooth Big Popup Hover Effect */}
+          <div className="space-y-5 max-w-5xl mx-auto py-4">
             {services.map((svc, idx) => {
-              const isActive = idx === activeService;
-
-              const handleMouseEnter = () => {
-                if (typeof window !== "undefined" && window.matchMedia("(hover: hover)").matches) {
-                  setActiveService(idx);
-                }
-              };
+              const isPopped = hoveredService === idx;
 
               return (
-                <div
+                <motion.div
                   key={idx}
-                  className={`relative rounded-3xl overflow-hidden cursor-pointer transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] ${
-                    isActive
-                      ? "flex-[4] md:flex-[3.5] bg-white shadow-xl border border-sky-600/20"
-                      : "flex-[0.6] md:flex-[0.6] min-h-[64px] md:min-h-0 md:min-w-[68px] hover:border-sky-600/30"
-                  }`}
-                  onMouseEnter={handleMouseEnter}
-                  onClick={() => setActiveService(idx)}
+                  layout
+                  animate={{
+                    y: isPopped ? -8 : 0,
+                    scale: isPopped ? 1.025 : 1,
+                    zIndex: isPopped ? 20 : 1,
+                  }}
+                  transition={{
+                    type: "spring",
+                    stiffness: 400,
+                    damping: 32,
+                    mass: 0.75,
+                  }}
+                  className="relative origin-center"
                 >
-                  {isActive ? (
-                    /* ── EXPANDED CARD ── */
-                    <div className="flex flex-col h-full w-full bg-white">
-                      {/* Image Frame */}
-                      <div className="relative flex-1 m-3 rounded-2xl overflow-hidden border border-navy-900/10">
+                  <Link
+                    href={svc.href}
+                    onMouseEnter={() => setHoveredService(idx)}
+                    className={`group block overflow-hidden rounded-2xl md:rounded-3xl cursor-pointer transition-colors duration-300 ${isPopped
+                      ? "border-2 border-sky-500 ring-4 ring-sky-500/20 shadow-[0_25px_60px_-12px_rgba(2,132,199,0.35)] bg-white"
+                      : "border border-navy-900/10 shadow-sm hover:border-sky-500/30 bg-white/95 opacity-90 hover:opacity-100"
+                      }`}
+                  >
+                    <div className="flex flex-col md:flex-row items-stretch">
+                      {/* Left Thumbnail Image with stable dimensions to prevent layout jumps */}
+                      <div className="relative w-full md:w-72 lg:w-80 shrink-0 overflow-hidden bg-navy-900/5 aspect-[16/9] md:aspect-auto min-h-[160px] md:min-h-[210px]">
                         <Image
                           src={svc.image}
                           alt={svc.title}
                           fill
-                          className="object-cover"
-                          sizes="(max-width: 768px) 100vw, 40vw"
+                          className={`object-cover transition-transform duration-700 ease-out ${isPopped ? "scale-105" : "group-hover:scale-105"
+                            }`}
+                          sizes="(max-width: 768px) 100vw, 360px"
                           priority={idx === 0}
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-navy-900/60 via-transparent to-transparent" />
-                        <span className="absolute top-3 left-3 rounded-full bg-white/90 backdrop-blur-sm px-3 py-1 text-[10px] font-black uppercase tracking-wider text-sky-700">
-                          {svc.tag}
-                        </span>
+                        <div className="absolute inset-0 bg-gradient-to-t from-navy-900/40 via-transparent to-transparent md:hidden" />
+
+                        {/* Active Selection Tag */}
+                        {/* <div
+                          className={`absolute top-3 left-3 rounded-full px-3 py-1 text-[10px] font-black uppercase tracking-wider transition-all duration-300 ${
+                            isPopped
+                              ? "bg-white/95 text-sky-700 shadow-md backdrop-blur-sm opacity-100 translate-y-0"
+                              : "bg-black/40 text-white/90 backdrop-blur-sm opacity-0 -translate-y-1 pointer-events-none"
+                          }`}
+                        >
+                          Active Selection
+                        </div> */}
                       </div>
 
-                      {/* Content + Action */}
-                      <div className="px-5 pb-5 pt-1 flex items-end justify-between gap-4">
-                        <div className="min-w-0">
-                          <span className="text-[10px] font-black uppercase tracking-widest text-copper-500">
-                            Service {svc.number}
-                          </span>
-                          <h3 className="text-lg font-black text-navy-900 tracking-tight leading-snug">
+                      {/* Right Content Area with stable geometry */}
+                      <div className="flex-1 flex flex-col justify-between p-5 sm:p-6 lg:p-7">
+                        <div>
+                          {/* Category & Service Number */}
+                          <div className="flex items-center gap-2 text-xs font-semibold">
+                            <span className="text-copper-500 font-bold uppercase tracking-wider text-[11px]">
+                              Service {svc.number}
+                            </span>
+                            <span className="text-navy-900/30">•</span>
+                            <span
+                              className={`transition-colors duration-300 ${isPopped ? "text-sky-600 font-bold" : "text-navy-900/55"
+                                }`}
+                            >
+                              {svc.tag}
+                            </span>
+                          </div>
+
+                          {/* Title */}
+                          <h3
+                            className={`mt-2 font-black tracking-tight leading-snug transition-colors duration-300 text-lg sm:text-xl lg:text-2xl ${isPopped ? "text-navy-900 group-hover:text-sky-600" : "text-navy-900/90"
+                              }`}
+                          >
                             {svc.title}
                           </h3>
-                          <p className="text-xs text-navy-900/65 font-medium leading-relaxed mt-1">
+
+                          {/* Description */}
+                          <p className="mt-2 text-xs sm:text-sm text-navy-900/70 font-medium leading-relaxed max-w-2xl line-clamp-2">
                             {svc.desc}
                           </p>
+
+                          {/* Highlights Row - stable height and smooth opacity transition */}
+                          <div
+                            className={`mt-3 hidden sm:flex flex-wrap items-center gap-4 text-xs transition-opacity duration-300 ${isPopped ? "opacity-100 font-bold text-navy-900" : "opacity-60 font-medium text-navy-900/75"
+                              }`}
+                          >
+                            {svc.highlights.map((hl, hIdx) => (
+                              <div key={hIdx} className="flex items-center gap-1.5">
+                                <CheckCircle2
+                                  className={`h-3.5 w-3.5 shrink-0 transition-colors duration-300 ${isPopped ? "text-emerald-600" : "text-navy-900/40"
+                                    }`}
+                                />
+                                <span>{hl}</span>
+                              </div>
+                            ))}
+                          </div>
                         </div>
-                        <Link
-                          href={svc.href}
-                          className="shrink-0 h-10 w-10 rounded-full bg-sky-600 hover:bg-sky-700 text-white flex items-center justify-center transition-colors shadow-md shadow-sky-600/25"
-                          title={`View ${svc.title}`}
-                        >
-                          <ArrowRight className="h-4 w-4" />
-                        </Link>
+
+                        {/* Bottom Row: Pills & Action Button */}
+                        <div className="mt-5 pt-3.5 border-t border-navy-900/10 flex flex-wrap items-center justify-between gap-3">
+                          <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
+                            {svc.pills.map((pill, pIdx) => (
+                              <span
+                                key={pIdx}
+                                className={`inline-flex items-center rounded-full px-3 py-1 text-[11px] font-semibold transition-all duration-300 ${isPopped
+                                  ? "border border-sky-600/30 bg-sky-50 text-sky-900 font-bold shadow-xs"
+                                  : "border border-navy-900/10 bg-cream-50/70 text-navy-900/70"
+                                  }`}
+                              >
+                                {pill}
+                              </span>
+                            ))}
+                          </div>
+
+                          {/* Morphing Action Button */}
+                          <div
+                            className={`ml-auto inline-flex items-center gap-2 rounded-full px-4 sm:px-5 py-2 text-xs font-black transition-all duration-300 ${isPopped
+                              ? "bg-sky-600 text-white shadow-md shadow-sky-600/30 translate-x-0"
+                              : "text-navy-900/60 group-hover:text-sky-600 bg-transparent"
+                              }`}
+                          >
+                            <span>{isPopped ? "Explore Service" : "View more"}</span>
+                            <ArrowRight
+                              className={`h-3.5 w-3.5 transition-transform duration-300 ${isPopped ? "translate-x-0.5" : "group-hover:translate-x-1"
+                                }`}
+                            />
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  ) : (
-                    /* ── COLLAPSED STRIP ── */
-                    <div className="relative h-full w-full rounded-3xl overflow-hidden">
-                      <Image
-                        src={svc.image}
-                        alt={svc.title}
-                        fill
-                        className="object-cover"
-                        sizes="(max-width: 768px) 100vw, 90px"
-                      />
-                      <div className="absolute inset-0 bg-navy-900/65" />
-
-                      {/* Desktop Rotated Title */}
-                      <div className="absolute inset-0 hidden md:flex items-center justify-center">
-                        <span
-                          className="text-xs font-black text-white uppercase tracking-widest whitespace-nowrap select-none"
-                          style={{
-                            writingMode: "vertical-rl",
-                            textOrientation: "mixed",
-                            transform: "rotate(180deg)",
-                          }}
-                        >
-                          {svc.title}
-                        </span>
-                      </div>
-
-                      {/* Mobile Horizontal Title */}
-                      <div className="absolute inset-0 flex md:hidden items-center justify-between px-6">
-                        <span className="text-xs font-black text-white uppercase tracking-widest">
-                          {svc.title}
-                        </span>
-                        <span className="text-xs font-bold text-sky-400">
-                          {svc.number}
-                        </span>
-                      </div>
-                    </div>
-                  )}
-                </div>
+                  </Link>
+                </motion.div>
               );
             })}
           </div>
@@ -262,7 +306,7 @@ export const HomeContent: React.FC<HomeContentProps> = ({
                   className="group rounded-3xl border border-sky-600/15 bg-white p-6 shadow-sm hover:border-sky-600/40 hover:shadow-lg transition-all duration-300 flex flex-col justify-between"
                 >
                   <div>
-                    <div className="flex items-center justify-between mb-5">
+                    <div className="flex items-center justify-between mb-2">
                       <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-sky-600/10 text-sky-600 group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300">
                         <Icon className="h-5 w-5" />
                       </div>
@@ -280,10 +324,10 @@ export const HomeContent: React.FC<HomeContentProps> = ({
                     </p>
                   </div>
 
-                  <div className="mt-6 pt-4 border-t border-sky-600/10 flex items-center gap-1.5 text-[10px] font-black uppercase tracking-wider text-sky-600">
+                  {/* <div className="mt-6 pt-4 border-t border-sky-600/10 flex items-center gap-1.5 text-[10px] font-black uppercase tracking-wider text-sky-600">
                     <Check className="h-3 w-3 text-copper-500" />
                     <span>Hraize Principle</span>
-                  </div>
+                  </div> */}
                 </motion.div>
               );
             })}

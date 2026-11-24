@@ -129,7 +129,7 @@ export const RecruitmentServices: React.FC<RecruitmentServicesProps> = ({
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* ============ HEADER SECTION ============ */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <SectionLabel>Talent Requisition</SectionLabel>
+          <SectionLabel>Recruitment & Staffing</SectionLabel>
           <h1 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-black text-navy-900 uppercase tracking-tight leading-[1.08]">
             Quality Hiring for Growing Business
           </h1>
