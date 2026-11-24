@@ -68,7 +68,7 @@ export const HomeContent: React.FC<HomeContentProps> = ({
       number: "04",
       desc: "Website development & SEO, mobile applications, digital marketing, ERP implementations, and cloud infrastructure.",
       href: "/website-solutions",
-      image: "/documentation.png",
+      image: "/it-web-dev.jpg",
       tag: "Digital & IT",
       pills: ["Website & SEO", "Mobile App Development", "Digital Marketing", "ERP Solutions", "Cloud & Infra"],
       highlights: ["High Speed Web Apps", "Enterprise ERP Modules", "Technology Partner Delivered"],

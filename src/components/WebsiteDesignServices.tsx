@@ -5,28 +5,17 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "motion/react";
 import {
   Globe,
-  Smartphone,
-  Megaphone,
-  Database,
-  Cloud,
   ArrowRight,
   ArrowUpRight,
   ChevronDown,
-  Check,
-  CheckCircle2,
-  Sparkles,
   ShieldCheck,
   Cpu,
   Target,
   Zap,
   Compass,
   Headphones,
-  Info,
-  Server,
-  Layers,
-  BarChart3,
 } from "lucide-react";
-import { SectionLabel, FeatureCheck } from "./UIElements";
+import { SectionLabel } from "./UIElements";
 
 interface WebsiteDesignServicesProps {
   onGetStarted?: () => void;
@@ -75,53 +64,52 @@ export const WebsiteDesignServices: React.FC<WebsiteDesignServicesProps> = () =>
     }));
   };
 
-  // What Makes Us Different - 6 Value Cards matching provided design
+  // What Makes Us Different - 6 Crisp Value Cards
   const differentiators = [
     {
       icon: Cpu,
-      title: "Partner-Delivered Tech Stack",
-      desc: "Enterprise-grade modern engineering delivered in dedicated collaboration with Hraize's vetted technology development partner.",
+      title: "Partner-Delivered Tech",
+      desc: "Enterprise architecture delivered with our trusted technology development partner.",
     },
     {
       icon: Target,
       title: "Milestone-Driven Sprints",
-      desc: "Predictable bi-weekly sprint cadences, live staging preview links, and clear milestone progress tracking at every stage.",
+      desc: "Bi-weekly sprint deliveries with live staging demo links at every milestone.",
     },
     {
       icon: Zap,
-      title: "Core Web Vitals & Speed",
-      desc: "Performance-first architecture optimized for sub-second load times, mobile responsiveness, and 90+ Google Lighthouse scores.",
+      title: "High Speed & Core Vitals",
+      desc: "Optimized for sub-second loads, mobile responsiveness, and 90+ Lighthouse scores.",
     },
     {
       icon: Compass,
-      title: "Built-In SEO & Conversions",
-      desc: "Clean structured schema, technical indexing, metadata optimization, and user journey funnels engineered to convert.",
+      title: "Built-In SEO & Funnels",
+      desc: "Structured schema, technical indexing, and conversion-focused user journeys.",
     },
     {
       icon: ShieldCheck,
-      title: "Cloud Resilience & Security",
-      desc: "Enterprise SSL/TLS encryption, daily automated snapshot backups, firewall protection, and reliable disaster recovery.",
+      title: "Cloud & Data Security",
+      desc: "SSL encryption, automated daily snapshots, and resilient disaster recovery.",
     },
     {
       icon: Headphones,
       title: "Dedicated Support Desk",
-      desc: "Proactive server monitoring, dependency updates, and single-point tech coordination without expanding internal team headcount.",
+      desc: "Proactive monitoring and ongoing maintenance without adding internal headcount.",
     },
   ];
 
-  // 5 Core IT Pillars with accordion items & creative image frame data matching the attached image
+  // 5 Core IT Pillars - Optimized minimal text matching reference layout
   const itServices = [
     {
       id: "web-seo",
       number: "01",
-      tag: "UI/UX & Web Development",
+      tag: "Web & SEO",
       title: "Website Development & SEO",
-      subtitle:
-        "High-performance, responsive websites and dynamic web portals that combine aesthetics with functionality.",
-      image: "/workforce-planning.png",
+      subtitle: "High-performance, responsive websites and web portals built to convert.",
+      image: "/it-web-dev.jpg",
       serviceQuery: "web-seo",
-      actionLabel: "Request Website & SEO Quote",
-      badgeText: "Web Design & Development",
+      actionLabel: "Request Web Quote",
+      badgeText: "Web Architecture",
       subCard: {
         title: "Performance Stack",
         stats: [
@@ -132,40 +120,35 @@ export const WebsiteDesignServices: React.FC<WebsiteDesignServicesProps> = () =>
       },
       accordions: [
         {
-          title: "Custom Website Architecture & Prototyping",
-          description:
-            "Seamless, user-centric web designs and high-fidelity wireframes that enhance engagement and deliver an intuitive digital experience.",
+          title: "Custom Web Design & Architecture",
+          description: "User-centric layouts and responsive wireframes built for fast navigation.",
         },
         {
           title: "Frontend & Backend Development",
-          description:
-            "Frontend & Backend Development work together to create seamless, high-performing digital experiences. While frontend focuses on user interface and interactivity, backend ensures robust functionality, data management, and security.",
+          description: "Scalable React, Next.js, and Node architectures with secure API integrations.",
         },
         {
           title: "Search Engine Optimization (SEO)",
-          description:
-            "Deep search engine optimization, canonical tagging, XML sitemaps, structured schema markup, and speed audits to maximize organic Google visibility.",
+          description: "Technical SEO audits, schema markup, and speed tuning for search rankings.",
         },
         {
-          title: "CMS Integration (WordPress & Webflow)",
-          description:
-            "Empowering non-technical team members with intuitive content management workflows, easy page publishing, and flexible e-commerce integrations.",
+          title: "CMS & E-Commerce Integration",
+          description: "Intuitive content publishing via WordPress, Webflow, and Shopify platforms.",
         },
       ],
     },
     {
       id: "mobile-apps",
       number: "02",
-      tag: "Mobile Engineering",
+      tag: "Mobile Apps",
       title: "Mobile App Development",
-      subtitle:
-        "Seamless, user-centric mobile applications that enhance engagement and deliver native-level experiences on iOS and Android.",
-      image: "/reporting.png",
+      subtitle: "Native and cross-platform mobile applications for iOS and Android.",
+      image: "/it-mobile-apps.jpg",
       serviceQuery: "mobile-apps",
-      actionLabel: "Request Mobile App Quote",
+      actionLabel: "Request App Quote",
       badgeText: "Mobile Client Apps",
       subCard: {
-        title: "Mobile App Ecosystem",
+        title: "Mobile Ecosystem",
         stats: [
           { label: "Platforms", value: "iOS & Android" },
           { label: "Framework", value: "Flutter / React Native" },
@@ -174,40 +157,35 @@ export const WebsiteDesignServices: React.FC<WebsiteDesignServicesProps> = () =>
       },
       accordions: [
         {
-          title: "Cross-Platform Mobile Apps (Flutter & React Native)",
-          description:
-            "Single-codebase mobile applications that deliver native performance on both Apple iOS and Google Android, cutting development timelines in half.",
+          title: "Cross-Platform Apps (Flutter & React Native)",
+          description: "Single-codebase mobile apps delivering native speed across iOS and Android.",
         },
         {
           title: "Native iOS & Android Engineering",
-          description:
-            "High-performance native development using Swift and Kotlin for applications requiring deep hardware integration, offline processing, and maximum speed.",
+          description: "High-performance Swift and Kotlin development for deep hardware integrations.",
         },
         {
-          title: "Mobile UI/UX Wireframing & Clickable Prototypes",
-          description:
-            "User journey mapping, high-fidelity Figma prototypes, and iterative usability testing before engineering commits a single line of code.",
+          title: "Mobile UI/UX Clickable Prototypes",
+          description: "Figma wireframing and user journey mapping before writing production code.",
         },
         {
-          title: "App Store & Play Store Deployment Management",
-          description:
-            "End-to-end guidance through Apple App Store and Google Play compliance review, metadata optimization, signing certificates, and version updates.",
+          title: "App Store & Play Store Deployment",
+          description: "Full management of Apple App Store and Google Play compliance and releases.",
         },
       ],
     },
     {
       id: "digital-marketing",
       number: "03",
-      tag: "Branding & Performance",
+      tag: "Growth Marketing",
       title: "Digital Marketing & Performance",
-      subtitle:
-        "Transform your brand into a powerful identity with strategic branding solutions, targeted advertising, and marketing automation.",
-      image: "/partners.png",
+      subtitle: "Data-driven search marketing, social advertising, and lead funnels.",
+      image: "/it-digital-marketing.jpg",
       serviceQuery: "digital-marketing",
-      actionLabel: "Request Marketing Strategy Quote",
-      badgeText: "Campaign Performance",
+      actionLabel: "Request Marketing Quote",
+      badgeText: "Performance Desk",
       subCard: {
-        title: "Lead Velocity Funnel",
+        title: "Lead Velocity",
         stats: [
           { label: "Target Reach", value: "250K+" },
           { label: "Lead Growth", value: "+142%" },
@@ -216,38 +194,33 @@ export const WebsiteDesignServices: React.FC<WebsiteDesignServicesProps> = () =>
       },
       accordions: [
         {
-          title: "Search Engine Marketing (Google Ads & SEM)",
-          description:
-            "Targeted high-intent pay-per-click (PPC) campaigns engineered to reach buyers at the exact moment they search for your solutions.",
+          title: "Search Engine Ads (Google Ads & SEM)",
+          description: "High-intent paid search campaigns capturing buyers ready to convert.",
         },
         {
-          title: "Brand Strategy, Positioning & Collateral Design",
-          description:
-            "Brand Strategy & Positioning defines how a brand stands out in the market by establishing its unique identity, values, and messaging. It ensures consistency across all touchpoints to create a lasting impression and build customer trust.",
+          title: "Brand Strategy & Visual Identity",
+          description: "Distinct brand positioning, visual collateral, and clear market messaging.",
         },
         {
-          title: "B2B Lead Generation & Paid Social Media",
-          description:
-            "Data-backed LinkedIn and Meta campaigns designed to attract qualified decision-makers and build consistent inbound sales opportunities.",
+          title: "B2B Lead Generation & Paid Social",
+          description: "Targeted LinkedIn and Meta campaigns delivering qualified sales opportunities.",
         },
         {
-          title: "Conversion Rate Optimization (CRO) & Funnels",
-          description:
-            "A/B split testing landing pages, checkout flows, and inquiry forms to maximize the return on every dollar of your marketing investment.",
+          title: "Conversion Rate Optimization (CRO)",
+          description: "A/B testing landing pages and enquiry forms to maximize conversion velocity.",
         },
       ],
     },
     {
       id: "erp-solutions",
       number: "04",
-      tag: "Enterprise Architecture",
+      tag: "Enterprise ERP",
       title: "Enterprise ERP & CRM Solutions",
-      subtitle:
-        "Custom enterprise resource planning modules, CRM pipelines, and operations automation tailored to eliminate manual administrative friction.",
-      image: "/documentation.png",
+      subtitle: "Tailored ERP modules, CRM workflows, and operational automation.",
+      image: "/it-erp-solutions.jpg",
       serviceQuery: "erp-solutions",
-      actionLabel: "Request ERP Solutions Quote",
-      badgeText: "Enterprise ERP Console",
+      actionLabel: "Request ERP Quote",
+      badgeText: "Enterprise ERP",
       subCard: {
         title: "Enterprise Sync",
         stats: [
@@ -259,36 +232,31 @@ export const WebsiteDesignServices: React.FC<WebsiteDesignServicesProps> = () =>
       accordions: [
         {
           title: "Custom ERP System Architecture",
-          description:
-            "Tailored operational platforms connecting procurement, inventory tracking, order administration, and financial invoicing into one single source of truth.",
+          description: "Unified platforms connecting inventory, orders, billing, and accounting.",
         },
         {
           title: "Business Process & Workflow Automation",
-          description:
-            "Automate repetitive tasks, notifications, cross-department handoffs, and approval workflows without tedious manual data re-entry.",
+          description: "Eliminating manual data re-entry with automated approvals and notifications.",
         },
         {
-          title: "CRM Integration & Customer Lifecycle Tracking",
-          description:
-            "Centralized customer records, interaction histories, deal pipelines, and automated follow-up reminders to accelerate business relationships.",
+          title: "CRM & Customer Lifecycle Tracking",
+          description: "Centralized lead records, deal pipelines, and automated follow-up sequences.",
         },
         {
-          title: "Role-Based Security & Audit Compliance Logs",
-          description:
-            "Granular permission controls ensuring team members access only relevant data, backed by complete historical audit trails for governance.",
+          title: "Role-Based Security & Audit Logs",
+          description: "Granular permission controls with complete compliance audit trails.",
         },
       ],
     },
     {
       id: "cloud-infra",
       number: "05",
-      tag: "Cloud & Reliability",
+      tag: "Cloud Support",
       title: "Infrastructure & Cloud Support",
-      subtitle:
-        "Resilient cloud architecture setup, 24/7 server monitoring, DevOps automation, and robust cybersecurity to keep your business operating continuously.",
-      image: "/services-training.png",
+      subtitle: "Resilient cloud setup, 24/7 server monitoring, and automated security.",
+      image: "/it-cloud-infra.jpg",
       serviceQuery: "cloud-infra",
-      actionLabel: "Request Cloud & Infra Quote",
+      actionLabel: "Request Cloud Quote",
       badgeText: "Cloud Infrastructure",
       subCard: {
         title: "Infrastructure Health",
@@ -300,61 +268,55 @@ export const WebsiteDesignServices: React.FC<WebsiteDesignServicesProps> = () =>
       },
       accordions: [
         {
-          title: "Cloud Architecture & Migration (AWS, Azure, GCP)",
-          description:
-            "Expert provisioning of scalable virtual servers, managed databases, load balancers, and containerized clusters built for zero downtime.",
+          title: "Cloud Migration & Setup (AWS, Azure, GCP)",
+          description: "Scalable virtual infrastructure engineered for high availability and zero downtime.",
         },
         {
-          title: "24/7 Server Monitoring & Proactive Incident Response",
-          description:
-            "Continuous automated monitoring of CPU, memory, and database health with immediate triage before minor blips turn into outages.",
+          title: "24/7 Monitoring & Incident Response",
+          description: "Continuous server health checks with proactive automated alert resolution.",
         },
         {
           title: "DevOps & CI/CD Automated Pipelines",
-          description:
-            "Modern deployment pipelines that allow new website and software features to be tested and shipped reliably with zero service interruption.",
+          description: "Automated deployment pipelines for reliable, zero-downtime feature releases.",
         },
         {
-          title: "SSL Security, Daily Backups & Disaster Recovery",
-          description:
-            "Automated multi-region snapshot backups, firewall rules, SSL certificate renewals, and comprehensive recovery runbooks for business continuity.",
+          title: "Automated Backups & Disaster Recovery",
+          description: "Multi-region snapshot backups, SSL renewals, and fast disaster recovery.",
         },
       ],
     },
   ];
 
   return (
-    <div className="bg-cream-100 py-16">
+    <div className="bg-cream-100 py-16 lg:py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* ============ HEADER SECTION (MATCHING ALL PAGES THEME) ============ */}
+        {/* ============ HEADER SECTION (CLEAN & MINIMAL) ============ */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <SectionLabel>04. Service Domain</SectionLabel>
           <h1 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-black text-navy-900 uppercase tracking-tight leading-[1.08]">
-            Digital IT
-            <br />
-            <span className="text-sky-600">Services</span>
+            Digital IT <span className="text-sky-600">Services</span>
           </h1>
-          <p className="mt-4 text-base sm:text-lg text-navy-900/70 font-semibold leading-relaxed">
-            Website development, mobile applications, performance marketing, ERP solutions, and cloud infrastructure delivered in collaboration with our technology partner.
+          <p className="mt-4 text-base sm:text-lg text-navy-900/70 font-semibold leading-relaxed max-w-2xl mx-auto">
+            Website development, mobile applications, performance marketing, ERP solutions, and cloud infrastructure.
           </p>
 
-          {/* Technology Partner Disclaimer Pill */}
-          <div className="mt-6 inline-flex max-w-2xl items-center gap-2.5 rounded-2xl border border-sky-600/30 bg-white/85 px-4 py-2.5 text-xs font-semibold text-navy-900/80 shadow-sm text-left">
-            <Globe className="h-4 w-4 shrink-0 text-sky-600" />
+          {/* Technology Partner Disclaimer */}
+          <div className="mt-5 inline-flex items-center gap-2 rounded-full border border-sky-600/25 bg-white/80 px-4 py-2 text-xs font-semibold text-navy-900/75 shadow-xs">
+            <Globe className="h-3.5 w-3.5 text-sky-600 shrink-0" />
             <span>{DISCLAIMER}</span>
           </div>
 
           <div className="mt-7 flex flex-wrap justify-center gap-3">
             <Link
               href="/contact?tab=consultation"
-              className="inline-flex items-center gap-2 rounded-full bg-sky-600 px-7 py-3 text-sm font-black text-white shadow-lg shadow-sky-600/20 hover:bg-sky-700 transition-all duration-200 cursor-pointer"
+              className="inline-flex items-center gap-2 rounded-full bg-sky-600 px-7 py-3 text-sm font-black text-white shadow-md shadow-sky-600/20 hover:bg-sky-700 transition-all duration-200 cursor-pointer"
             >
               Request a Consultation
               <ArrowRight className="h-4 w-4" />
             </Link>
             <Link
               href="/contact?tab=quote&service=website"
-              className="inline-flex items-center gap-2 rounded-full border border-sky-600/30 bg-white px-6 py-3 text-sm font-bold text-navy-900 shadow-sm hover:bg-cream-50 transition-all duration-200 cursor-pointer"
+              className="inline-flex items-center gap-2 rounded-full border border-sky-600/30 bg-white px-6 py-3 text-sm font-bold text-navy-900 shadow-xs hover:bg-cream-50 transition-all duration-200 cursor-pointer"
             >
               Get a Service Quote
               <ArrowUpRight className="h-4 w-4 text-sky-600" />
@@ -362,37 +324,34 @@ export const WebsiteDesignServices: React.FC<WebsiteDesignServicesProps> = () =>
           </div>
         </div>
 
-        {/* ============ WHAT MAKES US DIFFERENT (3x2 GRID FROM USER'S CODE) ============ */}
-        {/* <div className="mb-24">
-          <div className="text-center max-w-3xl mx-auto mb-12">
+        {/* ============ WHAT MAKES US DIFFERENT (PUNCHY 3x2 GRID) ============ */}
+        {/* <div className="mb-20 lg:mb-24">
+          <div className="text-center max-w-2xl mx-auto mb-10">
             <SectionLabel>Operational Advantage</SectionLabel>
             <h2 className="mt-2 text-2xl sm:text-3xl font-black text-navy-900 uppercase tracking-tight">
               What Makes Us Different
             </h2>
-            <p className="mt-3 text-sm text-navy-900/60 font-semibold">
-              Practical, high-performing digital execution designed around your business growth.
-            </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 max-w-5xl mx-auto">
             {differentiators.map((item, idx) => {
               const Icon = item.icon;
               return (
                 <motion.div
                   key={idx}
-                  className="bg-white/80 rounded-2xl p-6 lg:p-7 shadow-xs border border-sky-600/15 hover:shadow-md hover:border-sky-600/35 hover:bg-white transition-all group"
-                  initial={{ opacity: 0, y: 20 }}
+                  className="bg-white/85 rounded-2xl p-5 lg:p-6 shadow-xs border border-sky-600/15 hover:shadow-md hover:border-sky-600/35 transition-all group"
+                  initial={{ opacity: 0, y: 15 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: idx * 0.08, ease: "easeOut" }}
+                  transition={{ duration: 0.35, delay: idx * 0.06 }}
                 >
-                  <div className="flex h-12 w-12 lg:h-14 lg:w-14 items-center justify-center rounded-xl bg-sky-600/10 text-sky-600 mb-4 lg:mb-5 group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300">
-                    <Icon className="h-5 w-5 lg:h-6 lg:w-6" />
+                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-sky-600/10 text-sky-600 mb-3.5 group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300">
+                    <Icon className="h-5 w-5" />
                   </div>
-                  <h3 className="text-sm lg:text-base font-black text-navy-900 uppercase tracking-tight mb-2 lg:mb-3">
+                  <h3 className="text-sm font-black text-navy-900 uppercase tracking-tight mb-1.5">
                     {item.title}
                   </h3>
-                  <p className="text-xs lg:text-sm text-navy-900/65 font-medium leading-relaxed">
+                  <p className="text-xs text-navy-900/65 font-medium leading-relaxed">
                     {item.desc}
                   </p>
                 </motion.div>
@@ -401,20 +360,17 @@ export const WebsiteDesignServices: React.FC<WebsiteDesignServicesProps> = () =>
           </div>
         </div> */}
 
-        {/* ============ 5 CORE IT PILLARS - CARDS DESIGN (FROM GIVEN IMAGE) ============ */}
-        <div className="mb-24">
-          <div className="text-center max-w-2xl mx-auto mb-16">
+        {/* ============ 5 CORE IT PILLARS (MINIMAL TEXT & MAXIMUM WHITESPACE) ============ */}
+        <div className="mb-20 lg:mb-24">
+          <div className="text-center max-w-2xl mx-auto mb-14">
             <SectionLabel>Core IT Pillars</SectionLabel>
-            <h2 className="mt-3 text-2xl sm:text-3xl font-black text-navy-900 uppercase tracking-tight">
-              Digital IT Services &amp; Capabilities
+            <h2 className="mt-2 text-2xl sm:text-3xl font-black text-navy-900 uppercase tracking-tight">
+              Digital IT Capabilities
             </h2>
-            <p className="mt-3 text-sm text-navy-900/60 font-semibold">
-              Interactive operational scope covering web architecture, native mobile apps, performance marketing, ERP software, and cloud infrastructure.
-            </p>
           </div>
 
-          {/* Alternating Service Cards matching attached image */}
-          <div className="space-y-16 lg:space-y-24 max-w-6xl mx-auto">
+          {/* Alternating Service Cards */}
+          <div className="space-y-16 lg:space-y-20 max-w-6xl mx-auto">
             {itServices.map((service, idx) => {
               const isReversed = idx % 2 === 1;
 
@@ -426,7 +382,7 @@ export const WebsiteDesignServices: React.FC<WebsiteDesignServicesProps> = () =>
                     }`}
                 >
                   {/* TEXT & ACCORDION COLUMN (6 cols) */}
-                  <div className="lg:col-span-6 space-y-5">
+                  <div className="lg:col-span-6 space-y-4">
                     <div>
                       <div className="flex items-center gap-2 text-xs font-bold text-copper-500 uppercase tracking-wider">
                         <span className="flex h-5 w-5 items-center justify-center rounded-full bg-copper-50 text-[10px] font-black text-copper-600 border border-copper-200">
@@ -435,34 +391,34 @@ export const WebsiteDesignServices: React.FC<WebsiteDesignServicesProps> = () =>
                         <span>{service.tag}</span>
                       </div>
 
-                      <h3 className="mt-2 text-2xl sm:text-3xl font-black text-navy-900 uppercase tracking-tight leading-snug">
+                      <h3 className="mt-2 text-xl sm:text-2xl lg:text-3xl font-black text-navy-900 uppercase tracking-tight leading-snug">
                         {service.title}
                       </h3>
 
-                      <p className="mt-2 text-xs sm:text-sm text-navy-900/70 font-medium leading-relaxed">
+                      <p className="mt-1.5 text-xs sm:text-sm text-navy-900/65 font-medium leading-relaxed">
                         {service.subtitle}
                       </p>
                     </div>
 
-                    {/* Accordion Group matching reference image */}
-                    <div className="space-y-2.5 pt-1">
+                    {/* Accordions with ultra-concise 1-line explanations */}
+                    <div className="space-y-2 pt-1">
                       {service.accordions.map((acc, aIdx) => {
                         const isOpen = activeAccordion[service.id] === aIdx;
 
                         return (
                           <div
                             key={aIdx}
-                            className={`rounded-xl border transition-all duration-300 overflow-hidden ${isOpen
-                                ? "border-2 border-sky-600 bg-white shadow-md ring-2 ring-sky-500/10"
+                            className={`rounded-xl border transition-all duration-200 overflow-hidden ${isOpen
+                                ? "border-2 border-sky-600 bg-white shadow-xs"
                                 : "border border-navy-900/10 bg-white/70 hover:border-sky-600/30 hover:bg-white"
                               }`}
                           >
                             <button
                               type="button"
                               onClick={() => toggleAccordion(service.id, aIdx)}
-                              className="w-full flex items-center justify-between p-3.5 sm:p-4 text-left transition-colors cursor-pointer"
+                              className="w-full flex items-center justify-between p-3 sm:p-3.5 text-left transition-colors cursor-pointer"
                             >
-                              <div className="flex items-center gap-3 pr-2">
+                              <div className="flex items-center gap-2.5 pr-2">
                                 <span
                                   className={`h-1.5 w-1.5 rounded-full shrink-0 transition-colors ${isOpen ? "bg-sky-600" : "bg-navy-900/30"
                                     }`}
@@ -475,7 +431,7 @@ export const WebsiteDesignServices: React.FC<WebsiteDesignServicesProps> = () =>
                                 </span>
                               </div>
                               <ChevronDown
-                                className={`h-4 w-4 shrink-0 transition-transform duration-300 ${isOpen ? "rotate-180 text-sky-600" : "text-navy-900/40"
+                                className={`h-4 w-4 shrink-0 transition-transform duration-200 ${isOpen ? "rotate-180 text-sky-600" : "text-navy-900/40"
                                   }`}
                               />
                             </button>
@@ -486,11 +442,11 @@ export const WebsiteDesignServices: React.FC<WebsiteDesignServicesProps> = () =>
                                   initial={{ opacity: 0, height: 0 }}
                                   animate={{ opacity: 1, height: "auto" }}
                                   exit={{ opacity: 0, height: 0 }}
-                                  transition={{ duration: 0.28, ease: "easeInOut" }}
+                                  transition={{ duration: 0.2, ease: "easeInOut" }}
                                   className="overflow-hidden"
                                 >
-                                  <div className="px-4 pb-4 sm:px-4.5 sm:pb-4 pt-1 border-t border-navy-900/10">
-                                    <p className="text-xs text-navy-900/75 font-medium leading-relaxed">
+                                  <div className="px-3.5 pb-3 pt-0.5 border-t border-navy-900/5">
+                                    <p className="text-xs text-navy-900/70 font-medium leading-relaxed">
                                       {acc.description}
                                     </p>
                                   </div>
@@ -503,10 +459,10 @@ export const WebsiteDesignServices: React.FC<WebsiteDesignServicesProps> = () =>
                     </div>
 
                     {/* Action Button */}
-                    <div className="pt-2">
+                    <div className="pt-1.5">
                       <Link
                         href={`/contact?tab=website-solutions&service=${service.serviceQuery}`}
-                        className="inline-flex items-center gap-2 rounded-full bg-sky-600 hover:bg-sky-700 text-white px-6 py-3 text-xs font-black uppercase tracking-wider shadow-md shadow-sky-600/20 transition-all cursor-pointer"
+                        className="inline-flex items-center gap-2 rounded-full bg-sky-600 hover:bg-sky-700 text-white px-5 py-2.5 text-xs font-black uppercase tracking-wider shadow-xs transition-all cursor-pointer"
                       >
                         <span>{service.actionLabel}</span>
                         <ArrowRight className="h-3.5 w-3.5" />
@@ -514,42 +470,41 @@ export const WebsiteDesignServices: React.FC<WebsiteDesignServicesProps> = () =>
                     </div>
                   </div>
 
-                  {/* CREATIVE IMAGE FRAME WITH INSET FLOATING SUB-CARD (6 cols) */}
+                  {/* CREATIVE IMAGE FRAME WITH INSET FLOATING SUB-CARD */}
                   <div className="lg:col-span-6">
                     <div className="relative group">
-                      {/* Main Outer Frame with Theme Blue Border matching attached reference */}
-                      <div className="relative aspect-[4/3] sm:aspect-[16/11] rounded-3xl overflow-hidden border-2 border-sky-600/30 bg-white shadow-xl shadow-navy-900/10 transition-all duration-500 group-hover:border-sky-500 group-hover:shadow-2xl">
+                      <div className="relative aspect-[4/3] sm:aspect-[16/11] rounded-3xl overflow-hidden border-2 border-sky-600/30 bg-white shadow-lg transition-all duration-300 group-hover:border-sky-500 group-hover:shadow-xl">
                         <Image
                           src={service.image}
                           alt={service.title}
                           fill
-                          className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                          className="object-cover transition-transform duration-500 ease-out group-hover:scale-103"
                           sizes="(max-width: 768px) 100vw, 600px"
                         />
 
-                        {/* Theme Depth Overlays */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-navy-900/75 via-navy-900/20 to-transparent" />
+                        {/* Subtle Depth Overlay */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-navy-900/70 via-transparent to-transparent" />
 
                         {/* Top-Left Floating Pillar Badge */}
-                        <div className="absolute top-4 left-4 z-10 flex items-center gap-2 rounded-full bg-navy-900/90 backdrop-blur-md border border-white/20 px-3.5 py-1 text-[10px] font-black uppercase tracking-wider text-white shadow-md">
+                        <div className="absolute top-3.5 left-3.5 z-10 flex items-center gap-1.5 rounded-full bg-navy-900/90 backdrop-blur-md px-3 py-1 text-[10px] font-black uppercase tracking-wider text-white shadow-xs">
                           <span className="h-1.5 w-1.5 rounded-full bg-sky-400" />
                           <span>{service.badgeText}</span>
                         </div>
 
-                        {/* Inset Picture-in-Picture Floating Sub-Card (Matching Reference Image) */}
-                        <div className="absolute bottom-4 right-4 z-10 w-52 sm:w-60 rounded-2xl border-2 border-sky-500 bg-white/95 backdrop-blur-md p-3.5 shadow-2xl space-y-2 transition-transform duration-300 group-hover:scale-102">
-                          <div className="flex items-center justify-between border-b border-navy-900/10 pb-2">
+                        {/* Inset Picture-in-Picture Floating Sub-Card */}
+                        <div className="absolute bottom-3.5 right-3.5 z-10 w-48 sm:w-56 rounded-2xl border-2 border-sky-500 bg-white/95 backdrop-blur-md p-3 shadow-xl space-y-1.5 transition-transform duration-200 group-hover:scale-102">
+                          <div className="flex items-center justify-between border-b border-navy-900/10 pb-1.5">
                             <span className="text-[10px] font-black uppercase tracking-wider text-sky-600">
                               {service.subCard.title}
                             </span>
                             <span className="flex h-2 w-2 rounded-full bg-emerald-500 shadow-xs animate-pulse" />
                           </div>
 
-                          <div className="space-y-1.5">
+                          <div className="space-y-1">
                             {service.subCard.stats.map((st, sIdx) => (
                               <div
                                 key={sIdx}
-                                className="flex items-center justify-between text-[10px] py-0.5"
+                                className="flex items-center justify-between text-[10px]"
                               >
                                 <span className="font-semibold text-navy-900/60">{st.label}</span>
                                 <span className="font-black text-navy-900">{st.value}</span>
@@ -566,28 +521,28 @@ export const WebsiteDesignServices: React.FC<WebsiteDesignServicesProps> = () =>
           </div>
         </div>
 
-        {/* ============ BOTTOM CTA (MATCHING PROVIDED TEMPLATE & THEME) ============ */}
-        <div className="rounded-3xl bg-navy-card p-8 sm:p-12 text-center max-w-4xl mx-auto relative overflow-hidden shadow-2xl border border-sky-600/20">
+        {/* ============ BOTTOM CTA (MINIMAL & IMPACTFUL) ============ */}
+        <div className="rounded-3xl bg-navy-card p-8 sm:p-10 text-center max-w-3xl mx-auto relative overflow-hidden shadow-xl border border-sky-600/20">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,color-mix(in_srgb,var(--color-sky-600)_15%,transparent)_0%,transparent_70%)]" />
           <div className="relative">
             <SectionLabel className="text-sky-400">Technology Partnership</SectionLabel>
-            <h3 className="mt-3 text-2xl sm:text-3xl font-black uppercase tracking-tight text-white">
+            <h3 className="mt-2 text-2xl sm:text-3xl font-black uppercase tracking-tight text-white">
               Ready to Own Your Digital Future
             </h3>
-            <p className="mt-4 text-sm text-sage-100/70 font-medium max-w-xl mx-auto leading-relaxed">
-              Hraize works in close collaboration with our trusted technology development partner to deliver enterprise-grade digital systems with zero technical debt.
+            <p className="mt-3 text-xs sm:text-sm text-sage-100/70 font-medium max-w-lg mx-auto leading-relaxed">
+              Partner with Hraize and our technology development team for reliable, high-performance digital systems.
             </p>
-            <div className="mt-8 flex flex-wrap justify-center gap-3">
+            <div className="mt-6 flex flex-wrap justify-center gap-3">
               <Link
                 href="/contact?tab=consultation"
-                className="inline-flex items-center gap-2 rounded-full bg-sky-600 text-white font-black hover:bg-sky-700 px-8 py-3.5 text-xs uppercase tracking-wider shadow-lg shadow-sky-600/20 transition-all cursor-pointer"
+                className="inline-flex items-center gap-2 rounded-full bg-sky-600 text-white font-black hover:bg-sky-700 px-7 py-3 text-xs uppercase tracking-wider shadow-md shadow-sky-600/20 transition-all cursor-pointer"
               >
                 Request a Consultation
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
                 href="/contact?tab=quote&service=website"
-                className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 text-white font-black hover:bg-white/10 px-8 py-3.5 text-xs uppercase tracking-wider transition-all cursor-pointer"
+                className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 text-white font-black hover:bg-white/10 px-7 py-3 text-xs uppercase tracking-wider transition-all cursor-pointer"
               >
                 Get a Service Quote
                 <ArrowUpRight className="h-4 w-4" />
