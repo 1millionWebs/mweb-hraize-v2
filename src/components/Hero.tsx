@@ -140,7 +140,7 @@ export const Hero: React.FC<HeroProps> = () => {
             {/* Showcase Visual with Gradient and Badges */}
             <div className="relative aspect-[10/09]">
               <Image
-                src="/partners.png"
+                src="/hero-image.png"
                 alt="Hraize professional team delivering integrated business support"
                 fill
                 priority
