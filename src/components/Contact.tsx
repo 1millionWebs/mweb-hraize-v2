@@ -397,145 +397,73 @@ export const Contact: React.FC<ContactProps> = ({ initialTab = "hr" }) => {
           </div>
         </div>
 
-        {/* ============ 4 DEDICATED SERVICE DESKS ============ */}
-        <div className="mb-16">
-          <div className="text-center max-w-2xl mx-auto mb-10">
-            <SectionLabel>Service Desks</SectionLabel>
-            <h2 className="mt-2 text-2xl sm:text-3xl font-black text-navy-900 uppercase tracking-tight">
-              Route Inquiries by Service Domain
-            </h2>
-            <p className="mt-2 text-xs sm:text-sm text-navy-900/65 font-medium">
-              Include your organization details and desired scope for prompt handling by the respective desk.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-            {serviceDesks.map((desk, idx) => (
-              <div
-                key={idx}
-                className="bg-white rounded-3xl p-6 sm:p-7 border border-navy-900/10 shadow-xs hover:shadow-md hover:border-sky-600/30 transition-all flex flex-col justify-between"
-              >
-                <div>
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="text-[10px] font-black uppercase tracking-widest text-copper-500 bg-copper-50 px-2.5 py-0.5 rounded-full border border-copper-200">
-                      Pillar {desk.number}
-                    </span>
-                    <span className="text-[10px] font-bold text-navy-900/50 uppercase">
-                      {desk.tag}
-                    </span>
-                  </div>
-
-                  <h3 className="text-base sm:text-lg font-black text-navy-900 uppercase tracking-tight">
-                    {desk.title}
-                  </h3>
-
-                  <p className="mt-2 text-xs text-navy-900/65 font-medium leading-relaxed">
-                    {desk.desc}
-                  </p>
-                </div>
-
-                <div className="mt-6 pt-4 border-t border-navy-900/10 flex flex-wrap items-center justify-between gap-3">
-                  <div>
-                    <span className="text-[10px] font-bold text-navy-900/50 uppercase block">
-                      Turnaround SLA
-                    </span>
-                    <span className="text-xs font-black text-emerald-600">
-                      {desk.sla}
-                    </span>
-                  </div>
-
-                  <a
-                    href={`mailto:info@hraize.com?subject=${encodeURIComponent(desk.emailSubject)}`}
-                    className="inline-flex items-center gap-1.5 rounded-full bg-navy-900 hover:bg-sky-600 text-white px-4 py-2 text-xs font-black uppercase tracking-wider transition-colors shadow-xs"
-                  >
-                    <span>Email Desk</span>
-                    <ArrowRight className="h-3.5 w-3.5" />
-                  </a>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* ============ INQUIRY GUIDANCE & CHANNELS ROW ============ */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch max-w-5xl mx-auto mb-16">
-          {/* Inquiry Preparation Guidance */}
-          <div className="lg:col-span-7 bg-white rounded-3xl p-7 border border-navy-900/10 shadow-xs">
-            <span className="text-[10px] font-black uppercase tracking-widest text-sky-600">
-              Checklist
-            </span>
-            <h3 className="mt-1 text-lg font-black text-navy-900 uppercase tracking-tight">
-              What to Include in Your Inquiry
-            </h3>
-            <p className="mt-1.5 text-xs text-navy-900/65 font-medium leading-relaxed">
-              To help our advisory team prepare an accurate assessment and scoping call:
-            </p>
-
-            <ul className="mt-4 space-y-2.5 text-xs font-semibold text-navy-900/75">
-              {[
-                "Organization name, location, and industry sector",
-                "Specific service requirements (HR, Payroll, Hiring, Invoicing, IT)",
-                "Current workforce size or approximate transaction volume",
-                "Target start date, schedule deadlines, or key milestones",
-              ].map((item, i) => (
-                <li key={i} className="flex items-start gap-2.5">
-                  <CheckCircle2 className="h-4 w-4 text-emerald-600 shrink-0 mt-0.5" />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Official Social Channels & Brand Identity */}
-          <div className="lg:col-span-5 bg-navy-card rounded-3xl p-7 text-white flex flex-col justify-between shadow-xl border border-sky-600/20">
-            <div>
+        {/* ============ OFFICIAL CHANNELS (CENTERED & FULL SPACE) ============ */}
+        <div className="max-w-5xl mx-auto">
+          <div className="bg-navy-card rounded-3xl p-8 sm:p-10 text-white shadow-xl border border-sky-600/20 relative overflow-hidden">
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,color-mix(in_srgb,var(--color-sky-600)_12%,transparent)_0%,transparent_70%)] pointer-events-none" />
+            <div className="relative text-center max-w-xl mx-auto">
               <SectionLabel className="text-sky-400">Official Channels</SectionLabel>
-              <h3 className="mt-1 text-lg font-black uppercase text-white tracking-tight">
+              <h2 className="mt-2 text-2xl sm:text-3xl font-black uppercase text-white tracking-tight">
                 Connect on Social
-              </h3>
-              <p className="mt-1.5 text-xs text-sage-100/70 font-medium leading-relaxed">
+              </h2>
+              <p className="mt-2 text-xs sm:text-sm text-sage-100/70 font-medium leading-relaxed">
                 Follow Hraize for regulatory updates, operational insights, and announcements.
               </p>
             </div>
 
-            <div className="mt-6 space-y-2.5 pt-4 border-t border-white/10">
+            <div className="relative mt-8 pt-7 border-t border-white/10 grid grid-cols-1 sm:grid-cols-3 gap-4">
               <a
                 href="https://www.linkedin.com/company/hraize/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-between p-2.5 rounded-xl bg-white/5 hover:bg-white/10 transition-colors text-xs font-bold"
+                className="group flex items-center justify-between p-4 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-sky-400/40 transition-all"
               >
-                <div className="flex items-center gap-2.5">
-                  <Linkedin className="h-4 w-4 text-sky-400" />
-                  <span>LinkedIn Profile</span>
+                <div className="flex items-center gap-3">
+                  <div className="h-10 w-10 rounded-xl bg-sky-500/15 text-sky-400 flex items-center justify-center shrink-0">
+                    <Linkedin className="h-5 w-5" />
+                  </div>
+                  <div className="text-left">
+                    <span className="block text-sm font-black text-white">LinkedIn</span>
+                    <span className="block text-[11px] text-sage-100/60 font-medium">Company Updates</span>
+                  </div>
                 </div>
-                <ArrowUpRight className="h-3.5 w-3.5 text-white/50" />
+                <ArrowUpRight className="h-4 w-4 text-white/50 group-hover:text-sky-400 transition-colors" />
               </a>
 
               <a
                 href="https://www.facebook.com/share/1Bed1q8bnd/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-between p-2.5 rounded-xl bg-white/5 hover:bg-white/10 transition-colors text-xs font-bold"
+                className="group flex items-center justify-between p-4 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-sky-400/40 transition-all"
               >
-                <div className="flex items-center gap-2.5">
-                  <Facebook className="h-4 w-4 text-sky-400" />
-                  <span>Facebook Page</span>
+                <div className="flex items-center gap-3">
+                  <div className="h-10 w-10 rounded-xl bg-sky-500/15 text-sky-400 flex items-center justify-center shrink-0">
+                    <Facebook className="h-5 w-5" />
+                  </div>
+                  <div className="text-left">
+                    <span className="block text-sm font-black text-white">Facebook</span>
+                    <span className="block text-[11px] text-sage-100/60 font-medium">Community &amp; News</span>
+                  </div>
                 </div>
-                <ArrowUpRight className="h-3.5 w-3.5 text-white/50" />
+                <ArrowUpRight className="h-4 w-4 text-white/50 group-hover:text-sky-400 transition-colors" />
               </a>
 
               <a
                 href="https://www.instagram.com/hraize.official?igsh=bWF5bXR0c25kY2hy"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-between p-2.5 rounded-xl bg-white/5 hover:bg-white/10 transition-colors text-xs font-bold"
+                className="group flex items-center justify-between p-4 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-copper-400/40 transition-all"
               >
-                <div className="flex items-center gap-2.5">
-                  <Instagram className="h-4 w-4 text-copper-400" />
-                  <span>Instagram Profile</span>
+                <div className="flex items-center gap-3">
+                  <div className="h-10 w-10 rounded-xl bg-copper-400/15 text-copper-400 flex items-center justify-center shrink-0">
+                    <Instagram className="h-5 w-5" />
+                  </div>
+                  <div className="text-left">
+                    <span className="block text-sm font-black text-white">Instagram</span>
+                    <span className="block text-[11px] text-sage-100/60 font-medium">Insights &amp; Culture</span>
+                  </div>
                 </div>
-                <ArrowUpRight className="h-3.5 w-3.5 text-white/50" />
+                <ArrowUpRight className="h-4 w-4 text-white/50 group-hover:text-copper-400 transition-colors" />
               </a>
             </div>
           </div>

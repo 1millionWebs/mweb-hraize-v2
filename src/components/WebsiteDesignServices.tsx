@@ -300,12 +300,6 @@ export const WebsiteDesignServices: React.FC<WebsiteDesignServicesProps> = () =>
             Website development, mobile applications, performance marketing, ERP solutions, and cloud infrastructure.
           </p>
 
-          {/* Technology Partner Disclaimer */}
-          <div className="mt-5 inline-flex items-center gap-2 rounded-full border border-sky-600/25 bg-white/80 px-4 py-2 text-xs font-semibold text-navy-900/75 shadow-xs">
-            <Globe className="h-3.5 w-3.5 text-sky-600 shrink-0" />
-            <span>{DISCLAIMER}</span>
-          </div>
-
           <div className="mt-7 flex flex-wrap justify-center gap-3">
             {/* <Link
               href="/contact?tab=consultation"
@@ -518,6 +512,14 @@ export const WebsiteDesignServices: React.FC<WebsiteDesignServicesProps> = () =>
                 </div>
               );
             })}
+          </div>
+        </div>
+
+        {/* Technology Partner Disclaimer */}
+        <div className="mb-16 flex justify-center">
+          <div className="inline-flex max-w-2xl items-center gap-2.5 rounded-2xl border border-sky-600/25 bg-white/80 px-4 py-2 text-xs font-semibold text-navy-900/75 shadow-xs">
+            <Globe className="h-4 w-4 shrink-0 text-sky-600" />
+            <span>{DISCLAIMER}</span>
           </div>
         </div>
 

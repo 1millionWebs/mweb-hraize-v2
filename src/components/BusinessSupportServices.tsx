@@ -205,11 +205,7 @@ export const BusinessSupportServices: React.FC<BusinessSupportServicesProps> = (
             execute polite customer reminders, and deliver periodic receivables reports.
           </p>
 
-          {/* Statutory Boundary Pill */}
-          <div className="mt-6 inline-flex max-w-2xl items-center gap-2.5 rounded-2xl border border-copper-400/35 bg-white/85 px-4 py-2.5 text-xs font-semibold text-navy-900/80 shadow-sm text-left">
-            <Info className="h-4 w-4 shrink-0 text-copper-500" />
-            <span>{STATUTORY_DISCLAIMER}</span>
-          </div>
+
 
           <div className="mt-7 flex flex-wrap justify-center gap-3">
             {/* <Link
@@ -339,6 +335,14 @@ export const BusinessSupportServices: React.FC<BusinessSupportServicesProps> = (
                 </motion.div>
               );
             })}
+          </div>
+        </div>
+
+        {/* Statutory Disclaimer Pill */}
+        <div className="mb-16 flex justify-center">
+          <div className="inline-flex max-w-2xl items-center gap-2.5 rounded-2xl border border-copper-400/35 bg-white/85 px-4 py-2.5 text-xs font-semibold text-navy-900/80 shadow-sm text-left">
+            <Info className="h-4 w-4 shrink-0 text-copper-500" />
+            <span>{STATUTORY_DISCLAIMER}</span>
           </div>
         </div>
 

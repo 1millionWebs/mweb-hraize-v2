@@ -50,7 +50,6 @@ export const Hero: React.FC<HeroProps> = () => {
             transition={{ duration: 0.45, ease: "easeOut" }}
             className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-[11px] font-black uppercase tracking-[0.18em] text-sky-300 backdrop-blur"
           >
-            <span className="h-2 w-2 rounded-full bg-copper-400 animate-pulse" />
             Right support to keep business moving.
           </motion.div>
 
@@ -70,7 +69,7 @@ export const Hero: React.FC<HeroProps> = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.12, ease: "easeOut" }}
           >
-            <p className="mt-5 max-w-xl text-base sm:text-lg font-semibold leading-relaxed text-white/75">
+            <p className="mt-5 max-w-xl text-base sm:text-sm font-semibold leading-relaxed text-white/75">
               Hraize provides practical HR, recruitment, business administration
               and digital IT services to help organisations operate smoothly and scale
               effectively.
