@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
@@ -90,6 +90,16 @@ export const Navbar: React.FC = () => {
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const [mobileCareersOpen, setMobileCareersOpen] = useState(false);
   const [mobileExpandedCat, setMobileExpandedCat] = useState<string | null>(null);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const toggleCategory = (title: string) => {
     setExpandedCategories((prev) => ({
@@ -131,8 +141,16 @@ export const Navbar: React.FC = () => {
   const isServiceActive = pathname === "/services" || pathname === "/hr-services" || pathname === "/recruitment" || pathname === "/business-support" || pathname === "/website-solutions";
   const isCareerActive = pathname === "/careers" || pathname === "/submit-resume" || pathname === "/vacancies";
 
+  const isHomeHeroTop = pathname === "/" && !isScrolled;
+
   return (
-    <header className="sticky top-0 z-50 w-full shadow-lg bg-cream-100/80 backdrop-blur-md">
+    <header
+      className={`sticky top-0 z-50 w-full transition-all duration-300 ${
+        isHomeHeroTop
+          ? "bg-white/90 backdrop-blur-md shadow-none"
+          : "shadow-lg bg-cream-100/80 backdrop-blur-md"
+      }`}
+    >
       <div className="flex flex-col items-center gap-1 md:flex-row md:items-center md:justify-between px-4 sm:px-6 lg:px-8 py-1.5 border-b border-sky-600/50 bg-navy-card">
         <div className="flex items-center gap-4 mx-auto max-w-7xl w-full">
           <div className="flex items-center gap-3">

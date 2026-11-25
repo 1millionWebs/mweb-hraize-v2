@@ -119,7 +119,7 @@ export const HomeContent: React.FC<HomeContentProps> = ({
             <h2 className="mt-3 text-3xl sm:text-4xl font-black text-navy-900 uppercase tracking-tight">
               Business support designed around your requirements.
             </h2>
-            <p className="mt-4 text-base text-navy-900/65 font-medium max-w-2xl mx-auto leading-relaxed">
+            <p className="mt-4 text-sm text-navy-900/65 font-medium max-w-2xl mx-auto leading-relaxed">
               Hraize offers practical support across HR, recruitment, business administration and website development.
             </p>
           </div>
