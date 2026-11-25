@@ -16,6 +16,7 @@ import {
   Headphones,
 } from "lucide-react";
 import { SectionLabel } from "./UIElements";
+import { ServiceHero } from "./ServiceHero";
 
 interface WebsiteDesignServicesProps {
   onGetStarted?: () => void;
@@ -288,74 +289,22 @@ export const WebsiteDesignServices: React.FC<WebsiteDesignServicesProps> = () =>
   ];
 
   return (
-    <div className="bg-cream-100 py-16 lg:py-20">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* ============ HEADER SECTION (CLEAN & MINIMAL) ============ */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <SectionLabel>04. Service Domain</SectionLabel>
-          <h1 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-black text-navy-900 uppercase tracking-tight leading-[1.08]">
-            Digital IT <span className="text-sky-600">Services</span>
-          </h1>
-          <p className="mt-4 text-base sm:text-lg text-navy-900/70 font-semibold leading-relaxed max-w-2xl mx-auto">
-            Website development, mobile applications, performance marketing, ERP solutions, and cloud infrastructure.
-          </p>
+    <div className="bg-cream-100">
+      {/* ============ COMMON SERVICE HERO ============ */}
+      <ServiceHero
+        label="Digital & IT"
+        title="Digital IT"
+        accentTitle="Services"
+        description="Website development, mobile applications, performance marketing, ERP solutions, and cloud infrastructure."
+        anchors={[
+          { label: "Capabilities", href: "#capabilities" },
+          { label: "Technology Partner", href: "#technology-partner" },
+        ]}
+      />
 
-          <div className="mt-7 flex flex-wrap justify-center gap-3">
-            {/* <Link
-              href="/contact?tab=consultation"
-              className="inline-flex items-center gap-2 rounded-full bg-sky-600 px-7 py-3 text-sm font-black text-white shadow-md shadow-sky-600/20 hover:bg-sky-700 transition-all duration-200 cursor-pointer"
-            >
-              Request a Consultation
-              <ArrowRight className="h-4 w-4" />
-            </Link> */}
-            <Link
-              href="/contact?tab=quote&service=website"
-              className="inline-flex items-center gap-2 rounded-full border border-sky-600/30 bg-white px-6 py-3 text-sm font-bold text-navy-900 shadow-xs hover:bg-cream-50 transition-all duration-200 cursor-pointer"
-            >
-              Get a Service Quote
-              <ArrowUpRight className="h-4 w-4 text-sky-600" />
-            </Link>
-          </div>
-        </div>
-
-        {/* ============ WHAT MAKES US DIFFERENT (PUNCHY 3x2 GRID) ============ */}
-        {/* <div className="mb-20 lg:mb-24">
-          <div className="text-center max-w-2xl mx-auto mb-10">
-            <SectionLabel>Operational Advantage</SectionLabel>
-            <h2 className="mt-2 text-2xl sm:text-3xl font-black text-navy-900 uppercase tracking-tight">
-              What Makes Us Different
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 max-w-5xl mx-auto">
-            {differentiators.map((item, idx) => {
-              const Icon = item.icon;
-              return (
-                <motion.div
-                  key={idx}
-                  className="bg-white/85 rounded-2xl p-5 lg:p-6 shadow-xs border border-sky-600/15 hover:shadow-md hover:border-sky-600/35 transition-all group"
-                  initial={{ opacity: 0, y: 15 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.35, delay: idx * 0.06 }}
-                >
-                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-sky-600/10 text-sky-600 mb-3.5 group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300">
-                    <Icon className="h-5 w-5" />
-                  </div>
-                  <h3 className="text-sm font-black text-navy-900 uppercase tracking-tight mb-1.5">
-                    {item.title}
-                  </h3>
-                  <p className="text-xs text-navy-900/65 font-medium leading-relaxed">
-                    {item.desc}
-                  </p>
-                </motion.div>
-              );
-            })}
-          </div>
-        </div> */}
-
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
         {/* ============ 5 CORE IT PILLARS (MINIMAL TEXT & MAXIMUM WHITESPACE) ============ */}
-        <div className="mb-20 lg:mb-24">
+        <div id="capabilities" className="scroll-mt-24 mb-20 lg:mb-24">
           <div className="text-center max-w-2xl mx-auto mb-14">
             <SectionLabel>Core IT Pillars</SectionLabel>
             <h2 className="mt-2 text-2xl sm:text-3xl font-black text-navy-900 uppercase tracking-tight">
@@ -524,7 +473,7 @@ export const WebsiteDesignServices: React.FC<WebsiteDesignServicesProps> = () =>
         </div>
 
         {/* ============ BOTTOM CTA (MINIMAL & IMPACTFUL) ============ */}
-        <div className="rounded-3xl bg-navy-card p-8 sm:p-10 text-center max-w-3xl mx-auto relative overflow-hidden shadow-xl border border-sky-600/20">
+        <div id="technology-partner" className="scroll-mt-24 rounded-3xl bg-navy-card p-8 sm:p-10 text-center max-w-3xl mx-auto relative overflow-hidden shadow-xl border border-sky-600/20">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,color-mix(in_srgb,var(--color-sky-600)_15%,transparent)_0%,transparent_70%)]" />
           <div className="relative">
             <SectionLabel className="text-sky-400">Technology Partnership</SectionLabel>

@@ -18,6 +18,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import { SectionLabel, FeatureCheck } from "./UIElements";
+import { ServiceHero } from "./ServiceHero";
 
 interface RecruitmentServicesProps {
   onEmployerClick: () => void;
@@ -125,41 +126,23 @@ export const RecruitmentServices: React.FC<RecruitmentServicesProps> = ({
   ];
 
   return (
-    <div className="bg-cream-100 py-16">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* ============ HEADER SECTION ============ */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <SectionLabel>Recruitment & Staffing</SectionLabel>
-          <h1 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-black text-navy-900 uppercase tracking-tight leading-[1.08]">
-            Quality Hiring for Growing Business
-          </h1>
-          <p className="mt-3 text-sm font-bold text-navy-900/50 uppercase tracking-[0.12em]">
-            Permanent &amp; Contract Staffing Services
-          </p>
-          <p className="mt-4 text-sm sm:text-base text-navy-900/70 font-semibold leading-relaxed">
-            We deliver high-caliber candidates aligned with your culture, technical standards, and operational goals.
-          </p>
+    <div className="bg-cream-100">
+      {/* ============ COMMON SERVICE HERO ============ */}
+      <ServiceHero
+        label="Recruitment & Staffing"
+        title="Quality Hiring for"
+        accentTitle="Growing Business"
+        description="We deliver high-caliber candidates aligned with your culture, technical standards, and operational goals."
+        anchors={[
+          { label: "The Hraize Difference", href: "#hraize-difference" },
+          { label: "Hiring Models", href: "#hiring-models" },
+          { label: "Who We Recruit", href: "#who-we-recruit" },
+        ]}
+      />
 
-          <div className="mt-7 flex flex-wrap justify-center gap-3">
-            {/* <button
-              onClick={onEmployerClick}
-              className="inline-flex items-center gap-2 rounded-full bg-sky-600 px-7 py-3 text-sm font-black text-white shadow-lg shadow-sky-600/20 hover:bg-sky-700 transition-all duration-200 cursor-pointer"
-            >
-              Request a Consultation
-              <ArrowRight className="h-4 w-4" />
-            </button> */}
-            <Link
-              href="/contact?tab=quote&service=recruitment"
-              className="inline-flex items-center gap-2 rounded-full border border-sky-600/30 bg-white px-6 py-3 text-sm font-bold text-navy-900 shadow-sm hover:bg-cream-50 transition-all duration-200"
-            >
-              Get a Service Quote
-              <ArrowUpRight className="h-4 w-4 text-sky-600" />
-            </Link>
-          </div>
-        </div>
-
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
         {/* ============ PIPELINE ARCHITECTURE & THE HRAIZE DIFFERENCE ============ */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-24">
+        <div id="hraize-difference" className="scroll-mt-24 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-24">
           <div className="lg:col-span-5 relative bg-navy-card p-8 rounded-3xl flex flex-col justify-between min-h-[400px] border border-navy-900/10 shadow-xl">
             <div>
               <SectionLabel className="text-sky-400">Pipeline Architecture</SectionLabel>
@@ -232,7 +215,7 @@ export const RecruitmentServices: React.FC<RecruitmentServicesProps> = ({
         </div>
 
         {/* ============ HIRING MODELS ============ */}
-        <div className="mb-24">
+        <div id="hiring-models" className="scroll-mt-24 mb-24">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <SectionLabel>Engagement Structures</SectionLabel>
             <h2 className="mt-3 text-2xl sm:text-3xl font-black text-navy-900 uppercase tracking-tight">
@@ -282,7 +265,7 @@ export const RecruitmentServices: React.FC<RecruitmentServicesProps> = ({
         </div>
 
         {/* ============ WHO WE RECRUIT ============ */}
-        <div className="mb-24 rounded-3xl bg-navy-card p-8 sm:p-12 border border-navy-900/10 shadow-2xl relative overflow-hidden">
+        <div id="who-we-recruit" className="scroll-mt-24 mb-24 rounded-3xl bg-navy-card p-8 sm:p-12 border border-navy-900/10 shadow-2xl relative overflow-hidden">
           <div className="absolute top-0 right-0 h-80 w-80 rounded-full bg-sky-600/10 blur-3xl pointer-events-none" />
           <div className="relative text-center max-w-2xl mx-auto mb-12">
             <SectionLabel className="text-sky-400">Who We Serve</SectionLabel>

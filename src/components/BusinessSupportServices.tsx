@@ -23,6 +23,7 @@ import {
   Layers,
 } from "lucide-react";
 import { SectionLabel, FeatureCheck } from "./UIElements";
+import { ServiceHero } from "./ServiceHero";
 
 interface BusinessSupportServicesProps {
   onGetStarted?: () => void;
@@ -187,46 +188,23 @@ export const BusinessSupportServices: React.FC<BusinessSupportServicesProps> = (
   ];
 
   return (
-    <div className="bg-cream-100 py-16">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* ============ HEADER SECTION ============ */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <SectionLabel>Operational Support</SectionLabel>
-          <h1 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-black text-navy-900 uppercase tracking-tight leading-[1.08]">
-            Invoice &amp; Receivables
-            <br />
-            <span className="text-sky-600">Administration</span>
-          </h1>
-          <p className="mt-3 text-sm font-bold text-navy-900/50 uppercase tracking-[0.12em]">
-            Sales Register · Due-Date Tracking · Customer Follow-ups · MIS Reports
-          </p>
-          <p className="mt-4 text-base sm:text-lg text-navy-900/70 font-semibold leading-relaxed">
-            Systematic back-office administrative support to track sales invoices, monitor aging,
-            execute polite customer reminders, and deliver periodic receivables reports.
-          </p>
+    <div className="bg-cream-100">
+      {/* ============ COMMON SERVICE HERO ============ */}
+      <ServiceHero
+        label="Operational Support"
+        title="Invoice & Receivables"
+        accentTitle="Administration"
+        description="Systematic back-office administrative support to track sales invoices, monitor aging, execute polite customer reminders, and deliver periodic receivables reports."
+        anchors={[
+          { label: "Capabilities", href: "#capabilities" },
+          { label: "Why Choose Us", href: "#why-choose-us" },
+          { label: "3-Step Workflow", href: "#workflow" },
+        ]}
+      />
 
-
-
-          <div className="mt-7 flex flex-wrap justify-center gap-3">
-            {/* <Link
-              href="/contact?tab=consultation"
-              className="inline-flex items-center gap-2 rounded-full bg-sky-600 px-7 py-3 text-sm font-black text-white shadow-lg shadow-sky-600/20 hover:bg-sky-700 transition-all duration-200"
-            >
-              Request a Consultation
-              <ArrowRight className="h-4 w-4" />
-            </Link> */}
-            <Link
-              href="/contact?tab=quote&service=business-support"
-              className="inline-flex items-center gap-2 rounded-full border border-sky-600/30 bg-white px-6 py-3 text-sm font-bold text-navy-900 shadow-sm hover:bg-cream-50 transition-all duration-200"
-            >
-              Get a Service Quote
-              <ArrowUpRight className="h-4 w-4 text-sky-600" />
-            </Link>
-          </div>
-        </div>
-
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
         {/* ============ 6 INTERACTIVE HOVER/TAP CARDS ============ */}
-        <div className="max-w-6xl mx-auto mb-24 px-4">
+        <div id="capabilities" className="scroll-mt-24 max-w-6xl mx-auto mb-24 px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {supportModules.map((srv, idx) => {
               const Icon = srv.icon;
@@ -347,7 +325,7 @@ export const BusinessSupportServices: React.FC<BusinessSupportServicesProps> = (
         </div>
 
         {/* ============ WHY CHOOSE OUR RECEIVABLES DESK ============ */}
-        <div className="mb-24">
+        <div id="why-choose-us" className="scroll-mt-24 mb-24">
           <div className="text-center max-w-3xl mx-auto mb-12">
             <h2 className="text-2xl sm:text-3xl font-black text-navy-900 uppercase tracking-tight">
               Why Work With Our Receivables Desk ?
@@ -419,7 +397,7 @@ export const BusinessSupportServices: React.FC<BusinessSupportServicesProps> = (
         </div>
 
         {/* ============ 3-STEP RECEIVABLES WORKFLOW ============ */}
-        <div className="mb-24 max-w-6xl mx-auto px-4">
+        <div id="workflow" className="scroll-mt-24 mb-24 max-w-6xl mx-auto px-4">
           <div className="text-center max-w-2xl mx-auto mb-12 lg:mb-16">
             <SectionLabel>Process Architecture</SectionLabel>
             <h2 className="mt-3 text-2xl sm:text-3xl font-black text-navy-900 uppercase tracking-tight">

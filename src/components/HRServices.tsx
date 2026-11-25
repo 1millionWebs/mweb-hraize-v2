@@ -22,6 +22,7 @@ import {
   Clock,
 } from "lucide-react";
 import { SectionLabel, FeatureCheck } from "./UIElements";
+import { ServiceHero } from "./ServiceHero";
 
 interface HRServicesProps {
   onBookCall?: () => void;
@@ -166,51 +167,26 @@ export const HRServices: React.FC<HRServicesProps> = ({ onBookCall }) => {
   ];
 
   return (
-    <div className="bg-cream-100 py-16">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* ============ HEADER SECTION ============ */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <SectionLabel>01. Service Domain</SectionLabel>
-          <h1 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-black text-navy-900 uppercase tracking-tight leading-[1.08]">
-            HR, Payroll Services &amp;
-            <br />
-            <span className="text-sky-600">Administration</span>
-          </h1>
-          <p className="mt-4 text-base sm:text-lg text-navy-900/70 font-semibold leading-relaxed">
-            Practical, end-to-end support across payroll processing, statutory compliance (PF, ESI, PT),
-            and complete employee lifecycle administration.
-          </p>
+    <div className="bg-cream-100">
+      {/* ============ COMMON SERVICE HERO ============ */}
+      <ServiceHero
+        title="HR, Payroll Services &"
+        accentTitle="Administration"
+        description="Practical, end-to-end support across payroll processing, statutory compliance (PF, ESI, PT), and complete employee lifecycle administration."
+      />
 
-          <div className="mt-7 flex flex-wrap justify-center gap-3">
-            {/* <Link
-              href="/contact?tab=consultation"
-              className="inline-flex items-center gap-2 rounded-full bg-sky-600 px-7 py-3 text-sm font-black text-white shadow-lg shadow-sky-600/20 hover:bg-sky-700 transition-all duration-200"
-            >
-              Request a Consultation
-              <ArrowRight className="h-4 w-4" />
-            </Link> */}
-            <Link
-              href="/contact?tab=quote&service=hr"
-              className="inline-flex items-center gap-2 rounded-full border border-sky-600/30 bg-white px-6 py-3 text-sm font-bold text-navy-900 shadow-sm hover:bg-cream-50 transition-all duration-200"
-            >
-              Get a Service Quote
-              <ArrowUpRight className="h-4 w-4 text-sky-600" />
-            </Link>
-          </div>
-        </div>
-
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
         {/* ============ 12 SCOPE SERVICES (6 + 6) CENTRAL INFOGRAPHIC ============ */}
-        <div className="max-w-6xl mx-auto mb-24 px-4 sm:px-6">
+        <div id="capabilities" className="scroll-mt-24 max-w-6xl mx-auto mb-24 px-4 sm:px-6">
           <div className="text-center max-w-3xl mx-auto mb-14">
             <span className="text-[11px] font-black uppercase tracking-widest text-sky-600">
-              Complete Service Scope
+              Service Scope
             </span>
             <h2 className="mt-2 text-2xl sm:text-3xl font-black text-navy-900 uppercase tracking-tight">
-              HR, Payroll &amp; Administrative Capabilities
+              Capabilities
             </h2>
             <p className="mt-3 text-sm text-navy-900/65 font-medium max-w-2xl mx-auto leading-relaxed">
-              Systematic operational execution across your payroll cycle, statutory filings, employee documentation, and workforce records.
-            </p>
+              Structured execution across payroll, statutory filings, employee documents, and workforce records            </p>
           </div>
 
           {/* DESKTOP (6 + 6) CENTRAL SPINE LAYOUT */}
@@ -304,7 +280,7 @@ export const HRServices: React.FC<HRServicesProps> = ({ onBookCall }) => {
         </div>
 
         {/* ============ WHY CHOOSE US ============ */}
-        <div className="mb-24">
+        <div id="why-choose-us" className="scroll-mt-24 mb-24">
           <div className="text-center max-w-3xl mx-auto mb-12">
             <h2 className="text-2xl sm:text-3xl font-black text-navy-900 uppercase tracking-tight">
               Why Choose Us ?
@@ -376,7 +352,7 @@ export const HRServices: React.FC<HRServicesProps> = ({ onBookCall }) => {
         </div>
 
         {/* ============ OUR METHODOLOGY (3 STEPS) ============ */}
-        <div className="mb-24 max-w-6xl mx-auto px-4">
+        <div id="how-it-works" className="scroll-mt-24 mb-24 max-w-6xl mx-auto px-4">
           <div className="text-center max-w-2xl mx-auto mb-12 lg:mb-16">
             <SectionLabel>Our Methodology</SectionLabel>
             <h2 className="mt-3 text-2xl sm:text-3xl font-black text-navy-900 uppercase tracking-tight">
