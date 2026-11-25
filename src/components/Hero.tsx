@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "motion/react";
 import Link from "next/link";
 import Image from "next/image";
@@ -9,11 +9,27 @@ import {
   ShieldCheck,
 } from "lucide-react";
 
+const HERO_PILLARS = [
+  "HR Solutions.",
+  "Business Support.",
+  "Digital Services.",
+];
+
 interface HeroProps {
   onGetStarted?: () => void;
 }
 
 export const Hero: React.FC<HeroProps> = () => {
+  const [pillarIdx, setPillarIdx] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+
+  useEffect(() => {
+    if (isPaused) return;
+    const timer = setInterval(() => {
+      setPillarIdx((prev) => (prev + 1) % HERO_PILLARS.length);
+    }, 2400);
+    return () => clearInterval(timer);
+  }, [isPaused]);
   return (
     <section className="relative overflow-hidden bg-cream-100 min-h-[540px] lg:min-h-[620px] flex items-center">
       {/* ============ FULL-BLEED HERO BACKGROUND IMAGE ============ */}
@@ -56,11 +72,28 @@ export const Hero: React.FC<HeroProps> = () => {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.06, ease: "easeOut" }}
-            className="mt-5 text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] xl:text-[3.65rem] font-black uppercase leading-[1.06] tracking-tight text-navy-900"
+            onMouseLeave={() => setIsPaused(false)}
+            className="mt-5 text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] xl:text-[3.65rem] font-black uppercase leading-[1.08] tracking-tight text-navy-900"
           >
-            <span className="block whitespace-nowrap">HR Solutions.</span>
-            <span className="block whitespace-nowrap">Business Support.</span>
-            <span className="block text-sky-600 whitespace-nowrap">Digital Services.</span>
+            {HERO_PILLARS.map((line, idx) => {
+              const isActive = pillarIdx === idx;
+              return (
+                <motion.span
+                  key={line}
+                  onMouseEnter={() => {
+                    setIsPaused(true);
+                    setPillarIdx(idx);
+                  }}
+                  animate={{ x: isActive ? 8 : 0 }}
+                  transition={{ type: "spring", stiffness: 360, damping: 28 }}
+                  className={`block whitespace-nowrap cursor-default transition-colors duration-300 ${
+                    isActive ? "text-sky-600" : "text-navy-900/85"
+                  }`}
+                >
+                  {line}
+                </motion.span>
+              );
+            })}
           </motion.h1>
 
           <motion.div

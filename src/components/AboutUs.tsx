@@ -73,15 +73,15 @@ export const AboutUs: React.FC = () => {
   ];
 
   return (
-    <div className="bg-cream-100 py-16 lg:py-20">
+    <div className="bg-cream-100 py-16 lg:py-10">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* ============ HEADER SECTION ============ */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <SectionLabel>About Hraize</SectionLabel>
+          <SectionLabel>OUR COMPANY</SectionLabel>
           <h1 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-black text-navy-900 uppercase tracking-tight leading-[1.08]">
-            Practical Business Support.
-            <br />
-            <span className="text-sky-600">Professional Service Delivery.</span>
+            <span className="block whitespace-nowrap">
+              <span className="text-sky-600">ABOUT</span> HRAIZE
+            </span>
           </h1>
 
           <div className="mt-6 inline-flex items-center gap-2 rounded-full border border-sky-600/20 bg-white/80 px-4 py-1.5 shadow-sm">
@@ -91,11 +91,59 @@ export const AboutUs: React.FC = () => {
             </span>
           </div>
 
-          <p className="mt-4 text-base sm:text-lg text-navy-900/70 font-semibold leading-relaxed">
-            Hraize is a business support services company based in Bengaluru, India,
-            serving growing businesses and established organisations.
+          <p className="mt-4 text-base sm:text-sm text-navy-900/70 font-semibold leading-relaxed">
+            Based in Bengaluru, Hraize provides business support services to growing and established organisations.
           </p>
         </div>
+
+
+        {/* ============ VISION & MISSION ============ */}
+        <div className="mb-24 grid grid-cols-1 md:grid-cols-2 gap-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            className="rounded-3xl bg-white border border-sky-600/15 p-8 sm:p-10 shadow-sm text-center"
+          >
+            <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-sky-600/10 text-sky-600 mb-5">
+              <Eye className="h-7 w-7" />
+            </div>
+            <span className="block text-[10px] font-black uppercase tracking-[0.2em] text-copper-500 mb-1">
+              Forward Outlook
+            </span>
+            <h3 className="text-2xl font-black text-navy-900 uppercase tracking-tight mb-4">
+              Our Vision
+            </h3>
+            <p className="text-sm sm:text-base text-navy-900/70 font-semibold leading-relaxed max-w-md mx-auto">
+              To be the trusted operational support partner for businesses seeking dependable,
+              high-quality business services.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
+            className="rounded-3xl bg-white border border-sky-600/15 p-8 sm:p-10 shadow-sm text-center"
+          >
+            <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-sky-600/10 text-sky-600 mb-5">
+              <Rocket className="h-7 w-7" />
+            </div>
+            <span className="block text-[10px] font-black uppercase tracking-[0.2em] text-copper-500 mb-1">
+              Core Purpose
+            </span>
+            <h3 className="text-2xl font-black text-navy-900 uppercase tracking-tight mb-4">
+              Our Mission
+            </h3>
+            <p className="text-sm sm:text-base text-navy-900/70 font-semibold leading-relaxed max-w-md mx-auto">
+              To deliver practical, professional and consistent business support that enables our
+              clients to focus on growth and core operations.
+            </p>
+          </motion.div>
+        </div>
+
 
         {/* ============ CORE COMPANY NARRATIVE ============ */}
         <div className="mb-24">
@@ -184,52 +232,7 @@ export const AboutUs: React.FC = () => {
           </div>
         </div>
 
-        {/* ============ VISION & MISSION ============ */}
-        <div className="mb-24 grid grid-cols-1 md:grid-cols-2 gap-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
-            className="rounded-3xl bg-white border border-sky-600/15 p-8 sm:p-10 shadow-sm text-center"
-          >
-            <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-sky-600/10 text-sky-600 mb-5">
-              <Eye className="h-7 w-7" />
-            </div>
-            <span className="block text-[10px] font-black uppercase tracking-[0.2em] text-copper-500 mb-1">
-              Forward Outlook
-            </span>
-            <h3 className="text-2xl font-black text-navy-900 uppercase tracking-tight mb-4">
-              Our Vision
-            </h3>
-            <p className="text-sm sm:text-base text-navy-900/70 font-semibold leading-relaxed max-w-md mx-auto">
-              To be the trusted operational support partner for businesses seeking dependable,
-              high-quality business services.
-            </p>
-          </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
-            className="rounded-3xl bg-white border border-sky-600/15 p-8 sm:p-10 shadow-sm text-center"
-          >
-            <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-sky-600/10 text-sky-600 mb-5">
-              <Rocket className="h-7 w-7" />
-            </div>
-            <span className="block text-[10px] font-black uppercase tracking-[0.2em] text-copper-500 mb-1">
-              Core Purpose
-            </span>
-            <h3 className="text-2xl font-black text-navy-900 uppercase tracking-tight mb-4">
-              Our Mission
-            </h3>
-            <p className="text-sm sm:text-base text-navy-900/70 font-semibold leading-relaxed max-w-md mx-auto">
-              To deliver practical, professional and consistent business support that enables our
-              clients to focus on growth and core operations.
-            </p>
-          </motion.div>
-        </div>
 
         {/* ============ CLOSING TAGLINE & CALL TO ACTION ============ */}
         <div className="rounded-3xl bg-cream-50 border border-sky-600/25 p-8 sm:p-12 text-center shadow-md">
