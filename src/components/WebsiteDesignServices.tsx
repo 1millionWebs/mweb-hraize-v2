@@ -307,13 +307,13 @@ export const WebsiteDesignServices: React.FC<WebsiteDesignServicesProps> = () =>
           </div>
 
           <div className="mt-7 flex flex-wrap justify-center gap-3">
-            <Link
+            {/* <Link
               href="/contact?tab=consultation"
               className="inline-flex items-center gap-2 rounded-full bg-sky-600 px-7 py-3 text-sm font-black text-white shadow-md shadow-sky-600/20 hover:bg-sky-700 transition-all duration-200 cursor-pointer"
             >
               Request a Consultation
               <ArrowRight className="h-4 w-4" />
-            </Link>
+            </Link> */}
             <Link
               href="/contact?tab=quote&service=website"
               className="inline-flex items-center gap-2 rounded-full border border-sky-600/30 bg-white px-6 py-3 text-sm font-bold text-navy-900 shadow-xs hover:bg-cream-50 transition-all duration-200 cursor-pointer"
@@ -409,8 +409,8 @@ export const WebsiteDesignServices: React.FC<WebsiteDesignServicesProps> = () =>
                           <div
                             key={aIdx}
                             className={`rounded-xl border transition-all duration-200 overflow-hidden ${isOpen
-                                ? "border-2 border-sky-600 bg-white shadow-xs"
-                                : "border border-navy-900/10 bg-white/70 hover:border-sky-600/30 hover:bg-white"
+                              ? "border-2 border-sky-600 bg-white shadow-xs"
+                              : "border border-navy-900/10 bg-white/70 hover:border-sky-600/30 hover:bg-white"
                               }`}
                           >
                             <button
@@ -540,13 +540,13 @@ export const WebsiteDesignServices: React.FC<WebsiteDesignServicesProps> = () =>
                 Request a Consultation
                 <ArrowRight className="h-4 w-4" />
               </Link>
-              <Link
+              {/* <Link
                 href="/contact?tab=quote&service=website"
                 className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 text-white font-black hover:bg-white/10 px-7 py-3 text-xs uppercase tracking-wider transition-all cursor-pointer"
               >
                 Get a Service Quote
                 <ArrowUpRight className="h-4 w-4" />
-              </Link>
+              </Link> */}
             </div>
           </div>
         </div>

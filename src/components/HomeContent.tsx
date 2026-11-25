@@ -366,13 +366,13 @@ export const HomeContent: React.FC<HomeContentProps> = ({
                   <ArrowRight className="h-4 w-4" />
                 </Link>
 
-                <Link
+                {/* <Link
                   href="/contact?tab=quote"
                   className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 backdrop-blur-sm px-7 py-4 text-sm font-black text-white hover:bg-white/15 transition-all duration-200"
                 >
                   Get a Service Quote
                   <ArrowUpRight className="h-4 w-4 text-sky-400" />
-                </Link>
+                </Link> */}
               </div>
             </div>
           </div>

@@ -188,13 +188,13 @@ export const HRServices: React.FC<HRServicesProps> = ({ onBookCall }) => {
           </div>
 
           <div className="mt-7 flex flex-wrap justify-center gap-3">
-            <Link
+            {/* <Link
               href="/contact?tab=consultation"
               className="inline-flex items-center gap-2 rounded-full bg-sky-600 px-7 py-3 text-sm font-black text-white shadow-lg shadow-sky-600/20 hover:bg-sky-700 transition-all duration-200"
             >
               Request a Consultation
               <ArrowRight className="h-4 w-4" />
-            </Link>
+            </Link> */}
             <Link
               href="/contact?tab=quote&service=hr"
               className="inline-flex items-center gap-2 rounded-full border border-sky-600/30 bg-white px-6 py-3 text-sm font-bold text-navy-900 shadow-sm hover:bg-cream-50 transition-all duration-200"
@@ -580,13 +580,13 @@ export const HRServices: React.FC<HRServicesProps> = ({ onBookCall }) => {
               Request a Consultation
               <ArrowRight className="h-4 w-4" />
             </button>
-            <Link
+            {/* <Link
               href="/contact?tab=quote&service=hr"
               className="inline-flex items-center gap-2 rounded-full border border-sky-600/30 bg-white px-7 py-3.5 text-xs font-bold text-navy-900 hover:bg-cream-100 shadow-sm transition-all"
             >
               Get a Service Quote
               <ArrowUpRight className="h-4 w-4 text-sky-600" />
-            </Link>
+            </Link> */}
           </div>
         </motion.div>
       </div>

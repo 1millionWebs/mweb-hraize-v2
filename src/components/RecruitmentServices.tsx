@@ -141,13 +141,13 @@ export const RecruitmentServices: React.FC<RecruitmentServicesProps> = ({
           </p>
 
           <div className="mt-7 flex flex-wrap justify-center gap-3">
-            <button
+            {/* <button
               onClick={onEmployerClick}
               className="inline-flex items-center gap-2 rounded-full bg-sky-600 px-7 py-3 text-sm font-black text-white shadow-lg shadow-sky-600/20 hover:bg-sky-700 transition-all duration-200 cursor-pointer"
             >
               Request a Consultation
               <ArrowRight className="h-4 w-4" />
-            </button>
+            </button> */}
             <Link
               href="/contact?tab=quote&service=recruitment"
               className="inline-flex items-center gap-2 rounded-full border border-sky-600/30 bg-white px-6 py-3 text-sm font-bold text-navy-900 shadow-sm hover:bg-cream-50 transition-all duration-200"
@@ -394,7 +394,7 @@ export const RecruitmentServices: React.FC<RecruitmentServicesProps> = ({
         </div>
 
         {/* ============ BOTTOM ACTION CARDS ============ */}
-        <motion.div
+        {/* <motion.div
           className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto"
           initial="hidden"
           whileInView="visible"
@@ -404,7 +404,6 @@ export const RecruitmentServices: React.FC<RecruitmentServicesProps> = ({
             visible: { transition: { staggerChildren: 0.15 } },
           }}
         >
-          {/* For Employers */}
           <motion.div
             className="rounded-3xl shadow-xl bg-navy-card p-8 sm:p-10 text-white flex flex-col justify-between items-start relative overflow-hidden group border border-navy-900/10"
             variants={{
@@ -450,7 +449,6 @@ export const RecruitmentServices: React.FC<RecruitmentServicesProps> = ({
             </div>
           </motion.div>
 
-          {/* For Candidates */}
           <motion.div
             className="rounded-3xl bg-white border shadow-xl border-sky-600/20 p-8 sm:p-10 flex flex-col justify-between items-start relative overflow-hidden group"
             variants={{
@@ -495,7 +493,7 @@ export const RecruitmentServices: React.FC<RecruitmentServicesProps> = ({
               </Link>
             </div>
           </motion.div>
-        </motion.div>
+        </motion.div> */}
       </div>
     </div>
   );

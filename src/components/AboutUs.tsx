@@ -252,13 +252,13 @@ export const AboutUs: React.FC = () => {
               <ArrowRight className="h-4 w-4" />
             </Link>
 
-            <Link
+            {/* <Link
               href="/contact?tab=quote"
               className="inline-flex items-center gap-2 rounded-full border border-sky-600/30 bg-white px-7 py-3.5 text-sm font-bold text-navy-900 shadow-sm hover:bg-cream-100 transition-all duration-200"
             >
               Get a Service Quote
               <ArrowUpRight className="h-4 w-4 text-sky-600" />
-            </Link>
+            </Link> */}
           </div>
         </div>
       </div>

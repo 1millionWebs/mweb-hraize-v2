@@ -1,0 +1,23 @@
+name = "hraize-hr-analytics-preprod"
+compatibility_date = "2026-06-19"
+compatibility_flags = ["nodejs_compat"]
+
+main = ".open-next/worker.js"
+assets = { directory = ".open-next/assets", binding = "ASSETS" }
+
+[[d1_databases]]
+binding = "DB"
+database_name = "hraize-db"
+database_id = "db18a95b-6752-4ede-9eba-cd5f2ca92702"
+
+[vars]
+ENVIRONMENT = "preprod"
+MAILTRAP_SENDER_EMAIL = "info@notify.hraize.com"
+MAILTRAP_SENDER_NAME = "Hraize Preprod"
+HR_RECIPIENT_EMAIL = "info@hraize.com"
+
+[observability]
+enabled = true
+
+[images]
+binding = "IMAGES"
