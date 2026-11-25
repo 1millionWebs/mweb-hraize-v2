@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "motion/react";
 import Link from "next/link";
 import {
@@ -7,20 +7,22 @@ import {
   Rocket,
   ShieldCheck,
   CheckCircle2,
-  Workflow,
   Sparkles,
   Users,
   Award,
   Layers,
   ArrowRight,
-  ArrowUpRight,
   MapPin,
-  Building2,
-  Check,
+  ChevronDown,
 } from "lucide-react";
 import { SectionLabel } from "./UIElements";
 
 export const AboutUs: React.FC = () => {
+  const [expandedCards, setExpandedCards] = useState<Record<string, boolean>>({});
+
+  const toggleCard = (num: string) => {
+    setExpandedCards((prev) => ({ ...prev, [num]: !prev[num] }));
+  };
   const narrativeParagraphs = [
     {
       number: "01",
@@ -57,7 +59,7 @@ export const AboutUs: React.FC = () => {
     },
     {
       name: "Flexible",
-      desc: "Services that adapt as your operational needs evolve.",
+      desc: "Services that seamlessly adapt as your operational needs evolve.",
       icon: Layers,
     },
     {
@@ -138,7 +140,7 @@ export const AboutUs: React.FC = () => {
               Our Mission
             </h3>
             <p className="text-sm sm:text-base text-navy-900/70 font-semibold leading-relaxed max-w-md mx-auto">
-              To deliver practical, professional and consistent business support that enables our
+              To deliver practical, professional and consistent support that enables our
               clients to focus on growth and core operations.
             </p>
           </motion.div>
@@ -156,112 +158,127 @@ export const AboutUs: React.FC = () => {
             </h2>
           </div>
 
-          <div className="grid gap-6 sm:grid-cols-2">
-            {narrativeParagraphs.map((para, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.15 }}
-                transition={{ duration: 0.5, delay: idx * 0.1, ease: "easeOut" }}
-                className="group relative rounded-3xl border border-sky-600/15 bg-white p-7 sm:p-8 shadow-sm hover:border-sky-600/35 hover:shadow-lg transition-all duration-300"
-              >
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-2xl font-black text-sky-600 leading-none">
-                    {para.number}
-                  </span>
-                  <span className="h-1.5 w-1.5 rounded-full bg-copper-400" />
-                </div>
-                <h3 className="text-lg font-black uppercase tracking-tight text-navy-900 mb-3 group-hover:text-sky-700 transition-colors">
-                  {para.title}
-                </h3>
-                <p className="text-sm font-medium text-navy-900/70 leading-relaxed">
-                  {para.text}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-
-        {/* ============ OUR SERVICE APPROACH ============ */}
-        <div className="mb-24 rounded-3xl bg-navy-card p-8 sm:p-12 lg:p-14 border border-navy-900/15 shadow-2xl relative overflow-hidden">
-          <div className="absolute top-0 right-0 h-96 w-96 rounded-full bg-sky-600/15 blur-3xl pointer-events-none" />
-          <div className="relative text-center max-w-2xl mx-auto mb-12">
-            <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3.5 py-1 text-[11px] font-black uppercase tracking-widest text-sky-300">
-              <Sparkles className="h-3 w-3 text-copper-400" />
-              Guiding Standards
-            </span>
-            <h2 className="mt-3 text-2xl sm:text-3xl lg:text-4xl font-black uppercase text-white tracking-tight">
-              Our Service Approach
-            </h2>
-            <p className="mt-3 text-sm text-sage-100/70 font-semibold leading-relaxed">
-              Five core principles that guide every client interaction and service delivery arrangement.
-            </p>
-          </div>
-
-          <div className="relative grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
-            {serviceApproachPrinciples.map((principle, idx) => {
-              const Icon = principle.icon;
+          <div className="grid gap-6 sm:grid-cols-2 items-start">
+            {narrativeParagraphs.map((para, idx) => {
+              const isExpanded = !!expandedCards[para.number];
               return (
                 <motion.div
-                  key={idx}
+                  key={para.number}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.15 }}
-                  transition={{ duration: 0.5, delay: idx * 0.08, ease: "easeOut" }}
-                  className="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm hover:bg-white/10 hover:border-white/20 transition-all duration-200 flex flex-col justify-between"
+                  transition={{ duration: 0.45, delay: idx * 0.08, ease: "easeOut" }}
+                  className="group relative rounded-3xl border border-sky-600/15 bg-white p-7 sm:p-8 shadow-sm hover:border-sky-600/35 hover:shadow-lg transition-colors duration-300"
                 >
-                  <div>
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-sky-600/20 text-sky-400 mb-4">
-                      <Icon className="h-5 w-5" />
-                    </div>
-                    <h3 className="text-base font-black uppercase tracking-tight text-white mb-2">
-                      {principle.name}
-                    </h3>
-                    <p className="text-xs font-medium text-sage-100/70 leading-relaxed">
-                      {principle.desc}
-                    </p>
+                  <div className="flex items-center justify-between mb-3">
+                    {/* <span className="text-2xl font-black text-sky-600 leading-none">
+                      {para.number}
+                    </span> */}
                   </div>
-                  <div className="mt-5 pt-3 border-t border-white/10 flex items-center gap-1.5 text-[10px] font-bold text-copper-400 uppercase tracking-wider">
-                    <Check className="h-3 w-3" />
-                    <span>Principle 0{idx + 1}</span>
-                  </div>
+                  <h3 className="text-lg font-black uppercase tracking-tight text-navy-900 mb-2.5 group-hover:text-sky-700 transition-colors">
+                    {para.title}
+                  </h3>
+                  <p
+                    className={`text-sm font-medium text-navy-900/70 leading-relaxed ${isExpanded ? "" : "line-clamp-2"
+                      }`}
+                  >
+                    {para.text}
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => toggleCard(para.number)}
+                    aria-expanded={isExpanded}
+                    className="mt-4 inline-flex items-center gap-1.5 text-xs font-black uppercase tracking-wider text-sky-600 hover:text-sky-700 transition-colors cursor-pointer"
+                  >
+                    <span>{isExpanded ? "Show less" : "Read more"}</span>
+                    <ChevronDown
+                      className={`h-3.5 w-3.5 transition-transform duration-300 ${isExpanded ? "rotate-180" : ""
+                        }`}
+                    />
+                  </button>
                 </motion.div>
               );
             })}
           </div>
         </div>
 
+        {/* ============ OUR SERVICE APPROACH ============ */}
+        <div className="mb-24">
+          <div className="text-center max-w-3xl mx-auto mb-12">
+            <h2 className="text-2xl sm:text-3xl font-black text-navy-900 uppercase tracking-tight">
+              Our Service Approach
+            </h2>
+            <div className="mt-4 h-1 w-20 bg-sky-600 mx-auto rounded-full" />
+          </div>
+
+          <div className="max-w-6xl mx-auto px-4">
+            <motion.div
+              className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 lg:gap-8"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+              variants={{
+                hidden: {},
+                visible: { transition: { staggerChildren: 0.12 } },
+              }}
+            >
+              {serviceApproachPrinciples.map((principle, idx) => {
+                const Icon = principle.icon;
+                return (
+                  <motion.div
+                    key={idx}
+                    variants={{
+                      hidden: { opacity: 0, y: 20, scale: 0.9 },
+                      visible: { opacity: 1, y: 0, scale: 1 },
+                    }}
+                    className="text-center group"
+                  >
+                    <motion.div
+                      className="inline-flex items-center justify-center w-16 h-16 lg:w-20 lg:h-20 rounded-full bg-sky-600/10 mb-3 lg:mb-4 text-sky-600 group-hover:bg-sky-600 group-hover:text-white transition-all"
+                      whileHover={{ scale: 1.12 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <Icon className="w-6 h-6 lg:w-8 lg:h-8 transition-colors" />
+                    </motion.div>
+                    <h3 className="text-sm lg:text-lg font-black text-navy-900 mb-1 lg:mb-2 group-hover:text-sky-700 transition-colors duration-300">
+                      {principle.name}
+                    </h3>
+                    <p className="text-xs lg:text-sm text-navy-900/60 font-semibold leading-relaxed">
+                      {principle.desc}
+                    </p>
+                  </motion.div>
+                );
+              })}
+            </motion.div>
+          </div>
+        </div>
+
 
 
         {/* ============ CLOSING TAGLINE & CALL TO ACTION ============ */}
-        <div className="rounded-3xl bg-cream-50 border border-sky-600/25 p-8 sm:p-12 text-center shadow-md">
-          <span className="text-[11px] font-black uppercase tracking-[0.2em] text-copper-500">
-            Hraize Identity
-          </span>
-          <h2 className="mt-3 text-2xl sm:text-3xl lg:text-4xl font-black uppercase tracking-tight text-navy-900">
-            Hraize – Supporting Your People. Simplifying Your Business.
-          </h2>
-          <p className="mt-4 text-base font-semibold text-navy-900/65 max-w-2xl mx-auto leading-relaxed">
-            Practical support for businesses across recruitment, payroll, administration, and modern digital solutions.
-          </p>
+        <div className="relative overflow-hidden rounded-3xl bg-navy-card p-8 sm:p-12 lg:p-16 text-center shadow-2xl border border-navy-900/10">
+          {/* Background ambient accents */}
+          <div className="absolute top-0 right-0 h-96 w-96 rounded-full bg-sky-600/15 blur-3xl pointer-events-none" />
+          <div className="absolute bottom-0 left-0 h-80 w-80 rounded-full bg-copper-400/10 blur-3xl pointer-events-none" />
 
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-            <Link
-              href="/contact?tab=consultation"
-              className="inline-flex items-center gap-2 rounded-full bg-sky-600 px-8 py-3.5 text-sm font-black text-white shadow-lg shadow-sky-600/25 hover:bg-sky-700 transition-all duration-200"
-            >
-              Request a Consultation
-              <ArrowRight className="h-4 w-4" />
-            </Link>
+          <div className="relative max-w-3xl mx-auto">
 
-            {/* <Link
-              href="/contact?tab=quote"
-              className="inline-flex items-center gap-2 rounded-full border border-sky-600/30 bg-white px-7 py-3.5 text-sm font-bold text-navy-900 shadow-sm hover:bg-cream-100 transition-all duration-200"
-            >
-              Get a Service Quote
-              <ArrowUpRight className="h-4 w-4 text-sky-600" />
-            </Link> */}
+            <h2 className="mt-5 text-2xl sm:text-3xl lg:text-4xl font-black uppercase tracking-tight text-white leading-tight">
+              Supporting Your People. Simplifying Your Business.
+            </h2>
+            <p className="mt-4 text-base sm:text-sm font-medium text-sage-100/75 max-w-2xl mx-auto leading-relaxed">
+              Practical support for businesses across recruitment, payroll, administration, and modern digital solutions.
+            </p>
+
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+              <Link
+                href="/contact?tab=consultation"
+                className="inline-flex items-center gap-2 rounded-full bg-sky-600 px-8 py-4 text-sm font-black tracking-wider text-white shadow-xl shadow-sky-600/30 hover:bg-sky-500 transition-all duration-200"
+              >
+                Request a Consultation
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
           </div>
         </div>
       </div>
