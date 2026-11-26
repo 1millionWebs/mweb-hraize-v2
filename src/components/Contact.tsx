@@ -206,7 +206,7 @@ export const Contact: React.FC<ContactProps> = ({ initialTab = "hr" }) => {
       if (!response.ok) {
         setErrors([
           result.error ||
-            "An error occurred while sending your message. Please try again.",
+          "An error occurred while sending your message. Please try again.",
         ]);
         setValidationSuccess(false);
       } else {
@@ -264,7 +264,7 @@ export const Contact: React.FC<ContactProps> = ({ initialTab = "hr" }) => {
   ];
 
   return (
-    <div className="bg-cream-100 py-16 lg:py-20">
+    <div className="bg-cream-100 py-16 lg:py-10">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* ============ HEADER SECTION ============ */}
         <div className="text-center max-w-3xl mx-auto mb-16">
@@ -272,202 +272,178 @@ export const Contact: React.FC<ContactProps> = ({ initialTab = "hr" }) => {
           <h1 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-black text-navy-900 uppercase tracking-tight leading-[1.08]">
             Get In Touch With <span className="text-sky-600">Hraize</span>
           </h1>
-          <p className="mt-4 text-base sm:text-lg text-navy-900/70 font-semibold leading-relaxed max-w-2xl mx-auto">
+          {/* <p className="mt-4 text-sm sm:text-sm text-navy-900/70 font-semibold leading-relaxed max-w-2xl mx-auto">
             Direct operational contact channels, advisory desks, and communication details across all service domains.
-          </p>
+          </p> */}
         </div>
 
-        {/* ============ 3 PRIMARY DIRECT CONTACT CARDS ============ */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
-          {/* Email Card */}
-          <div className="bg-white rounded-3xl p-7 border border-sky-600/20 shadow-md flex flex-col justify-between hover:shadow-lg transition-all">
-            <div>
-              <div className="flex items-center justify-between mb-4">
-                <div className="h-12 w-12 rounded-2xl bg-sky-600/10 text-sky-600 flex items-center justify-center">
-                  <Mail className="h-6 w-6" />
+        {/* ============ OVERLAPPING CONTACT CARD (REFERENCE LAYOUT) ============ */}
+        <motion.div
+          initial={{ opacity: 0, y: 18 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{ duration: 0.45, ease: "easeOut" }}
+          className="max-w-4xl mx-auto lg:pl-10"
+        >
+          <div className="relative bg-white rounded-3xl shadow-2xl border border-sky-600/15 grid grid-cols-1 lg:grid-cols-12 items-stretch">
+            {/* LEFT OVERHANGING DARK NAVY CARD: LOCATIONS & SOCIAL */}
+            <div className="lg:col-span-5 lg:-ml-10 lg:my-8 bg-navy-card text-white rounded-2xl p-8 sm:p-9 shadow-2xl flex flex-col justify-between">
+              <div>
+                <h2 className="text-2xl font-black tracking-tight text-white">
+                  Our Locations
+                </h2>
+
+                <div className="mt-7 space-y-6 text-xs sm:text-sm">
+                  <div className="flex items-start gap-3.5">
+                    <MapPin className="h-4 w-4 text-sky-400 shrink-0 mt-1" />
+                    <div>
+                      <span className="block text-[10px] font-black uppercase tracking-wider text-sky-400/90">
+                        Corporate Headquarters
+                      </span>
+                      <p className="text-white/95 font-semibold leading-snug mt-1">
+                        Bengaluru, Karnataka, India
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3.5">
+                    <Building2 className="h-4 w-4 text-sky-400 shrink-0 mt-1" />
+                    <div>
+                      <span className="block text-[10px] font-black uppercase tracking-wider text-sky-400/90">
+                        Operational Delivery Hub
+                      </span>
+                      <p className="text-white/95 font-semibold leading-snug mt-1">
+                        Thanjavur, Tamil Nadu, India
+                      </p>
+                    </div>
+                  </div>
                 </div>
-                <span className="rounded-full bg-sky-50 border border-sky-600/20 px-3 py-1 text-[10px] font-black uppercase tracking-wider text-sky-700">
-                  Primary Channel
+              </div>
+
+              {/* Simple Social Icons (No Background) */}
+              <div className="mt-10 pt-5 border-t border-white/10">
+                <span className="block text-[10px] font-black uppercase tracking-widest text-white/45 mb-3">
+                  Connect on Social
                 </span>
-              </div>
-              <h3 className="text-lg font-black text-navy-900 uppercase tracking-tight">
-                Direct Business Email
-              </h3>
-              <p className="text-xs text-navy-900/65 font-medium mt-1.5 leading-relaxed">
-                For service inquiries, operational quotes, and consultation scheduling.
-              </p>
-            </div>
-
-            <div className="mt-6 pt-5 border-t border-navy-900/10 space-y-3">
-              <a
-                href="mailto:info@hraize.com"
-                className="block text-base font-black text-sky-600 hover:text-sky-700 transition-colors"
-              >
-                info@hraize.com
-              </a>
-              <div className="flex items-center gap-2">
-                <a
-                  href="mailto:info@hraize.com"
-                  className="inline-flex items-center gap-1.5 rounded-full bg-sky-600 hover:bg-sky-700 text-white px-4 py-2 text-xs font-black uppercase tracking-wider shadow-xs transition-all"
-                >
-                  <span>Send Email</span>
-                  <ArrowRight className="h-3.5 w-3.5" />
-                </a>
-                <button
-                  type="button"
-                  onClick={handleCopyEmail}
-                  className="inline-flex items-center gap-1 rounded-full border border-navy-900/15 bg-cream-50 hover:bg-cream-100 text-navy-900 px-3.5 py-2 text-xs font-bold transition-all cursor-pointer"
-                >
-                  {copiedEmail ? (
-                    <>
-                      <Check className="h-3.5 w-3.5 text-emerald-600" />
-                      <span className="text-emerald-700 font-bold">Copied!</span>
-                    </>
-                  ) : (
-                    <span>Copy</span>
-                  )}
-                </button>
-              </div>
-            </div>
-          </div>
-
-          {/* Location Card */}
-          <div className="bg-white rounded-3xl p-7 border border-sky-600/20 shadow-md flex flex-col justify-between hover:shadow-lg transition-all">
-            <div>
-              <div className="flex items-center justify-between mb-4">
-                <div className="h-12 w-12 rounded-2xl bg-sky-600/10 text-sky-600 flex items-center justify-center">
-                  <MapPin className="h-6 w-6" />
+                <div className="flex items-center gap-5">
+                  <motion.a
+                    href="https://www.linkedin.com/company/hraize/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Hraize on LinkedIn"
+                    whileHover={{ y: -2, scale: 1.12 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="text-white/70 hover:text-sky-400 transition-colors"
+                  >
+                    <Linkedin className="h-4 w-4" />
+                  </motion.a>
+                  <motion.a
+                    href="https://www.facebook.com/share/1Bed1q8bnd/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Hraize on Facebook"
+                    whileHover={{ y: -2, scale: 1.12 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="text-white/70 hover:text-sky-400 transition-colors"
+                  >
+                    <Facebook className="h-4 w-4" />
+                  </motion.a>
+                  <motion.a
+                    href="https://www.instagram.com/hraize.official?igsh=bWF5bXR0c25kY2hy"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Hraize on Instagram"
+                    whileHover={{ y: -2, scale: 1.12 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="text-white/70 hover:text-sky-400 transition-colors"
+                  >
+                    <Instagram className="h-4 w-4" />
+                  </motion.a>
                 </div>
-                <span className="rounded-full bg-cream-50 border border-navy-900/10 px-3 py-1 text-[10px] font-black uppercase tracking-wider text-navy-900/70">
-                  Headquarters
-                </span>
               </div>
-              <h3 className="text-lg font-black text-navy-900 uppercase tracking-tight">
-                Corporate Location
-              </h3>
-              <p className="text-xs text-navy-900/65 font-medium mt-1.5 leading-relaxed">
-                Registered office with localized delivery desks across southern India.
-              </p>
             </div>
 
-            <div className="mt-6 pt-5 border-t border-navy-900/10 space-y-1.5">
-              <p className="text-sm font-black text-navy-900">
-                Bengaluru, Karnataka, India
-              </p>
-              <p className="text-xs text-navy-900/60 font-semibold">
-                Operational Delivery Desk: Tamil Nadu, India
-              </p>
-              <p className="text-[11px] text-copper-600 font-bold pt-1">
-                Pan-India client servicing & remote operations
-              </p>
-            </div>
-          </div>
-
-          {/* Hours Card */}
-          <div className="bg-white rounded-3xl p-7 border border-sky-600/20 shadow-md flex flex-col justify-between hover:shadow-lg transition-all">
-            <div>
-              <div className="flex items-center justify-between mb-4">
-                <div className="h-12 w-12 rounded-2xl bg-copper-400/15 text-copper-600 flex items-center justify-center">
-                  <Clock className="h-6 w-6" />
-                </div>
-                <span className="rounded-full bg-emerald-50 border border-emerald-500/20 px-3 py-1 text-[10px] font-black uppercase tracking-wider text-emerald-700 flex items-center gap-1.5">
-                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                  Desk Active
-                </span>
-              </div>
-              <h3 className="text-lg font-black text-navy-900 uppercase tracking-tight">
-                Operating Desk Hours
-              </h3>
-              <p className="text-xs text-navy-900/65 font-medium mt-1.5 leading-relaxed">
-                Dedicated client coordination and advisory support schedule.
-              </p>
-            </div>
-
-            <div className="mt-6 pt-5 border-t border-navy-900/10 space-y-1.5">
-              <p className="text-sm font-black text-navy-900">
-                Monday – Saturday
-              </p>
-              <p className="text-xs text-navy-900/70 font-bold">
-                9:00 AM – 6:00 PM IST
-              </p>
-              <p className="text-[11px] text-navy-900/50 font-medium pt-1">
-                Indian Standard Time (UTC +5:30)
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* ============ OFFICIAL CHANNELS (CENTERED & FULL SPACE) ============ */}
-        <div className="max-w-5xl mx-auto">
-          <div className="bg-navy-card rounded-3xl p-8 sm:p-10 text-white shadow-xl border border-sky-600/20 relative overflow-hidden">
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,color-mix(in_srgb,var(--color-sky-600)_12%,transparent)_0%,transparent_70%)] pointer-events-none" />
-            <div className="relative text-center max-w-xl mx-auto">
-              <SectionLabel className="text-sky-400">Official Channels</SectionLabel>
-              <h2 className="mt-2 text-2xl sm:text-3xl font-black uppercase text-white tracking-tight">
-                Connect on Social
+            {/* RIGHT WHITE PANEL: EMAIL & OPERATING DESK HOURS */}
+            <div className="lg:col-span-7 p-8 sm:p-10 lg:p-12 flex flex-col justify-center">
+              <h2 className="text-2xl sm:text-3xl font-black text-navy-900 tracking-tight">
+                Get in Touch
               </h2>
-              <p className="mt-2 text-xs sm:text-sm text-sage-100/70 font-medium leading-relaxed">
-                Follow Hraize for regulatory updates, operational insights, and announcements.
+              <p className="mt-1.5 text-xs sm:text-sm text-navy-900/55 font-medium">
+                Reach our advisory desk directly for inquiries and support.
               </p>
-            </div>
 
-            <div className="relative mt-8 pt-7 border-t border-white/10 grid grid-cols-1 sm:grid-cols-3 gap-4">
-              <a
-                href="https://www.linkedin.com/company/hraize/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex items-center justify-between p-4 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-sky-400/40 transition-all"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="h-10 w-10 rounded-xl bg-sky-500/15 text-sky-400 flex items-center justify-center shrink-0">
-                    <Linkedin className="h-5 w-5" />
+              <div className="mt-7 space-y-4">
+                {/* Direct Business Email */}
+                <div className="rounded-2xl bg-cream-50/80 border border-navy-900/8 p-5 transition-colors duration-200 hover:bg-sky-50/50 hover:border-sky-500/30">
+                  <div className="flex items-center gap-3.5">
+                    <div className="h-10 w-10 rounded-xl bg-sky-600/10 text-sky-600 flex items-center justify-center shrink-0">
+                      <Mail className="h-5 w-5" />
+                    </div>
+                    <div className="min-w-0">
+                      <span className="block text-[10px] font-black uppercase tracking-widest text-sky-600">
+                        Direct Business Email
+                      </span>
+                      <a
+                        href="mailto:info@hraize.com"
+                        className="mt-0.5 block text-base sm:text-lg font-black text-navy-900 hover:text-sky-600 transition-colors truncate"
+                      >
+                        info@hraize.com
+                      </a>
+                    </div>
                   </div>
-                  <div className="text-left">
-                    <span className="block text-sm font-black text-white">LinkedIn</span>
-                    <span className="block text-[11px] text-sage-100/60 font-medium">Company Updates</span>
+
+                  <div className="mt-4 pt-3.5 border-t border-navy-900/8 flex items-center gap-2.5">
+                    <a
+                      href="mailto:info@hraize.com"
+                      className="group/btn inline-flex items-center gap-1.5 rounded-full bg-sky-600 hover:bg-sky-700 text-white px-4 py-2 text-xs font-black uppercase tracking-wider shadow-xs transition-all"
+                    >
+                      <span>Send Email</span>
+                      <ArrowRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover/btn:translate-x-0.5" />
+                    </a>
+                    <button
+                      type="button"
+                      onClick={handleCopyEmail}
+                      className="inline-flex items-center gap-1 rounded-full border border-navy-900/15 bg-white hover:border-sky-600/40 text-navy-900 px-3.5 py-2 text-xs font-bold transition-all cursor-pointer"
+                    >
+                      {copiedEmail ? (
+                        <>
+                          <Check className="h-3.5 w-3.5 text-emerald-600" />
+                          <span className="text-emerald-700">Copied</span>
+                        </>
+                      ) : (
+                        <span>Copy</span>
+                      )}
+                    </button>
                   </div>
                 </div>
-                <ArrowUpRight className="h-4 w-4 text-white/50 group-hover:text-sky-400 transition-colors" />
-              </a>
 
-              <a
-                href="https://www.facebook.com/share/1Bed1q8bnd/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex items-center justify-between p-4 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-sky-400/40 transition-all"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="h-10 w-10 rounded-xl bg-sky-500/15 text-sky-400 flex items-center justify-center shrink-0">
-                    <Facebook className="h-5 w-5" />
+                {/* Operating Desk Hours */}
+                <div className="rounded-2xl bg-cream-50/80 border border-navy-900/8 p-5 flex items-center justify-between gap-3 transition-colors duration-200 hover:bg-sky-50/50 hover:border-sky-500/30">
+                  <div className="flex items-center gap-3.5">
+                    <div className="h-10 w-10 rounded-xl bg-copper-400/15 text-copper-600 flex items-center justify-center shrink-0">
+                      <Clock className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <span className="block text-[10px] font-black uppercase tracking-widest text-copper-500">
+                        Operating Desk Hours
+                      </span>
+                      <p className="mt-0.5 text-sm font-black text-navy-900 leading-snug">
+                        Monday – Saturday
+                      </p>
+                      <p className="text-xs font-bold text-navy-900/60 mt-0.5">
+                        9:00 AM – 6:00 PM IST
+                      </p>
+                    </div>
                   </div>
-                  <div className="text-left">
-                    <span className="block text-sm font-black text-white">Facebook</span>
-                    <span className="block text-[11px] text-sage-100/60 font-medium">Community &amp; News</span>
-                  </div>
+                  {/* <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 border border-emerald-500/20 px-3 py-1 text-[10px] font-black uppercase tracking-wider text-emerald-700 shrink-0">
+                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                    Active
+                  </span> */}
                 </div>
-                <ArrowUpRight className="h-4 w-4 text-white/50 group-hover:text-sky-400 transition-colors" />
-              </a>
-
-              <a
-                href="https://www.instagram.com/hraize.official?igsh=bWF5bXR0c25kY2hy"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex items-center justify-between p-4 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-copper-400/40 transition-all"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="h-10 w-10 rounded-xl bg-copper-400/15 text-copper-400 flex items-center justify-center shrink-0">
-                    <Instagram className="h-5 w-5" />
-                  </div>
-                  <div className="text-left">
-                    <span className="block text-sm font-black text-white">Instagram</span>
-                    <span className="block text-[11px] text-sage-100/60 font-medium">Insights &amp; Culture</span>
-                  </div>
-                </div>
-                <ArrowUpRight className="h-4 w-4 text-white/50 group-hover:text-copper-400 transition-colors" />
-              </a>
+              </div>
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* =========================================================================
             FUTURE UPGRADE: Dynamic Mail-Sending Form
@@ -565,11 +541,10 @@ export const Contact: React.FC<ContactProps> = ({ initialTab = "hr" }) => {
                         setActiveTab(tab.id as any);
                         setValidationSuccess(false);
                       }}
-                      className={`flex items-center justify-center gap-1.5 py-3 px-2 rounded-xl text-[10px] font-black uppercase tracking-wider transition-all cursor-pointer ${
-                        active
-                          ? "bg-sky-600 text-white shadow-md"
-                          : "text-navy-900/60 hover:text-navy-900 hover:bg-white"
-                      }`}
+                      className={`flex items-center justify-center gap-1.5 py-3 px-2 rounded-xl text-[10px] font-black uppercase tracking-wider transition-all cursor-pointer ${active
+                        ? "bg-sky-600 text-white shadow-md"
+                        : "text-navy-900/60 hover:text-navy-900 hover:bg-white"
+                        }`}
                     >
                       <TabIcon className="h-3.5 w-3.5 shrink-0" />
                       <span className="truncate">{tab.label}</span>
@@ -736,11 +711,10 @@ export const Contact: React.FC<ContactProps> = ({ initialTab = "hr" }) => {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className={`w-full py-3.5 text-white font-black uppercase text-xs tracking-wider rounded-xl shadow-md transition-all ${
-                        isSubmitting
-                          ? "bg-sky-600/50 cursor-not-allowed"
-                          : "bg-sky-600 hover:bg-sky-700 cursor-pointer"
-                      }`}
+                      className={`w-full py-3.5 text-white font-black uppercase text-xs tracking-wider rounded-xl shadow-md transition-all ${isSubmitting
+                        ? "bg-sky-600/50 cursor-not-allowed"
+                        : "bg-sky-600 hover:bg-sky-700 cursor-pointer"
+                        }`}
                     >
                       {isSubmitting ? (
                         <span className="flex items-center justify-center gap-2">
