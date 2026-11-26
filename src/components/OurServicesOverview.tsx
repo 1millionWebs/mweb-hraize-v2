@@ -308,30 +308,30 @@ export const OurServicesOverview: React.FC = () => {
         </div>
 
         {/* Bottom CTA Box */}
-        <div className="rounded-3xl bg-gradient-to-r from-sky-600 via-navy-900 to-navy-900 p-8 sm:p-12 text-white shadow-2xl flex flex-col md:flex-row items-center justify-between gap-8 border border-white/10">
+        <div className="rounded-3xl bg-white p-8 sm:p-12 text-navy-900 shadow-xl flex flex-col md:flex-row items-center justify-between gap-8 border border-sky-600/20">
           <div className="max-w-xl">
-            <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3.5 py-1 text-xs font-bold text-sky-300 mb-4 backdrop-blur-sm">
+            <div className="inline-flex items-center gap-2 rounded-full bg-sky-600/10 px-3.5 py-1 text-xs font-bold text-sky-600 mb-4">
               <Sparkles className="h-3.5 w-3.5" />
               Direct Operations Consultation
             </div>
-            <h3 className="text-2xl sm:text-3xl font-black tracking-tight leading-tight">
+            <h3 className="text-2xl sm:text-3xl font-black tracking-tight leading-tight text-navy-900">
               Need support with your business operations?
             </h3>
-            <p className="mt-3 text-xs sm:text-sm text-white/80 leading-relaxed font-semibold">
+            <p className="mt-3 text-xs sm:text-sm text-navy-900/65 leading-relaxed font-semibold">
               Contact Hraize to discuss the service requirements and delivery arrangements.
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-3">
             <Link
               href="/contact?tab=consultation"
-              className="shrink-0 inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 text-sm font-black text-navy-900 hover:bg-cream-50 shadow-xl transition-all cursor-pointer"
+              className="shrink-0 inline-flex items-center gap-2 rounded-full bg-sky-600 px-8 py-4 text-sm font-black text-white hover:bg-sky-700 shadow-lg shadow-sky-600/25 transition-all cursor-pointer"
             >
               Request a Consultation
-              <ArrowRight className="h-4 w-4 text-sky-600" />
+              <ArrowRight className="h-4 w-4" />
             </Link>
             <Link
               href="/contact?tab=quote"
-              className="shrink-0 inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-7 py-4 text-sm font-bold text-white hover:bg-white/20 transition-all cursor-pointer"
+              className="shrink-0 inline-flex items-center gap-2 rounded-full border border-sky-600/30 bg-white px-7 py-4 text-sm font-bold text-navy-900 hover:bg-cream-50 transition-all cursor-pointer"
             >
               Get a Service Quote
             </Link>

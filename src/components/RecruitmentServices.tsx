@@ -252,12 +252,12 @@ export const RecruitmentServices: React.FC<RecruitmentServicesProps> = ({
                   <p className="text-xs text-navy-900/65 font-medium mt-2 leading-relaxed">
                     {m.desc}
                   </p>
-                  <div className="mt-3 pt-3 border-t border-sky-600/10 flex items-center gap-2">
+                  {/* <div className="mt-3 pt-3 border-t border-sky-600/10 flex items-center gap-2">
                     <ShieldCheck className="h-3.5 w-3.5 text-emerald-600" />
                     <span className="text-[11px] font-bold text-navy-900/60">
                       60-Day Replacement Guarantee Covered
                     </span>
-                  </div>
+                  </div> */}
                 </div>
               </motion.div>
             ))}
@@ -337,16 +337,13 @@ export const RecruitmentServices: React.FC<RecruitmentServicesProps> = ({
             </p>
           </div>
           <div className="overflow-x-auto">
-            <table className="w-full text-left border-collapse min-w-[600px]">
+            <table className="w-full text-left border-collapse min-w-[480px]">
               <thead>
                 <tr className="border-b-2 border-sky-600/30">
-                  <th className="py-4 px-4 text-xs font-black uppercase text-navy-900 tracking-wider w-[22%]">
-                    Dimension
-                  </th>
-                  <th className="py-4 px-4 text-xs font-black uppercase text-sky-700 tracking-wider bg-sky-600/10 rounded-t-xl w-[40%]">
+                  <th className="py-4 px-5 text-xs font-black uppercase text-sky-700 tracking-wider bg-sky-600/10 rounded-tl-xl w-1/2">
                     Hraize Advantage
                   </th>
-                  <th className="py-4 px-4 text-xs font-black uppercase text-navy-900/40 tracking-wider w-[38%]">
+                  <th className="py-4 px-5 text-xs font-black uppercase text-navy-900/40 tracking-wider w-1/2">
                     Traditional Agency
                   </th>
                 </tr>
@@ -354,16 +351,13 @@ export const RecruitmentServices: React.FC<RecruitmentServicesProps> = ({
               <tbody className="divide-y divide-sky-600/10 font-medium">
                 {comparisonRows.map((row, idx) => (
                   <tr key={idx} className="hover:bg-cream-50/50 transition-colors">
-                    <td className="py-4 px-4 text-xs font-black text-navy-900 uppercase">
-                      {row.feature}
-                    </td>
-                    <td className="py-4 px-4 text-xs text-navy-900 bg-sky-600/5 border-x border-sky-600/20 font-bold">
+                    <td className="py-4 px-5 text-xs text-navy-900 bg-sky-600/5 border-x border-sky-600/20 font-bold">
                       <div className="flex items-center gap-2">
                         <CheckCircle className="h-4 w-4 text-emerald-600 shrink-0" />
                         <span>{row.hraize}</span>
                       </div>
                     </td>
-                    <td className="py-4 px-4 text-xs text-navy-900/50">
+                    <td className="py-4 px-5 text-xs text-navy-900/50">
                       <div className="flex items-center gap-2">
                         <XCircle className="h-4 w-4 text-rose-500 shrink-0" />
                         <span>{row.agency}</span>
@@ -477,6 +471,31 @@ export const RecruitmentServices: React.FC<RecruitmentServicesProps> = ({
             </div>
           </motion.div>
         </motion.div> */}
+        {/* ============ CLOSING CALL TO ACTION ============ */}
+        <motion.div
+          className="shadow-xl text-center max-w-3xl mx-auto bg-white border border-sky-600/20 rounded-3xl p-8 sm:p-12"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
+        >
+          <SectionLabel>Recruitment Support</SectionLabel>
+          <h2 className="mt-3 text-2xl sm:text-3xl font-black text-navy-900 uppercase tracking-tight">
+            Ready to Hire the Right Talent?
+          </h2>
+          <p className="mt-4 text-sm text-navy-900/65 font-semibold max-w-xl mx-auto leading-relaxed">
+            Partner with Hraize for permanent and contract hiring, targeted candidate vetting, and coordinated interview delivery.
+          </p>
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+            <Link
+              href="/contact?tab=consultation"
+              className="inline-flex items-center gap-2 rounded-full bg-sky-600 text-white hover:bg-sky-700 px-8 py-3.5 text-xs font-black tracking-wider uppercase shadow-lg shadow-sky-600/20 transition-all cursor-pointer"
+            >
+              Request a Consultation
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+        </motion.div>
       </div>
     </div>
   );

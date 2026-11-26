@@ -256,24 +256,19 @@ export const AboutUs: React.FC = () => {
 
 
         {/* ============ CLOSING TAGLINE & CALL TO ACTION ============ */}
-        <div className="relative overflow-hidden rounded-3xl bg-navy-card p-8 sm:p-12 lg:p-16 text-center shadow-2xl border border-navy-900/10">
-          {/* Background ambient accents */}
-          <div className="absolute top-0 right-0 h-96 w-96 rounded-full bg-sky-600/15 blur-3xl pointer-events-none" />
-          <div className="absolute bottom-0 left-0 h-80 w-80 rounded-full bg-copper-400/10 blur-3xl pointer-events-none" />
-
+        <div className="relative overflow-hidden rounded-3xl bg-white p-8 sm:p-12 lg:p-16 text-center shadow-xl border border-sky-600/20">
           <div className="relative max-w-3xl mx-auto">
-
-            <h2 className="mt-5 text-2xl sm:text-3xl lg:text-4xl font-black uppercase tracking-tight text-white leading-tight">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black uppercase tracking-tight text-navy-900 leading-tight">
               Supporting Your People. Simplifying Your Business.
             </h2>
-            <p className="mt-4 text-base sm:text-sm font-medium text-sage-100/75 max-w-2xl mx-auto leading-relaxed">
+            <p className="mt-4 text-base sm:text-sm font-medium text-navy-900/65 max-w-2xl mx-auto leading-relaxed">
               Practical support for businesses across recruitment, payroll, administration, and modern digital solutions.
             </p>
 
             <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
               <Link
                 href="/contact?tab=consultation"
-                className="inline-flex items-center gap-2 rounded-full bg-sky-600 px-8 py-4 text-sm font-black tracking-wider text-white shadow-xl shadow-sky-600/30 hover:bg-sky-500 transition-all duration-200"
+                className="inline-flex items-center gap-2 rounded-full bg-sky-600 px-8 py-4 text-sm font-black tracking-wider text-white shadow-lg shadow-sky-600/25 hover:bg-sky-700 transition-all duration-200"
               >
                 Request a Consultation
                 <ArrowRight className="h-4 w-4" />

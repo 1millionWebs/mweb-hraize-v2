@@ -56,14 +56,14 @@ export const HRServices: React.FC<HRServicesProps> = ({ onBookCall }) => {
       id: "payroll",
       number: "01",
       title: "Monthly Payroll Preparation & Processing",
-      desc: "Complete gross-to-net salary computation, statutory deductions, reimbursement processing, and timely bank disbursement scheduling.",
+      desc: "Complete gross-to-net salary computation, statutory deductions, reimbursement processing, and timely disbursement scheduling.",
       icon: Calculator,
     },
     {
       id: "payslips",
       number: "02",
       title: "Salary Statements & Payslip Coordination",
-      desc: "Detailed monthly salary registers, structured pay breakdown statements, and confidential digital payslip distribution for employees.",
+      desc: "Detailed monthly salary registers, structured pay breakdown statements, and confidential digital employee payslip distribution.",
       icon: FileSpreadsheet,
     },
     {
@@ -136,7 +136,7 @@ export const HRServices: React.FC<HRServicesProps> = ({ onBookCall }) => {
       id: "compliance",
       number: "12",
       title: "HR Reports, Compliance Support",
-      desc: "Monthly workforce headcount summaries, statutory inspection dossiers, attrition tracking, and ongoing compliance documentation support.",
+      desc: "Monthly workforce headcount summaries, statutory inspection dossiers, attrition tracking, and compliance documentation support.",
       icon: BarChart3,
     },
   ];
@@ -177,7 +177,7 @@ export const HRServices: React.FC<HRServicesProps> = ({ onBookCall }) => {
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
         {/* ============ 12 SCOPE SERVICES (6 + 6) CENTRAL INFOGRAPHIC ============ */}
-        <div id="capabilities" className="scroll-mt-24 max-w-6xl mx-auto mb-24 px-4 sm:px-6">
+        <div id="capabilities" className="scroll-mt-24 w-full mb-24">
           <div className="text-center max-w-3xl mx-auto mb-14">
             <span className="text-[11px] font-black uppercase tracking-widest text-sky-600">
               Service Scope
@@ -194,19 +194,21 @@ export const HRServices: React.FC<HRServicesProps> = ({ onBookCall }) => {
             {/* Subtle center spine track */}
             <div className="absolute top-6 bottom-6 left-1/2 -translate-x-1/2 w-0.5 bg-gradient-to-b from-sky-600/10 via-sky-600/30 to-sky-600/10 pointer-events-none" />
 
-            <div className="space-y-6 lg:space-y-8">
+            <div className="space-y-5 lg:space-y-6">
               {pairedRows.map((pair, rowIdx) => {
                 const LeftIcon = pair.left.icon;
                 const RightIcon = pair.right.icon;
 
                 return (
-                  <div key={rowIdx} className="grid grid-cols-2 gap-x-8 lg:gap-x-12 items-center">
+                  <div key={rowIdx} className="grid grid-cols-2 gap-x-6 lg:gap-x-10 items-stretch">
                     {/* LEFT ITEM (Text right-aligned, Icon on right) */}
-                    <div
+                    <motion.div
                       id={pair.left.id}
-                      className="group flex items-center justify-end gap-5 text-right p-3.5 rounded-2xl transition-all duration-200 hover:bg-white/80"
+                      whileHover={{ y: -3 }}
+                      transition={{ type: "spring", stiffness: 380, damping: 28 }}
+                      className="group flex items-center justify-between gap-5 text-right p-5 lg:px-6 rounded-2xl bg-white border border-navy-900/10 shadow-sm hover:border-sky-500/40 hover:shadow-lg hover:shadow-sky-900/5 transition-colors duration-300"
                     >
-                      <div className="max-w-md">
+                      <div className="flex-1 min-w-0">
                         <h3 className="text-base lg:text-lg font-black text-navy-900 group-hover:text-sky-600 transition-colors leading-snug">
                           {pair.left.title}
                         </h3>
@@ -218,18 +220,20 @@ export const HRServices: React.FC<HRServicesProps> = ({ onBookCall }) => {
                       <div className="relative shrink-0 flex h-16 w-16 lg:h-20 lg:w-20 items-center justify-center rounded-2xl bg-navy-card border border-sky-600/25 text-sky-400 shadow-md group-hover:bg-sky-600 group-hover:border-sky-500 group-hover:text-white group-hover:scale-105 group-hover:shadow-lg group-hover:shadow-sky-600/20 transition-all duration-300">
                         <LeftIcon className="h-7 w-7 lg:h-8 lg:w-8 transition-transform duration-300 group-hover:scale-110" />
                       </div>
-                    </div>
+                    </motion.div>
 
                     {/* RIGHT ITEM (Icon on left, Text left-aligned) */}
-                    <div
+                    <motion.div
                       id={pair.right.id}
-                      className="group flex items-center justify-start gap-5 text-left p-3.5 rounded-2xl transition-all duration-200 hover:bg-white/80"
+                      whileHover={{ y: -3 }}
+                      transition={{ type: "spring", stiffness: 380, damping: 28 }}
+                      className="group flex items-center justify-between gap-5 text-left p-5 lg:px-6 rounded-2xl bg-white border border-navy-900/10 shadow-sm hover:border-sky-500/40 hover:shadow-lg hover:shadow-sky-900/5 transition-colors duration-300"
                     >
                       <div className="relative shrink-0 flex h-16 w-16 lg:h-20 lg:w-20 items-center justify-center rounded-2xl bg-navy-card border border-sky-600/25 text-sky-400 shadow-md group-hover:bg-sky-600 group-hover:border-sky-500 group-hover:text-white group-hover:scale-105 group-hover:shadow-lg group-hover:shadow-sky-600/20 transition-all duration-300">
                         <RightIcon className="h-7 w-7 lg:h-8 lg:w-8 transition-transform duration-300 group-hover:scale-110" />
                       </div>
 
-                      <div className="max-w-md">
+                      <div className="flex-1 min-w-0">
                         <h3 className="text-base lg:text-lg font-black text-navy-900 group-hover:text-sky-600 transition-colors leading-snug">
                           {pair.right.title}
                         </h3>
@@ -237,7 +241,7 @@ export const HRServices: React.FC<HRServicesProps> = ({ onBookCall }) => {
                           {pair.right.desc}
                         </p>
                       </div>
-                    </div>
+                    </motion.div>
                   </div>
                 );
               })}
@@ -249,23 +253,25 @@ export const HRServices: React.FC<HRServicesProps> = ({ onBookCall }) => {
             {allServices.map((item, idx) => {
               const Icon = item.icon;
               return (
-                <div
+                <motion.div
                   key={idx}
                   id={item.id}
-                  className="flex items-start gap-4 p-4 rounded-2xl bg-white border border-navy-900/10 shadow-sm"
+                  whileHover={{ y: -2 }}
+                  transition={{ type: "spring", stiffness: 380, damping: 28 }}
+                  className="group flex items-start gap-4 p-4 rounded-2xl bg-white border border-navy-900/10 shadow-sm hover:border-sky-500/40 hover:shadow-md transition-colors duration-300"
                 >
-                  <div className="shrink-0 flex h-14 w-14 items-center justify-center rounded-2xl bg-navy-card border border-sky-600/25 text-sky-400 shadow-sm">
-                    <Icon className="h-6 w-6" />
+                  <div className="shrink-0 flex h-14 w-14 items-center justify-center rounded-2xl bg-navy-card border border-sky-600/25 text-sky-400 shadow-sm group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300">
+                    <Icon className="h-6 w-6 transition-transform duration-300 group-hover:scale-110" />
                   </div>
                   <div className="min-w-0 flex-1">
-                    <h3 className="text-sm font-black text-navy-900 leading-snug mt-0.5">
+                    <h3 className="text-sm font-black text-navy-900 group-hover:text-sky-600 transition-colors leading-snug mt-0.5">
                       {item.title}
                     </h3>
                     <p className="mt-1 text-xs text-navy-900/65 font-medium leading-relaxed">
                       {item.desc}
                     </p>
                   </div>
-                </div>
+                </motion.div>
               );
             })}
           </div>
@@ -536,7 +542,7 @@ export const HRServices: React.FC<HRServicesProps> = ({ onBookCall }) => {
 
         {/* ============ CLOSING CALL TO ACTION ============ */}
         <motion.div
-          className="shadow-xl text-center max-w-3xl mx-auto bg-cream-50 border border-sky-600/20 rounded-3xl p-8 sm:p-12"
+          className="shadow-xl text-center max-w-3xl mx-auto bg-white border border-sky-600/20 rounded-3xl p-8 sm:p-12"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}

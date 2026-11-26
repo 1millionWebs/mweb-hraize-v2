@@ -145,11 +145,10 @@ export const Navbar: React.FC = () => {
 
   return (
     <header
-      className={`sticky top-0 z-50 w-full transition-all duration-300 ${
-        isHomeHeroTop
+      className={`sticky top-0 z-50 w-full transition-all duration-300 ${isHomeHeroTop
           ? "bg-white/90 backdrop-blur-md shadow-none"
           : "shadow-lg bg-cream-100/80 backdrop-blur-md"
-      }`}
+        }`}
     >
       <div className="flex flex-col items-center gap-1 md:flex-row md:items-center md:justify-between px-4 sm:px-6 lg:px-8 py-1.5 border-b border-sky-600/50 bg-navy-card">
         <div className="flex items-center gap-4 mx-auto max-w-7xl w-full">
@@ -290,7 +289,7 @@ export const Navbar: React.FC = () => {
 
                     <div className="mt-6 pt-4 border-t border-sky-600/15 flex items-center justify-between">
                       <span className="text-xs font-semibold text-navy-900/60">
-                        Integrated HR, hiring, operational support, and modern web solutions
+                        Integrated HR, hiring, operational support, and digital web solutions
                       </span>
                       <Link
                         href="/services"
@@ -403,11 +402,10 @@ export const Navbar: React.FC = () => {
                 href="/"
                 prefetch={false}
                 onClick={closeMenus}
-                className={`flex items-center justify-between w-full px-4 py-3 rounded-xl text-sm transition-all ${
-                  isActive("/")
+                className={`flex items-center justify-between w-full px-4 py-3 rounded-xl text-sm transition-all ${isActive("/")
                     ? "bg-sky-600/10 text-sky-600 font-black"
                     : "text-navy-900 font-bold hover:bg-white/80"
-                }`}
+                  }`}
               >
                 <span>Home</span>
               </Link>
@@ -417,11 +415,10 @@ export const Navbar: React.FC = () => {
                 href="/about"
                 prefetch={false}
                 onClick={closeMenus}
-                className={`flex items-center justify-between w-full px-4 py-3 rounded-xl text-sm transition-all ${
-                  isActive("/about")
+                className={`flex items-center justify-between w-full px-4 py-3 rounded-xl text-sm transition-all ${isActive("/about")
                     ? "bg-sky-600/10 text-sky-600 font-black"
                     : "text-navy-900 font-bold hover:bg-white/80"
-                }`}
+                  }`}
               >
                 <span>About us</span>
               </Link>
@@ -429,19 +426,17 @@ export const Navbar: React.FC = () => {
               {/* Services - Modern Simple View with Expandable Arrow */}
               <div className="rounded-xl overflow-hidden transition-colors">
                 <div
-                  className={`flex items-center justify-between w-full px-4 py-3 rounded-xl cursor-pointer transition-all ${
-                    isServiceActive || mobileServicesOpen
+                  className={`flex items-center justify-between w-full px-4 py-3 rounded-xl cursor-pointer transition-all ${isServiceActive || mobileServicesOpen
                       ? "bg-white shadow-xs text-sky-600 font-black"
                       : "text-navy-900 hover:bg-white/80 font-bold"
-                  }`}
+                    }`}
                   onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
                 >
                   <span className="text-sm">Services</span>
                   <div className="p-1 rounded-lg text-navy-900/50 hover:text-sky-600">
                     <ChevronDown
-                      className={`h-4 w-4 transition-transform duration-300 ${
-                        mobileServicesOpen ? "rotate-180 text-sky-600" : ""
-                      }`}
+                      className={`h-4 w-4 transition-transform duration-300 ${mobileServicesOpen ? "rotate-180 text-sky-600" : ""
+                        }`}
                     />
                   </div>
                 </div>
@@ -480,11 +475,10 @@ export const Navbar: React.FC = () => {
                           return (
                             <div
                               key={idx}
-                              className={`rounded-xl border transition-all ${
-                                isCatOpen
+                              className={`rounded-xl border transition-all ${isCatOpen
                                   ? "border-sky-600/30 bg-white shadow-xs"
                                   : "border-transparent bg-white/60 hover:bg-white"
-                              }`}
+                                }`}
                             >
                               <div
                                 className="flex items-center justify-between px-3.5 py-2.5 cursor-pointer"
@@ -495,9 +489,8 @@ export const Navbar: React.FC = () => {
                                 </span>
                                 <div className="p-0.5">
                                   <ChevronDown
-                                    className={`h-3.5 w-3.5 transition-transform duration-200 ${
-                                      isCatOpen ? "rotate-180 text-sky-600" : "text-navy-900/40"
-                                    }`}
+                                    className={`h-3.5 w-3.5 transition-transform duration-200 ${isCatOpen ? "rotate-180 text-sky-600" : "text-navy-900/40"
+                                      }`}
                                   />
                                 </div>
                               </div>
@@ -556,19 +549,17 @@ export const Navbar: React.FC = () => {
               {SHOW_CAREERS_MENU && (
                 <div className="rounded-xl overflow-hidden transition-colors">
                   <div
-                    className={`flex items-center justify-between w-full px-4 py-3 rounded-xl cursor-pointer transition-all ${
-                      isCareerActive || mobileCareersOpen
+                    className={`flex items-center justify-between w-full px-4 py-3 rounded-xl cursor-pointer transition-all ${isCareerActive || mobileCareersOpen
                         ? "bg-white shadow-xs text-sky-600 font-black"
                         : "text-navy-900 hover:bg-white/80 font-bold"
-                    }`}
+                      }`}
                     onClick={() => setMobileCareersOpen(!mobileCareersOpen)}
                   >
                     <span className="text-sm">Careers</span>
                     <div className="p-1 rounded-lg text-navy-900/50 hover:text-sky-600">
                       <ChevronDown
-                        className={`h-4 w-4 transition-transform duration-300 ${
-                          mobileCareersOpen ? "rotate-180 text-sky-600" : ""
-                        }`}
+                        className={`h-4 w-4 transition-transform duration-300 ${mobileCareersOpen ? "rotate-180 text-sky-600" : ""
+                          }`}
                       />
                     </div>
                   </div>

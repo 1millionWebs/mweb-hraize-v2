@@ -60,7 +60,7 @@ export const BusinessSupportServices: React.FC<BusinessSupportServicesProps> = (
       title: "Sales Invoice Register Maintenance",
       desc: "Accurate logging, categorization, and ledger maintenance of every outbound customer invoice.",
       icon: FileSpreadsheet,
-      image: "/reporting.png",
+      image: "/documentation.png",
       details: [
         "Sales invoice register maintenance and cataloging.",
         "Invoice number, customer, and date verification.",
@@ -128,9 +128,9 @@ export const BusinessSupportServices: React.FC<BusinessSupportServicesProps> = (
     {
       id: "overdue-reports",
       title: "Periodic Receivables & Overdue Reports",
-      desc: "Executive weekly and monthly MIS reports on outstanding balances, cash inflows, and aging.",
+      desc: "Executive weekly and monthly reports on outstanding balances, cash inflows, and aging.",
       icon: BarChart3,
-      image: "/documentation.png",
+      image: "/reporting.png",
       details: [
         "Periodic receivables and overdue reports.",
         "Coordination with the client's accounts team for unmatched payments.",
@@ -150,12 +150,12 @@ export const BusinessSupportServices: React.FC<BusinessSupportServicesProps> = (
     {
       step: "02",
       title: "Track & Remind",
-      desc: "We monitor due dates and dispatch polite, pre-scheduled reminders and follow-ups on agreed cadences.",
+      desc: "We monitor due dates, dispatch polite, pre-scheduled reminders and follow-ups on agreed cadences.",
     },
     {
       step: "03",
       title: "Update & Report",
-      desc: "Upon your confirmation, we update payment statuses, flag unmatched items, and deliver weekly overdue reports.",
+      desc: "Upon your confirmation, we update payment statuses, flag unmatched items, deliver weekly overdue reports.",
     },
   ];
 
@@ -182,7 +182,7 @@ export const BusinessSupportServices: React.FC<BusinessSupportServicesProps> = (
     },
     {
       feature: "Overdue Reporting",
-      hraize: "Periodic executive MIS reports delivered on fixed schedules",
+      hraize: "Periodic executive reports delivered on fixed schedules",
       manual: "Time-consuming, stressful month-end reporting crunch",
     },
   ];
@@ -234,20 +234,20 @@ export const BusinessSupportServices: React.FC<BusinessSupportServicesProps> = (
                   <div className="absolute inset-0 bg-gradient-to-t from-navy-900/90 via-navy-900/40 to-transparent" />
 
                   {/* Index number badge */}
-                  <div className="absolute top-4 left-4 flex h-8 w-8 items-center justify-center rounded-full bg-white/20 backdrop-blur-md text-white text-xs font-black shadow-sm">
+                  {/* <div className="absolute top-4 left-4 flex h-8 w-8 items-center justify-center rounded-full bg-white/20 backdrop-blur-md text-white text-xs font-black shadow-sm">
                     {String(idx + 1).padStart(2, "0")}
-                  </div>
+                  </div> */}
 
                   {/* Hover indicator pill */}
-                  <div className="absolute top-4 right-4 rounded-full bg-sky-600/80 px-2.5 py-1 text-[10px] font-black uppercase tracking-wider text-white backdrop-blur-sm opacity-90 group-hover:opacity-0 transition-opacity">
+                  {/* <div className="absolute top-4 right-4 rounded-full bg-sky-600/80 px-2.5 py-1 text-[10px] font-black uppercase tracking-wider text-white backdrop-blur-sm opacity-90 group-hover:opacity-0 transition-opacity">
                     Hover for Scope
-                  </div>
+                  </div> */}
 
                   {/* Title - visible when collapsed at bottom */}
                   <div className="absolute bottom-0 left-0 right-0 p-6">
-                    <span className="text-[10px] font-black uppercase tracking-widest text-sky-400 block mb-1">
+                    {/* <span className="text-[10px] font-black uppercase tracking-widest text-sky-400 block mb-1">
                       Module 0{idx + 1}
-                    </span>
+                    </span> */}
                     <h3 className="text-lg font-black text-white leading-tight">
                       {srv.title}
                     </h3>
@@ -272,9 +272,9 @@ export const BusinessSupportServices: React.FC<BusinessSupportServicesProps> = (
                           <Icon className="h-5 w-5" />
                         </div>
                         <div>
-                          <span className="text-[9px] font-black uppercase tracking-widest text-copper-400 block">
+                          {/* <span className="text-[9px] font-black uppercase tracking-widest text-copper-400 block">
                             Service Scope
-                          </span>
+                          </span> */}
                           <h4 className="text-base font-black text-white leading-tight">
                             {srv.title}
                           </h4>
@@ -298,9 +298,9 @@ export const BusinessSupportServices: React.FC<BusinessSupportServicesProps> = (
                     </div>
 
                     <div className="pt-3 border-t border-white/10 flex items-center justify-between">
-                      <span className="text-[10px] font-bold text-copper-400">
+                      {/* <span className="text-[10px] font-bold text-copper-400">
                         Administrative Workflow
-                      </span>
+                      </span> */}
                       <Link
                         href={`/contact?tab=consultation&module=${srv.id}`}
                         className="inline-flex items-center gap-1 text-[11px] font-black uppercase text-sky-400 hover:text-white transition-colors"
@@ -363,7 +363,7 @@ export const BusinessSupportServices: React.FC<BusinessSupportServicesProps> = (
                 {
                   icon: Building2,
                   title: "Zero Headcount Overhead",
-                  desc: "Access a dedicated billing and receivables desk without the cost of hiring and managing internal billing clerks.",
+                  desc: "Access a dedicated billing and receivables desk without the cost of hiring, managing internal billing clerks.",
                 },
               ].map((feature, idx) => {
                 const Icon = feature.icon;
@@ -592,16 +592,13 @@ export const BusinessSupportServices: React.FC<BusinessSupportServicesProps> = (
             </p>
           </div>
           <div className="overflow-x-auto">
-            <table className="w-full text-left border-collapse min-w-[600px]">
+            <table className="w-full text-left border-collapse min-w-[480px]">
               <thead>
                 <tr className="border-b-2 border-sky-600/30">
-                  <th className="py-4 px-4 text-xs font-black uppercase text-navy-900 tracking-wider w-[22%]">
-                    Dimension
-                  </th>
-                  <th className="py-4 px-4 text-xs font-black uppercase text-sky-700 tracking-wider bg-sky-600/10 rounded-t-xl w-[40%]">
+                  <th className="py-4 px-5 text-xs font-black uppercase text-sky-700 tracking-wider bg-sky-600/10 rounded-tl-xl w-1/2">
                     Hraize Dedicated Desk
                   </th>
-                  <th className="py-4 px-4 text-xs font-black uppercase text-navy-900/40 tracking-wider w-[38%]">
+                  <th className="py-4 px-5 text-xs font-black uppercase text-navy-900/40 tracking-wider w-1/2">
                     Ad-Hoc In-House Handling
                   </th>
                 </tr>
@@ -609,16 +606,13 @@ export const BusinessSupportServices: React.FC<BusinessSupportServicesProps> = (
               <tbody className="divide-y divide-sky-600/10 font-medium">
                 {comparisonRows.map((row, idx) => (
                   <tr key={idx} className="hover:bg-cream-50/50 transition-colors">
-                    <td className="py-4 px-4 text-xs font-black text-navy-900 uppercase">
-                      {row.feature}
-                    </td>
-                    <td className="py-4 px-4 text-xs text-navy-900 bg-sky-600/5 border-x border-sky-600/20 font-bold">
+                    <td className="py-4 px-5 text-xs text-navy-900 bg-sky-600/5 border-x border-sky-600/20 font-bold">
                       <div className="flex items-center gap-2">
                         <CheckCircle className="h-4 w-4 text-emerald-600 shrink-0" />
                         <span>{row.hraize}</span>
                       </div>
                     </td>
-                    <td className="py-4 px-4 text-xs text-navy-900/50">
+                    <td className="py-4 px-5 text-xs text-navy-900/50">
                       <div className="flex items-center gap-2">
                         <XCircle className="h-4 w-4 text-rose-500 shrink-0" />
                         <span>{row.manual}</span>
@@ -633,7 +627,7 @@ export const BusinessSupportServices: React.FC<BusinessSupportServicesProps> = (
 
         {/* ============ CLOSING CALL TO ACTION ============ */}
         <motion.div
-          className="shadow-xl text-center max-w-3xl mx-auto bg-cream-50 border border-sky-600/20 rounded-3xl p-8 sm:p-12"
+          className="shadow-xl text-center max-w-3xl mx-auto bg-white border border-sky-600/20 rounded-3xl p-8 sm:p-12"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}

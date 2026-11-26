@@ -283,14 +283,13 @@ export const TrainingAndDevelopment: React.FC<TrainingAndDevelopmentProps> = ({
           </div>
         </div>
 
-        <div className="rounded-3xl bg-navy-card p-8 sm:p-12 text-center max-w-4xl mx-auto relative overflow-hidden">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,color-mix(in_srgb,var(--color-sky-600)_10%,transparent)_0%,transparent_70%)]" />
+        <div className="rounded-3xl bg-white border border-sky-600/20 p-8 sm:p-12 text-center max-w-4xl mx-auto shadow-xl">
           <div className="relative">
-            <SectionLabel className="text-sky-400">Take Command</SectionLabel>
-            <h3 className="mt-3 text-2xl sm:text-3xl font-black uppercase tracking-tight text-white">
+            <SectionLabel>Take Command</SectionLabel>
+            <h3 className="mt-3 text-2xl sm:text-3xl font-black uppercase tracking-tight text-navy-900">
               Ready to Own Your Career
             </h3>
-            <p className="mt-4 text-sm text-sage-100/70 font-medium max-w-xl mx-auto leading-relaxed">
+            <p className="mt-4 text-sm text-navy-900/65 font-medium max-w-xl mx-auto leading-relaxed">
               Stop leaving transitions to chance. Partner with advisors who understand what global talent leaders look for.
             </p>
             <div className="mt-8">

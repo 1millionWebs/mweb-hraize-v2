@@ -236,31 +236,27 @@ export const HomeContent: React.FC<HomeContentProps> = () => {
       </section>
 
       {/* ============ LET'S DISCUSS YOUR BUSINESS REQUIREMENTS ============ */}
-      <section className="relative py-20 bg-white">
+      <section className="relative py-20 bg-cream-100">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="relative overflow-hidden rounded-3xl bg-navy-card p-8 sm:p-12 lg:p-16 text-center shadow-2xl border border-navy-900/10">
-            {/* Background ambient accents */}
-            <div className="absolute top-0 right-0 h-96 w-96 rounded-full bg-sky-600/15 blur-3xl pointer-events-none" />
-            <div className="absolute bottom-0 left-0 h-80 w-80 rounded-full bg-copper-400/10 blur-3xl pointer-events-none" />
-
+          <div className="relative overflow-hidden rounded-3xl bg-white p-8 sm:p-12 lg:p-16 text-center shadow-xl border border-sky-600/20">
             <div className="relative max-w-3xl mx-auto">
-              {/* <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-[11px] font-black uppercase tracking-[0.16em] text-sky-300 backdrop-blur-sm">
-                <Sparkles className="h-3.5 w-3.5 text-copper-400" />
+              {/* <span className="inline-flex items-center gap-2 rounded-full bg-sky-600/10 px-4 py-1.5 text-[11px] font-black uppercase tracking-[0.16em] text-sky-600">
+                <Sparkles className="h-3.5 w-3.5 text-copper-500" />
                 Operational Engagement
               </span> */}
 
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-white leading-tight">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-navy-900 leading-tight">
                 Let&apos;s Discuss Your Business Requirements
               </h2>
 
-              <p className="mt-5 text-sm sm:text-sm text-sage-100/75 font-medium max-w-2xl mx-auto leading-relaxed">
+              <p className="mt-5 text-sm sm:text-base text-navy-900/65 font-medium max-w-2xl mx-auto leading-relaxed">
                 Whether you need ongoing operational support or assistance with a specific project, Hraize is here to help.
               </p>
 
               <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
                 <Link
                   href="/contact?tab=consultation"
-                  className="inline-flex items-center gap-2 rounded-full bg-sky-600 px-8 py-4 text-sm font-black tracking-wider text-white shadow-xl shadow-sky-600/30 hover:bg-sky-500 transition-all duration-200"
+                  className="inline-flex items-center gap-2 rounded-full bg-sky-600 px-8 py-4 text-sm font-black tracking-wider text-white shadow-lg shadow-sky-600/25 hover:bg-sky-700 transition-all duration-200"
                 >
                   Contact Hraize
                   <ArrowRight className="h-4 w-4" />
