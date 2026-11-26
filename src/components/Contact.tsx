@@ -366,8 +366,7 @@ export const Contact: React.FC<ContactProps> = ({ initialTab = "hr" }) => {
             {/* RIGHT WHITE PANEL: EMAIL & OPERATING DESK HOURS */}
             <div className="lg:col-span-7 p-8 sm:p-10 lg:p-12 flex flex-col justify-center">
               <h2 className="text-2xl sm:text-3xl font-black text-navy-900 tracking-tight">
-                Get in Touch
-              </h2>
+                Contact Info              </h2>
               <p className="mt-1.5 text-xs sm:text-sm text-navy-900/55 font-medium">
                 Reach our advisory desk directly for inquiries and support.
               </p>
